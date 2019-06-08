@@ -1,5 +1,26 @@
 export const images = {
 
+
+    logo: require('../../assets/logo.png'),
+    intro: require('../../assets/images/intro.png'),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     tab_heart: require('../../assets/icons/tab_heart.png'),
     tab_grid: require('../../assets/icons/tab_grid.png'),
     tab_message: require('../../assets/icons/tab_message.png'),
@@ -90,7 +111,6 @@ export const images = {
     img_user2: require('../../assets/data/ninja.png'),
 
     //social
-    logo: require('../../assets/logo.png'),
     img_avatar: require('../../assets/data/user.webp'),
 
     question_icon: require('../../assets/data/question_icon.png'),

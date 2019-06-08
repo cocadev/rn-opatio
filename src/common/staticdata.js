@@ -2,6 +2,21 @@ import { images } from "./images";
 
 //user - me
 
+export const INTRO = 'Con nuestra plataforma podrás ver imágenes satelitales, imágenes de indice verde, detectar anomalías y ambientar tus lotes.'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const CATEGORIES = [
   { id:1, image:images.category1, title: 'Home care' },

@@ -1,4 +1,13 @@
 export const colors = {
+  SKY :'#00AFF0',
+  WHITE       : '#ffffff',
+
+
+
+
+
+
+
 
   BLUE: '#4a68b1',
   GREEN       : '#39baa6',
@@ -6,7 +15,6 @@ export const colors = {
   MAINGREEN : '#39baa6',
   DARK       : '#4c4c4c',
   DARK2       : '#868686',
-
   ORANGE      : '#f5911f',
   PURPLE      : '#6881c0',
     LIGHTORANGE : '#f9d3b8',
@@ -21,8 +29,7 @@ export const colors = {
   GREY4       : '#eaeaea',
   GREY5       : '#f6f6f6',
 
-  WHITE       : '#ffffff',
-  SKY :'#27a0d4',
+  // SKY :'#27a0d4',
   SKY2 : '#929fd0',
   PINK: "#ec1765"
 }
