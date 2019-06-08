@@ -4,7 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import { images } from '../../common/images';
 import { colors } from '../../common/colors';
 import { p } from '../../common/normalize';
-import { INTRO } from '../../common/staticdata';
+import { INTRO } from '../../common/config';
 import Button from '../../components/Button';
 
 const width = Math.round(Dimensions.get('window').width);

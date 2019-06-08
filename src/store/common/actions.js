@@ -1,7 +1,6 @@
 import * as types from './actionTypes';
 import { Actions } from 'react-native-router-flux';
 import axios from 'axios'
-import { Toast } from 'antd-mobile-rn';
 import {BaseUrl} from '../../config'
 
 export function loading(i) {
@@ -89,14 +88,12 @@ export const userRegister = (Username, Password, Email, RegionID) => {
     axios.post( BaseUrl + 'Account/Register', { Username, Password, Email, RegionID }).then(function (response) {
       console.log('my data', response.data)
       if (response.data.Value.User){
-        Toast.success('Register Success!')
         Actions.pop()
         console.log('~~~~~ @ ~~~~~~', response.data)
         dispatch({
          type: types.POST_REGISTER,
        })
        } else {
-         Toast.fail('Fail')
          dispatch({ type: types.FAILED });
         }} 
     ) .catch(function(error) {
@@ -110,7 +107,6 @@ export const userLogin = (Username, Password) => {
     dispatch({type: types.LOADING });
     axios.post( BaseUrl + 'Account/Login', { Username:Username, Password:Password }).then(function (response) {
         if (response.data.Success){
-         Toast.success('Login Success!')
          Actions.main()
          dispatch({
           type: types.POST_LOGIN,
@@ -120,7 +116,6 @@ export const userLogin = (Username, Password) => {
         });
 
         } else {
-          Toast.fail('Invalid Login Attempt!')
           dispatch({
             type: types.FAILED,
           });

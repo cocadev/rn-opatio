@@ -9,7 +9,6 @@ import { Actions } from 'react-native-router-flux';
 import LottieScreen from '../../components/Lottie';
 import api from "../../service/api";
 import Cache from "../../utils/cache";
-import i from '../../common/i'
 import { LinearGradient } from 'expo';
 import { p } from '../../common/normalize';
 import Button from '../../components/Button';

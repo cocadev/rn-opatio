@@ -8,9 +8,7 @@ import { Scene, Router, Drawer } from 'react-native-router-flux'
 import { Font } from 'expo'
 
 import SideMenu from './SideMenu';
-import Wall from './screens/Dashboard/wall';
 import Intro from './screens/Login/intro';
-
 import Inbox from './screens/Dashboard/Inbox';
 
 
