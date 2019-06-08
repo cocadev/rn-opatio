@@ -3,7 +3,6 @@ import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'rea
 import { Actions } from 'react-native-router-flux';
 import { images } from '../../common/images';
 import { colors } from '../../common/colors';
-import custom from '../../common/custom';
 import { p } from '../../common/normalize';
 import { INTRO } from '../../common/staticdata';
 import Button from '../../components/Button';
@@ -14,15 +13,17 @@ export default class Intro extends React.Component {
 
     render() {
         return (
-            <View style={[custom.container, { backgroundColor:colors.SKY}]}>
+            <View style={styles.container}>
                 <Image source={images.logo} style={styles.logo}/>
                 <Image source={images.intro} style={styles.intro}/>
 
                 <Text style={styles.intro_text}>{INTRO}</Text>
 
-                <Button />
+                <TouchableOpacity onPress={() => Actions.signup()}>
+                    <Button />
+                </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => Actions.signin()}>
                     <Text style={styles.text}>?YA TIENES CUENTA?</Text>
                 </TouchableOpacity>
 
@@ -33,6 +34,13 @@ export default class Intro extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        paddingTop:24,
+        backgroundColor:colors.SKY, 
+        justifyContent:'center', 
+        alignItems:'center'
+    },
     logo:{
         width: p(187),
         height: p(54)

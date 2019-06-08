@@ -11,6 +11,9 @@ import api from "../../service/api";
 import Cache from "../../utils/cache";
 import i from '../../common/i'
 import { LinearGradient } from 'expo';
+import { p } from '../../common/normalize';
+import Button from '../../components/Button';
+import { Entypo } from '@expo/vector-icons';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -77,90 +80,38 @@ class SignIn extends React.Component {
         const { email, password } = this.state;
 
         return (
-            <KeyboardAvoidingView behavior='padding' enabled style={[i.container, { backgroundColor: colors.WHITE }]}>
+            <View style={styles.container}>
 
-                <ScrollView>
+                <TouchableOpacity onPress={() => Actions.intro()}>
+                   <Entypo name="chevron-left" color={colors.SKY} size={30} />
+                </TouchableOpacity>
 
-                    <View style={{ width: '100%', alignItems: 'center', flex:1, height:height/3 }}>
-                        <Image source={images.logo} style={{ width: width / 1.6, height: width / 1.6 }} />
-                    </View>
+                <Text style={styles.text}>Ingrese a Optiagro</Text>
 
-                    <View style={{height:height/3, justifyContent:'flex-end'}}>
+                <TextInput
+                    style={styles.input}
+                    placeholder={'Email de trabajo:'}
+                    underlineColorAndroid='transparent'
+                    onChangeText={email => this.setState({ email })}
+                    value={email}
+                />
 
-                        <Text style={{ textAlign: 'center', color: colors.GREEN, fontSize: 30, fontFamily: 'Montserrat-Light' }}>SIGN IN</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder={'Contrasena:'}
+                    underlineColorAndroid='transparent'
+                    secureTextEntry={true}
+                    onChangeText={password => this.setState({ password })}
+                    value={password}
+                />
 
-                        <View>
-                            <TextInput
-                                style={styles.input}
-                                underlineColorAndroid='transparent'
-                                onChangeText={email => this.setState({ email })}
-                                value={email}
-                            />
-                            <Text style={styles.inputText}>EMAIL ID / PHONE NUMBER</Text>
-                        </View>
+                <Button />
 
-                        <View>
-                            <TextInput
-                                style={styles.input}
-                                underlineColorAndroid='transparent'
-                                secureTextEntry={true}
-                                onChangeText={password => this.setState({ password })}
-                                value={password}
-                            />
-                            <Text style={styles.inputText}>PASSWORD</Text>
-                        </View>
+                <TouchableOpacity>
+                    <Text style={styles.btnText}>?YA TIENES CUENTA?</Text>
+                </TouchableOpacity>
+            </View>
 
-                    </View>
-
-                    <View style={{height:height/3}}>
-
-                        <TouchableOpacity onPress={()=>Actions.wall()}>
-                            <LinearGradient
-                                colors={[colors.GREEN, colors.SKY]}
-                                start={[0, 1]} end={[1, 0]}
-                                style={{ padding: 15, alignItems: 'center', borderRadius: 5, marginHorizontal: 12, marginTop: 20 }}>
-                                <Text
-                                    style={{
-                                        backgroundColor: 'transparent',
-                                        fontSize: 15,
-                                        color: '#fff',
-                                        fontFamily: 'Montserrat-Medium'
-                                    }}>
-                                    SIGN IN
-                                </Text>
-                            </LinearGradient>
-                        </TouchableOpacity>
-
-                        <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                            <TouchableOpacity onPress={() => Actions.forgot()}>
-                                <Text style={{ marginRight: 22, marginTop: 10, fontFamily: 'Montserrat-LightItalic', color: colors.DARK }}>Forget Password?</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <View style={[styles.formGroup, { alignItems: 'flex-end', flexDirection: 'row', justifyContent: 'center', marginTop: 16 }]}>
-
-                            <TouchableOpacity >
-                                <Image source={images.icon_facebook2} style={{ width: 40, height: 40, marginHorizontal: 12 }} />
-                            </TouchableOpacity>
-
-                            <TouchableOpacity >
-                                <Image source={images.icon_mail} style={{ width: 40, height: 40, marginHorizontal: 12 }} />
-                            </TouchableOpacity>
-
-                        </View>
-
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: '100%', flex: 1, marginTop: 12 }}>
-                            <Text style={{ fontFamily: 'Montserrat-Medium', fontSize: 12, color: colors.DARK }}>Dont have an Account? Click here for </Text>
-                            <TouchableOpacity onPress={()=>Actions.signup()}>
-                                <Text style={{ color: colors.GREEN, fontFamily: 'Montserrat-Medium', fontSize: 12 }}>SIGN UP</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                    </View>
-
-                </ScrollView>
-
-            </KeyboardAvoidingView>
         )
     }
 }
@@ -172,28 +123,30 @@ export default connect(
     }))(SignIn);
 
 const styles = StyleSheet.create({
-
+    container: {
+        flex: 1,
+        paddingTop: 24,
+    },
     input: {
-        backgroundColor: colors.WHITE,
-        marginHorizontal: 12,
+        marginHorizontal: p(15),
         borderRadius: 5,
         marginVertical: 3,
-        fontSize: 20,
+        fontSize: p(15),
         paddingTop: 12,
         paddingLeft: 7,
         height: 55,
-        borderColor: '#f8f8f8',
-        fontFamily: 'Montserrat-Medium',
         color: '#4c4c4c',
-        borderWidth: 1,
-        borderRadius: 3
+        borderBottomWidth: 1,
+        borderBottomColor: colors.GREY1
     },
-    inputText: {
-        fontSize: 11,
-        left: 20,
-        top: 10,
-        color: colors.GREEN,
-        fontFamily: 'Montserrat-Medium',
-        position: 'absolute'
+    text: {
+        color: colors.BLACK,
+        fontSize: p(19),
+        marginHorizontal: p(15)
+    },
+    btnText: {
+        color: colors.BLACK,
+        fontSize: p(14),
+        textAlign: "center"
     }
 })

@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "RytHand-2",
+    "name": "Optiagro",
     "description": "Google Auth/MapView/Autocomplete-expo 32",
-    "slug": "unibuzz-2",
+    "slug": "optiagro",
     "privacy": "unlisted",
     "platforms": [
       "ios",

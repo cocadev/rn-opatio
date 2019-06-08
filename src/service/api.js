@@ -259,36 +259,6 @@ module.exports = {
     , "GET", {}, cb );
   },
 
-  detectFace(file){
-    return this.baseUploadApi('/api/faceDetect', file)
-  },
-  createPersonFace(personGroupId, personId, file){
-    return this.baseUploadApi(`/api/createPersonFace?PersonGroupID=${personGroupId}&PersonID=${personId}`, file)
-  },
-  setUserFaceID(FaceID, cb){
-    this.baseApi(`/api/setting/users/${Cache.currentUser.user.UserID}/setUserFaceID`, 'PUT', {FaceID}, cb)
-  },
-  setETA(id, ETA, cb){
-    this.baseApi(`/api/inventory/deliveryNotes/${id}/SetETA`, 'PUT', {ETA}, cb)
-  },
-
-  faceLogin(FaceID, cb){
-    this.baseApi(`/api/appFaceLogin`, 'POST', {FaceID}, (err, res)=>{
-      if (err == null) {
-        Cache.currentUser = res;
-        UtilService.saveLocalStringData("currentUser", JSON.stringify(res));
-        UtilService.saveLocalStringData("client", Cache.clientID);
-        cb(err, res);
-        return;
-      }
-      cb(err, res);
-    })
-  },
-
-
-
-
-
 //=======================================================================================================================================================
 
   /////////////////////////
@@ -310,137 +280,18 @@ module.exports = {
   //   this.baseApi('student-dashboard?user_id=' + id, 'GET', {}, cb) 
   // },
 
-
   /////////////////////////
   ///////// My Account //////////
   /////////////////////////
   getHomePageServices (cb){ 
     this.baseApi('getHomePageServices', 'GET', {}, cb) 
   },
-  // onMessageSend( ChannelSid, Body, From, DateCreated, To, cb){ 
-  //   this.baseApi('Chat/OnMessageSend?ChannelSid=' + ChannelSid +'&Body=' + Body +'&From=' + From +'&DateCreated=' + DateCreated +'&To=' + To, 'GET', {}, cb) 
-  // },
 
-  // /////////////////////////
-  // //////// Payment ////////
-  // /////////////////////////
   // createCustomer(UserID, Token, cb){
   //   this.baseApi('Payment/CreateCustomer', 'POST', { UserID, Token }, cb)
   // },
   // getCustomerByUserID (UserID, cb){ 
   //   this.baseApi('Payment/GetCustomerByUserID?UserID=' + UserID, 'GET', {}, cb) 
   // },
-   
-  // /////////////////////////
-  // //////// Contract ///////
-  // /////////////////////////
-  // addSession(OfferID, UserID, Date, Comment, cb){
-  //   this.baseApi('Contract/AddSession', 'POST', { OfferID, UserID, Date, Comment }, cb)
-  // },
-  // acceptedSession( SessionID, UserID, cb){ 
-  //   this.baseApi('Contract/AcceptedSession?SessionID=' + SessionID +'&UserID=' + UserID, 'GET', {}, cb) 
-  // },  
-  // endContract( OfferID, UserID, cb){ 
-  //   this.baseApi('Contract/EndContract?OfferID=' + OfferID +'&UserID=' + UserID, 'GET', {}, cb) 
-  // }, 
-  // acceptOffer( OfferID, UserID, CustomerID, Amount, Currency, cb){ 
-  //   this.baseApi('Contract/AcceptOffer?OfferID=' + OfferID +'&UserID=' + UserID +'&CustomerID=' + CustomerID +'&Amount=' + Amount +'&Currency=' + Currency, 'GET', {}, cb) 
-  // },
-  // createOffer(JobID, UserID, Amount, CurrencyCode, cb){
-  //   this.baseApi('Contract/CreateOffer', 'POST', {JobID, UserID, Amount, CurrencyCode}, cb)
-  // },
-  // getOffersByUser (ID, cb){ 
-  //   this.baseApi('Contract/GetOffersByUser?UserID=' + ID + '&PageIndex=0&PageSize=10', 'GET', {}, cb) 
-  // },
-  // cancelOffer (OfferID, UserID, cb){ 
-  //   this.baseApi('Contract/CancelOffer?OfferID=' + OfferID + '&UserID=' + UserID, 'GET', {}, cb) 
-  // },
-  // editOffer(ID, UserID, Amount, CurrencyCode, Status, cb){
-  //   this.baseApi('Contract/EditOffer', 'POST', {ID, UserID, Amount, CurrencyCode, Status}, cb)
-  // },
-  // declineOffer (OfferID, UserID, cb){ 
-  //   this.baseApi('Contract/RejectOffer?OfferID=' + OfferID + '&UserID=' + UserID, 'GET', {}, cb) 
-  // },
-  
-
-  // /////////////////////////
-  // ////// Appointment //////
-  // /////////////////////////
-  // createJob(CategoryID, UserID, Title, Description, Tags, Amount, CurrencyCode, IsSold, IsUrgent, Attachments, Location, cb){
-  //   this.baseApi('Appointment/CreateJob', 'POST', { CategoryID, UserID, Title, Description, Tags, Amount, CurrencyCode, IsSold, IsUrgent, Attachments, Location }, cb)
-  // },
-  // createService(CategoryID, UserID, Title, Description, Tags, Amount, CurrencyCode, IsSold, IsUrgent, Attachments, Location, cb){
-  //   this.baseApi('Appointment/CreateService', 'POST', { CategoryID, UserID, Title, Description, Tags, Amount, CurrencyCode, IsSold, IsUrgent, Attachments, Location }, cb)
-  // },
-  // getJobsByUser (UserID, cb){ 
-  //   this.baseApi('Appointment/GetJobsByUser?UserID=' + UserID, 'GET', {}, cb) 
-  // },
-  // getServicesByUser (UserID, cb){ 
-  //   this.baseApi('Appointment/GetServicesByUser?UserID=' + UserID, 'GET', {}, cb) 
-  // },
-  // createFav(JobID, UserID, Flag, IsJob, cb){
-  //   this.baseApi('Appointment/CreateFavorite', 'POST', {JobID, UserID, Flag, IsJob}, cb)
-  // },
-  // getAllItems(type, count, cb){ 
-  //   this.baseApi('Appointment/GetAll'+ type +'?PageIndex=0&PageSize=' + count, 'GET', {}, cb) 
-  // },
-  // getJobsByCategory(type, id, count, cb){ 
-  //   this.baseApi('Appointment/Get' + type + 'ByCategory?CategoryID=' + id + '' + '&PageIndex=0&PageSize=' + count, 'GET', {}, cb) 
-  // },
-
-  // //GetServiceByID,GetJobByID
-  // getItemById(ID, type, cb){ 
-  //   this.baseApi('Appointment/Get'+ type +'ByID?ID=' + ID, 'GET', {}, cb) 
-  // },
-
-  
-  // getFavoriteJobsByUser(UserID, cb){ 
-  //   this.baseApi('Appointment/GetFavoriteJobsByUser?UserID=' + UserID + '&PageIndex=0&PageSize=100', 'GET', {}, cb) 
-  // },
-  // getFavoriteServicesByUser(UserID, cb){ 
-  //   this.baseApi('Appointment/GetFavoriteServicesByUser?UserID=' + UserID + '&PageIndex=0&PageSize=100', 'GET', {}, cb) 
-  // },
- 
-  // /////////////////////////
-  // ///////// User //////////
-  // /////////////////////////
-  // getFavoriteUsersByUser(UserID, cb){ 
-  //   this.baseApi('User/GetFavoriteUsersByUser?UserID=' + UserID + '&PageIndex=0&PageSize=100', 'GET', {}, cb) 
-  // },
-  // editProfile(Email, PhoneNumber, PhotoURL, Overview, Address, Tags, cb){
-  //   this.baseApi('User/EditProfile', 'POST', { Email, PhoneNumber, PhotoURL, Overview, Address, Tags }, cb)
-  // },
-
-  // /////////////////////////
-  // ///////// Location //////
-  // /////////////////////////
-  // searchLocation(Text, cb){ 
-  //   this.baseApi('Location/SearchLocation?Text=' + Text, 'GET', {}, cb) 
-  // },
-
-
-
-  
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 };
