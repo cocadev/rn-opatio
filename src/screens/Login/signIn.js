@@ -83,7 +83,7 @@ class SignIn extends React.Component {
             <View style={styles.container}>
 
                 <TouchableOpacity onPress={() => Actions.intro()}>
-                   <Entypo name="chevron-left" color={colors.SKY} size={30} />
+                    <Entypo name="chevron-left" color={colors.SKY} size={30} />
                 </TouchableOpacity>
 
                 <Text style={styles.text}>Ingrese a Optiagro</Text>
@@ -105,9 +105,11 @@ class SignIn extends React.Component {
                     value={password}
                 />
 
-                <Button />
+                <TouchableOpacity onPress={() => Actions.drawerMenu()}>
+                    <Button />
+                </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => Actions.forgot()}>
                     <Text style={styles.btnText}>?YA TIENES CUENTA?</Text>
                 </TouchableOpacity>
             </View>
@@ -126,6 +128,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 24,
+        backgroundColor: colors.WHITE
     },
     input: {
         marginHorizontal: p(15),

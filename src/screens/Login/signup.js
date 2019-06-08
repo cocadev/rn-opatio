@@ -86,7 +86,7 @@ class SignUp extends React.Component {
                     <Entypo name="chevron-left" color={colors.SKY} size={30} />
                 </TouchableOpacity>
 
-                <Text style={styles.text}>Ingrese a Optiagro</Text>
+                <Text style={styles.text}>Crea tu Cuenta</Text>
 
                 <TextInput
                     style={styles.input}
@@ -98,6 +98,24 @@ class SignUp extends React.Component {
 
                 <TextInput
                     style={styles.input}
+                    placeholder={'Nombre:'}
+                    underlineColorAndroid='transparent'
+                    secureTextEntry={true}
+                    onChangeText={password => this.setState({ password })}
+                    value={password}
+                />
+
+                <TextInput
+                    style={styles.input}
+                    placeholder={'Apellido:'}
+                    underlineColorAndroid='transparent'
+                    secureTextEntry={true}
+                    onChangeText={password => this.setState({ password })}
+                    value={password}
+                />
+
+                <TextInput
+                    style={styles.input}
                     placeholder={'Contrasena:'}
                     underlineColorAndroid='transparent'
                     secureTextEntry={true}
@@ -105,11 +123,11 @@ class SignUp extends React.Component {
                     value={password}
                 />
 
-                <Button />
-
-                <TouchableOpacity>
-                    <Text style={styles.btnText}>?YA TIENES CUENTA?</Text>
+                <TouchableOpacity onPress={() => Actions.drawerMenu()}>
+                    <Button />
                 </TouchableOpacity>
+
+                
             </View>
 
         )
@@ -126,6 +144,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 24,
+        backgroundColor: colors.WHITE
     },
     input: {
         marginHorizontal: p(15),

@@ -49,32 +49,32 @@ export default class App extends PureComponent {
 
   async _loadAssets() {
     await Font.loadAsync({
-      // 'Montserrat-Black': require('../assets/fonts/Montserrat-Black.ttf'),
-      // 'Montserrat-BlackItalic': require('../assets/fonts/Montserrat-BlackItalic.ttf'),
-      // 'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
-      // 'Montserrat-BoldItalic': require('../assets/fonts/Montserrat-BoldItalic.ttf'),
-      // 'Montserrat-ExtraBold': require('../assets/fonts/Montserrat-ExtraBold.ttf'),
-      // 'Montserrat-ExtraBoldItalic': require('../assets/fonts/Montserrat-ExtraBoldItalic.ttf'),
-      // 'Montserrat-ExtraLight': require('../assets/fonts/Montserrat-ExtraLight.ttf'),
-      // 'Montserrat-ExtraLightItalic': require('../assets/fonts/Montserrat-ExtraLightItalic.ttf'),
-      // 'Montserrat-Italic': require('../assets/fonts/Montserrat-Italic.ttf'),
-      // 'Montserrat-Light': require('../assets/fonts/Montserrat-Light.ttf'),
-      // 'Montserrat-LightItalic': require('../assets/fonts/Montserrat-LightItalic.ttf'),
-      // 'Montserrat-Medium': require('../assets/fonts/Montserrat-Medium.ttf'),
-      // 'Montserrat-MediumItalic': require('../assets/fonts/Montserrat-MediumItalic.ttf'),
-      // 'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
-      // 'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
-      // 'Montserrat-SemiBoldItalic': require('../assets/fonts/Montserrat-SemiBoldItalic.ttf'),
-      // 'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
-      // 'Montserrat-Thin': require('../assets/fonts/Montserrat-Thin.ttf'),
-      // 'Montserrat-ThinItalic': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
+      'Montserrat-Black': require('../assets/fonts/Montserrat-Black.ttf'),
+      'Montserrat-BlackItalic': require('../assets/fonts/Montserrat-BlackItalic.ttf'),
+      'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
+      'Montserrat-BoldItalic': require('../assets/fonts/Montserrat-BoldItalic.ttf'),
+      'Montserrat-ExtraBold': require('../assets/fonts/Montserrat-ExtraBold.ttf'),
+      'Montserrat-ExtraBoldItalic': require('../assets/fonts/Montserrat-ExtraBoldItalic.ttf'),
+      'Montserrat-ExtraLight': require('../assets/fonts/Montserrat-ExtraLight.ttf'),
+      'Montserrat-ExtraLightItalic': require('../assets/fonts/Montserrat-ExtraLightItalic.ttf'),
+      'Montserrat-Italic': require('../assets/fonts/Montserrat-Italic.ttf'),
+      'Montserrat-Light': require('../assets/fonts/Montserrat-Light.ttf'),
+      'Montserrat-LightItalic': require('../assets/fonts/Montserrat-LightItalic.ttf'),
+      'Montserrat-Medium': require('../assets/fonts/Montserrat-Medium.ttf'),
+      'Montserrat-MediumItalic': require('../assets/fonts/Montserrat-MediumItalic.ttf'),
+      'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
+      'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
+      'Montserrat-SemiBoldItalic': require('../assets/fonts/Montserrat-SemiBoldItalic.ttf'),
+      'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
+      'Montserrat-Thin': require('../assets/fonts/Montserrat-Thin.ttf'),
+      'Montserrat-ThinItalic': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
 
-      // 'ionicons': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
-      // 'material-community': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
+      'ionicons': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
+      'material-community': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
       'entypo': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
-      // 'FontAwesome': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
-      // 'material': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
-      // 'simple-line-icons': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
+      'FontAwesome': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
+      'material': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
+      'simple-line-icons': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
       'MaterialIcons': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
 
     });
@@ -100,14 +100,15 @@ export default class App extends PureComponent {
               <Drawer
                 hideNavBar
                 key="drawerMenu"
+                initial={true}
                 contentComponent={SideMenu}
                 drawerWidth={width / 1.2}
                 drawerPosition="left"
               >
 
-                <Scene key="wall" component={MyTabNavigator} hideNavBar />
+                {/* <Scene key="wall" component={MyTabNavigator} hideNavBar />
                 <Scene key="profile" component={Profile} initial={false} hideNavBar />
-                <Scene key="notification" component={Notification} initial={false} hideNavBar />
+                <Scene key="notification" component={Notification} initial={false} hideNavBar /> */}
                 <Scene key="inbox" component={Inbox} initial={false} hideNavBar />
 
               </Drawer>
