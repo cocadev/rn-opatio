@@ -1,0 +1,69 @@
+export const SET_CHAT = 'SET_CHAT';
+export const SET_OFFER = 'SET_OFFER';
+export const SET_SITUATION = 'SET_SITUATION'
+
+
+
+//Job
+export const GET_ALL_JOB_CATEGORIES = 'GET_ALL_JOB_CATEGORIES'
+
+export const GET_ALL_JOB_SEARCH = 'GET_ALL_JOB_SEARCH'
+export const GET_ALL_SERVICES_SEARCH = 'GET_ALL_SERVICES_SEARCH'
+
+export const SET_CATEGORY = 'SET_CATEGORY'
+export const SEARCH_CATEGORY_ID = 'SEARCH_CATEGORY_ID'
+
+export const GET_ALL_JOBS = 'GET_ALL_JOBS'
+export const GET_ALL_SERVICES = 'GET_ALL_SERVICES'
+export const GET_FAVORITE_JOBS_BY_USER = 'GET_FAVORITE_JOBS_BY_USER'
+export const GET_FAVORITE_SERVICES_BY_USER = 'GET_FAVORITE_SERVICES_BY_USER'
+export const GET_FAVORITE_USERS_BY_USER = 'GET_FAVORITE_USERS_BY_USER'
+export const POST_SEARCH_APPOINTMENTS = 'POST_SEARCH_APPOINTMENTS'
+
+export const CREATE_JOB = 'CREATE_JOB'
+export const CREATE_OFFER = 'CREATE_OFFER'
+export const CANCEL_OFFER = 'CANCEL_OFFER'
+export const EDIT_OFFER = 'EDIT_OFFER'
+
+export const SET_JOB = 'SET_JOB'
+export const SET_JOB_TYPE = 'SET_JOB_TYPE'
+export const SET_JOB_BY_ID = 'SET_JOB_BY_ID'
+
+export const SET_QUERY = 'SET_QUERY'
+export const SET_SEARCH_HISTORY = 'SET_SEARCH_HISTORY'
+export const SET_CATEGORY_ID = 'SET_CATEGORY_ID'
+export const REMOVE_CATEGORY_ID = 'REMOVE_CATEGORY_ID'
+
+export const GET_OFFER_JOB_BY_ID = 'GET_OFFER_JOB_BY_ID'
+export const SET_JOB_HISTORY = 'SET_JOB_HISTORY'
+export const GET_JOBS_BY_USER = 'GET_JOBS_BY_USER'
+export const GET_SERVICES_BY_USER = 'GET_SERVICES_BY_USER'
+
+export const DELETE_JOB = 'DELETE_JOB'
+export const DELETE_SERVICE = 'DELETE_SERVICE'
+export const CREATE_FAVORITE = 'CREATE_FAVORITE'
+export const FAV_USER = 'FAV_USER'
+export const CREATE_FAVORITE_USER = 'CREATE_FAVORITE_USER'
+
+//image
+export const UPLOAD_IMAGE = 'UPLOAD_IMAGE'
+
+//location
+export const GET_LOCATION = 'GET_LOCATION'
+export const SET_LOCATION = 'SET_LOCATION'
+
+//loading
+export const STOP_LOADING = 'STOP_LOADING'
+
+
+//BriefCase
+export const GET_OFFERS_BY_USER = 'GET_OFFERS_BY_USER'
+
+
+//chat
+export const SET_CHAT_INFO = 'SET_CHAT_INFO'
+export const EMPTY_CHAT = 'EMPTY_CHAT'
+
+export const SUCCESS = 'SUCCESS'
+export const FAILED = 'FAILED'
+export const LOADING = 'LOADING'
