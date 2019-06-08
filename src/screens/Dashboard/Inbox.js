@@ -25,7 +25,8 @@ class Inbox extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 24
+    paddingTop: 24,
+    backgroundColor: colors.SKY
   }
 });
 
