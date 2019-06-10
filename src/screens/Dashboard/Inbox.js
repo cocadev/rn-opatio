@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, TouchableHighlight, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, TouchableHighlight, TextInput, Modal } from 'react-native';
 import api from "../../service/api";
 import { images } from '../../common/images';
 import { colors } from '../../common/colors';
@@ -8,12 +8,57 @@ import { Actions } from 'react-native-router-flux';
 import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { p } from '../../common/normalize';
+import { NOTIFICATION } from '../../common/config';
 
 const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
 
 class Inbox extends React.Component {
 
+  state = {
+    notification: false
+  }
+
+  _renderItem = ({ item }) => (
+    <View style={styles.itemNotify}>
+      <View style={{width: p(8), height: p(40), backgroundColor: colors.BLUE, borderTopLeftRadius: 2, borderBottomLeftRadius: 2}}>
+
+      </View>
+      <Image source={images.news} style={{ width: p(30), height: p(25), marginLeft: p(18)}}/>
+      <View style={{ paddingTop: p(2), marginLeft: p(12)}}>
+        <Text style={{fontSize: p(9)}}>{item.title}</Text>
+        <Text style={{fontSize: p(9)}}>{item.content}</Text>
+        <Text style={{fontSize: p(9)}}>{item.name}</Text>
+      </View>
+    </View>
+  )
+
+  renderNotification() {
+    return (
+      <Modal
+        visible={this.state.notification}
+        transparent={true}
+        onRequestClose={() => { }}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modal}>
+            <TouchableOpacity onPress={() => this.setState({ notification: false })}>
+              <Entypo name="chevron-right" color={colors.GREY1} size={36} />
+            </TouchableOpacity>
+            <FlatList
+              style={{ marginTop: 12 }}
+              data={NOTIFICATION}
+              keyExtractor={(item, i) => String(i)}
+              renderItem={this._renderItem}
+            />
+          </View>
+        </View>
+      </Modal>
+    );
+  }
+
   render() {
+
     return (
       <View style={styles.container}>
 
@@ -22,17 +67,17 @@ class Inbox extends React.Component {
             <Image source={images.menu} style={styles.menuIcon} />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.ring} onPress={() => Actions.drawerOpen()}>
+          <TouchableOpacity style={styles.ring} onPress={() => this.setState({ notification: true })}>
             <Image source={images.ring} style={styles.ringIcon} />
           </TouchableOpacity>
         </View>
 
-        <View style={{ alignItems: 'center', marginTop: p(10)}}>
+        <View style={{ alignItems: 'center', marginTop: p(10) }}>
           <Image source={images.logoIcon} style={styles.logoIcon} />
         </View>
 
-        <Text style={{ textAlign: 'center', fontSize: p(15), marginTop: p(25)}}>Bienvenido otra vez</Text>
-        <Text style={{ textAlign: 'center', fontSize: p(20), fontWeight: '700', marginTop: p(20)}}>Joaquin Otero</Text>
+        <Text style={{ textAlign: 'center', fontSize: p(15), marginTop: p(25) }}>Bienvenido otra vez</Text>
+        <Text style={{ textAlign: 'center', fontSize: p(20), fontWeight: '700', marginTop: p(20) }}>Joaquin Otero</Text>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: p(100) }}>
           <View style={styles.rectNgulo}>
@@ -46,14 +91,16 @@ class Inbox extends React.Component {
             <View style={[styles.box, { backgroundColor: colors.YELLOW }]}>
               <Image source={images.track} style={styles.itemImg2} />
             </View>
-            <Text style={[styles.text, { color: colors.YELLOW}]}>Maquinarias</Text>
+            <Text style={[styles.text, { color: colors.YELLOW }]}>Maquinarias</Text>
           </View>
 
         </View>
 
         <View style={styles.button}>
-           <Text style={styles.btnText}>Extraer datos</Text>
+          <Text style={styles.btnText}>Extraer datos</Text>
         </View>
+
+        {this.state.notification && this.renderNotification()}
 
       </View>
     );
@@ -78,15 +125,15 @@ const styles = StyleSheet.create({
     marginTop: p(21),
   },
   menuIcon: {
-    width:p(27),
+    width: p(27),
     height: p(20)
   },
   ringIcon: {
-    width:p(24),
+    width: p(24),
     height: p(26)
   },
   logoIcon: {
-    width:p(30),
+    width: p(30),
     height: p(37)
   },
   box: {
@@ -141,6 +188,31 @@ const styles = StyleSheet.create({
     fontSize: p(21),
     fontWeight: '700',
     lineHeight: p(21),
+  },
+  modal: {
+    width: width / 2,
+    height: height,
+    backgroundColor: "white",
+    paddingTop: p(10),
+    borderLeftWidth: 1,
+    borderColor: colors.BLACK
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0,0.5)",
+    alignItems: "flex-end",
+  },
+  itemNotify: {
+    position: 'relative',
+    alignItems: 'center',
+    flexDirection: 'row',
+    height: p(40),
+    marginHorizontal: p(6),
+    marginVertical: p(3),
+    borderWidth: 1,
+    borderColor: colors.GREY2,
+    elevation: 1,
+    borderRadius: 3
   }
 });
 

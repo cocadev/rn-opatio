@@ -51,15 +51,15 @@ export default class App extends PureComponent {
 
           <Router>
             <Scene>
-              <Scene key="intro" component={Intro} initial={true} hideNavBar />
-              <Scene key="signin" component={SignIn} hideNavBar initial={true} />
-              <Scene key="signup" component={SignUp} hideNavBar initial={true} />
+              <Scene key="intro" component={Intro} initial={false} hideNavBar />
+              <Scene key="signin" component={SignIn} hideNavBar initial={false} />
+              <Scene key="signup" component={SignUp} hideNavBar initial={false} />
               <Scene key="forgot" component={Forgot} initial={false} hideNavBar />
 
               <Drawer
                 hideNavBar
                 key="drawerMenu"
-                initial={false}
+                initial={true}
                 contentComponent={SideMenu}
                 drawerWidth={width / 1.4}
                 drawerPosition="left"

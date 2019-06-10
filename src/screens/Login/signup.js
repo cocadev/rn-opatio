@@ -7,8 +7,6 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Actions } from 'react-native-router-flux';
 import LottieScreen from '../../components/Lottie';
-import api from "../../service/api";
-import Cache from "../../utils/cache";
 import { LinearGradient } from 'expo';
 import { p } from '../../common/normalize';
 import Button from '../../components/Button';
@@ -85,7 +83,7 @@ class SignUp extends React.Component {
                         value={address}
                     />
 
-                    <View >
+                    <View>
                         <TextInput
                             style={styles.input}
                             placeholder={'Contrasena:'}

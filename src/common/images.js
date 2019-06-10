@@ -13,6 +13,7 @@ export const images = {
     location: require('../../assets/images/location.png'),
     track: require('../../assets/images/track.png'),
     chart: require('../../assets/images/chart.png'),
+    news: require('../../assets/images/news.png'),
 
 
 };
