@@ -76,10 +76,12 @@ class Inbox extends React.Component {
           <Image source={images.logoIcon} style={styles.logoIcon} />
         </View>
 
-        <Text style={{ textAlign: 'center', fontSize: p(15), marginTop: p(25) }}>Bienvenido otra vez</Text>
-        <Text style={{ textAlign: 'center', fontSize: p(20), fontWeight: '700', marginTop: p(20) }}>Joaquin Otero</Text>
+        <View>
+          <Text style={{ textAlign: 'center', fontSize: p(15), marginTop: p(25) }}>Bienvenido otra vez</Text>
+          <Text style={{ textAlign: 'center', fontSize: p(20), fontWeight: '700', marginTop: p(10) }}>Joaquin Otero</Text>
+        </View>
 
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: p(100) }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <View style={styles.rectNgulo}>
             <View style={styles.box}>
               <Image source={images.location} style={styles.itemImg1} />
@@ -112,6 +114,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 24,
     paddingHorizontal: p(15),
+    justifyContent: 'space-between',
     backgroundColor: colors.BACKGROUND
   },
   header: {
@@ -133,7 +136,7 @@ const styles = StyleSheet.create({
     height: p(26)
   },
   logoIcon: {
-    width: p(30),
+    width: p(31),
     height: p(37)
   },
   box: {
@@ -152,6 +155,7 @@ const styles = StyleSheet.create({
     shadowRadius: 7,
     borderRadius: 2,
     backgroundColor: '#ffffff',
+    elevation: 3
   },
   text: {
     color: colors.BLUE,
@@ -182,6 +186,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
     backgroundColor: colors.YELLOW,
+    marginBottom: p(10)
   },
   btnText: {
     color: colors.WHITE,
