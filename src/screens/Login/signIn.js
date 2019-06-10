@@ -81,36 +81,40 @@ class SignIn extends React.Component {
         return (
             <View style={styles.container}>
 
-                <TouchableOpacity onPress={() => Actions.intro()}>
-                    <Entypo name="chevron-left" color={colors.SKY} size={30} />
+                <TouchableOpacity style={{marginLeft: p(4)}} onPress={() => Actions.intro()}>
+                    <Entypo name="chevron-left" color={colors.SKY} size={36} />
                 </TouchableOpacity>
 
-                <Text style={styles.text}>Ingrese a Optiagro</Text>
+                <View>
+                    <Text style={styles.text}>Ingrese a Optiagro</Text>
 
-                <TextInput
-                    style={styles.input}
-                    placeholder={'Email de trabajo:'}
-                    underlineColorAndroid='transparent'
-                    onChangeText={email => this.setState({ email })}
-                    value={email}
-                />
+                    <TextInput
+                        style={styles.input}
+                        placeholder={'Email de trabajo:'}
+                        underlineColorAndroid='transparent'
+                        onChangeText={email => this.setState({ email })}
+                        value={email}
+                    />
 
-                <TextInput
-                    style={styles.input}
-                    placeholder={'Contrasena:'}
-                    underlineColorAndroid='transparent'
-                    secureTextEntry={true}
-                    onChangeText={password => this.setState({ password })}
-                    value={password}
-                />
+                    <TextInput
+                        style={styles.input}
+                        placeholder={'Contrasena:'}
+                        underlineColorAndroid='transparent'
+                        secureTextEntry={true}
+                        onChangeText={password => this.setState({ password })}
+                        value={password}
+                    />
+                </View>
 
-                <TouchableOpacity onPress={() => Actions.drawerMenu()}>
-                    <Button />
-                </TouchableOpacity>
+                <View style={{alignItems: 'center', marginVertical: p(40) }}>
+                    <TouchableOpacity onPress={() => Actions.drawerMenu()}>
+                        <Button text={'INGRASAR'} type={'SKY'}/>
+                    </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => Actions.forgot()}>
-                    <Text style={styles.btnText}>?YA TIENES CUENTA?</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={() => Actions.forgot()}>
+                        <Text style={styles.btnText}>?YA TIENES CUENTA?</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
 
         )
@@ -143,13 +147,16 @@ const styles = StyleSheet.create({
         borderBottomColor: colors.GREY1
     },
     text: {
+        fontWeight: "700",
         color: colors.BLACK,
-        fontSize: p(19),
+        fontSize: p(24),
+        marginBottom: p(20),
         marginHorizontal: p(15)
     },
     btnText: {
-        color: colors.BLACK,
-        fontSize: p(14),
+        color: colors.SKY,
+        marginVertical: p(20),
+        fontSize: p(16),
         textAlign: "center"
     }
 })
