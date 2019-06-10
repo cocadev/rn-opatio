@@ -59,7 +59,7 @@ export default class App extends PureComponent {
               <Drawer
                 hideNavBar
                 key="drawerMenu"
-                initial={true}
+                initial={false}
                 contentComponent={SideMenu}
                 drawerWidth={width / 1.4}
                 drawerPosition="left"

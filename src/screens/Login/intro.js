@@ -14,18 +14,20 @@ export default class Intro extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Image source={images.logo} style={styles.logo}/>
-                <Image source={images.intro} style={styles.intro}/>
+                <Image source={images.logo} style={styles.logo} />
+                <Image source={images.intro} style={styles.intro} />
 
-                <Text style={styles.intro_text}>{INTRO}</Text>
+                <View style={{ alignItems: 'center'}}>
+                    <Text style={styles.intro_text}>{INTRO}</Text>
 
-                <TouchableOpacity onPress={() => Actions.signup()}>
-                    <Button />
-                </TouchableOpacity>
+                    <TouchableOpacity style={{ marginVertical: p(14)}} onPress={() => Actions.signup()}>
+                        <Button text={'CREATE CUENTA GRATIS'} type={'white'}/>
+                    </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => Actions.signin()}>
-                    <Text style={styles.text}>?YA TIENES CUENTA?</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity style={{ marginVertical: p(12)}} onPress={() => Actions.signin()}>
+                        <Text style={styles.text}>?YA TIENES CUENTA?</Text>
+                    </TouchableOpacity>
+                </View>
 
             </View>
         )
@@ -34,30 +36,32 @@ export default class Intro extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        paddingTop:24,
-        backgroundColor:colors.SKY, 
-        justifyContent:'center', 
-        alignItems:'center'
+    container: {
+        flex: 1,
+        paddingTop: 24,
+        backgroundColor: colors.SKY,
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
-    logo:{
-        width: p(187),
-        height: p(54)
+    logo: {
+        marginTop: p(10),
+        width: p(200),
+        height: p(58)
     },
-    intro:{
+    intro: {
         width: width,
-        height: p(190)
+        height: p(220)
     },
-    intro_text:{
-        color:colors.WHITE,
-        fontSize: p(14),
+    intro_text: {
+        color: colors.WHITE,
+        fontSize: p(15),
         marginHorizontal: p(12),
-        textAlign:"center"
+        textAlign: "center"
     },
-    text:{
-        color:colors.WHITE,
-        fontSize: p(14),
-        textAlign:"center"
+    text: {
+        color: colors.WHITE,
+        fontSize: p(16),
+        fontWeight: "600",
+        textAlign: "center"
     }
 })

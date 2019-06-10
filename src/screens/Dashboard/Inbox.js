@@ -27,14 +27,14 @@ class Inbox extends React.Component {
           </TouchableOpacity>
         </View>
 
-        <View style={{ alignItems: 'center'}}>
+        <View style={{ alignItems: 'center', marginTop: p(10)}}>
           <Image source={images.logoIcon} style={styles.logoIcon} />
         </View>
 
-        <Text style={{ textAlign: 'center', fontSize: p(15), marginVertical: p(12)}}>Bienvenido otra vez</Text>
-        <Text style={{ textAlign: 'center', fontSize: p(20), fontWeight: '700'}}>Joaquin Otero</Text>
+        <Text style={{ textAlign: 'center', fontSize: p(15), marginTop: p(25)}}>Bienvenido otra vez</Text>
+        <Text style={{ textAlign: 'center', fontSize: p(20), fontWeight: '700', marginTop: p(20)}}>Joaquin Otero</Text>
 
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: p(32) }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: p(100) }}>
           <View style={styles.rectNgulo}>
             <View style={styles.box}>
               <Image source={images.location} style={styles.itemImg1} />
@@ -49,13 +49,6 @@ class Inbox extends React.Component {
             <Text style={[styles.text, { color: colors.YELLOW}]}>Maquinarias</Text>
           </View>
 
-        </View>
-
-        <View style={styles.rectNgulo}>
-          <View style={[styles.box, { backgroundColor: colors.GREEN }]}>
-            <Image source={images.chart} style={styles.itemImg3} />
-          </View>
-          <Text style={[styles.text, { color: colors.GREEN}]}>Reportes</Text>
         </View>
 
         <View style={styles.button}>
@@ -134,7 +127,7 @@ const styles = StyleSheet.create({
   },
   button: {
     height: p(60),
-    marginTop: p(20),
+    marginTop: p(88),
     justifyContent: 'center',
     alignItems: 'center',
     borderTopLeftRadius: 2,

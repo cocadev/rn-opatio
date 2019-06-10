@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 24,
+        justifyContent: 'space-between',
         backgroundColor: colors.WHITE
     },
     input: {

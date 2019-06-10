@@ -6,10 +6,10 @@ import { p } from '../common/normalize';
 export default class Button extends React.Component {
 
   render() {
-    const {radius, vetical} = this.props
+    const {text, type} = this.props
     return (
       <View style={styles.button}>
-        <Text style={styles.text}>CREATE CUENTA GRATIS</Text>
+        <Text style={styles.text}>{text}</Text>
       </View>
     )
   }
@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
     },
     text: {
       color: colors.SKY,
-      fontWeight:"500",
-      fontSize: p(14),
+      fontWeight:"600",
+      fontSize: p(16),
       paddingHorizontal: p(40),
-      paddingVertical: p(10)
+      paddingVertical: p(12)
     }
 });
