@@ -19,36 +19,27 @@ export default class SideMenu extends Component {
             <View style={styles.container}>
               
               <View style={{flex:3, justifyContent:'center', backgroundColor:'#eaf7f8'}}>
-                 <TouchableOpacity onPress={()=>Actions.profile()} style={{flexDirection:'row', alignItems:'center', marginLeft: 25,marginTop: 15,}}>
+                 <TouchableOpacity style={{flexDirection:'row', alignItems:'center', marginLeft: 25,marginTop: 15,}}>
                      <Image source={images.user} style={styles.avatar}/>
-                     <Text style={[{ marginLeft:16, fontSize: p(16)}]}>Martin Garcia</Text>
+                     <Text style={{ marginLeft:16, fontSize: p(21), fontWeight: '600', color: colors.TEXT}}>Martín García</Text>
                  </TouchableOpacity>
-       
+                
+                 <Text style={styles.textH}>Configuración de cuenta</Text>
+
               </View>
 
               <View style={{flex:12, backgroundColor:'#fff', paddingLeft: p(20)}}>
+           
                 <TouchableOpacity style={styles.menu}>
-                    <Text style={styles.text}>Configuracion de cuenta</Text>
+                    <Text style={styles.text}>Información de cuenta</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.menu}>
-                    <Text style={styles.text}>Informacion de cuenta</Text>
+                    <Text style={styles.text}>Cambiar dirección de Email</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.menu}>
-                    <Text style={styles.text}>Cambiar direction de Email</Text>
+                    <Text style={styles.text}>Cambiar contraseña</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.menu}>
-                    <Text style={styles.text}>Cambiar contrasena</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.menu}>
-                    <Text style={styles.text}>Information de pagos</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.menu}>
-                    <Text style={styles.text}>Invitar usuarios</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.menu}>
-                    <Text style={styles.text}>Configuracion de reportes</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.menu}>
+                <TouchableOpacity style={[styles.menu, { marginTop: p(15)}]}>
                     <Text style={[styles.text, { fontWeight: '600'}]}>Log out</Text>
                 </TouchableOpacity>
               </View>
@@ -66,9 +57,9 @@ const styles = StyleSheet.create({
         paddingTop: 24,
     },
     avatar:{
-        width:width/6,
-        height:width/6,
-        borderRadius:width/12
+        width: p(51),
+        height: p(50),
+        borderRadius: p(10)
     },
     menu:{
         flexDirection:'row', 
@@ -78,8 +69,17 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
     },
     text: {
-        fontSize: p(14),
-        marginLeft: p(22)
+        fontSize: p(15),
+        fontWeight: '900',
+        marginLeft: p(22),
+        color: colors.TEXT
+    },
+    textH: {
+        color: colors.TEXT,
+        marginTop: p(12),
+        fontSize: p(17),
+        fontWeight: '700',
+        textAlign: 'center'
     }
 
 });

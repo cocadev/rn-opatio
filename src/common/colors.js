@@ -4,6 +4,11 @@ export const colors = {
   GREY1       : '#E7E7E7',
   GREY2       : '#8B8B8B',
   BLACK       : '#000000',
+  BLUE:       '#1982e5',
+  BACKGROUND: '#f0f3f6',
+  YELLOW      : '#ff8d08',
+  GREEN       : '#29d3b2',
+  TEXT : '#222c3c',
 
 
 
@@ -11,9 +16,6 @@ export const colors = {
 
 
 
-
-  BLUE: '#4a68b1',
-  GREEN       : '#39baa6',
   RED         : '#de5351',
   MAINGREEN : '#39baa6',
   DARK       : '#4c4c4c',
@@ -24,7 +26,6 @@ export const colors = {
   CYAN        : '#14B1F8',
     LIGHTPURPLE : '#D7CCEA',
     WHITEPURPLE : '#ECE9F2',
-  YELLOW      : '#FFE63E',
   GREY1       : '#666666',
   GREY2       : '#b7b7b7',
   GREY3       : '#c5c5c5',

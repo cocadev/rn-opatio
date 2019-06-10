@@ -6,7 +6,7 @@ const {
 } = Dimensions.get('window');
 
 // based on iphone 5s's scale
-const scale = SCREEN_WIDTH / 320;
+const scale = SCREEN_WIDTH / 370;
 
 export function p(size) {
   const newSize = size * scale 

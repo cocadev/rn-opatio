@@ -61,7 +61,7 @@ export default class App extends PureComponent {
                 key="drawerMenu"
                 initial={true}
                 contentComponent={SideMenu}
-                drawerWidth={width / 1.2}
+                drawerWidth={width / 1.4}
                 drawerPosition="left"
               >
                 <Scene key="inbox" component={Inbox} initial={false} hideNavBar />
