@@ -81,26 +81,32 @@ class Forgot extends React.Component {
         return (
             <View style={styles.container}>
 
-                <TouchableOpacity onPress={() => Actions.intro()}>
-                   <Entypo name="chevron-left" color={colors.SKY} size={30} />
+                <TouchableOpacity style={{ marginLeft: p(4) }} onPress={() => Actions.intro()}>
+                    <Entypo name="chevron-left" color={colors.SKY} size={36} />
                 </TouchableOpacity>
 
-                <Text style={styles.text}>Recuperar contrasena</Text>
-                <Text style={styles.text}>Vamos a enviarte instrucciones para recuperar tu contrasena:</Text>
+                <View>
+                    <Text style={styles.textH}>Recuperar contrasena</Text>
+                    <Text style={styles.text}>Vamos a enviarte instrucciones para recuperar tu contrasena:</Text>
 
-                <TextInput
-                    style={styles.input}
-                    placeholder={'Email de trabajo:'}
-                    underlineColorAndroid='transparent'
-                    onChangeText={email => this.setState({ email })}
-                    value={email}
-                />
+                    <TextInput
+                        style={styles.input}
+                        placeholder={'Email de trabajo:'}
+                        underlineColorAndroid='transparent'
+                        onChangeText={email => this.setState({ email })}
+                        value={email}
+                    />
+                </View>
 
-                <Button />
+                <View style={{ alignItems: 'center', marginVertical: p(40) }}>
+                    <TouchableOpacity onPress={() => Actions.drawerMenu()}>
+                        <Button text={'ENVIAR'} type={'SKY'} />
+                    </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => Actions.forgot()}>
-                    <Text style={styles.btnText}>?YA TIENES CUENTA?</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={() => Actions.forgot()}>
+                        <Text style={styles.btnText}>CONTACTAR A SOPORTE</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
 
         )
@@ -117,9 +123,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 24,
+        justifyContent: 'space-between',
         backgroundColor: colors.WHITE
     },
     input: {
+        marginTop: p(25),
         marginHorizontal: p(15),
         borderRadius: 5,
         marginVertical: 3,
@@ -131,14 +139,22 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: colors.GREY1
     },
+    textH: {
+        color: colors.TEXT,
+        fontSize: p(23),
+        fontWeight: '700',
+        marginHorizontal: p(15)
+    },
     text: {
-        color: colors.BLACK,
-        fontSize: p(19),
+        color: colors.TEXT,
+        fontSize: p(16),
+        marginTop: p(20),
         marginHorizontal: p(15)
     },
     btnText: {
-        color: colors.BLACK,
-        fontSize: p(14),
+        color: colors.SKY,
+        marginVertical: p(20),
+        fontSize: p(16),
         textAlign: "center"
     }
 })

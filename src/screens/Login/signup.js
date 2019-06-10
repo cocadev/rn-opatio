@@ -12,7 +12,7 @@ import Cache from "../../utils/cache";
 import { LinearGradient } from 'expo';
 import { p } from '../../common/normalize';
 import Button from '../../components/Button';
-import { Entypo } from '@expo/vector-icons';
+import { Entypo, Ionicons } from '@expo/vector-icons';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -21,42 +21,13 @@ const height = Dimensions.get('window').height
 class SignUp extends React.Component {
 
     state = {
+        name: '',
         email: '',
+        address: '',
         password: '',
+        eye: false,
         isWaiting: false,
     }
-
-    onSignIn = () => {
-        if (!this.state.email) {
-            ToastAndroid.show('Email is empty', ToastAndroid.SHORT);
-            return false
-        }
-        if (!this.state.password) {
-            ToastAndroid.show('Password is empty', ToastAndroid.SHORT);
-            return false
-        }
-        this.setState({ isWaiting: true })
-        setTimeout(() => { this.setState({ isWaiting: false }) }, 10000);
-        api.login(this.state.email, this.state.password, (err, res) => {
-            // console.log('********************* res ************************', res)
-            // console.log('********************* err ************************', err)
-
-            if (err == null) {
-                Cache.currentUser = res.user
-                // console.log('********************* currentUser ************************', Cache.currentUser)
-                this.setState({ isWaiting: false })
-                if (!res.message) {
-                    Actions.drawerMenu()
-                } else {
-                    ToastAndroid.show('Wrong Password', ToastAndroid.SHORT);
-                }
-            } else {
-                ToastAndroid.show('Wrong User', ToastAndroid.SHORT);
-            }
-
-            this.setState({ isWaiting: false })
-        })
-    };
 
     renderIndicator() {
         return (
@@ -76,58 +47,69 @@ class SignUp extends React.Component {
 
     render() {
 
-        const { email, password } = this.state;
+        const { email, password, name, address, eye } = this.state;
 
         return (
-            <View style={styles.container}>
+            <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
 
-                <TouchableOpacity onPress={() => Actions.intro()}>
-                    <Entypo name="chevron-left" color={colors.SKY} size={30} />
+                <TouchableOpacity style={{ marginLeft: p(4) }} onPress={() => Actions.intro()}>
+                    <Entypo name="chevron-left" color={colors.SKY} size={36} />
                 </TouchableOpacity>
 
-                <Text style={styles.text}>Crea tu Cuenta</Text>
+                <View>
+                    <Text style={styles.text}>Crea tu Cuenta</Text>
 
-                <TextInput
-                    style={styles.input}
-                    placeholder={'Email de trabajo:'}
-                    underlineColorAndroid='transparent'
-                    onChangeText={email => this.setState({ email })}
-                    value={email}
-                />
+                    <TextInput
+                        style={styles.input}
+                        placeholder={'Email de trabajo:'}
+                        underlineColorAndroid='transparent'
+                        onChangeText={name => this.setState({ name })}
+                        value={name}
+                    />
 
-                <TextInput
-                    style={styles.input}
-                    placeholder={'Nombre:'}
-                    underlineColorAndroid='transparent'
-                    secureTextEntry={true}
-                    onChangeText={password => this.setState({ password })}
-                    value={password}
-                />
+                    <TextInput
+                        style={styles.input}
+                        placeholder={'Nombre:'}
+                        underlineColorAndroid='transparent'
+                        secureTextEntry={true}
+                        onChangeText={email => this.setState({ email })}
+                        value={email}
+                    />
 
-                <TextInput
-                    style={styles.input}
-                    placeholder={'Apellido:'}
-                    underlineColorAndroid='transparent'
-                    secureTextEntry={true}
-                    onChangeText={password => this.setState({ password })}
-                    value={password}
-                />
+                    <TextInput
+                        style={styles.input}
+                        placeholder={'Apellido:'}
+                        underlineColorAndroid='transparent'
+                        secureTextEntry={true}
+                        onChangeText={address => this.setState({ address })}
+                        value={address}
+                    />
 
-                <TextInput
-                    style={styles.input}
-                    placeholder={'Contrasena:'}
-                    underlineColorAndroid='transparent'
-                    secureTextEntry={true}
-                    onChangeText={password => this.setState({ password })}
-                    value={password}
-                />
+                    <View >
+                        <TextInput
+                            style={styles.input}
+                            placeholder={'Contrasena:'}
+                            underlineColorAndroid='transparent'
+                            secureTextEntry={!eye}
+                            onChangeText={password => this.setState({ password })}
+                            value={password}
+                        />
+                        <TouchableOpacity onPress={()=>this.setState({eye: !eye})} style={styles.eye}>
+                            {
+                                eye ? <Ionicons name="ios-eye-off" color={colors.TEXT} size={26} /> : <Ionicons name="md-eye" color={colors.TEXT} size={26} />
+                            }
+                        </TouchableOpacity>
+                    </View>
+                </View>
 
-                <TouchableOpacity onPress={() => Actions.drawerMenu()}>
-                    <Button />
-                </TouchableOpacity>
+                <View style={{ alignItems: 'center', marginVertical: p(70) }}>
+                    <TouchableOpacity onPress={() => Actions.drawerMenu()}>
+                        <Button text={'CREAR'} type={'SKY'} />
+                    </TouchableOpacity>
+                </View>
 
-                
-            </View>
+
+            </KeyboardAvoidingView>
 
         )
     }
@@ -143,7 +125,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 24,
-        backgroundColor: colors.WHITE
+        backgroundColor: colors.WHITE,
+        justifyContent: 'space-between',
     },
     input: {
         marginHorizontal: p(15),
@@ -158,13 +141,15 @@ const styles = StyleSheet.create({
         borderBottomColor: colors.GREY1
     },
     text: {
-        color: colors.BLACK,
-        fontSize: p(19),
+        fontWeight: "700",
+        marginBottom: p(20),
+        color: colors.TEXT,
+        fontSize: p(24),
         marginHorizontal: p(15)
     },
-    btnText: {
-        color: colors.BLACK,
-        fontSize: p(14),
-        textAlign: "center"
+    eye: {
+        position: 'absolute',
+        right: p(18),
+        bottom: p(8)
     }
 })

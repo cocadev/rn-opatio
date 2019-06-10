@@ -53,7 +53,7 @@ export default class App extends PureComponent {
             <Scene>
               <Scene key="intro" component={Intro} initial={true} hideNavBar />
               <Scene key="signin" component={SignIn} hideNavBar initial={true} />
-              <Scene key="signup" component={SignUp} hideNavBar initial={false} />
+              <Scene key="signup" component={SignUp} hideNavBar initial={true} />
               <Scene key="forgot" component={Forgot} initial={false} hideNavBar />
 
               <Drawer

@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontWeight: "700",
-        color: colors.BLACK,
+        color: colors.TEXT,
         fontSize: p(24),
         marginBottom: p(20),
         marginHorizontal: p(15)
