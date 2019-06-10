@@ -5,6 +5,9 @@ import { images } from '../../common/images';
 import { colors } from '../../common/colors';
 import Cache from "../../utils/cache";
 import { Actions } from 'react-native-router-flux';
+import { Feather } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import { p } from '../../common/normalize';
 
 const width = Dimensions.get('window').width
 
@@ -13,8 +16,9 @@ class Inbox extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={{ position: 'absolute', left: 15 }} onPress={() => Actions.drawerOpen()}>
-          <Image source={images.icon_menu} style={{ width: 20, height: 18 }} />
+
+        <TouchableOpacity style={styles.menu} onPress={() => Actions.drawerOpen()}>
+          <Entypo name="menu" color={colors.GREY2} size={40} />
         </TouchableOpacity>
 
       </View>
@@ -26,7 +30,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 24,
-    backgroundColor: colors.SKY
+    backgroundColor: colors.WHITE
+  },
+  menu: {
+    marginLeft: p(20),
+    marginTop: p(40)
   }
 });
 
