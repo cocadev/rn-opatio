@@ -7,70 +7,85 @@ import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
 import { MapView, Marker, Animated } from 'expo';
 import Header from '../../components/Header';
+import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS } from '../../common/config'
+import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
 
 export default class Lotes extends Component {
 
     constructor(props) {
         super(props)
+        const markerInfo = [];
+        for (let i = 1; i < NUM_MARKERS; i++) {
+            markerInfo.push({
+                latitude: (((Math.random() * 2) - 1) * MARKERS_LATITUDE_DELTA) + LATITUDE,
+                longitude: (((Math.random() * 2) - 1) * MARKERS_LATITUDE_DELTA) + LONGITUDE,
+                isSpecial: Math.random() < PERCENT_SPECIAL_MARKERS,
+                id: i,
+            });
+        }
         this.state = {
-            mapRegion: null,
-            latitude: null,
-            longitude: null,
-            destination: null,
-            mode: 'driving',
-            color: '#4286f4CC'
+            markerInfo
         }
     }
 
     render() {
+        const markers = this.state.markerInfo.map((markerInfo) =>
+            <MapView.Marker
+                coordinate={markerInfo}
+                key={markerInfo.id}
+            >
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                   <Image source={images.marker} style={{width: p(40), height: p(40)}}/>
+                   <Text style={{ fontSize: p(21), fontWeight: '700', color: colors.WHITE}}> Lote {markerInfo.id}</Text>
+                </View>
+            </MapView.Marker>
+        );
         return (
             <View style={styles.container}>
                 <MapView
+
                     ref={instance => this.map = instance}
                     style={styles.map}
                     showsUserLocation={true}
-                    followUserLocation={true}
-                    showsMyLocationButton={true}
-                    showsPointsOfInterest={true}
-                    showsCompass={true}
+                    // followUserLocation={true}
+                    // showsMyLocationButton={true}
+                    // showsPointsOfInterest={true}
+                    // showsCompass={false}
                     zoomEnabled={true}
                     // minZoomLevel={5}
                     // maxZoomLevel={20}
-                    initialRegion={{
-                        latitude: parseFloat(19.076090),
-                        longitude: parseFloat(72.877426),
-                        latitudeDelta: 0.4,
-                        longitudeDelta: 0.4,
-                    }}
-                >
-                    <MapView.Marker
-                        key={1}
-                        coordinate={{
-                            latitude: parseFloat(19.076090),
-                            longitude: parseFloat(72.877426),
-                        }}
-                        image={images.position}
-                    >
+                    initialRegion={REGION}
+                    customMapStyle={CUSTOM_STYLE}
 
-                    </MapView.Marker>
+                >
+                    <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
+                    {markers}
                 </MapView>
-                <Header title={'Lotes'}/>
                 <ActionButton
                     buttonColor={colors.BLUE}
                     size={80}
-                    renderIcon={active => active ? (<Image source={images.add} style={{ width: p(30), height: p(30) }} /> ) : (<Image source={images.add} style={{ width: p(27), height: p(27) }} />)}>
+                    offsetX={12}
+                    offsetY={12}
+                    spacing={5}
+                    renderIcon={active => active ? (<Image source={images.add} style={{ width: p(30), height: p(30) }} />) : (<Image source={images.add} style={{ width: p(27), height: p(27) }} />)}>
                     >
-                    <ActionButton.Item size={62} buttonColor='#EEEEED' onPress={() => console.log("notes tapped!")}>
+                    <ActionButton.Item size={60} buttonColor={colors.WHITE} onPress={() => console.log("notes tapped!")}>
                         <Image source={images.layer} style={{ width: p(30), height: p(30) }} />
                     </ActionButton.Item>
-                    <ActionButton.Item size={62} buttonColor='#EEEEED' onPress={() => { }}>
+                    <ActionButton.Item size={60} buttonColor={colors.WHITE} onPress={() => { }}>
                         <Image source={images.direction} style={{ width: p(19), height: p(50) }} />
                     </ActionButton.Item>
-                    <ActionButton.Item size={62} buttonColor='#EEEEED' onPress={() => { }}>
-                        <Image source={images.locate} style={{ width: p(32), height: p(32) }} />
+                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
+                        <Image source={images.lote} style={{ width: p(34), height: p(42) }} />
                     </ActionButton.Item>
-                    <ActionButton.Item size={62} buttonColor={colors.SKY} onPress={() => { }}>
-                        <Image source={images.lotes} style={{ width: p(35), height: p(35) }} />
+                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
+                        <Image source={images.nota} style={{ width: p(28), height: p(45) }} />
+                    </ActionButton.Item>
+                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
+                        <Image source={images.tarea} style={{ width: p(28), height: p(48) }} />
+                    </ActionButton.Item>
+                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
+                        <Image source={images.cultivo} style={{ width: p(33), height: p(46) }} />
                     </ActionButton.Item>
                 </ActionButton>
             </View>

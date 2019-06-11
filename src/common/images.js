@@ -24,4 +24,12 @@ export const images = {
     locate: require('../../assets/images/locate1.png'),
     lotes: require('../../assets/images/lotes1.png'),
 
+
+    cultivo: require('../../assets/images/cultivo.png'),
+    nota: require('../../assets/images/nota.png'),
+    tarea: require('../../assets/images/tarea.png'),
+    lote: require('../../assets/images/lote.png'),
+    marker: require('../../assets/images/marker.png'),
+
+
 };

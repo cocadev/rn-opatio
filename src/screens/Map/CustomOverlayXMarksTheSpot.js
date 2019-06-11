@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { View } from 'react-native';
 import { MapView, Marker, Animated } from 'expo';
+import { colors } from '../../common/colors';
+import { images } from '../../common/images';
 
 class XMarksTheSpot extends React.Component {
   render() {
@@ -10,8 +12,8 @@ class XMarksTheSpot extends React.Component {
       <View>
         <MapView.Polygon
           coordinates={this.props.coordinates}
-          strokeColor="rgba(0, 0, 0, 1)"
-          strokeWidth={3}
+          strokeColor={colors.BLUE}
+          strokeWidth={4}
         />
         <MapView.Polyline
           coordinates={[this.props.coordinates[0], this.props.coordinates[2]]}
@@ -21,6 +23,7 @@ class XMarksTheSpot extends React.Component {
         />
         <MapView.Marker
           coordinate={this.props.center}
+          image={images.position}
         />
       </View>
     );

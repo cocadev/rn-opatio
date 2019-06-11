@@ -39,6 +39,12 @@
     "underscore": "^1.9.1",
     "whatwg-fetch": "2.0.4"
   },
+  "android": {
+    "package": "com.noernova.ggLoginTest",
+    "config": {
+      "googleMaps": { "apiKey": "AIzaSyBTFwGaraAS6YkKyeyZWH-jSY10mdkoD2E" }
+    }
+  },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0"
   }

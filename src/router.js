@@ -75,7 +75,7 @@ export default class App extends PureComponent {
 
               <Scene key="lotes" component={Lotes} initial={true} hideNavBar/>
               <Scene key="test" component={Test} initial={false} hideNavBar/>
-              <Scene key="Overlays" component={Overlays} initial={true} hideNavBar/>
+              <Scene key="Overlays" component={Overlays} initial={false} hideNavBar/>
 
             </Scene>
           </Router>
