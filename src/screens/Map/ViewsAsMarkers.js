@@ -32,7 +32,7 @@ class ViewsAsMarkers extends React.Component {
         latitude: LATITUDE,
         longitude: LONGITUDE,
       },
-      amount: 99,
+      amount: 2,
     };
   }
 
