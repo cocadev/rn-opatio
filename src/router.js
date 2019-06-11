@@ -16,7 +16,7 @@ import Lotes from './screens/Lotes/Lotes';
 
 import { images } from './common/images';
 import Test from './screens/Map/test';
-import Overlays from './screens/Map/SetNativePropsOverlays';
+import Overlays from './screens/Map/StaticMap';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
