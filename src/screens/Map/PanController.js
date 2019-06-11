@@ -1,6 +1,10 @@
 /* eslint-disable */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import createReactClass from 'create-react-class';
+
+import PropTypes from 'prop-types';
+
 import {
   View,
   Animated,
@@ -11,7 +15,7 @@ const ModePropType = PropTypes.oneOf(['decay', 'snap', 'spring-origin']);
 const OvershootPropType = PropTypes.oneOf(['spring', 'clamp']);
 const AnimatedPropType = PropTypes.any;
 
-const PanController = React.createClass({
+const PanController = createReactClass({
 
   propTypes: {
       // Component Config

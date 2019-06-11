@@ -16,7 +16,7 @@ import Lotes from './screens/Lotes/Lotes';
 
 import { images } from './common/images';
 import Test from './screens/Map/test';
-import AnimatedMarkers from './screens/Map/AnimatedMarkers';
+import AnimatedViews from './screens/Map/AnimatedViews';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -78,7 +78,7 @@ export default class App extends PureComponent {
 
               <Scene key="lotes" component={Lotes} initial={true} hideNavBar/>
               <Scene key="test" component={Test} initial={false} hideNavBar/>
-              <Scene key="AnimatedMarkers" component={AnimatedMarkers} initial={true} hideNavBar/>
+              <Scene key="AnimatedViews" component={AnimatedViews} initial={true} hideNavBar/>
 
             </Scene>
           </Router>

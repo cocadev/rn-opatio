@@ -1,11 +1,13 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import {
   StyleSheet,
   Text,
   Animated,
 } from 'react-native';
 
-class AnimatedPriceMarker extends React.Component {
+export default class AnimatedPriceMarker extends React.Component {
   render() {
     const { amount, selected, style } = this.props;
 
@@ -102,5 +104,3 @@ const styles = StyleSheet.create({
     borderTopColor: '#007a87',
   },
 });
-
-module.exports = AnimatedPriceMarker;

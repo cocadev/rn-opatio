@@ -6,7 +6,7 @@ import {
   Animated,
 } from 'react-native';
 
-import { MapView, Marker, Animated } from 'expo';
+import { MapView } from 'expo';
 import PanController from './PanController';
 import PriceMarker from './AnimatedPriceMarker';
 
@@ -121,7 +121,7 @@ function getMarkerState(panX, panY, scrollY, i) {
   };
 }
 
-class AnimatedViews extends React.Component {
+export default class AnimatedViews extends React.Component {
   constructor(props) {
     super(props);
 
@@ -417,5 +417,3 @@ const styles = StyleSheet.create({
     borderColor: '#000',
   },
 });
-
-module.exports = AnimatedViews;
