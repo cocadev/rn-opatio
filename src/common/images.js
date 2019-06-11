@@ -17,5 +17,11 @@ export const images = {
     position: require('../../assets/images/position1.png'),
     back: require('../../assets/images/back.png'),
 
+    add: require('../../assets/images/add1.png'),
+
+    layer: require('../../assets/images/layer1.png'),
+    direction: require('../../assets/images/direction1.png'),
+    locate: require('../../assets/images/locate1.png'),
+    lotes: require('../../assets/images/lotes1.png'),
 
 };

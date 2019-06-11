@@ -9,12 +9,14 @@ import { p } from '../common/normalize';
 export default class Header extends React.Component {
 
   render() {
+    const { title } = this.props
     return (
       <View style={styles.container}>
         <TouchableOpacity>
           <Image source={images.back} style={{ width: 20, height: 18 }} />
         </TouchableOpacity>
-        <Text style={styles.head}>Rythand</Text>          
+        <Image source={images.location} style={{ width: 26, height: 22, marginLeft: p(14) }} />
+        <Text style={styles.head}>{title}</Text>          
       </View>
     )
   }
@@ -23,16 +25,17 @@ export default class Header extends React.Component {
 const styles = StyleSheet.create({
   container: {
     height: p(60),
-    marginTop: -24,
     flexDirection: 'row',
-    justifyContent: 'center',
+    alignItems: 'center',
     width: '100%',
     flexDirection: "row",
-    backgroundColor: '#111',
+    paddingHorizontal: p(20),
+    backgroundColor: colors.BLUE,
   },
   head: {
-    fontSize: 16,
-    color: colors.GREEN,
+    fontSize: p(24),
+    marginLeft: p(14),
+    color: colors.WHITE,
     textAlign: 'center'
   },
 

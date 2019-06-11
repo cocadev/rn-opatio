@@ -15,6 +15,7 @@ import Inbox from './screens/Dashboard/Inbox';
 import Lotes from './screens/Lotes/Lotes';
 
 import { images } from './common/images';
+import Test from './screens/test';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -40,6 +41,7 @@ export default class App extends PureComponent {
       'entypo': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
       'MaterialIcons': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
       'material': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
+      'Ionicons': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
 
     });
     console.log('fonts loaded!');
@@ -74,6 +76,7 @@ export default class App extends PureComponent {
               </Drawer>
 
               <Scene key="lotes" component={Lotes} initial={true} hideNavBar/>
+              <Scene key="test" component={Test} initial={false} hideNavBar/>
 
             </Scene>
           </Router>

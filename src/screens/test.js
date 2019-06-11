@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, Image, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ActionButton from 'react-native-action-button';
-import { images } from '../../common/images';
-import { p } from '../../common/normalize';
-import { colors } from '../../common/colors';
+import { images } from '../common/images';
+import { p } from '../common/normalize';
+import { colors } from '../common/colors';
 import { MapView, Marker, Animated } from 'expo';
-import Header from '../../components/Header';
+import Header from '../components/Header';
 
-export default class Lotes extends Component {
+export default class Test extends Component {
 
     constructor(props) {
         super(props)
@@ -34,8 +34,8 @@ export default class Lotes extends Component {
                     showsPointsOfInterest={true}
                     showsCompass={true}
                     zoomEnabled={true}
-                    // minZoomLevel={5}
-                    // maxZoomLevel={20}
+                    minZoomLevel={5}
+                    maxZoomLevel={20}
                     initialRegion={{
                         latitude: parseFloat(19.076090),
                         longitude: parseFloat(72.877426),
@@ -54,7 +54,7 @@ export default class Lotes extends Component {
 
                     </MapView.Marker>
                 </MapView>
-                <Header title={'Lotes'}/>
+                <Header />
                 <ActionButton
                     buttonColor={colors.BLUE}
                     size={80}
