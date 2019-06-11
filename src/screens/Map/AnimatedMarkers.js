@@ -8,7 +8,7 @@ import {
   Animated,
 } from 'react-native';
 
-import { MapView, Marker, Animated } from 'expo';
+import { MapView } from 'expo';
 
 const screen = Dimensions.get('window');
 
@@ -18,19 +18,19 @@ const LONGITUDE = -122.4324;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-class AnimatedMarkers extends React.Component {
+export default class AnimatedMarkers extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      coordinate: new Animated.Region({
-        latitude: LATITUDE,
-        longitude: LONGITUDE,
+      coordinate: new MapView.AnimatedRegion({
+        latitude: 37.78825,
+        longitude: -122.4324,
       }),
     };
   }
 
-  animate() {
+  animate=()=> {
     const { coordinate } = this.state;
     coordinate.timing({
       latitude: LATITUDE + ((Math.random() - 0.5) * (LATITUDE_DELTA / 2)),
@@ -104,5 +104,3 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
 });
-
-module.exports = AnimatedMarkers;
