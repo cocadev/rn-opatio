@@ -16,7 +16,7 @@ import Lotes from './screens/Lotes/Lotes';
 
 import { images } from './common/images';
 import Test from './screens/Map/test';
-import FitToCoordinates from './screens/Map/FitToCoordinates';
+import LegalLabel from './screens/Map/LegalLabel';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -75,7 +75,7 @@ export default class App extends PureComponent {
 
               <Scene key="lotes" component={Lotes} initial={true} hideNavBar/>
               <Scene key="test" component={Test} initial={false} hideNavBar/>
-              <Scene key="FitToCoordinates" component={FitToCoordinates} initial={true} hideNavBar/>
+              <Scene key="LegalLabel" component={LegalLabel} initial={true} hideNavBar/>
 
             </Scene>
           </Router>
