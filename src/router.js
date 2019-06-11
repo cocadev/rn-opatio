@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Image } from 'react-native';
+import { Image, StatusBar } from 'react-native';
 
 import SignIn from './screens/Login/signIn'
 import SignUp from './screens/Login/signup'
@@ -12,6 +12,8 @@ import { Font } from 'expo'
 import SideMenu from './SideMenu';
 import Intro from './screens/Login/intro';
 import Inbox from './screens/Dashboard/Inbox';
+import Lotes from './screens/Lotes/Lotes';
+
 import { images } from './common/images';
 
 const width = Dimensions.get('window').width
@@ -24,6 +26,7 @@ export default class App extends PureComponent {
   };
 
   async componentDidMount() {
+    StatusBar.setHidden(true, 'none');
     await this._loadAssets();
   }
 
@@ -36,6 +39,7 @@ export default class App extends PureComponent {
       'ionicons': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
       'entypo': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
       'MaterialIcons': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
+      'material': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
 
     });
     console.log('fonts loaded!');
@@ -51,6 +55,7 @@ export default class App extends PureComponent {
 
           <Router>
             <Scene>
+
               <Scene key="intro" component={Intro} initial={false} hideNavBar />
               <Scene key="signin" component={SignIn} hideNavBar initial={false} />
               <Scene key="signup" component={SignUp} hideNavBar initial={false} />
@@ -67,6 +72,9 @@ export default class App extends PureComponent {
                 <Scene key="inbox" component={Inbox} initial={false} hideNavBar />
 
               </Drawer>
+
+              <Scene key="lotes" component={Lotes} initial={true} hideNavBar/>
+
             </Scene>
           </Router>
           : <Image source={images.splash} style={{ width, height}}/>}

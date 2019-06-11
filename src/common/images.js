@@ -14,6 +14,8 @@ export const images = {
     track: require('../../assets/images/track.png'),
     chart: require('../../assets/images/chart.png'),
     news: require('../../assets/images/news.png'),
+    position: require('../../assets/images/position1.png'),
+    back: require('../../assets/images/back.png'),
 
 
 };
