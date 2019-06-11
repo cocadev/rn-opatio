@@ -1,14 +1,15 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import {
   StyleSheet,
   View,
   Text,
   Dimensions,
-  ScrollView,
+  ScrollView, SyntheticEvent
 } from 'react-native';
 // eslint-disable-next-line max-len
-import SyntheticEvent from 'react-native/Libraries/Renderer/src/renderers/shared/stack/event/SyntheticEvent';
-import { MapView, MAP_TYPES } from 'expo';
+import { MapView } from 'expo';
 import PriceMarker from './PriceMarker';
 
 const { width, height } = Dimensions.get('window');
