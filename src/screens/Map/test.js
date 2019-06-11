@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, Image, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ActionButton from 'react-native-action-button';
-import { images } from '../common/images';
-import { p } from '../common/normalize';
-import { colors } from '../common/colors';
+import { images } from '../../common/images';
+import { p } from '../../common/normalize';
+import { colors } from '../../common/colors';
 import { MapView, Marker, Animated } from 'expo';
-import Header from '../components/Header';
+import Header from '../../components/Header';
 
 export default class Test extends Component {
 

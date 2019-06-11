@@ -15,7 +15,7 @@ import Inbox from './screens/Dashboard/Inbox';
 import Lotes from './screens/Lotes/Lotes';
 
 import { images } from './common/images';
-import Test from './screens/test';
+import Test from './screens/Map/test';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
