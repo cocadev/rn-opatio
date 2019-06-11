@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { MapView, Marker, Animated } from 'expo';
+import { MapView, Marker } from 'expo';
 import flagImg from './assets/flag-blue.png';
 
 const HORIZONTAL_PADDING = 12;
