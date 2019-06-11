@@ -16,7 +16,7 @@ import Lotes from './screens/Lotes/Lotes';
 
 import { images } from './common/images';
 import Test from './screens/Map/test';
-import CustomOverlay from './screens/Map/CustomOverlay';
+import DraggableMarkers from './screens/Map/DraggableMarkers';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -75,7 +75,7 @@ export default class App extends PureComponent {
 
               <Scene key="lotes" component={Lotes} initial={true} hideNavBar/>
               <Scene key="test" component={Test} initial={false} hideNavBar/>
-              <Scene key="CustomOverlay" component={CustomOverlay} initial={true} hideNavBar/>
+              <Scene key="DraggableMarkers" component={DraggableMarkers} initial={true} hideNavBar/>
 
             </Scene>
           </Router>

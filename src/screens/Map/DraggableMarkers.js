@@ -5,7 +5,7 @@ import {
   Dimensions,
 } from 'react-native';
 
-import { MapView, MAP_TYPES } from 'expo';
+import { MapView } from 'expo';
 import PriceMarker from './PriceMarker';
 
 const { width, height } = Dimensions.get('window');
