@@ -16,7 +16,7 @@ import Lotes from './screens/Lotes/Lotes';
 
 import { images } from './common/images';
 import Test from './screens/Map/test';
-import Callouts from './screens/Map/Callouts';
+import CustomMarkers from './screens/Map/CustomMarkers';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -34,10 +34,7 @@ export default class App extends PureComponent {
 
   async _loadAssets() {
     await Font.loadAsync({
-
       // 'Montserrat-Medium': require('../assets/fonts/Montserrat-Medium.ttf'),
-     
-
       'ionicons': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
       'entypo': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
       'MaterialIcons': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
@@ -78,7 +75,7 @@ export default class App extends PureComponent {
 
               <Scene key="lotes" component={Lotes} initial={true} hideNavBar/>
               <Scene key="test" component={Test} initial={false} hideNavBar/>
-              <Scene key="Callouts" component={Callouts} initial={true} hideNavBar/>
+              <Scene key="CustomMarkers" component={CustomMarkers} initial={true} hideNavBar/>
 
             </Scene>
           </Router>
