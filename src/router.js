@@ -16,7 +16,7 @@ import Lotes from './screens/Lotes/Lotes';
 
 import { images } from './common/images';
 import Test from './screens/Map/test';
-import MapStyle from './screens/Map/MapStyle';
+import MarkerTypes from './screens/Map/MarkerTypes';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -75,7 +75,7 @@ export default class App extends PureComponent {
 
               <Scene key="lotes" component={Lotes} initial={true} hideNavBar/>
               <Scene key="test" component={Test} initial={false} hideNavBar/>
-              <Scene key="MapStyle" component={MapStyle} initial={true} hideNavBar/>
+              <Scene key="MarkerTypes" component={MarkerTypes} initial={true} hideNavBar/>
 
             </Scene>
           </Router>
