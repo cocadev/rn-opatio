@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, Image, Platform, Dimensions, TextInput, FlatList, ScrollView } from 'react-native';
+import { AppRegistry, StyleSheet, Text, View, Image, Platform, Dimensions, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ActionButton from 'react-native-action-button';
 import { images } from '../../common/images';
@@ -7,8 +7,12 @@ import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
 import { MapView, Marker, Animated } from 'expo';
 import Header from '../../components/Header2';
-import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS, LOTES1 } from '../../common/config'
+import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS, LOTES1, INTRO } from '../../common/config'
 import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
+
+import Notes from './Tab/notes';
+import Tareas from './Tab/tareas';
+import Cultivos from './Tab/cultivos';
 
 const height = Math.round(Dimensions.get('window').height);
 
@@ -26,7 +30,8 @@ export default class LotesTab extends Component {
             });
         }
         this.state = {
-            markerInfo
+            markerInfo,
+            selectTab: 1
         }
     }
 
@@ -35,11 +40,12 @@ export default class LotesTab extends Component {
             <Image source={item.visible ? images.dot1 : images.dot2} style={{ width: p(30), height: p(30), marginRight: p(20) }} />
             <Text style={{ fontSize: p(20), fontWeight: '700', color: colors.TEXT, marginTop: -5 }}>Lote{item.id}</Text>
             <Text style={{ fontSize: p(15), flex: 1, marginLeft: p(20), color: colors.TEXT, marginTop: -5 }}>{item.count} ha</Text>
-            <Image source={item.download? images.download: images.check} style={{ width: p(16), height: p(20) }} />
+            <Image source={item.download ? images.download : images.check} style={{ width: p(16), height: p(20) }} />
         </View>
     )
 
     render() {
+        const { selectTab } = this.state;
         const markers = this.state.markerInfo.map((markerInfo) =>
             <MapView.Marker
                 coordinate={markerInfo}
@@ -52,7 +58,8 @@ export default class LotesTab extends Component {
             </MapView.Marker>
         );
         return (
-            <ScrollView style={styles.container}>
+            <View style={styles.container}>
+
                 <MapView
                     ref={instance => this.map = instance}
                     style={styles.map}
@@ -60,43 +67,37 @@ export default class LotesTab extends Component {
                     zoomEnabled={true}
                     initialRegion={REGION}
                     customMapStyle={CUSTOM_STYLE}
+                    cacheEnabled={true}
+                    zoomEnabled
+                    scrollingEnabled
+                    loadingIndicatorColor="#666666"
+                    loadingBackgroundColor="#eeeeee"
                 >
                     <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
                     {markers}
                 </MapView>
                 <Header title={'Lote 21'} />
                 <View style={styles.searchView}>
-                    <TextInput style={styles.searchInput} placeholder={'Campos y Lotes'} />
+                    <TextInput style={styles.searchInput} placeholder={'Notas del lote'} />
                     <Image source={images.search_white} style={{ width: p(18), height: p(18), marginRight: p(20) }} />
                 </View>
-                <View style={styles.head}>
-                    <Text style={styles.headText}>La Morocha</Text>
+                <View style={styles.tab}>
+                    <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 1 ? colors.ORANGE : colors.GREY3, backgroundColor: selectTab == 1 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 1 })}>
+                        <Text style={{ color: colors.TEXT, fontSize: p(16) }}>NOTAS</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 2 ? colors.BLUE : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
+                        <Text style={{ color: colors.TEXT, fontSize: p(16) }}>TAREAS</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 3 ? colors.GREEND : colors.GREY3, backgroundColor: selectTab == 3 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 3 })}>
+                        <Text style={{ color: colors.TEXT, fontSize: p(16) }}>CULTIVOS</Text>
+                    </TouchableOpacity>
                 </View>
-                <FlatList
-                    style={{ marginTop: 12 }}
-                    data={LOTES1}
-                    keyExtractor={(item, i) => String(i)}
-                    renderItem={this._renderItem}
-                />
-                <View style={styles.head}>
-                    <Text style={styles.headText}>Los Cesares</Text>
-                </View>
-                <FlatList
-                    style={{ marginTop: 12 }}
-                    data={LOTES1}
-                    keyExtractor={(item, i) => String(i)}
-                    renderItem={this._renderItem}
-                />
-                <View style={styles.head}>
-                    <Text style={styles.headText}>Los Cisnes</Text>
-                </View>
-                <FlatList
-                    style={{ marginTop: 12 }}
-                    data={LOTES1}
-                    keyExtractor={(item, i) => String(i)}
-                    renderItem={this._renderItem}
-                />
-            </ScrollView>
+
+                {selectTab == 1 && <Notes/>}
+                {selectTab == 2 && <Tareas/>}
+                {selectTab == 3 && <Cultivos/>}
+
+            </View>
         );
     }
 }
@@ -125,9 +126,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         height: p(55),
-        marginTop: p(200),
-        borderBottomColor: colors.BLUE,
-        borderBottomWidth: 4
+        marginTop: p(200)
     },
     searchInput: {
         flex: 1,
@@ -160,5 +159,18 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         color: '#354052',
         fontSize: p(16)
+    },
+    tab: {
+        flexDirection: 'row',
+        backgroundColor: colors.GREY3,
+        height: p(60)
+    },
+    tabItem: {
+        flex: 1,
+        borderTopColor: colors.GREY3,
+        borderTopWidth: p(8),
+        backgroundColor: colors.GREY3,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });

@@ -13,6 +13,7 @@ export const colors = {
   YELLOW      : '#ff8d08',
   GREEN       : '#29d3b2',
   TEXT : '#222c3c',
+  GREEND       : '#23D13C',
 
 
 
