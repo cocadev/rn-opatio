@@ -22,6 +22,32 @@ export const REGION = {
 
 export const INTRO = 'Con nuestra plataforma podrás ver imágenes satelitales, imágenes de indice verde, detectar anomalías y ambientar tus lotes.'
 
+export const NOTAS = [
+  {
+    id:1,
+    name: "LUN",
+    time: "10/03/18",
+    title: "Manchon de malezas"
+  },
+  {
+    id:2,
+    name: "SAB",
+    time: "10/03/18",
+    title: "Alambrado roto"
+  },  
+  {
+    id:3,
+    name: "JUE",
+    time: "06/03/18",
+    title: "Plaga - Cogollera"
+  },
+  {
+    id:4,
+    name: "MAR",
+    time: "04/03/18",
+    title: "Inundado"
+  }
+];
 
 export const LOTES1 = [
   {
@@ -42,7 +68,6 @@ export const LOTES1 = [
     count: 27,
     visible: false,
     download: false
-
   }
 ];
 

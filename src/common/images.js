@@ -32,6 +32,7 @@ export const images = {
     dots: require('../../assets/images/dots.png'),
     check: require('../../assets/images/check.png'),
     download: require('../../assets/images/download.png'),
+    msg: require('../../assets/images/msg.png'),
 
 
 
