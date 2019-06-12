@@ -13,10 +13,19 @@ export default class Header2 extends React.Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity>
-          <Image source={images.back} style={{ width: 20, height: 18 }} />
+          <Image source={images.back_black} style={{ width: 20, height: 18 }} />
         </TouchableOpacity>
-        <Image source={images.location} style={{ width: 26, height: 22, marginLeft: p(14) }} />
-        <Text style={styles.head}>{title}</Text>          
+
+        <View style={{ marginRight: p(15)}}>
+          <Text style={styles.text1}>Lote 21</Text>
+          <Text style={styles.text2}>100 ha</Text>
+        </View>
+
+        <View style={styles.vertical}></View>
+
+        <Text style={styles.head}>{'La Morocha'}</Text>     
+        <Image source={images.dots} style={{ width: p(7), height: p(23), marginLeft: p(14) }} />
+     
       </View>
     )
   }
@@ -27,14 +36,33 @@ const styles = StyleSheet.create({
     height: p(60),
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     width: '100%',
     flexDirection: "row",
     paddingHorizontal: p(20),
     backgroundColor: colors.WHITE,
   },
   head: {
-    fontSize: p(24),
+    fontSize: p(16),
     marginLeft: p(14),
+    color: colors.TEXT,
+    textAlign: 'center'
+  },
+  vertical: {
+    backgroundColor: colors.TEXT,
+    width: p(3),
+    height: p(32)
+  },
+  text1: {
+    fontSize: p(20),
+    fontWeight: '700',
+    color: colors.TEXT,
+    textAlign: 'center'
+  },
+  text2: {
+    fontSize: p(16),
+    fontWeight: '700',
+    marginHorizontal: p(12),
     color: colors.TEXT,
     textAlign: 'center'
   },

@@ -64,8 +64,38 @@ export default class LotesTab extends Component {
                     <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
                     {markers}
                 </MapView>
-                <Header title={'Lotes'} />
-
+                <Header title={'Lote 21'} />
+                <View style={styles.searchView}>
+                    <TextInput style={styles.searchInput} placeholder={'Campos y Lotes'} />
+                    <Image source={images.search_white} style={{ width: p(18), height: p(18), marginRight: p(20) }} />
+                </View>
+                <View style={styles.head}>
+                    <Text style={styles.headText}>La Morocha</Text>
+                </View>
+                <FlatList
+                    style={{ marginTop: 12 }}
+                    data={LOTES1}
+                    keyExtractor={(item, i) => String(i)}
+                    renderItem={this._renderItem}
+                />
+                <View style={styles.head}>
+                    <Text style={styles.headText}>Los Cesares</Text>
+                </View>
+                <FlatList
+                    style={{ marginTop: 12 }}
+                    data={LOTES1}
+                    keyExtractor={(item, i) => String(i)}
+                    renderItem={this._renderItem}
+                />
+                <View style={styles.head}>
+                    <Text style={styles.headText}>Los Cisnes</Text>
+                </View>
+                <FlatList
+                    style={{ marginTop: 12 }}
+                    data={LOTES1}
+                    keyExtractor={(item, i) => String(i)}
+                    renderItem={this._renderItem}
+                />
             </ScrollView>
         );
     }

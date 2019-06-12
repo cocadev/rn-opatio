@@ -13,6 +13,8 @@ export const images = {
     news: require('../../assets/images/news.png'),
     position: require('../../assets/images/position1.png'),
     back: require('../../assets/images/back.png'),
+    back_black: require('../../assets/images/back_black.png'),
+
     add: require('../../assets/images/add1.png'),
     layer: require('../../assets/images/layer1.png'),
     direction: require('../../assets/images/direction1.png'),
@@ -27,6 +29,7 @@ export const images = {
 
     dot1: require('../../assets/images/dot1.png'),
     dot2: require('../../assets/images/dot2.png'),
+    dots: require('../../assets/images/dots.png'),
     check: require('../../assets/images/check.png'),
     download: require('../../assets/images/download.png'),
 
