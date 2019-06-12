@@ -17,6 +17,8 @@ import Lotes from './screens/Lotes/Lotes';
 import { images } from './common/images';
 import Test from './screens/Map/test';
 import Overlays from './screens/Map/ZIndexMarkers';
+import LoteSelection from './screens/Lotes/Loteselection';
+import LotesTab from './screens/Lotes/LotesTab';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -64,7 +66,7 @@ export default class App extends PureComponent {
               <Drawer
                 hideNavBar
                 key="drawerMenu"
-                initial={false}
+                initial={true}
                 contentComponent={SideMenu}
                 drawerWidth={width / 1.4}
                 drawerPosition="left"
@@ -73,9 +75,11 @@ export default class App extends PureComponent {
 
               </Drawer>
 
-              <Scene key="lotes" component={Lotes} initial={true} hideNavBar/>
+              <Scene key="lotes" component={Lotes} initial={false} hideNavBar/>
+              <Scene key="loteselection" component={LoteSelection} initial={false} hideNavBar/>
+              <Scene key="lotetab" component={LotesTab} initial={true} hideNavBar/>
+
               <Scene key="test" component={Test} initial={false} hideNavBar/>
-              <Scene key="Overlays" component={Overlays} initial={false} hideNavBar/>
 
             </Scene>
           </Router>

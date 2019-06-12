@@ -82,19 +82,19 @@ class Inbox extends React.Component {
         </View>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <View style={styles.rectNgulo}>
+          <TouchableOpacity onPress={()=>Actions.lotes()} style={styles.rectNgulo}>
             <View style={styles.box}>
               <Image source={images.location} style={styles.itemImg1} />
             </View>
             <Text style={styles.text}>Lotes</Text>
-          </View>
+          </TouchableOpacity>
 
-          <View style={styles.rectNgulo}>
+          <TouchableOpacity style={styles.rectNgulo}>
             <View style={[styles.box, { backgroundColor: colors.YELLOW }]}>
               <Image source={images.track} style={styles.itemImg2} />
             </View>
             <Text style={[styles.text, { color: colors.YELLOW }]}>Maquinarias</Text>
-          </View>
+          </TouchableOpacity>
 
         </View>
 

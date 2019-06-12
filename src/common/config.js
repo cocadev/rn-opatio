@@ -10,7 +10,7 @@ export const MARKERS_LATITUDE_DELTA = 0.03;
 export const MARKERS_LONGITUDE_DELTA = MARKERS_LATITUDE_DELTA * ASPECT_RATIO;
 export const MAP_LATITUDE_DELTA = 0.3;
 export const MAP_LONGITUDE_DELTA = MAP_LATITUDE_DELTA * ASPECT_RATIO;
-export const NUM_MARKERS = 6;
+export const NUM_MARKERS = 2;
 export const PERCENT_SPECIAL_MARKERS = 0.1;
 
 export const REGION = {
@@ -21,6 +21,78 @@ export const REGION = {
 };
 
 export const INTRO = 'Con nuestra plataforma podrás ver imágenes satelitales, imágenes de indice verde, detectar anomalías y ambientar tus lotes.'
+
+
+export const LOTES1 = [
+  {
+    id:21,
+    count: 100,
+    visible: false,
+    download: true
+  },
+  {
+    id:22,
+    count: 66,
+    visible: true,
+    download: true
+
+  },  
+  {
+    id:23,
+    count: 27,
+    visible: false,
+    download: false
+
+  }
+];
+
+export const LOTES2 = [
+  {
+    id:5,
+    count: 100,
+    visible: false,
+    download: true
+
+  },
+  {
+    id:6,
+    count: 66,
+    visible: true,
+    download: false
+
+  },  
+  {
+    id:7,
+    count: 27,
+    visible: true,
+    download: true
+
+  }
+];
+
+export const LOTES3 = [
+  {
+    id:5,
+    count: 75,
+    visible: true,
+    download: false
+
+  },
+  {
+    id:6,
+    count: 22,
+    visible: true,
+    download: true
+
+  },  
+  {
+    id:7,
+    count: 18,
+    visible: true,
+    download: false
+
+  }
+];
 
 export const NOTIFICATION = [
     {
