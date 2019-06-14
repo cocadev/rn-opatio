@@ -8,12 +8,18 @@ export const colors = {
   GREY5       : '#a0a0a0',
   GREY5       : '#B8B8B8',
   GREY6       : '#707070',
+  GREY7       : '#727272',
 
   BLACK       : '#000000',
   BLUE        : '#1982e5',
   BACKGROUND  : '#f0f3f6',
   YELLOW      : '#ff8d08',
+  YELLOW2      : '#ffffcc',
+
   GREEN       : '#29d3b2',
+  GREEN2       : '#23d13c',
+  GREEN3       : '#007F00',
+
   TEXT        : '#222c3c',
   PURPLE      : "#EA1064",
   YEL : '#ffff00',

@@ -24,16 +24,21 @@ export const INTRO = 'Con nuestra plataforma podrás ver imágenes satelitales, 
 
 export const CULTIVOS = [
   {
-    id:0,
+    id: 0,
     time: "2019/2020",
+    accept: false
   },
   {
-    id:1,
+    id: 1,
     time: "2018/2019",
+    accept: true
+
   },
   {
-    id:2,
+    id: 2,
     time: "2017/2018",
+    accept: true
+
   },
 ];
 

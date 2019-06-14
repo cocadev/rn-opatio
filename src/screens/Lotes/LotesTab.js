@@ -88,7 +88,7 @@ export default class LotesTab extends Component {
                     <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 2 ? colors.BLUE : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
                         <Text style={{ color: colors.TEXT, fontSize: p(14) }}>TAREAS</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 3 ? colors.GREEND : colors.GREY3, backgroundColor: selectTab == 3 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 3 })}>
+                    <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 3 ? colors.GREEN2 : colors.GREY3, backgroundColor: selectTab == 3 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 3 })}>
                         <Text style={{ color: colors.TEXT, fontSize: p(14) }}>CULTIVOS</Text>
                     </TouchableOpacity>
                 </View>

@@ -33,6 +33,7 @@ export const images = {
     check: require('../../assets/images/check.png'),
     download: require('../../assets/images/download.png'),
     msg: require('../../assets/images/msg.png'),
+    edit: require('../../assets/images/edit.png'),
 
     tareaW: require('../../assets/images/tarea-white.png'),
     tareaG: require('../../assets/images/tarea-grey.png'),
