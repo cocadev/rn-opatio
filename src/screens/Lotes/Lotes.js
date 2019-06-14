@@ -9,6 +9,7 @@ import { MapView, Marker, Animated } from 'expo';
 import Header from '../../components/Header';
 import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS } from '../../common/config'
 import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
+import { Actions } from 'react-native-router-flux';
 
 export default class Lotes extends Component {
 
@@ -42,7 +43,7 @@ export default class Lotes extends Component {
         );
         return (
             <View style={styles.container}>
-                <MapView
+                {/* <MapView
 
                     ref={instance => this.map = instance}
                     style={styles.map}
@@ -54,13 +55,15 @@ export default class Lotes extends Component {
                     zoomEnabled={true}
                     // minZoomLevel={5}
                     // maxZoomLevel={20}
+                    cacheEnabled={true}
                     initialRegion={REGION}
                     customMapStyle={CUSTOM_STYLE}
 
                 >
                     <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
                     {markers}
-                </MapView>
+                </MapView> */}
+                <Header title={'Lotes'}/>
                 <ActionButton
                     buttonColor={colors.BLUE}
                     size={80}
@@ -72,10 +75,10 @@ export default class Lotes extends Component {
                     <ActionButton.Item size={60} buttonColor={colors.WHITE} onPress={() => console.log("notes tapped!")}>
                         <Image source={images.layer} style={{ width: p(30), height: p(30) }} />
                     </ActionButton.Item>
-                    <ActionButton.Item size={60} buttonColor={colors.WHITE} onPress={() => { }}>
+                    {/* <ActionButton.Item size={60} buttonColor={colors.WHITE} onPress={() => {}}>
                         <Image source={images.direction} style={{ width: p(19), height: p(50) }} />
-                    </ActionButton.Item>
-                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
+                    </ActionButton.Item> */}
+                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { Actions.lotetab()}}>
                         <Image source={images.lote} style={{ width: p(34), height: p(42) }} />
                     </ActionButton.Item>
                     <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
@@ -101,6 +104,7 @@ const styles = StyleSheet.create({
     },
     map: {
         ...StyleSheet.absoluteFillObject,
+        top: p(60)
     },
     welcome: {
         fontSize: 20,

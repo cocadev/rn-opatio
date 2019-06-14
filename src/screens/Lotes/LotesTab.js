@@ -58,9 +58,9 @@ export default class LotesTab extends Component {
             </MapView.Marker>
         );
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
 
-                <MapView
+                {/* <MapView
                     ref={instance => this.map = instance}
                     style={styles.map}
                     showsUserLocation={true}
@@ -75,7 +75,7 @@ export default class LotesTab extends Component {
                 >
                     <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
                     {markers}
-                </MapView>
+                </MapView> */}
                 <Header title={'Lote 21'} />
                 <View style={styles.searchView}>
                     <TextInput style={styles.searchInput} placeholder={'Notas del lote'} />
@@ -83,13 +83,13 @@ export default class LotesTab extends Component {
                 </View>
                 <View style={styles.tab}>
                     <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 1 ? colors.ORANGE : colors.GREY3, backgroundColor: selectTab == 1 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 1 })}>
-                        <Text style={{ color: colors.TEXT, fontSize: p(16) }}>NOTAS</Text>
+                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>NOTAS</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 2 ? colors.BLUE : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
-                        <Text style={{ color: colors.TEXT, fontSize: p(16) }}>TAREAS</Text>
+                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>TAREAS</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 3 ? colors.GREEND : colors.GREY3, backgroundColor: selectTab == 3 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 3 })}>
-                        <Text style={{ color: colors.TEXT, fontSize: p(16) }}>CULTIVOS</Text>
+                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>CULTIVOS</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -97,7 +97,7 @@ export default class LotesTab extends Component {
                 {selectTab == 2 && <Tareas/>}
                 {selectTab == 3 && <Cultivos/>}
 
-            </View>
+            </ScrollView>
         );
     }
 }

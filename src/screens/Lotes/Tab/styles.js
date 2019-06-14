@@ -47,6 +47,59 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
 
+    containerView: {
+        flex: 1,
+        paddingVertical: 12,
+        backgroundColor: colors.WHITE
+    },
+    timeDot: {
+        position: 'absolute',
+        zIndex:1,
+        bottom: p(33),
+        width: 7,
+        height: 7,
+        borderColor: colors.WHITE,
+        borderWidth: 1,
+        backgroundColor: colors.ORANGE,
+        borderRadius: 3.5
+    },
+    dot: {
+        backgroundColor: 'transparent',
+        flex: 1,
+        width: 20,
+        marginLeft: 2.2,
+        borderStyle: 'dashed',
+        borderLeftColor: colors.TEXT,
+        borderLeftWidth: 1
+    },
+    img: {
+        width: p(20),
+        height: p(20),
+        marginRight: p(16)
+    },
+    timeView: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: colors.ORANGE,
+        marginVertical: p(6),
+        borderRadius: 7,
+        padding: p(22),
+        elevation:1,
+    },
+    dropdown: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: p(12),
+        color: '#707070',
+        borderWidth: 1,
+        borderColor: '#626262',
+        borderRadius: p(5),
+        width: p(142),
+        height: p(32),
+        marginHorizontal: p(10)
+    }
+
 });
 
 export default styles;

@@ -34,6 +34,9 @@ export const images = {
     download: require('../../assets/images/download.png'),
     msg: require('../../assets/images/msg.png'),
 
+    tareaW: require('../../assets/images/tarea-white.png'),
+    tareaG: require('../../assets/images/tarea-grey.png'),
+
 
 
 

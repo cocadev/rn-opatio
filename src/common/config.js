@@ -10,7 +10,7 @@ export const MARKERS_LATITUDE_DELTA = 0.03;
 export const MARKERS_LONGITUDE_DELTA = MARKERS_LATITUDE_DELTA * ASPECT_RATIO;
 export const MAP_LATITUDE_DELTA = 0.3;
 export const MAP_LONGITUDE_DELTA = MAP_LATITUDE_DELTA * ASPECT_RATIO;
-export const NUM_MARKERS = 2;
+export const NUM_MARKERS = 7;
 export const PERCENT_SPECIAL_MARKERS = 0.1;
 
 export const REGION = {
@@ -22,12 +22,69 @@ export const REGION = {
 
 export const INTRO = 'Con nuestra plataforma podrás ver imágenes satelitales, imágenes de indice verde, detectar anomalías y ambientar tus lotes.'
 
+export const CULTIVOS = [
+  {
+    id:0,
+    time: "2019/2020",
+  },
+  {
+    id:1,
+    time: "2018/2019",
+  },
+  {
+    id:2,
+    time: "2017/2018",
+  },
+];
+
+export const TAREAS = [
+  {
+    id:1,
+    name: "LUN",
+    time: "10/03/18",
+    title: "Sembrar",
+    description: "Asignado: Marcelo Rodriguez",
+    published: '12/03/17',
+    type: 0,
+    visible:  true
+  },
+  {
+    id:2,
+    name: "SAB",
+    time: "10/03/18",
+    title: "Reparar alambrado",
+    description: "Asignado: Marcelo Rodriguez",
+    published: '09/03/17',
+    type: 1,
+    visible:  true
+  },  
+  {
+    id:3,
+    name: "JUE",
+    time: "06/03/18",
+    title: "Re-fertilizar",
+    description: "Asignado: Marcelo Rodriguez",
+    published: '08/03/17',
+    type: 2
+  },
+  {
+    id:4,
+    name: "MAR",
+    time: "04/03/18",
+    title: "Pulverizar",
+    description: "Asignado: Marcelo Rodriguez",
+    published: '05/03/17',
+    type: 2
+  },
+];
+
 export const NOTAS = [
   {
     id:1,
     name: "LUN",
     time: "10/03/18",
-    title: "Manchon de malezas"
+    title: "Manchon de malezas",
+    visible: true
   },
   {
     id:2,
@@ -39,10 +96,32 @@ export const NOTAS = [
     id:3,
     name: "JUE",
     time: "06/03/18",
-    title: "Plaga - Cogollera"
+    title: "Plaga - Cogollera",
+    visible: true
+
   },
   {
     id:4,
+    name: "MAR",
+    time: "04/03/18",
+    title: "Inundado",
+    visible: true
+
+  },
+  {
+    id:5,
+    name: "SAB",
+    time: "10/03/18",
+    title: "Alambrado roto"
+  },  
+  {
+    id:6,
+    name: "JUE",
+    time: "06/03/18",
+    title: "Plaga - Cogollera",
+  },
+  {
+    id:7,
     name: "MAR",
     time: "04/03/18",
     title: "Inundado"

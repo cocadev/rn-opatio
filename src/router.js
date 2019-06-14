@@ -42,6 +42,7 @@ export default class App extends PureComponent {
       'MaterialIcons': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
       'material': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
       'Ionicons': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
+      'material-community': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
 
     });
     console.log('fonts loaded!');
@@ -75,8 +76,8 @@ export default class App extends PureComponent {
 
               </Drawer>
 
-              <Scene key="lotes" component={Lotes} initial={false} hideNavBar/>
-              <Scene key="loteselection" component={LoteSelection} initial={true} hideNavBar/>
+              <Scene key="lotes" component={Lotes} initial={true} hideNavBar/>
+              <Scene key="loteselection" component={LoteSelection} initial={false} hideNavBar/>
               <Scene key="lotetab" component={LotesTab} initial={true} hideNavBar/>
 
               <Scene key="test" component={Test} initial={false} hideNavBar/>
