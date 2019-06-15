@@ -37,6 +37,10 @@ export const images = {
 
     tareaW: require('../../assets/images/tarea-white.png'),
     tareaG: require('../../assets/images/tarea-grey.png'),
+    map: require('../../assets/images/map.png'),
+    square: require('../../assets/images/square.png'),
+    pin: require('../../assets/images/pin.png'),
+    pause: require('../../assets/images/pause.png'),
 
 
 
