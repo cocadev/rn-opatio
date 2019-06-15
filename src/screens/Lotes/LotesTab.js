@@ -60,7 +60,7 @@ export default class LotesTab extends Component {
         return (
             <ScrollView style={styles.container}>
 
-                {/* <MapView
+                <MapView
                     ref={instance => this.map = instance}
                     style={styles.map}
                     showsUserLocation={true}
@@ -75,7 +75,7 @@ export default class LotesTab extends Component {
                 >
                     <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
                     {markers}
-                </MapView> */}
+                </MapView>
                 <Header title={'Lote 21'} />
                 <View style={styles.searchView}>
                     <TextInput style={styles.searchInput} placeholder={'Notas del lote'} />

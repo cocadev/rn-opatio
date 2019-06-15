@@ -12,7 +12,7 @@ export default class Header extends React.Component {
     const { title } = this.props
     return (
       <View style={styles.container}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>Actions.pop()}>
           <Image source={images.back} style={{ width: 20, height: 18 }} />
         </TouchableOpacity>
         <Image source={images.location} style={{ width: 26, height: 22, marginLeft: p(14) }} />

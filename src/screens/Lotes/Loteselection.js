@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, Image, Platform, Dimensions, TextInput, FlatList, ScrollView } from 'react-native';
+import { AppRegistry, StyleSheet, Text, View, Image, Platform, Dimensions, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ActionButton from 'react-native-action-button';
 import { images } from '../../common/images';
@@ -9,6 +9,7 @@ import { MapView, Marker, Animated } from 'expo';
 import Header from '../../components/Header';
 import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS, LOTES1 } from '../../common/config'
 import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
+import { Actions } from 'react-native-router-flux';
 
 const height = Math.round(Dimensions.get('window').height);
 
@@ -31,12 +32,12 @@ export default class LoteSelection extends Component {
     }
 
     _renderItem = ({ item }) => (
-        <View style={styles.itemLote}>
+        <TouchableOpacity style={styles.itemLote} onPress={()=>Actions.lotetab()}>
             <Image source={item.visible ? images.dot1 : images.dot2} style={{ width: p(30), height: p(30), marginRight: p(20) }} />
             <Text style={{ fontSize: p(20), fontWeight: '700', color: colors.TEXT, marginTop: -5 }}>Lote{item.id}</Text>
             <Text style={{ fontSize: p(15), flex: 1, marginLeft: p(20), color: colors.TEXT, marginTop: -5 }}>{item.count} ha</Text>
             <Image source={item.download? images.download: images.check} style={{ width: p(16), height: p(20) }} />
-        </View>
+        </TouchableOpacity>
     )
 
     render() {

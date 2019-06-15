@@ -7,6 +7,7 @@ import { Entypo } from '@expo/vector-icons';
 import { images } from '../../../common/images';
 import { p } from '../../../common/normalize';
 import styles from './styles'
+import { Actions } from 'react-native-router-flux';
 
 export default class Noteas extends React.Component {
 
@@ -16,11 +17,11 @@ export default class Noteas extends React.Component {
                 <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: p(12) }}>
                     <View style={styles.dropdown}>
                         <Text>{'Fecha: 23/03/18'}</Text>
-                        <Entypo name={'chevron-down'} size={30} color={colors.GREY4}/>
+                        <Entypo name={'chevron-down'} size={24} color={colors.GREY4}/>
                     </View>
                     <View style={styles.dropdown}>
                         <Text>{'Fecha: 23/04/18'}</Text>
-                        <Entypo name={'chevron-down'} size={30} color={colors.GREY4}/>
+                        <Entypo name={'chevron-down'} size={24} color={colors.GREY4}/>
                     </View>
                 </View>
                 <ScrollView>
@@ -48,10 +49,10 @@ export default class Noteas extends React.Component {
                                                 <View style={{ backgroundColor: colors.GREY5, height: 1, flex: 1, alignSelf: 'center' }} />
                                             </View>
                                         }
-                                        <View style={styles.timeView}>
+                                        <TouchableOpacity style={styles.timeView} onPress={()=>Actions.lotedetail()}>
                                             <Image source={images.msg} style={styles.img} />
                                             <Text style={{ color: '#fff', fontSize: p(16) }}>{item.title}</Text>
-                                        </View>
+                                        </TouchableOpacity>
                                     </View>
 
                                 </View>

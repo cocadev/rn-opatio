@@ -4,6 +4,7 @@ import { colors } from '../../common/colors';
 import { Entypo } from '@expo/vector-icons';
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
+import { Actions } from 'react-native-router-flux';
 
 export default class CultivosDetail extends React.Component {
 
@@ -13,7 +14,9 @@ export default class CultivosDetail extends React.Component {
 
                 <View style={{ marginBottom: p(12), backgroundColor: colors.GREEN2 }}>
 
-                    <Image source={images.back} style={styles.back} />
+                    <TouchableOpacity onPress={()=>Actions.pop()}>
+                       <Image source={images.back} style={styles.back} />
+                    </TouchableOpacity>
 
                     <Text style={styles.header}>{'Agregar cultivos'}</Text>
                     <View style={styles.dropdown}>

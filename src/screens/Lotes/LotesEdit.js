@@ -10,7 +10,7 @@ import { Actions } from 'react-native-router-flux';
 const height = Math.round(Dimensions.get('window').height);
 const width = Math.round(Dimensions.get('window').width);
 
-export default class TareasEdit extends Component {
+export default class LotesEdit extends Component {
 
     state = {
         text: ''
@@ -22,7 +22,7 @@ export default class TareasEdit extends Component {
 
                 <View style={styles.header}>
 
-                    <TouchableOpacity onPress={()=>Actions.pop()}>
+                    <TouchableOpacity onPress={() => Actions.pop()}>
                         <Image source={images.back} style={{ width: 20, height: 18 }} />
                     </TouchableOpacity>
 
@@ -35,36 +35,21 @@ export default class TareasEdit extends Component {
                 </View>
 
                 <View style={styles.textRow}>
-                    <Text style={styles.text1}>{'Título Tarea'}</Text>
+                    <Text style={styles.text1}>{'Título Nota'}</Text>
                     <Image source={images.photoAdd} style={{ width: p(38), height: p(35) }} />
                 </View>
 
                 <TextInput
                     style={styles.inputBox}
                     placeholder={'Añadir descripción'}
+                    placeholderTextColor={colors.GREY4}
                     multiline={true}
                     blurOnSubmit={false}
                     onChangeText={(text) => this.setState({ text })}
                     value={this.state.text}
                 />
 
-                <View style={styles.item}>
-                    <Image source={images.calendar} style={{ width: p(23), height: p(25), marginTop: p(7) }} />
-                    <View style={{ marginLeft: p(25) }}>
-                        <Text style={styles.text3}>{'Inicio'}</Text>
-                        <Text style={styles.text4}>{'15/05/19'}</Text>
-                    </View>
-                </View>
-
-                <View style={styles.item}>
-                    <Image source={images.calendar} style={{ width: p(23), height: p(25), marginTop: p(7) }} />
-                    <View style={{ marginLeft: p(25) }}>
-                        <Text style={styles.text3}>{'Vence'}</Text>
-                        <Text style={styles.text4}>{'18/05/19'}</Text>
-                    </View>
-                </View>
-
-                <View style={[styles.item, { borderBottomWidth: 0}]}>
+                <View style={[styles.item, { borderBottomWidth: 0 }]}>
                     <Image source={images.map} style={{ width: p(18), height: p(25), marginTop: p(7) }} />
                     <View style={{ marginLeft: p(25) }}>
                         <Text style={styles.text3}>{'Ubicación y coordenadas'}</Text>
@@ -72,15 +57,15 @@ export default class TareasEdit extends Component {
                     </View>
                 </View>
 
-                <View style={{ backgroundColor: colors.WHITE, alignItems: 'center'}}>
+                <View style={{ backgroundColor: colors.WHITE, alignItems: 'center' }}>
                     <Text style={styles.text5}>{'MARCAR EN EL MAPA'}</Text>
-                    <View style={[styles.vertical, { marginTop: p(18), width: p(160), height: p(40)}]}>
+                    <View style={[styles.vertical, { marginTop: p(18), width: p(160), height: p(40) }]}>
                         <Text style={{ color: colors.WHITE, fontWeight: '700' }}>{'USAR MI UBICACIÓN'}</Text>
                     </View>
                 </View>
 
-                <View style={[styles.item, { justifyContent: 'space-between'}]}>
-                    <View style={{ flexDirection: 'row'}}>
+                <View style={[styles.item, { justifyContent: 'space-between' }]}>
+                    <View style={{ flexDirection: 'row' }}>
                         <Image source={images.square} style={{ width: p(22), height: p(22), marginTop: p(7) }} />
                         <View style={{ marginLeft: p(25) }}>
                             <Text style={styles.text3}>{'En lote'}</Text>
@@ -89,22 +74,6 @@ export default class TareasEdit extends Component {
                     </View>
                     <Entypo name="chevron-down" color={colors.GREY8} size={36} />
 
-                </View>
-
-                <View style={styles.item}>
-                    <Image source={images.profile} style={{ width: p(24), height: p(24), marginTop: p(7) }} />
-                    <View style={{ marginLeft: p(25) }}>
-                        <Text style={styles.text3}>{'Asignado a'}</Text>
-                        <Text style={styles.text4}>{'Walter'}</Text>
-                    </View>
-                </View>
-
-                <View style={styles.item}>
-                    <Image source={images.members} style={{ width: p(25), height: p(22), marginTop: p(7) }} />
-                    <View style={{ marginLeft: p(25) }}>
-                        <Text style={styles.text3}>{'Responsable'}</Text>
-                        <Text style={styles.text4}>{'joaquin@optiagro.com'}</Text>
-                    </View>
                 </View>
 
                 <View style={[styles.item, { borderBottomWidth: 0 }]}>
@@ -116,10 +85,15 @@ export default class TareasEdit extends Component {
                     <Text style={styles.text5}>{'ADJUNTAR'}</Text>
                 </View>
 
-                <View style={{ backgroundColor: colors.WHITE, alignItems: 'center', paddingBottom: p(20)}}>
-                    <View style={[styles.vertical, { width: p(160), height: p(40)}]}>
-                        <Text style={{ color: colors.WHITE, fontWeight: '700' }}>{'DESCARGAR PDF'}</Text>
-                    </View>
+                <View style={{ backgroundColor: colors.WHITE, alignItems: 'center', paddingBottom: p(20) }}>
+                    <TouchableOpacity>
+                        <Image
+                            source={images.record}
+                            style={{ width: p(77), height: p(77), marginBottom: p(12) }}
+                        />
+                    </TouchableOpacity>
+                    <Text style={[styles.text5, { position: 'absolute', right: p(32), top: p(12)}]}>{'BORRAR'}</Text>
+                    <Text style={{ color: colors.GREY8, fontWeight: '400', fontSize: p(15) }}>{'Nota de voz 1:21 '}</Text>
                 </View>
 
             </ScrollView>
@@ -130,7 +104,7 @@ export default class TareasEdit extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.BLUE2
+        backgroundColor: colors.ORANGE
     },
     text1: {
         color: colors.WHITE,
@@ -155,9 +129,9 @@ const styles = StyleSheet.create({
         fontSize: p(18)
     },
     text5: {
-        color: colors.BLUE2,
+        color: colors.ORANGE,
         flex: 1,
-        textAlign: 'center',
+        textAlign: 'right',
         fontWeight: '700',
         fontSize: p(16)
     },
@@ -170,7 +144,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     vertical: {
-        backgroundColor: colors.BLUE2,
+        backgroundColor: colors.ORANGE,
         justifyContent: 'center',
         alignItems: 'center',
         width: p(142),
@@ -180,7 +154,7 @@ const styles = StyleSheet.create({
         color: colors.WHITE
     },
     header: {
-        backgroundColor: colors.BLUE2,
+        backgroundColor: colors.ORANGE,
         justifyContent: 'space-between',
         flexDirection: 'row',
         paddingHorizontal: p(20),
@@ -191,7 +165,7 @@ const styles = StyleSheet.create({
         height: p(134),
         margin: p(30),
         textAlignVertical: 'top',
-        backgroundColor: '#6FBCE5',
+        backgroundColor: '#FFB661',
         borderRadius: p(5),
         fontSize: p(20),
         fontWeight: '500',
@@ -199,7 +173,7 @@ const styles = StyleSheet.create({
         color: colors.GREY4
     },
     textRow: {
-        backgroundColor: colors.BLUE2,
+        backgroundColor: colors.ORANGE,
         padding: p(30),
         paddingBottom: p(10),
         flexDirection: 'row',

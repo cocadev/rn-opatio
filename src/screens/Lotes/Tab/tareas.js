@@ -7,6 +7,7 @@ import { Entypo } from '@expo/vector-icons';
 import { images } from '../../../common/images';
 import { p } from '../../../common/normalize';
 import styles from './styles'
+import { Actions } from 'react-native-router-flux';
 
 export default class Tareas extends React.Component {
 
@@ -17,17 +18,17 @@ export default class Tareas extends React.Component {
         <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: p(12) }}>
           <View style={styles.dropdown}>
             <Text>{'Fecha: 23/03/18'}</Text>
-            <Entypo name={'chevron-down'} size={30} color={colors.GREY4} />
+            <Entypo name={'chevron-down'} size={24} color={colors.GREY4} />
           </View>
           <View style={styles.dropdown}>
             <Text>{'Fecha: 23/04/18'}</Text>
-            <Entypo name={'chevron-down'} size={30} color={colors.GREY4} />
+            <Entypo name={'chevron-down'} size={24} color={colors.GREY4} />
           </View>
         </View>
         <View style={{ alignItems: 'center', marginBottom: p(18), marginTop: p(8) }}>
           <View style={styles.dropdown}>
             <Text>{'Ordenar por'}</Text>
-            <Entypo name={'chevron-down'} size={30} color={colors.GREY4} />
+            <Entypo name={'chevron-down'} size={24} color={colors.GREY4} />
           </View>
         </View>
 
@@ -56,7 +57,8 @@ export default class Tareas extends React.Component {
                         <View style={{ backgroundColor: colors.GREY5, height: 1, flex: 1, alignSelf: 'center' }} />
                       </View>
                     }
-                    <View style={[styles.timeView, {
+                    <TouchableOpacity onPress={()=>Actions.tareasdetail()}
+                      style={[styles.timeView, {
                       backgroundColor: item.type == 0 ? colors.SKY : (item.type == 1 ? colors.WHITE : colors.PURPLE),
                       borderColor: item.type == 1 ? colors.GREY6 : null,
                       borderWidth: item.type == 1 ? 2 : null,
@@ -68,7 +70,7 @@ export default class Tareas extends React.Component {
                       </View>
                       <Text style={{ flex:1, textAlign: 'right' ,color: item.type == 1 ? colors.GREY4 : colors.WHITE, fontSize: p(11) }}>{item.published}</Text>
 
-                    </View>
+                    </TouchableOpacity>
                   </View>
 
                 </View>

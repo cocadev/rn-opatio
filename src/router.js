@@ -24,6 +24,7 @@ import TareasDetail from './screens/Lotes/TareasDetail';
 import TareasEdit from './screens/Lotes/TareasEdit';
 import Cultivos from './screens/Lotes/Tab/cultivos';
 import CultivosDetail from './screens/Lotes/cultivosDetail';
+import LotesEdit from './screens/Lotes/LotesEdit';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -85,9 +86,11 @@ export default class App extends PureComponent {
               <Scene key="loteselection" component={LoteSelection} initial={false} hideNavBar/>
               <Scene key="lotetab" component={LotesTab} initial={false} hideNavBar/>
               <Scene key="lotedetail" component={LoteDetail} initial={false} hideNavBar/>
+              <Scene key="lotesedit" component={LotesEdit} initial={false} hideNavBar/>
+
               <Scene key="tareasdetail" component={TareasDetail} initial={false} hideNavBar/>
               <Scene key="tareasedit" component={TareasEdit} initial={false} hideNavBar/>
-              <Scene key="cultivosDetail" component={CultivosDetail} initial={true} hideNavBar/>
+              <Scene key="cultivosDetail" component={CultivosDetail} initial={false} hideNavBar/>
 
               <Scene key="test" component={Test} initial={false} hideNavBar/>
 

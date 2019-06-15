@@ -90,12 +90,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: p(12),
+        paddingLeft: p(12),
         color: '#707070',
         borderWidth: 1,
         borderColor: '#626262',
         borderRadius: p(5),
-        width: p(142),
+        width: p(146),
         height: p(32),
         marginHorizontal: p(10)
     }

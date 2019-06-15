@@ -52,5 +52,6 @@ export const images = {
     bigCheck: require('../../assets/images/big-check.png'),
     photoAdd: require('../../assets/images/photo-add.png'),
 
+    record: require('../../assets/images/record.png'),
 
 };

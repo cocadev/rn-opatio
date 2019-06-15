@@ -7,6 +7,7 @@ import { Entypo } from '@expo/vector-icons';
 import { images } from '../../../common/images';
 import { p } from '../../../common/normalize';
 import styles from './styles';
+import { Actions } from 'react-native-router-flux';
 
 const view = {
     width: p(232),
@@ -33,11 +34,11 @@ export default class Cultivos extends React.Component {
                 <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: p(12) }}>
                     <View style={styles.dropdown}>
                         <Text>{'Desde campaña'}</Text>
-                        <Entypo name={'chevron-down'} size={30} color={colors.GREY4} />
+                        <Entypo name={'chevron-down'} size={24} color={colors.GREY4} />
                     </View>
                     <View style={styles.dropdown}>
                         <Text>{'Hasta campaña'}</Text>
-                        <Entypo name={'chevron-down'} size={30} color={colors.GREY4} />
+                        <Entypo name={'chevron-down'} size={24} color={colors.GREY4} />
                     </View>
                 </View>
 
@@ -51,7 +52,7 @@ export default class Cultivos extends React.Component {
                         <View style={[ view, { backgroundColor: colors.YELLOW2 }]}>
                             <Text style={text}>Trigo</Text>
                         </View>
-                        <TouchableOpacity style={{ position: 'absolute', right: p(20), bottom: p(25) }}>
+                        <TouchableOpacity onPress={()=>Actions.cultivosDetail()} style={{ position: 'absolute', right: p(20), bottom: p(25) }}>
                             <Image source={images.edit} style={{ width: p(34), height: p(41) }} />
                         </TouchableOpacity>
                     </View>

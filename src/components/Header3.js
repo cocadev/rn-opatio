@@ -13,18 +13,23 @@ export default class Header3 extends React.Component {
     return (
       <View style={styles.container}>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => Actions.pop()}>
           <Image source={images.back} style={{ width: 20, height: 18 }} />
         </TouchableOpacity>
 
         <View style={{ flexDirection: 'row' }}>
-          <View style={[styles.vertical, { backgroundColor: color }]}>
-              <Text style={{ color: colors.WHITE, fontWeight: '700'}}>EDITAR</Text>
-          </View> 
+          <TouchableOpacity
+            onPress={() => {
+              color == colors.BLUE2 ? Actions.tareasedit() : Actions.lotesedit()
+            }}
+            style={[styles.vertical, { backgroundColor: color }]}
+          >
+            <Text style={{ color: colors.WHITE, fontWeight: '700' }}>EDITAR</Text>
+          </TouchableOpacity>
 
-          <Image source={ color == colors.ORANGE ? images.menu_yellow : images.menu_blue} style={{ width: p(7), height: p(23), marginLeft: p(18), marginTop: p(6) }} />
+          <Image source={color == colors.ORANGE ? images.menu_yellow : images.menu_blue} style={{ width: p(7), height: p(23), marginLeft: p(18), marginTop: p(6) }} />
         </View>
-     
+
       </View>
     )
   }
@@ -50,7 +55,7 @@ const styles = StyleSheet.create({
     width: p(119),
     height: p(29),
     borderRadius: p(3),
-    elevation:1,
+    elevation: 1,
     color: colors.ORANGE
   },
 

@@ -43,7 +43,7 @@ export default class Lotes extends Component {
         );
         return (
             <View style={styles.container}>
-                {/* <MapView
+                <MapView
 
                     ref={instance => this.map = instance}
                     style={styles.map}
@@ -62,7 +62,7 @@ export default class Lotes extends Component {
                 >
                     <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
                     {markers}
-                </MapView> */}
+                </MapView>
                 <Header title={'Lotes'}/>
                 <ActionButton
                     buttonColor={colors.BLUE}
@@ -78,7 +78,7 @@ export default class Lotes extends Component {
                     {/* <ActionButton.Item size={60} buttonColor={colors.WHITE} onPress={() => {}}>
                         <Image source={images.direction} style={{ width: p(19), height: p(50) }} />
                     </ActionButton.Item> */}
-                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { Actions.lotetab()}}>
+                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { Actions.loteselection()}}>
                         <Image source={images.lote} style={{ width: p(34), height: p(42) }} />
                     </ActionButton.Item>
                     <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
