@@ -12,19 +12,18 @@ export default class Header3 extends React.Component {
     const { title } = this.props
     return (
       <View style={styles.container}>
+
         <TouchableOpacity>
-          <Image source={images.back_black} style={{ width: 20, height: 18 }} />
+          <Image source={images.back} style={{ width: 20, height: 18 }} />
         </TouchableOpacity>
 
-        <View style={{ marginRight: p(15)}}>
-          <Text style={styles.text1}>Lote 21</Text>
-          <Text style={styles.text2}>100 ha</Text>
+        <View style={{ flexDirection: 'row' }}>
+          <View style={styles.vertical}>
+              <Text style={{ color: colors.WHITE, fontWeight: '700'}}>EDITAR</Text>
+          </View> 
+
+          <Image source={images.menu_yellow} style={{ width: p(7), height: p(23), marginLeft: p(18), marginTop: p(6) }} />
         </View>
-
-        <View style={styles.vertical}></View>
-
-        <Text style={styles.head}>{'La Morocha'}</Text>     
-        <Image source={images.dots} style={{ width: p(7), height: p(23), marginLeft: p(14) }} />
      
       </View>
     )
@@ -33,6 +32,8 @@ export default class Header3 extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    position: 'absolute',
+    zIndex: 1,
     height: p(60),
     flexDirection: 'row',
     alignItems: 'center',
@@ -40,31 +41,18 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: "row",
     paddingHorizontal: p(20),
-    backgroundColor: colors.WHITE,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
   },
-  head: {
-    fontSize: p(16),
-    marginLeft: p(14),
-    color: colors.TEXT,
-    textAlign: 'center'
-  },
+
   vertical: {
-    backgroundColor: colors.TEXT,
-    width: p(3),
-    height: p(32)
-  },
-  text1: {
-    fontSize: p(20),
-    fontWeight: '700',
-    color: colors.TEXT,
-    textAlign: 'center'
-  },
-  text2: {
-    fontSize: p(16),
-    fontWeight: '700',
-    marginHorizontal: p(12),
-    color: colors.TEXT,
-    textAlign: 'center'
+    backgroundColor: colors.ORANGE,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: p(119),
+    height: p(29),
+    borderRadius: p(3),
+    elevation:1,
+    color: colors.ORANGE
   },
 
 });

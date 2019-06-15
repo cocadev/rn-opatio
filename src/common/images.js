@@ -41,8 +41,10 @@ export const images = {
     square: require('../../assets/images/square.png'),
     pin: require('../../assets/images/pin.png'),
     pause: require('../../assets/images/pause.png'),
+    play: require('../../assets/images/play.png'),
+    menu_yellow: require('../../assets/images/menu-yellow.png'),
 
-
+    
 
 
 };

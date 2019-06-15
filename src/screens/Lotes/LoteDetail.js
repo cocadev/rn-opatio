@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, Image, Platform, Dimensions, TextInput, FlatList, ScrollView } from 'react-native';
+import { AppRegistry, StyleSheet, Text, View, Image, Platform, Dimensions, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native';
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
@@ -19,6 +19,13 @@ const carouselList = [
 
 export default class LoteDetail extends Component {
 
+    constructor(){
+        super();
+        this.state = {
+            video: false
+        }
+    }
+
     renderPage(image, index) {
         return (
             <View key={index}>
@@ -28,7 +35,7 @@ export default class LoteDetail extends Component {
     }
 
     render() {
-
+        const { video } = this.state;
         return (
             <ScrollView style={styles.container}>
                 <Header />
@@ -36,15 +43,18 @@ export default class LoteDetail extends Component {
                     autoplay
                     autoplayTimeout={5000}
                     loop
+                    pageIndicatorStyle={{ backgroundColor: colors.WHITE }}
+                    activePageIndicatorStyle={{ backgroundColor: colors.ORANGE }}
+                    pageIndicatorContainerStyle={{ fontSize: 70 }}
                     index={0}
                     pageSize={width}
                 >
                     {carouselList.map((image, index) => this.renderPage(image, index))}
                 </Carousel>
-                <View style={{ backgroundColor: colors.ORANGE, elevation: 3, padding: p(30) }}>
-                    <Image source={images.msg} style={{ width: p(25), height: p(25) }} />
+                <View style={{ backgroundColor: colors.ORANGE, elevation: 3, padding: p(30), paddingBottom: p(10) }}>
+                    <Image source={images.msg} style={{ width: p(30), height: p(30) }} />
                     <Text style={styles.text1}>{'Manchón de malezas'}</Text>
-                    <Text style={styles.text2}>{'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod blandit fermentum. Ut consectetur, felis imperdiet luctus cursus, justo lorem maximus orci, in commodo ipsum massa sit amet ante. Aliquam sollicitudin, enim et elementum condimentum, lectus leo consectetur dolor'}</Text>
+                    <Text numberOfLines={4} style={styles.text2}>{'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod blandit fermentum. Ut consectetur, felis imperdiet luctus cursus, justo lorem maximus orci, in commodo ipsum massa sit amet ante. Aliquam sollicitudin, enim et elementum condimentum, lectus leo consectetur dolor'}</Text>
                 </View>
 
                 <View style={styles.item}>
@@ -63,7 +73,7 @@ export default class LoteDetail extends Component {
                     </View>
                 </View>
 
-                <View style={[styles.item, { borderBottomWidth: 0}]}>
+                <View style={[styles.item, { borderBottomWidth: 0 }]}>
                     <Image source={images.pin} style={{ width: p(12), height: p(22), marginTop: p(7), marginLeft: p(8) }} />
                     <View style={{ marginLeft: p(25) }}>
                         <Text style={styles.text3}>{'Archivos adjuntos'}</Text>
@@ -71,10 +81,15 @@ export default class LoteDetail extends Component {
                     </View>
                 </View>
 
-                <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.WHITE, paddingBottom: p(18)}}>
-                    <Image source={{ uri: 'https://www.disneyfanatic.com/wp-content/uploads/2015/09/99Characters-620x330.jpg'}} style={styles.video}/>
-                    <Image source={images.pause} style={{ width: p(77), height: p(77), marginBottom: p(12)}}/>
-                    <Text style={{ color: colors.GREY8, fontWeight: '400', fontSize: p(15)}}>{'Nota de voz 0:23 '}</Text>
+                <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.WHITE, paddingBottom: p(18) }}>
+                    <Image source={{ uri: 'https://www.disneyfanatic.com/wp-content/uploads/2015/09/99Characters-620x330.jpg' }} style={styles.video} />
+                    <TouchableOpacity onPress={()=>this.setState({video: !video})}>
+                        <Image
+                            source={ video ? images.pause: images.play}
+                            style={{ width: p(77), height: p(77), marginBottom: p(12) }}
+                        />
+                    </TouchableOpacity>
+                    <Text style={{ color: colors.GREY8, fontWeight: '400', fontSize: p(15) }}>{'Nota de voz 0:23 '}</Text>
                 </View>
 
             </ScrollView>
@@ -111,16 +126,16 @@ const styles = StyleSheet.create({
     },
     item: {
         flexDirection: 'row',
-        backgroundColor: colors.WHITE, 
+        backgroundColor: colors.WHITE,
         padding: p(30),
         borderBottomColor: colors.GREY3,
         borderBottomWidth: p(7)
     },
     video: {
-        width: p(225), 
-        height: p(136), 
-        marginBottom: p(23), 
-        marginRight: p(3), 
+        width: p(225),
+        height: p(136),
+        marginBottom: p(23),
+        marginRight: p(3),
         borderRadius: p(5)
     }
 });
