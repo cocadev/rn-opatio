@@ -1,90 +1,122 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
 import { colors } from '../../common/colors';
-import Timeline from 'react-native-timeline-listview'
-import { CULTIVOS } from '../../common/config';
 import { Entypo } from '@expo/vector-icons';
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
-import styles from './Tab/styles';
-
-const view = {
-    width: p(232),
-    height: p(33),
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: p(8),
-    elevation: 3,
-    borderRadius: 5
-}
-
-const text = {
-    color: colors.BLACK,
-    fontSize: p(15),
-    fontWeight: '700',
-}
 
 export default class CultivosDetail extends React.Component {
 
     render() {
         return (
-            <View style={styles.containerView}>
+            <View style={styles.container}>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: p(12) }}>
+                <View style={{ marginBottom: p(12), backgroundColor: colors.GREEN2 }}>
+
+                    <Image source={images.back} style={styles.back} />
+
+                    <Text style={styles.header}>{'Agregar cultivos'}</Text>
                     <View style={styles.dropdown}>
-                        <Text>{'Desde campaña'}</Text>
-                        <Entypo name={'chevron-down'} size={30} color={colors.GREY4} />
+                        <Text style={styles.text1}>{'Campo'}</Text>
+                        <Entypo name={'chevron-down'} size={30} color={colors.WHITE} />
                     </View>
                     <View style={styles.dropdown}>
-                        <Text>{'Hasta campaña'}</Text>
-                        <Entypo name={'chevron-down'} size={30} color={colors.GREY4} />
+                        <Text style={styles.text1}>{'Lote'}</Text>
+                        <Entypo name={'chevron-down'} size={30} color={colors.WHITE} />
                     </View>
                 </View>
 
-                <ScrollView>
-
-                    <View style={{ paddingHorizontal: p(15), alignItems: 'center', marginTop: p(16)}}>
-                        <Text style={{ color: colors.GREY7, textAlign: 'left', position: 'absolute', left: p(15) }}>Campaña 2019/2020</Text>
-                        <View style={[ view, { backgroundColor: colors.YEL, marginTop: p(40) }]}>
-                            <Text style={text}>Maíz</Text>
-                        </View>
-                        <View style={[ view, { backgroundColor: colors.YELLOW2 }]}>
-                            <Text style={text}>Trigo</Text>
-                        </View>
-                        <TouchableOpacity style={{ position: 'absolute', right: p(20), bottom: p(25) }}>
-                            <Image source={images.edit} style={{ width: p(34), height: p(41) }} />
-                        </TouchableOpacity>
+                <View style={{ paddingTop: p(16), backgroundColor: colors.WHITE, flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
+                    <Text style={styles.text2}>{'Cultivo estival'}</Text>
+                    <View style={styles.dropdown2}>
+                        <Text style={styles.text2}>{'Sin asignar'}</Text>
+                        <Entypo name={'chevron-down'} size={30} color={colors.GREY4} />
+                    </View>
+                    <Text style={[styles.text2, { marginTop: p(16)}]}>{'Cultivo invernal'}</Text>
+                    <View style={styles.dropdown2}>
+                        <Text style={styles.text2}>{'Sin asignar'}</Text>
+                        <Entypo name={'chevron-down'} size={30} color={colors.GREY4} />
                     </View>
 
-                    <View style={{ paddingHorizontal: p(15), alignItems: 'center', marginTop: p(16)}}>
-                        <Text style={{ color: colors.GREY7, textAlign: 'left', position: 'absolute', left: p(15) }}>Campaña 2018/2019</Text>
-                        <View style={[ view, { backgroundColor: colors.GREEN3, marginTop: p(40) }]}>
-                            <Text style={text}>Maíz</Text>
-                        </View>
-                        <View style={[ view, { backgroundColor: colors.YELLOW2 }]}>
-                            <Text style={text}>Trigo</Text>
-                        </View>
-                        <TouchableOpacity style={{ position: 'absolute', right: p(20), bottom: p(25) }}>
-                            <Image source={images.edit} style={{ width: p(34), height: p(41) }} />
-                        </TouchableOpacity>
+                    <View style={[styles.dropdown2, { marginTop: p(50)}]}>
+                        <Text style={styles.text2}>{'Campaña'}</Text>
+                        <Entypo name={'chevron-down'} size={30} color={colors.GREY4} />
                     </View>
 
-                    <View style={{ paddingHorizontal: p(15), alignItems: 'center', marginTop: p(16)}}>
-                        <Text style={{ color: colors.GREY7, textAlign: 'left', position: 'absolute', left: p(15) }}>Campaña 2017/2018</Text>
-                        <View style={[ view, { backgroundColor: colors.GREEN3, marginTop: p(40) }]}>
-                            <Text style={text}>Maíz</Text>
+                    <View style={{ backgroundColor: colors.WHITE, alignItems: 'center', paddingBottom: p(20), marginVertical: p(20) }}>
+                        <View style={[styles.vertical, { width: p(180), height: p(40) }]}>
+                            <Text style={{ color: colors.WHITE, fontWeight: '700' }}>{'GUARDAR CULTIVOS'}</Text>
                         </View>
-                        <View style={[ view, { backgroundColor: colors.WHITE }]}>
-                            <Text style={text}>Trigo</Text>
-                        </View>
-                        <TouchableOpacity style={{ position: 'absolute', right: p(20), bottom: p(25) }}>
-                            <Image source={images.edit} style={{ width: p(34), height: p(41) }} />
-                        </TouchableOpacity>
                     </View>
 
-                </ScrollView>
+                </View>
 
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: colors.GREEN2,
+    },
+    back: {
+        width: p(26),
+        height: p(26),
+        marginLeft: p(15),
+        marginTop: p(22)
+    },
+    header: {
+        textAlign: 'center',
+        marginVertical: p(20),
+        color: colors.WHITE,
+        fontSize: p(32),
+        fontWeight: '700',
+    },
+    text1: {
+        color: colors.WHITE,
+        fontWeight: '500',
+        fontSize: p(19)
+    },
+    text2: {
+        color: colors.BLACK,
+        fontWeight: '700',
+        fontSize: p(19)
+    },
+    dropdown: {
+        height: p(50),
+        paddingHorizontal: p(15),
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        borderColor: colors.WHITE,
+        borderWidth: 1,
+        borderRadius: p(5),
+        marginVertical: p(12),
+        alignItems: 'center',
+        marginHorizontal: p(55)
+    },
+    dropdown2: {
+        height: p(40),
+        width: p(170),
+        paddingHorizontal: p(10),
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        borderColor: colors.GREY6,
+        borderWidth: 1,
+        borderRadius: p(5),
+        marginVertical: p(12),
+        alignItems: 'center',
+        marginHorizontal: p(55)
+    },
+    vertical: {
+        backgroundColor: colors.GREEN2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: p(142),
+        height: p(29),
+        borderRadius: p(3),
+        elevation: 1,
+        color: colors.WHITE
+    },
+})
