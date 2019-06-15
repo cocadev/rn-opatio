@@ -38,7 +38,7 @@ export default class LoteDetail extends Component {
         const { video } = this.state;
         return (
             <ScrollView style={styles.container}>
-                <Header color={colors.ORANGE}/>
+                <Header color={colors.ORANGE} title={'EDITOR'}/>
                 <Carousel
                     autoplay
                     autoplayTimeout={5000}

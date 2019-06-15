@@ -38,7 +38,7 @@ export default class TareasDetail extends Component {
         const { video } = this.state;
         return (
             <ScrollView style={styles.container}>
-                <Header color={colors.BLUE2} />
+                <Header color={colors.BLUE2} title={'EDITOR'}/>
                 <Carousel
                     autoplay
                     autoplayTimeout={5000}

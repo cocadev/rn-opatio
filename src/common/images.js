@@ -50,6 +50,7 @@ export const images = {
     calendar: require('../../assets/images/calendar.png'),
 
     bigCheck: require('../../assets/images/big-check.png'),
+    photoAdd: require('../../assets/images/photo-add.png'),
 
 
 };

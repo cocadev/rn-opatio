@@ -4,18 +4,9 @@ import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
 import Carousel from 'react-native-banner-carousel';
-import Header from '../../components/Header3';
 
 const height = Math.round(Dimensions.get('window').height);
 const width = Math.round(Dimensions.get('window').width);
-
-const carouselList = [
-    "https://www.disneyfanatic.com/wp-content/uploads/2015/02/What-Do-Your-Favorite-Disney-Characters-Say-About-You.jpg",
-    "http://dslv9ilpbe7p1.cloudfront.net/q_AGGYqTPGhBMa1QKtWLcg_store_header_image",
-    "https://images-na.ssl-images-amazon.com/images/I/81uUIk9PAHL._SX355_.jpg",
-    "https://cdn7.wdwnt.com/wp-content/uploads/2019/03/b3cff0c9ba63adc8d8bd8a806c33f351.jpg",
-    "https://i.ytimg.com/vi/CNV3WLx5Ez4/maxresdefault.jpg",
-];
 
 export default class TareasEdit extends Component {
 
@@ -38,25 +29,24 @@ export default class TareasEdit extends Component {
         const { video } = this.state;
         return (
             <ScrollView style={styles.container}>
-                <Header color={colors.BLUE2} />
-                <Carousel
-                    autoplay
-                    autoplayTimeout={5000}
-                    // loop
-                    pageIndicatorStyle={{ backgroundColor: colors.WHITE }}
-                    activePageIndicatorStyle={{ backgroundColor: colors.BLUE2 }}
-                    index={0}
-                    pageSize={width}
-                >
-                    {carouselList.map((image, index) => this.renderPage(image, index))}
-                </Carousel>
 
-                <Image source={images.bigCheck} style={styles.big}/>
+                <View style={{ backgroundColor: colors.BLUE2, justifyContent: 'space-between', flexDirection: 'row', paddingHorizontal: p(20), height: p(60), alignItems: 'center', }}>
 
-                <View style={{ backgroundColor: colors.BLUE2, padding: p(30), paddingBottom: p(10) }}>
-                    <Image source={images.tareaW} style={{ width: p(30), height: p(30) }} />
-                    <Text style={styles.text1}>{'Pulverizar'}</Text>
-                    <Text numberOfLines={4} style={styles.text2}>{'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod blandit fermentum. Ut consectetur, felis imperdiet luctus cursus, justo lorem maximus orci, in commodo ipsum massa sit amet ante. Aliquam sollicitudin, enim et elementum condimentum, lectus leo consectetur dolor'}</Text>
+                    <TouchableOpacity>
+                        <Image source={images.back} style={{ width: 20, height: 18 }} />
+                    </TouchableOpacity>
+
+                    <View style={{ flexDirection: 'row' }}>
+                        <View style={[styles.vertical, { backgroundColor: colors.WHITE }]}>
+                            <Text style={{ color: colors.BLACK, fontWeight: '700' }}>{'GUARDAR'}</Text>
+                        </View>
+                    </View>
+
+                </View>
+
+                <View style={{ backgroundColor: colors.BLUE2, padding: p(30), paddingBottom: p(10), flexDirection: 'row' }}>
+                    <Text style={styles.text1}>{'Título Tarea'}</Text>
+                    <Image source={images.photoAdd} style={{ width: p(38), height: p(35) }} />
                 </View>
 
                 <View style={styles.item}>
@@ -138,7 +128,7 @@ const styles = StyleSheet.create({
         color: colors.WHITE,
         fontWeight: '700',
         marginTop: p(8),
-        fontSize: p(32)
+        fontSize: p(37)
     },
     text2: {
         color: colors.WHITE,
@@ -180,12 +170,4 @@ const styles = StyleSheet.create({
         elevation: 1,
         color: colors.WHITE
     },
-    big: {
-        width: p(80),
-        height: p(80),
-        position: 'absolute',
-        zIndex: 100,
-        top: p(170),
-        right: p(20)
-    }
 });
