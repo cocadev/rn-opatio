@@ -13,6 +13,8 @@ export const colors = {
 
   BLACK       : '#000000',
   BLUE        : '#1982e5',
+  BLUE2        : '#1296D7',
+
   BACKGROUND  : '#f0f3f6',
   YELLOW      : '#ff8d08',
   YELLOW2      : '#ffffcc',

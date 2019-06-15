@@ -43,8 +43,13 @@ export const images = {
     pause: require('../../assets/images/pause.png'),
     play: require('../../assets/images/play.png'),
     menu_yellow: require('../../assets/images/menu-yellow.png'),
+    menu_blue: require('../../assets/images/menu_blue.png'),
 
-    
+    profile: require('../../assets/images/profile.png'),
+    members: require('../../assets/images/members.png'),
+    calendar: require('../../assets/images/calendar.png'),
+
+    bigCheck: require('../../assets/images/big-check.png'),
 
 
 };

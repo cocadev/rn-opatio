@@ -17,9 +17,9 @@ const carouselList = [
     "https://i.ytimg.com/vi/CNV3WLx5Ez4/maxresdefault.jpg",
 ];
 
-export default class LoteDetail extends Component {
+export default class TareasDetail extends Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
             video: false
@@ -38,23 +38,41 @@ export default class LoteDetail extends Component {
         const { video } = this.state;
         return (
             <ScrollView style={styles.container}>
-                <Header color={colors.ORANGE}/>
+                <Header color={colors.BLUE2} />
                 <Carousel
                     autoplay
                     autoplayTimeout={5000}
-                    loop
+                    // loop
                     pageIndicatorStyle={{ backgroundColor: colors.WHITE }}
-                    activePageIndicatorStyle={{ backgroundColor: colors.ORANGE }}
-                    pageIndicatorContainerStyle={{ fontSize: 70 }}
+                    activePageIndicatorStyle={{ backgroundColor: colors.BLUE2 }}
                     index={0}
                     pageSize={width}
                 >
                     {carouselList.map((image, index) => this.renderPage(image, index))}
                 </Carousel>
-                <View style={{ backgroundColor: colors.ORANGE, elevation: 3, padding: p(30), paddingBottom: p(10) }}>
-                    <Image source={images.msg} style={{ width: p(30), height: p(30) }} />
-                    <Text style={styles.text1}>{'Manchón de malezas'}</Text>
+
+                <Image source={images.bigCheck} style={styles.big}/>
+
+                <View style={{ backgroundColor: colors.BLUE2, padding: p(30), paddingBottom: p(10) }}>
+                    <Image source={images.tareaW} style={{ width: p(30), height: p(30) }} />
+                    <Text style={styles.text1}>{'Pulverizar'}</Text>
                     <Text numberOfLines={4} style={styles.text2}>{'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod blandit fermentum. Ut consectetur, felis imperdiet luctus cursus, justo lorem maximus orci, in commodo ipsum massa sit amet ante. Aliquam sollicitudin, enim et elementum condimentum, lectus leo consectetur dolor'}</Text>
+                </View>
+
+                <View style={styles.item}>
+                    <Image source={images.calendar} style={{ width: p(23), height: p(25), marginTop: p(7) }} />
+                    <View style={{ marginLeft: p(25) }}>
+                        <Text style={styles.text3}>{'Inicio'}</Text>
+                        <Text style={styles.text4}>{'15/05/19'}</Text>
+                    </View>
+                </View>
+
+                <View style={styles.item}>
+                    <Image source={images.calendar} style={{ width: p(23), height: p(25), marginTop: p(7) }} />
+                    <View style={{ marginLeft: p(25) }}>
+                        <Text style={styles.text3}>{'Vence'}</Text>
+                        <Text style={styles.text4}>{'18/05/19'}</Text>
+                    </View>
                 </View>
 
                 <View style={styles.item}>
@@ -73,6 +91,22 @@ export default class LoteDetail extends Component {
                     </View>
                 </View>
 
+                <View style={styles.item}>
+                    <Image source={images.profile} style={{ width: p(24), height: p(24), marginTop: p(7) }} />
+                    <View style={{ marginLeft: p(25) }}>
+                        <Text style={styles.text3}>{'Asignado a'}</Text>
+                        <Text style={styles.text4}>{'Walter'}</Text>
+                    </View>
+                </View>
+
+                <View style={styles.item}>
+                    <Image source={images.members} style={{ width: p(25), height: p(22), marginTop: p(7) }} />
+                    <View style={{ marginLeft: p(25) }}>
+                        <Text style={styles.text3}>{'Responsable'}</Text>
+                        <Text style={styles.text4}>{'joaquin@optiagro.com'}</Text>
+                    </View>
+                </View>
+
                 <View style={[styles.item, { borderBottomWidth: 0 }]}>
                     <Image source={images.pin} style={{ width: p(12), height: p(22), marginTop: p(7), marginLeft: p(8) }} />
                     <View style={{ marginLeft: p(25) }}>
@@ -81,15 +115,13 @@ export default class LoteDetail extends Component {
                     </View>
                 </View>
 
-                <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.WHITE, paddingBottom: p(18) }}>
+                <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.WHITE, paddingBottom: p(24) }}>
                     <Image source={{ uri: 'https://www.disneyfanatic.com/wp-content/uploads/2015/09/99Characters-620x330.jpg' }} style={styles.video} />
-                    <TouchableOpacity onPress={()=>this.setState({video: !video})}>
-                        <Image
-                            source={ video ? images.pause: images.play}
-                            style={{ width: p(77), height: p(77), marginBottom: p(12) }}
-                        />
-                    </TouchableOpacity>
-                    <Text style={{ color: colors.GREY8, fontWeight: '400', fontSize: p(15) }}>{'Nota de voz 0:23 '}</Text>
+                    <View style={{ flexDirection: 'row' }}>
+                        <View style={styles.vertical}>
+                            <Text style={{ color: colors.WHITE, fontWeight: '700' }}>{'DESCARGAR PDF'}</Text>
+                        </View>
+                    </View>
                 </View>
 
             </ScrollView>
@@ -137,5 +169,23 @@ const styles = StyleSheet.create({
         marginBottom: p(23),
         marginRight: p(3),
         borderRadius: p(5)
+    },
+    vertical: {
+        backgroundColor: colors.BLUE2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: p(142),
+        height: p(29),
+        borderRadius: p(3),
+        elevation: 1,
+        color: colors.WHITE
+    },
+    big: {
+        width: p(80),
+        height: p(80),
+        position: 'absolute',
+        zIndex: 100,
+        top: p(170),
+        right: p(20)
     }
 });

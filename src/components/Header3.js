@@ -9,7 +9,7 @@ import { p } from '../common/normalize';
 export default class Header3 extends React.Component {
 
   render() {
-    const { title } = this.props
+    const { color } = this.props
     return (
       <View style={styles.container}>
 
@@ -18,11 +18,11 @@ export default class Header3 extends React.Component {
         </TouchableOpacity>
 
         <View style={{ flexDirection: 'row' }}>
-          <View style={styles.vertical}>
+          <View style={[styles.vertical, { backgroundColor: color }]}>
               <Text style={{ color: colors.WHITE, fontWeight: '700'}}>EDITAR</Text>
           </View> 
 
-          <Image source={images.menu_yellow} style={{ width: p(7), height: p(23), marginLeft: p(18), marginTop: p(6) }} />
+          <Image source={ color == colors.ORANGE ? images.menu_yellow : images.menu_blue} style={{ width: p(7), height: p(23), marginLeft: p(18), marginTop: p(6) }} />
         </View>
      
       </View>
@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
   },
 
   vertical: {
-    backgroundColor: colors.ORANGE,
     justifyContent: 'center',
     alignItems: 'center',
     width: p(119),
