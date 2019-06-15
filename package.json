@@ -19,6 +19,7 @@
     "prop-types": "15.6.2",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-native-accordion": "^1.0.1",
     "react-native-action-button": "^2.8.5",
     "react-native-banner-carousel": "^1.0.3",
     "react-native-drawer": "^2.5.1",

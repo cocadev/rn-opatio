@@ -4957,6 +4957,13 @@ react-lifecycles-compat@^3, react-lifecycles-compat@^3.0.0, react-lifecycles-com
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-native-accordion@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-accordion/-/react-native-accordion-1.0.1.tgz#1086ac012b9d7c90cd1efd014f2804baa16a1f5b"
+  integrity sha1-EIasASudfJDNHv0BTygEuqFqH1s=
+  dependencies:
+    react-tween-state "0.0.5"
+
 react-native-action-button@^2.8.5:
   version "2.8.5"
   resolved "https://registry.yarnpkg.com/react-native-action-button/-/react-native-action-button-2.8.5.tgz#4152a50323a8a6b3468e6f161f9a9071f2f0739a"
@@ -5304,6 +5311,13 @@ react-transform-hmr@^1.0.4:
   dependencies:
     global "^4.3.0"
     react-proxy "^1.1.7"
+
+react-tween-state@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/react-tween-state/-/react-tween-state-0.0.5.tgz#bd25c27f2558b839a6c7aee3b85fab967760d1d2"
+  integrity sha1-vSXCfyVYuDmmx67juF+rlndg0dI=
+  dependencies:
+    tween-functions "^1.0.1"
 
 react@16.5.0:
   version "16.5.0"

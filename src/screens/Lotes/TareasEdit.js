@@ -4,33 +4,22 @@ import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
 import Carousel from 'react-native-banner-carousel';
+import { Entypo } from '@expo/vector-icons';
 
 const height = Math.round(Dimensions.get('window').height);
 const width = Math.round(Dimensions.get('window').width);
 
 export default class TareasEdit extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            video: false
-        }
-    }
-
-    renderPage(image, index) {
-        return (
-            <View key={index}>
-                <Image style={{ width: width, height: p(209) }} source={{ uri: image }} />
-            </View>
-        );
+    state = {
+        text: ''
     }
 
     render() {
-        const { video } = this.state;
         return (
             <ScrollView style={styles.container}>
 
-                <View style={{ backgroundColor: colors.BLUE2, justifyContent: 'space-between', flexDirection: 'row', paddingHorizontal: p(20), height: p(60), alignItems: 'center', }}>
+                <View style={styles.header}>
 
                     <TouchableOpacity>
                         <Image source={images.back} style={{ width: 20, height: 18 }} />
@@ -44,10 +33,19 @@ export default class TareasEdit extends Component {
 
                 </View>
 
-                <View style={{ backgroundColor: colors.BLUE2, padding: p(30), paddingBottom: p(10), flexDirection: 'row' }}>
+                <View style={styles.textRow}>
                     <Text style={styles.text1}>{'Título Tarea'}</Text>
                     <Image source={images.photoAdd} style={{ width: p(38), height: p(35) }} />
                 </View>
+
+                <TextInput
+                    style={styles.inputBox}
+                    placeholder={'Añadir descripción'}
+                    multiline={true}
+                    blurOnSubmit={false}
+                    onChangeText={(text) => this.setState({ text })}
+                    value={this.state.text}
+                />
 
                 <View style={styles.item}>
                     <Image source={images.calendar} style={{ width: p(23), height: p(25), marginTop: p(7) }} />
@@ -65,20 +63,31 @@ export default class TareasEdit extends Component {
                     </View>
                 </View>
 
-                <View style={styles.item}>
+                <View style={[styles.item, { borderBottomWidth: 0}]}>
                     <Image source={images.map} style={{ width: p(18), height: p(25), marginTop: p(7) }} />
                     <View style={{ marginLeft: p(25) }}>
                         <Text style={styles.text3}>{'Ubicación y coordenadas'}</Text>
-                        <Text style={styles.text4}>{'Long: 36646 - Lat: 184750'}</Text>
+                        <Text style={styles.text4}>{'Puedes marcar en el mapa una ubicación específica para la tarea que estas creando:'}</Text>
                     </View>
                 </View>
 
-                <View style={styles.item}>
-                    <Image source={images.square} style={{ width: p(22), height: p(22), marginTop: p(7) }} />
-                    <View style={{ marginLeft: p(25) }}>
-                        <Text style={styles.text3}>{'En lote'}</Text>
-                        <Text style={styles.text4}>{'Lote 21 - Santa Rosa'}</Text>
+                <View style={{ backgroundColor: colors.WHITE, alignItems: 'center'}}>
+                    <Text style={styles.text5}>{'MARCAR EN EL MAPA'}</Text>
+                    <View style={[styles.vertical, { marginTop: p(18), width: p(160), height: p(40)}]}>
+                        <Text style={{ color: colors.WHITE, fontWeight: '700' }}>{'USAR MI UBICACIÓN'}</Text>
                     </View>
+                </View>
+
+                <View style={[styles.item, { justifyContent: 'space-between'}]}>
+                    <View style={{ flexDirection: 'row'}}>
+                        <Image source={images.square} style={{ width: p(22), height: p(22), marginTop: p(7) }} />
+                        <View style={{ marginLeft: p(25) }}>
+                            <Text style={styles.text3}>{'En lote'}</Text>
+                            <Text style={styles.text4}>{'Lote 21 - Santa Rosa'}</Text>
+                        </View>
+                    </View>
+                    <Entypo name="chevron-down" color={colors.GREY8} size={36} />
+
                 </View>
 
                 <View style={styles.item}>
@@ -101,16 +110,14 @@ export default class TareasEdit extends Component {
                     <Image source={images.pin} style={{ width: p(12), height: p(22), marginTop: p(7), marginLeft: p(8) }} />
                     <View style={{ marginLeft: p(25) }}>
                         <Text style={styles.text3}>{'Archivos adjuntos'}</Text>
-                        <Text style={styles.text4}>{'1 Archivo'}</Text>
+                        <Text style={styles.text4}>{'0 Archivos'}</Text>
                     </View>
+                    <Text style={styles.text5}>{'ADJUNTAR'}</Text>
                 </View>
 
-                <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.WHITE, paddingBottom: p(24) }}>
-                    <Image source={{ uri: 'https://www.disneyfanatic.com/wp-content/uploads/2015/09/99Characters-620x330.jpg' }} style={styles.video} />
-                    <View style={{ flexDirection: 'row' }}>
-                        <View style={styles.vertical}>
-                            <Text style={{ color: colors.WHITE, fontWeight: '700' }}>{'DESCARGAR PDF'}</Text>
-                        </View>
+                <View style={{ backgroundColor: colors.WHITE, alignItems: 'center', paddingBottom: p(20)}}>
+                    <View style={[styles.vertical, { width: p(160), height: p(40)}]}>
+                        <Text style={{ color: colors.WHITE, fontWeight: '700' }}>{'DESCARGAR PDF'}</Text>
                     </View>
                 </View>
 
@@ -122,7 +129,7 @@ export default class TareasEdit extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.BLUE
+        backgroundColor: colors.BLUE2
     },
     text1: {
         color: colors.WHITE,
@@ -146,19 +153,20 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         fontSize: p(18)
     },
+    text5: {
+        color: colors.BLUE2,
+        flex: 1,
+        textAlign: 'center',
+        fontWeight: '700',
+        fontSize: p(16)
+    },
     item: {
         flexDirection: 'row',
         backgroundColor: colors.WHITE,
         padding: p(30),
         borderBottomColor: colors.GREY3,
-        borderBottomWidth: p(7)
-    },
-    video: {
-        width: p(225),
-        height: p(136),
-        marginBottom: p(23),
-        marginRight: p(3),
-        borderRadius: p(5)
+        borderBottomWidth: p(7),
+        alignItems: 'center'
     },
     vertical: {
         backgroundColor: colors.BLUE2,
@@ -170,4 +178,31 @@ const styles = StyleSheet.create({
         elevation: 1,
         color: colors.WHITE
     },
+    header: {
+        backgroundColor: colors.BLUE2,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        paddingHorizontal: p(20),
+        height: p(60),
+        alignItems: 'center',
+    },
+    inputBox: {
+        height: p(134),
+        margin: p(30),
+        textAlignVertical: 'top',
+        backgroundColor: '#6FBCE5',
+        borderRadius: p(5),
+        fontSize: p(20),
+        fontWeight: '500',
+        padding: p(14),
+        color: colors.GREY4
+    },
+    textRow: {
+        backgroundColor: colors.BLUE2,
+        padding: p(30),
+        paddingBottom: p(10),
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+    }
 });
