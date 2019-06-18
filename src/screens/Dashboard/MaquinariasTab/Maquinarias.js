@@ -9,7 +9,7 @@ import { p } from '../../../common/normalize';
 import styles from './styles'
 import { Actions } from 'react-native-router-flux';
 
-export default class Noteas extends React.Component {
+export default class Maquinarias extends React.Component {
 
     render() {
         return (

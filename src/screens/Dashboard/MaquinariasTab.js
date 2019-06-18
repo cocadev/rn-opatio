@@ -111,9 +111,9 @@ export default class MaquinariasTab extends Component {
                     </TouchableOpacity>
                 </View>
 
-                {selectTab == 1 && <Notes />}
-                {selectTab == 2 && <Tareas />}
-                {selectTab == 3 && <Cultivos />}
+                {selectTab == 1 && <Maquinarias />}
+                {selectTab == 2 && <Alarmas />}
+                {selectTab == 3 && <Contratistas />}
 
             </ScrollView>
         );
