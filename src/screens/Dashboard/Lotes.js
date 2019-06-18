@@ -11,24 +11,25 @@ import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONG
 import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
 import { Actions } from 'react-native-router-flux';
 import { customStyles } from './customStyles'
+import ClusterMarker from '../Map/Test/ClusterMarker';
+import { getCluster } from '../Map/Test/MapUtils';
+
+const COORDS = [
+    { lat: 37.795690, lon: -122.434728 },
+    // { lat: 37.805690, lon: -122.434728 },
+    // { lat: 37.815690, lon: -122.424728 },
+    // { lat: 37.795690, lon: -122.454728 },
+    // { lat: 37.795690, lon: -122.444728 }
+];
 
 export default class Lotes extends Component {
 
     constructor(props) {
         super(props)
-        const markerInfo = [];
-        for (let i = 1; i < NUM_MARKERS; i++) {
-            markerInfo.push({
-                latitude: (((Math.random() * 2) - 1) * MARKERS_LATITUDE_DELTA) + LATITUDE,
-                longitude: (((Math.random() * 2) - 1) * MARKERS_LATITUDE_DELTA) + LONGITUDE,
-                isSpecial: Math.random() < PERCENT_SPECIAL_MARKERS,
-                id: i,
-            });
-        }
         this.state = {
-            markerInfo,
             editing: null,
-            create: false
+            create: false,
+            region: REGION
         }
     }
 
@@ -72,9 +73,49 @@ export default class Lotes extends Component {
         }
     }
 
+    renderMarker = (marker, index) => {
+        const key = index + marker.geometry.coordinates[0];
+
+        // If a cluster
+        if (marker.properties) {
+            return (
+                <MapView.Marker
+                    key={key}
+                    coordinate={{
+                        latitude: marker.geometry.coordinates[1],
+                        longitude: marker.geometry.coordinates[0]
+                    }}
+                >
+                    <ClusterMarker count={marker.properties.point_count} />
+                </MapView.Marker>
+            );
+        }
+        // If a single marker
+        return (
+            <MapView.Marker
+                key={key}
+                coordinate={{
+                    latitude: marker.geometry.coordinates[1],
+                    longitude: marker.geometry.coordinates[0]
+                }}
+            >
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Image source={images.marker} style={{ width: p(40), height: p(40) }} />
+                    <Text style={{ fontSize: p(21), fontWeight: '700', color: colors.WHITE }}> Lote 12</Text>
+                </View>
+            </MapView.Marker>
+        );
+    };
+
     render() {
 
-        const { create } = this.state
+        const { create, markerInfo, region, editing } = this.state;
+        const allCoords = COORDS.map(c => ({
+            geometry: {
+                coordinates: [c.lon, c.lat]
+            }
+        }));
+        const cluster = getCluster(allCoords, region);
 
         const mapOptions = {
             scrollEnabled: true,
@@ -85,22 +126,16 @@ export default class Lotes extends Component {
             mapOptions.onPanDrag = e => this.onPress(e);
         }
 
-        const markers = this.state.markerInfo.map((markerInfo) =>
-            <MapView.Marker
-                coordinate={markerInfo}
-                key={markerInfo.id}
-            >
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Image source={images.marker} style={{ width: p(40), height: p(40) }} />
-                    <Text style={{ fontSize: p(21), fontWeight: '700', color: colors.WHITE }}> Lote {markerInfo.id}</Text>
-                </View>
-            </MapView.Marker>
-        );
         return (
             <View style={styles.container}>
                 <MapView
 
                     ref={instance => this.map = instance}
+                    provider={MapView.PROVIDER_GOOGLE}
+                    loadingIndicatorColor={"#ffbbbb"}
+                    loadingBackgroundColor={"#ffbbbb"}
+                    region={region}
+
                     style={styles.map}
                     showsUserLocation={true}
                     // followUserLocation={true}
@@ -115,11 +150,13 @@ export default class Lotes extends Component {
                     customMapStyle={CUSTOM_STYLE}
                     compassOffset={{ x: 10, y: 50 }}
                     onPress={e => this.onPress(e)}
+                    onRegionChangeComplete={region => this.setState({ region })}
 
 
                 >
-                    <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
-                    {markers}
+                    {/* <XMarksTheSpot coordinates={COORDINATES} center={CENTER} /> */}
+
+                    {cluster.markers.map((marker, index) => this.renderMarker(marker, index))}
 
                     {this.state.editing && create && <MapView.Polygon
                         coordinates={this.state.editing.coordinates}
@@ -150,48 +187,65 @@ export default class Lotes extends Component {
                     />
                 </View>
 
+                {
+                    create && editing && editing.coordinates.length > 2 &&
+                    <TouchableOpacity onPress={() => this.finish()} style={{ position: 'absolute', right:12, bottom: 70 }}>
+                        <Image source={images.save} style={{ width: p(55), height: p(55), marginBottom: p(7), marginLeft: p(5) }} />
+                    </TouchableOpacity>
+                }
+
+                {
+                    create &&
+                    <TouchableOpacity onPress={() => this.remove()} style={{ position: 'absolute', right:12, bottom: 10 }}>
+                        <Image source={images.undo} style={{ width: p(55), height: p(55), marginBottom: p(7), marginLeft: p(5) }} />
+                    </TouchableOpacity>
+                }
+
                 <View style={{ position: 'absolute', right: 21, bottom: p(120) }}>
 
-                    { create && <TouchableOpacity onPress={() => this.finish()}>
-                        <Image source={images.save} style={{ width: p(55), height: p(55), marginBottom: p(7), marginLeft: p(5) }} />
-                    </TouchableOpacity>}
+                    {
+                        !create && <TouchableOpacity>
+                            <Image source={images.locate1} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
+                        </TouchableOpacity>
+                    }
 
-                    { create && <TouchableOpacity onPress={() => this.remove()}>
-                        <Image source={images.undo} style={{ width: p(55), height: p(55), marginBottom: p(7), marginLeft: p(5) }} />
-                    </TouchableOpacity>}
+                    {
+                        !create &&
+                        <TouchableOpacity onPress={() => Actions.loteselection()}>
+                            <Image source={images.lotes2} style={{ width: p(65), height: p(65) }} />
+                        </TouchableOpacity>
+                    }
 
-                    <TouchableOpacity>
-                        <Image source={images.locate1} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => Actions.loteselection()}>
-                        <Image source={images.lotes2} style={{ width: p(65), height: p(65) }} />
-                    </TouchableOpacity>
                 </View>
 
-                <ActionButton
-                    buttonColor={colors.BLUE}
-                    size={80}
-                    offsetX={12}
-                    offsetY={12}
-                    spacing={5}
-                    renderIcon={active => active ? (<Image source={images.add} style={{ width: p(30), height: p(30) }} />) : (<Image source={images.add} style={{ width: p(27), height: p(27) }} />)}>
-                    >
+                {
+                    !create &&
+                    <ActionButton
+                        buttonColor={colors.BLUE}
+                        size={80}
+                        offsetX={12}
+                        offsetY={12}
+                        spacing={5}
+                        renderIcon={active => active ? (<Image source={images.add} style={{ width: p(30), height: p(30) }} />) : (<Image source={images.add} style={{ width: p(27), height: p(27) }} />)}>
+                        >
                     {/* <ActionButton.Item size={60} buttonColor={colors.WHITE} onPress={() => {}}>
                         <Image source={images.direction} style={{ width: p(19), height: p(50) }} />
                     </ActionButton.Item> */}
-                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { this.setState({ create: true }) }}>
-                        <Image source={images.lote} style={{ width: p(34), height: p(42) }} />
-                    </ActionButton.Item>
-                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
-                        <Image source={images.nota} style={{ width: p(28), height: p(45) }} />
-                    </ActionButton.Item>
-                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
-                        <Image source={images.tarea} style={{ width: p(28), height: p(48) }} />
-                    </ActionButton.Item>
-                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
-                        <Image source={images.cultivo} style={{ width: p(33), height: p(46) }} />
-                    </ActionButton.Item>
-                </ActionButton>
+                        <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { this.setState({ create: true }) }}>
+                            <Image source={images.lote} style={{ width: p(34), height: p(42) }} />
+                        </ActionButton.Item>
+                        <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
+                            <Image source={images.nota} style={{ width: p(28), height: p(45) }} />
+                        </ActionButton.Item>
+                        <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
+                            <Image source={images.tarea} style={{ width: p(28), height: p(48) }} />
+                        </ActionButton.Item>
+                        <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
+                            <Image source={images.cultivo} style={{ width: p(33), height: p(46) }} />
+                        </ActionButton.Item>
+                    </ActionButton>
+                }
+
             </View>
         );
     }

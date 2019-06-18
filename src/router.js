@@ -88,7 +88,7 @@ export default class App extends PureComponent {
 
               </Drawer>
 
-              <Scene key="lotes" component={Lotes} initial={false} hideNavBar/>
+              <Scene key="lotes" component={Lotes} initial={true} hideNavBar/>
               <Scene key="loteselection" component={LoteSelection} initial={false} hideNavBar/>
               <Scene key="lotetab" component={LotesTab} initial={false} hideNavBar/>
               <Scene key="lotedetail" component={LoteDetail} initial={false} hideNavBar/>
@@ -104,7 +104,7 @@ export default class App extends PureComponent {
               <Scene key="maquinariastab" component={MaquinariasTab} initial={false} hideNavBar/>
 
 
-              <Scene key="test" component={Test} initial={true} hideNavBar/>
+              <Scene key="test" component={Test} initial={false} hideNavBar/>
 
             </Scene>
           </Router>

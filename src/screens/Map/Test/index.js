@@ -32,6 +32,7 @@ const COORDS = [
 ];
 
 export default class App extends React.Component {
+  
   state = {
     region: INITIAL_POSITION
   };
