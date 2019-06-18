@@ -66,6 +66,7 @@ export const images = {
     record: require('../../assets/images/record.png'),
     ring: require('../../assets/images/ring.png'),
 
+    save: require('../../assets/images/save.png'),
     splash: require('../../assets/images/splash.png'),
     square: require('../../assets/images/square.png'),
     search_white: require('../../assets/images/search_white.png'),
@@ -81,5 +82,6 @@ export const images = {
     track: require('../../assets/images/track.png'),
 
     user: require('../../assets/images/user.png'),
+    undo: require('../../assets/images/undo.png'),
 
 };
