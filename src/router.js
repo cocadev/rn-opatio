@@ -11,22 +11,23 @@ import { Font } from 'expo'
 
 import SideMenu from './SideMenu';
 import Intro from './screens/Login/intro';
-import Inbox from './screens/Dashboard/Inbox';
-import Lotes from './screens/Lotes/Lotes';
+import Inbox from './screens/Dashboard/index';
+import Lotes from './screens/Dashboard/Lotes';
 
 import { images } from './common/images';
 import Test from './screens/Map/test';
 import Overlays from './screens/Map/ZIndexMarkers';
-import LoteSelection from './screens/Lotes/Loteselection';
-import LotesTab from './screens/Lotes/LotesTab';
-import LoteDetail from './screens/Lotes/LoteDetail';
-import TareasDetail from './screens/Lotes/LotesTareasDetail';
-import TareasEdit from './screens/Lotes/LotesTareasEdit';
-import Cultivos from './screens/Lotes/LotesTab/cultivos';
-import CultivosDetail from './screens/Lotes/LotescultivosDetail';
-import LotesEdit from './screens/Lotes/LotesEdit';
+import LoteSelection from './screens/Dashboard/Loteselection';
+import LotesTab from './screens/Dashboard/LotesTab';
+import LoteDetail from './screens/Dashboard/LoteDetail';
+import TareasDetail from './screens/Dashboard/LotesTareasDetail';
+import TareasEdit from './screens/Dashboard/LotesTareasEdit';
+import Cultivos from './screens/Dashboard/LotesTab/cultivos';
+import CultivosDetail from './screens/Dashboard/LotescultivosDetail';
+import LotesEdit from './screens/Dashboard/LotesEdit';
 
-import Maquinarias from './screens/Lotes/Maquinarias';
+import Maquinarias from './screens/Dashboard/Maquinarias';
+import MaquinariasTab from './screens/Dashboard/MaquinariasTab';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -94,6 +95,7 @@ export default class App extends PureComponent {
               <Scene key="cultivosDetail" component={CultivosDetail} initial={false} hideNavBar/>
 
               <Scene key="maquinarias" component={Maquinarias} initial={false} hideNavBar/>
+              <Scene key="maquinariastab" component={MaquinariasTab} initial={true} hideNavBar/>
 
 
               <Scene key="test" component={Test} initial={false} hideNavBar/>

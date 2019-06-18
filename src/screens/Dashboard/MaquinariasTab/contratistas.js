@@ -25,7 +25,7 @@ const text = {
     fontWeight: '700',
 }
 
-export default class Cultivos extends React.Component {
+export default class Contratistas extends React.Component {
 
     render() {
         return (

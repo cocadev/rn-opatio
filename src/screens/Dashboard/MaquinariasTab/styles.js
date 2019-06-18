@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 54,
         padding:6,
-        borderTopColor: colors.BLUE,
+        borderTopColor: colors.ORANGE,
         borderTopWidth: p(7),
     },
     active3: {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 54,
         padding:6,
-        borderTopColor: colors.GREEND,
+        borderTopColor: colors.ORANGE,
         borderTopWidth: p(7),
     },
 
