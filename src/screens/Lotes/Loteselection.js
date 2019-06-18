@@ -10,6 +10,7 @@ import Header from '../../components/Header';
 import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS, LOTES1 } from '../../common/config'
 import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
 import { Actions } from 'react-native-router-flux';
+import { customStyles } from './customStyles'
 
 const height = Math.round(Dimensions.get('window').height);
 
@@ -65,7 +66,24 @@ export default class LoteSelection extends Component {
                     <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
                     {markers}
                 </MapView>
-                <Header title={'Lotes'} />
+                <Header title={'Lote 21'} color={colors.BLUE} icon={images.location}/>
+                <View style={customStyles.searchView}>
+                    <Image source={images.blackSearch} style={customStyles.searchIcon} />
+                    <TextInput
+                        style={customStyles.textinput}
+                        placeholder={'Buscar'}
+                        onChangeText={(text) => this.setState({ text })}
+                        value={this.state.text}
+                    />
+                </View>
+                <View style={{ position: 'absolute', right: 15, top: p(132) }}>
+                    <TouchableOpacity>
+                        <Image source={images.layer1} style={{ width: p(65), height: p(65), marginBottom: p(5) }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Image source={images.locate1} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
+                    </TouchableOpacity>
+                </View>
                 <View style={styles.searchView}>
                     <TextInput style={styles.searchInput} placeholder={'Campos y Lotes'} />
                     <Image source={images.search_white} style={{ width: p(18), height: p(18), marginRight: p(20) }} />
@@ -161,5 +179,6 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         color: '#354052',
         fontSize: p(16)
-    }
+    },
+
 });

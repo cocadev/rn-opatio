@@ -2,11 +2,11 @@ import { Dimensions } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 export const ASPECT_RATIO = width / height;
-export const LATITUDE_DELTA = 0.05;
+export const LATITUDE_DELTA = 0.04;
 export const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-export const LATITUDE = 37.798790;
-export const LONGITUDE = -122.424728;
-export const MARKERS_LATITUDE_DELTA = 0.03;
+export const LATITUDE = 37.795690;
+export const LONGITUDE = -122.434728;
+export const MARKERS_LATITUDE_DELTA = 0.0003;
 export const MARKERS_LONGITUDE_DELTA = MARKERS_LATITUDE_DELTA * ASPECT_RATIO;
 export const MAP_LATITUDE_DELTA = 0.3;
 export const MAP_LONGITUDE_DELTA = MAP_LATITUDE_DELTA * ASPECT_RATIO;

@@ -20,11 +20,13 @@ import Overlays from './screens/Map/ZIndexMarkers';
 import LoteSelection from './screens/Lotes/Loteselection';
 import LotesTab from './screens/Lotes/LotesTab';
 import LoteDetail from './screens/Lotes/LoteDetail';
-import TareasDetail from './screens/Lotes/TareasDetail';
-import TareasEdit from './screens/Lotes/TareasEdit';
-import Cultivos from './screens/Lotes/Tab/cultivos';
-import CultivosDetail from './screens/Lotes/cultivosDetail';
+import TareasDetail from './screens/Lotes/LotesTareasDetail';
+import TareasEdit from './screens/Lotes/LotesTareasEdit';
+import Cultivos from './screens/Lotes/LotesTab/cultivos';
+import CultivosDetail from './screens/Lotes/LotescultivosDetail';
 import LotesEdit from './screens/Lotes/LotesEdit';
+
+import Maquinarias from './screens/Lotes/Maquinarias';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -87,10 +89,12 @@ export default class App extends PureComponent {
               <Scene key="lotetab" component={LotesTab} initial={false} hideNavBar/>
               <Scene key="lotedetail" component={LoteDetail} initial={false} hideNavBar/>
               <Scene key="lotesedit" component={LotesEdit} initial={false} hideNavBar/>
-
               <Scene key="tareasdetail" component={TareasDetail} initial={false} hideNavBar/>
               <Scene key="tareasedit" component={TareasEdit} initial={false} hideNavBar/>
               <Scene key="cultivosDetail" component={CultivosDetail} initial={false} hideNavBar/>
+
+              <Scene key="maquinarias" component={Maquinarias} initial={false} hideNavBar/>
+
 
               <Scene key="test" component={Test} initial={false} hideNavBar/>
 

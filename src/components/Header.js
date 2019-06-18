@@ -9,13 +9,17 @@ import { p } from '../common/normalize';
 export default class Header extends React.Component {
 
   render() {
-    const { title } = this.props
+    const { title, color, icon } = this.props
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: color }]}>
         <TouchableOpacity onPress={()=>Actions.pop()}>
           <Image source={images.back} style={{ width: 20, height: 18 }} />
         </TouchableOpacity>
-        <Image source={images.location} style={{ width: 26, height: 22, marginLeft: p(14) }} />
+        {
+          title == 'Maquinarias'
+          ? <Image source={icon} style={{ width: 20, height: 22, marginLeft: p(14) }} />
+          : <Image source={icon} style={{ width: 26, height: 22, marginLeft: p(14) }} />
+        }
         <Text style={styles.head}>{title}</Text>          
       </View>
     )

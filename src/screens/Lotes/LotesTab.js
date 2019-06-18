@@ -10,9 +10,10 @@ import Header from '../../components/Header2';
 import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS, LOTES1, INTRO } from '../../common/config'
 import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
 
-import Notes from './Tab/notes';
-import Tareas from './Tab/tareas';
-import Cultivos from './Tab/cultivos';
+import Notes from './LotesTab/notes';
+import Tareas from './LotesTab/tareas';
+import Cultivos from './LotesTab/cultivos';
+import { customStyles } from './customStyles'
 
 const height = Math.round(Dimensions.get('window').height);
 
@@ -52,8 +53,8 @@ export default class LotesTab extends Component {
                 key={markerInfo.id}
             >
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Image source={images.marker} style={{ width: p(40), height: p(40) }} />
-                    <Text style={{ fontSize: p(21), fontWeight: '700', color: colors.WHITE }}> Lote {markerInfo.id}</Text>
+                    <Image source={images.marker} style={{ width: p(35), height: p(35) }} />
+                    <Text style={{ fontSize: p(18), fontWeight: '700', color: colors.WHITE }}> Lote {markerInfo.id}</Text>
                 </View>
             </MapView.Marker>
         );
@@ -77,6 +78,23 @@ export default class LotesTab extends Component {
                     {markers}
                 </MapView>
                 <Header title={'Lote 21'} />
+                <View style={customStyles.searchView}>
+                    <Image source={images.blackSearch} style={customStyles.searchIcon} />
+                    <TextInput
+                        style={customStyles.textinput}
+                        placeholder={'Buscar'}
+                        onChangeText={(text) => this.setState({ text })}
+                        value={this.state.text}
+                    />
+                </View>
+                <View style={{ position: 'absolute', right: 15, top: p(132) }}>
+                    <TouchableOpacity>
+                        <Image source={images.layer1} style={{ width: p(65), height: p(65), marginBottom: p(5) }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Image source={images.locate1} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
+                    </TouchableOpacity>
+                </View>
                 <View style={styles.searchView}>
                     <TextInput style={styles.searchInput} placeholder={'Notas del lote'} />
                     <Image source={images.search_white} style={{ width: p(18), height: p(18), marginRight: p(20) }} />
@@ -93,9 +111,9 @@ export default class LotesTab extends Component {
                     </TouchableOpacity>
                 </View>
 
-                {selectTab == 1 && <Notes/>}
-                {selectTab == 2 && <Tareas/>}
-                {selectTab == 3 && <Cultivos/>}
+                {selectTab == 1 && <Notes />}
+                {selectTab == 2 && <Tareas />}
+                {selectTab == 3 && <Cultivos />}
 
             </ScrollView>
         );
@@ -172,5 +190,5 @@ const styles = StyleSheet.create({
         backgroundColor: colors.GREY3,
         justifyContent: 'center',
         alignItems: 'center'
-    }
+    },
 });

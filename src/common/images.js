@@ -17,9 +17,13 @@ export const images = {
 
     add: require('../../assets/images/add1.png'),
     layer: require('../../assets/images/layer1.png'),
+    layer1: require('../../assets/images/layer.png'),
+
     direction: require('../../assets/images/direction1.png'),
     locate: require('../../assets/images/locate1.png'),
+    locate1: require('../../assets/images/locate.png'),
     lotes: require('../../assets/images/lotes1.png'),
+    lotes2: require('../../assets/images/lotes.png'),
     cultivo: require('../../assets/images/cultivo.png'),
     nota: require('../../assets/images/nota.png'),
     tarea: require('../../assets/images/tarea.png'),
@@ -53,5 +57,7 @@ export const images = {
     photoAdd: require('../../assets/images/photo-add.png'),
 
     record: require('../../assets/images/record.png'),
+    blackSearch: require('../../assets/images/blackSearch.png'),
+    trackRound: require('../../assets/images/track-round.png'),
 
 };

@@ -89,7 +89,7 @@ class Inbox extends React.Component {
             <Text style={styles.text}>Lotes</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.rectNgulo}>
+          <TouchableOpacity onPress={()=>Actions.maquinarias()} style={styles.rectNgulo}>
             <View style={[styles.box, { backgroundColor: colors.YELLOW }]}>
               <Image source={images.track} style={styles.itemImg2} />
             </View>

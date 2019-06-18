@@ -10,9 +10,9 @@ import Header from '../../components/Header';
 import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS } from '../../common/config'
 import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
 import { Actions } from 'react-native-router-flux';
-import { customStyles } from './customStyles'
+import { customStyles } from './customStyles';
 
-export default class Lotes extends Component {
+export default class Maquinarias extends Component {
 
     constructor(props) {
         super(props)
@@ -52,21 +52,20 @@ export default class Lotes extends Component {
                     // followUserLocation={true}
                     // showsMyLocationButton={true}
                     // showsPointsOfInterest={true}
-                    showsCompass={true}
+                    // showsCompass={false}
                     zoomEnabled={true}
                     // minZoomLevel={5}
                     // maxZoomLevel={20}
                     cacheEnabled={true}
                     initialRegion={REGION}
                     customMapStyle={CUSTOM_STYLE}
-                    compassOffset={{x: 10, y:50}}
 
                 >
                     <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
                     {markers}
                 </MapView>
 
-                <Header title={'Lotes'} icon={images.location} color={colors.BLUE} />
+                <Header title={'Maquinarias'} icon={images.track} color={colors.ORANGE} />
 
                 <View style={customStyles.searchView}>
                     <Image source={images.blackSearch} style={customStyles.searchIcon} />
@@ -80,21 +79,27 @@ export default class Lotes extends Component {
 
                 <View style={{ position: 'absolute', right: 21, bottom: p(120) }}>
                     <TouchableOpacity>
+                        <Image source={images.layer1} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
                         <Image source={images.locate1} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => Actions.loteselection()}>
-                        <Image source={images.lotes2} style={{ width: p(65), height: p(65) }} />
+                    <TouchableOpacity onPress={() => Actions.lotetab()}>
+                        <Image source={images.trackRound} style={{ width: p(65), height: p(65) }} />
                     </TouchableOpacity>
                 </View>
 
                 <ActionButton
-                    buttonColor={colors.BLUE}
+                    buttonColor={colors.ORANGE}
                     size={80}
                     offsetX={12}
                     offsetY={12}
                     spacing={5}
                     renderIcon={active => active ? (<Image source={images.add} style={{ width: p(30), height: p(30) }} />) : (<Image source={images.add} style={{ width: p(27), height: p(27) }} />)}>
                     >
+                    <ActionButton.Item size={60} buttonColor={colors.WHITE} onPress={() => console.log("notes tapped!")}>
+                        <Image source={images.layer} style={{ width: p(30), height: p(30) }} />
+                    </ActionButton.Item>
                     {/* <ActionButton.Item size={60} buttonColor={colors.WHITE} onPress={() => {}}>
                         <Image source={images.direction} style={{ width: p(19), height: p(50) }} />
                     </ActionButton.Item> */}
@@ -135,4 +140,13 @@ const styles = StyleSheet.create({
         height: 22,
         color: 'white',
     },
+    textinput: {
+        width: p(260),
+        height: p(50),
+        paddingLeft: p(48),
+        fontSize: p(16),
+        borderColor: colors.GREY8,
+        borderWidth: 1,
+        borderRadius: p(25)
+    }
 });
