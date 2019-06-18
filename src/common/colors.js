@@ -10,6 +10,8 @@ export const colors = {
   GREY6       : '#707070',
   GREY7       : '#727272',
   GREY8       : '#989898',
+  GREY9       : '#DCDCDC',
+  GREY0       : '#a1a1a0',
 
   BLACK       : '#000000',
   BLUE        : '#1982e5',

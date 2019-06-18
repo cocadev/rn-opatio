@@ -2,12 +2,13 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
 import { colors } from '../../../common/colors';
 import Timeline from 'react-native-timeline-listview'
-import { TAREAS } from '../../../common/config';
+import { TAREAS, TAREAS3, TAREAS2 } from '../../../common/config';
 import { Entypo } from '@expo/vector-icons';
 import { images } from '../../../common/images';
 import { p } from '../../../common/normalize';
 import styles from './styles'
 import { Actions } from 'react-native-router-flux';
+import  RenderItem  from './renderItem';
 
 export default class Alarmas extends React.Component {
 
@@ -25,55 +26,38 @@ export default class Alarmas extends React.Component {
             <Entypo name={'chevron-down'} size={24} color={colors.GREY4} />
           </View>
         </View>
-        <View style={{ alignItems: 'center', marginBottom: p(18), marginTop: p(8) }}>
-          <View style={styles.dropdown}>
-            <Text>{'Ordenar por'}</Text>
-            <Entypo name={'chevron-down'} size={24} color={colors.GREY4} />
-          </View>
-        </View>
 
         <ScrollView>
+          <View style={Cstyles.itemView}>
+            <Image source={images.needle} style={Cstyles.titleImg} />
+            <Text style={{ fontSize: p(16), marginLeft: p(12) }}>{'Velocidad'}</Text>
+          </View>
           {
             TAREAS.map((item, index) => {
               return (
-                <View key={index} style={{ paddingHorizontal: p(15), flexDirection: 'row', backgroundColor: colors.WHITE }}>
-                  <View style={{ width: 40 }}>
-                    <Text style={{ fontSize: 9 }}>{item.name}</Text>
-                    <Text style={{ fontSize: 9 }}>{item.time}</Text>
-                  </View>
-                  <View style={{ marginLeft: 10 }}>
-                    <View style={[styles.timeDot, { 
-                      backgroundColor: item.type == 0 ? colors.SKY : (item.type == 1 ? colors.GREY4 : colors.PURPLE)
-                    }]}></View>
-                    <View style={styles.dot}></View>
-                  </View>
-
-                  <View style={{ flex: 1 }}>
-                    {
-                      item.visible &&
-                      <View style={{ flexDirection: 'row', marginHorizontal: p(22), marginVertical: p(14) }}>
-                        <View style={{ backgroundColor: colors.GREY5, height: 1, flex: 1, alignSelf: 'center' }} />
-                        <Text style={{ alignSelf: 'center', paddingHorizontal: p(16), fontSize: p(12) }}>Semana 11 del 2019</Text>
-                        <View style={{ backgroundColor: colors.GREY5, height: 1, flex: 1, alignSelf: 'center' }} />
-                      </View>
-                    }
-                    <TouchableOpacity onPress={()=>Actions.tareasdetail()}
-                      style={[styles.timeView, {
-                      backgroundColor: item.type == 0 ? colors.SKY : (item.type == 1 ? colors.WHITE : colors.PURPLE),
-                      borderColor: item.type == 1 ? colors.GREY6 : null,
-                      borderWidth: item.type == 1 ? 2 : null,
-                    }]}>
-                      <Image source={ item.type == 1 ? images.tareaG: images.tareaW} style={styles.img} />
-                      <View>
-                         <Text style={{ color: item.type == 1 ? colors.GREY4 : colors.WHITE, fontSize: p(16) }}>{item.title}</Text>
-                         <Text style={{ color: item.type == 1 ? colors.GREY4 : colors.WHITE, fontSize: p(13) }}>{item.description}</Text>
-                      </View>
-                      <Text style={{ flex:1, textAlign: 'right' ,color: item.type == 1 ? colors.GREY4 : colors.WHITE, fontSize: p(11) }}>{item.published}</Text>
-
-                    </TouchableOpacity>
-                  </View>
-
-                </View>
+                <RenderItem key={index} item={item}/>
+              );
+            })
+          }
+          <View style={Cstyles.itemView}>
+            <Image source={images.needle2} style={Cstyles.titleImg2} />
+            <Text style={{ fontSize: p(16), marginLeft: p(12) }}>{'Velocidad'}</Text>
+          </View>
+          {
+            TAREAS2.map((item, index) => {
+              return (
+                <RenderItem key={index} item={item}/>
+              );
+            })
+          }
+          <View style={Cstyles.itemView}>
+            <Image source={images.needle3} style={Cstyles.titleImg3} />
+            <Text style={{ fontSize: p(16), marginLeft: p(12) }}>{'Velocidad'}</Text>
+          </View>
+          {
+            TAREAS3.map((item, index) => {
+              return (
+                <RenderItem key={index} item={item}/>
               );
             })
           }
@@ -83,3 +67,25 @@ export default class Alarmas extends React.Component {
     )
   }
 }
+
+const Cstyles = StyleSheet.create({
+  itemView: {
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    backgroundColor: colors.GREY3, 
+    paddingTop: p(12), 
+    paddingLeft: p(20)
+  },
+  titleImg: {
+    width: p(25),
+    height: p(19)
+  },
+  titleImg2: {
+    width: p(25),
+    height: p(24)
+  },
+  titleImg3: {
+    width: p(25),
+    height: p(24)
+  }
+})

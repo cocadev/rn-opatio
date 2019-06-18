@@ -32,7 +32,6 @@ export default class Maquinarias extends React.Component {
                                     <View style={styles.vertical}></View>
                                     <Text style={styles.text3}>{item.status}</Text>
                                     <Image source={ item.switch ? images.switch_on : images.switch_off} style={styles.switchButton} />
-
                                 </View>
                             );
                         })

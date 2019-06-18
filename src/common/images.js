@@ -39,6 +39,7 @@ export const images = {
     lotes2: require('../../assets/images/lotes.png'),
     lote: require('../../assets/images/lote.png'),
     location: require('../../assets/images/location.png'),
+    line: require('../../assets/images/line.png'),
 
     menu: require('../../assets/images/menu.png'),
     msg: require('../../assets/images/msg.png'),
@@ -49,6 +50,9 @@ export const images = {
     marker: require('../../assets/images/marker.png'),
 
     news: require('../../assets/images/news.png'),
+    needle: require('../../assets/images/needle.png'),
+    needle2: require('../../assets/images/needle2.png'),
+    needle3: require('../../assets/images/needle3.png'),
     nota: require('../../assets/images/nota.png'),
 
     pin: require('../../assets/images/pin.png'),
@@ -66,7 +70,8 @@ export const images = {
     search_white: require('../../assets/images/search_white.png'),
     switch_on: require('../../assets/images/switch-on.png'),
     switch_off: require('../../assets/images/switch-off.png'),
-
+    switch_on_pink: require('../../assets/images/switch-on-pink.png'),
+    switch_ignore: require('../../assets/images/switch-ignore.png'),
 
     tareaW: require('../../assets/images/tarea-white.png'),
     tareaG: require('../../assets/images/tarea-grey.png'),

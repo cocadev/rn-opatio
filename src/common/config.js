@@ -22,6 +22,63 @@ export const REGION = {
 
 export const INTRO = 'Con nuestra plataforma podrás ver imágenes satelitales, imágenes de indice verde, detectar anomalías y ambientar tus lotes.'
 
+export const contratistas = [
+  {
+    id: 0,
+    name: 'Oscar Rodriguez',
+    img: 'https://ichef.bbci.co.uk/news/660/cpsprodpb/14ED4/production/_105661758_zhaitianlin.jpg',
+    address: 'Rodriguez y Marquez S.A',
+    name: 'John Deere 8030J',
+    count: 3,
+    visible: true,
+  },
+  {
+    id: 1,
+    name: 'Oscar Rodriguez',
+    img: 'https://i.pinimg.com/236x/d3/1e/b4/d31eb42ae4427b511d6553958e2b06bf--chinese-list.jpg',
+    address: 'Rodriguez y Marquez S.A',
+    name: 'John Deere 5444Y',
+    count: 9,
+    visible: true,
+  },
+  {
+    id: 2,
+    name: 'Oscar Rodriguez',
+    img: 'https://www.indiewire.com/wp-content/uploads/2018/10/shutterstock_7755619v.jpg',
+    address: 'Emmay Kolo S.A',
+    name: 'Martin Deere 1130J',
+    count: 2,
+    visible: false,
+  },
+  {
+    id: 3,
+    name: 'Oscar Rodriguez',
+    img: 'https://i.pinimg.com/236x/0a/e0/54/0ae0549df05c447c7bf2dd3b75737788--wang-leehom-asian-guys.jpg',
+    address: 'Rodriguez y Marquez S.A',
+    name: 'John Deere 6150J',
+    count: 3,
+    visible: false,
+  },
+  {
+    id: 4,
+    name: 'Oscar Rodriguez',
+    img: 'https://pbs.twimg.com/profile_images/995277422676262912/qcOu-dcR_400x400.jpg',
+    address: 'Waston y Marquez S.A',
+    name: 'Long Geng 6130J',
+    count: 1,
+    visible: true,
+  },
+  {
+    id: 5,
+    name: 'Oscar Rodriguez',
+    img: 'http://img2.chinadaily.com.cn/images/201811/01/5bdabb73a310eff36903ea74.jpeg',
+    address: 'Rodriguez y Marquez S.A',
+    name: 'Kelvin Deere 2130J',
+    count: 8,
+    visible: false,
+  },
+]
+
 export const Tractores = [
   {
     id: 0,
@@ -100,7 +157,6 @@ export const TAREAS = [
     description: "Asignado: Marcelo Rodriguez",
     published: '09/03/17',
     type: 1,
-    visible:  true
   },  
   {
     id:3,
@@ -119,6 +175,40 @@ export const TAREAS = [
     description: "Asignado: Marcelo Rodriguez",
     published: '05/03/17',
     type: 2
+  },
+];
+
+export const TAREAS2 = [
+  {
+    id:1,
+    name: "LUN",
+    time: "10/03/18",
+    title: "Sembrar",
+    description: "Asignado: Marcelo Rodriguez",
+    published: '12/03/17',
+    type: 0,
+  },
+];
+
+export const TAREAS3 = [
+  {
+    id:1,
+    name: "LUN",
+    time: "10/03/18",
+    title: "Sembrar",
+    description: "Asignado: Marcelo Rodriguez",
+    published: '12/03/17',
+    type: 0,
+    visible:  true
+  },
+  {
+    id:2,
+    name: "SAB",
+    time: "10/03/18",
+    title: "Reparar alambrado",
+    description: "Asignado: Marcelo Rodriguez",
+    published: '09/03/17',
+    type: 1,
   },
 ];
 

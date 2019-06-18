@@ -106,13 +106,13 @@ export default class MaquinariasTab extends Component {
 
                 <View style={styles.tab}>
                     <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 1 ? colors.ORANGE : colors.GREY3, backgroundColor: selectTab == 1 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 1 })}>
-                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>NOTAS</Text>
+                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>MAQUINARIAS</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 2 ? colors.BLUE : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
-                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>TAREAS</Text>
+                    <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 2 ? colors.ORANGE : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
+                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>ALARMAS</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 3 ? colors.GREEN2 : colors.GREY3, backgroundColor: selectTab == 3 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 3 })}>
-                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>CULTIVOS</Text>
+                    <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 3 ? colors.ORANGE : colors.GREY3, backgroundColor: selectTab == 3 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 3 })}>
+                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>CONTRATISTAS</Text>
                     </TouchableOpacity>
                 </View>
 
