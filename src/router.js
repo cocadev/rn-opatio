@@ -29,6 +29,8 @@ import LotesEdit from './screens/Dashboard/LotesEdit';
 import Maquinarias from './screens/Dashboard/Maquinarias';
 import MaquinariasTab from './screens/Dashboard/MaquinariasTab';
 
+import PolygonCreator from './screens/Map/PolygonCreator';
+
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
@@ -95,10 +97,10 @@ export default class App extends PureComponent {
               <Scene key="cultivosDetail" component={CultivosDetail} initial={false} hideNavBar/>
 
               <Scene key="maquinarias" component={Maquinarias} initial={false} hideNavBar/>
-              <Scene key="maquinariastab" component={MaquinariasTab} initial={true} hideNavBar/>
+              <Scene key="maquinariastab" component={MaquinariasTab} initial={false} hideNavBar/>
 
 
-              <Scene key="test" component={Test} initial={false} hideNavBar/>
+              <Scene key="test" component={PolygonCreator} initial={true} hideNavBar/>
 
             </Scene>
           </Router>

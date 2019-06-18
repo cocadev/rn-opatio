@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 
 import { MapView } from 'expo';
+import { colors } from '../../common/colors';
+import { CUSTOM_STYLE } from '../../common/config';
 
 const { width, height } = Dimensions.get('window');
 
@@ -36,53 +38,33 @@ class PolygonCreator extends React.Component {
   }
 
   finish() {
-    const { polygons, editing } = this.state;
+    const { editing } = this.state;
     this.setState({
-      polygons: [...polygons, editing],
       editing: null,
-      creatingHole: false,
     });
   }
 
-  createHole() {
-    const { editing, creatingHole } = this.state;
-    if (!creatingHole) {
-      this.setState({
-        creatingHole: true,
-        editing: {
-          ...editing,
-          holes: [
-            ...editing.holes,
-            [],
-          ],
-        },
-      });
-    } else {
-      const holes = [...editing.holes];
-      if (holes[holes.length - 1].length === 0) {
-        holes.pop();
-        this.setState({
-          editing: {
-            ...editing,
-            holes,
-          },
-        });
-      }
-      this.setState({ creatingHole: false });
-    }
+  remove() {
+    const { editing } = this.state;
+    const array = editing.coordinates;
+    console.log('editing.coordinates.length', parseInt(array.length - 1 ) )
+    this.setState({
+      editing: {
+        ...editing,
+        coordinates: this.state.editing.coordinates.filter((_, i) => i !== parseInt(array.length - 1 ))
+      },
+    });
   }
 
   onPress(e) {
-    const { editing, creatingHole } = this.state;
+    const { editing } = this.state;
     if (!editing) {
       this.setState({
         editing: {
-          id: id++,
           coordinates: [e.nativeEvent.coordinate],
-          holes: [],
         },
       });
-    } else if (!creatingHole) {
+    } else {
       this.setState({
         editing: {
           ...editing,
@@ -92,26 +74,13 @@ class PolygonCreator extends React.Component {
           ],
         },
       });
-    } else {
-      const holes = [...editing.holes];
-      holes[holes.length - 1] = [
-        ...holes[holes.length - 1],
-        e.nativeEvent.coordinate,
-      ];
-      this.setState({
-        editing: {
-          ...editing,
-          id: id++, // keep incrementing id to trigger display refresh
-          coordinates: [
-            ...editing.coordinates,
-          ],
-          holes,
-        },
-      });
     }
   }
 
   render() {
+
+    console.log('**********************', this.state.editing)
+
     const mapOptions = {
       scrollEnabled: true,
     };
@@ -125,42 +94,22 @@ class PolygonCreator extends React.Component {
       <View style={styles.container}>
         <MapView
           provider={this.props.provider}
+          customMapStyle={CUSTOM_STYLE}
           style={styles.map}
           mapType={MapView.MAP_TYPES.HYBRID}
           initialRegion={this.state.region}
           onPress={e => this.onPress(e)}
           {...mapOptions}
         >
-          {this.state.polygons.map(polygon => (
-            <MapView.Polygon
-              key={polygon.id}
-              coordinates={polygon.coordinates}
-              holes={polygon.holes}
-              strokeColor="#F00"
-              fillColor="rgba(255,0,0,0.5)"
-              strokeWidth={1}
-            />
-          ))}
-          {this.state.editing && (
-            <MapView.Polygon
-              key={this.state.editing.id}
-              coordinates={this.state.editing.coordinates}
-              holes={this.state.editing.holes}
-              strokeColor="#000"
-              fillColor="rgba(255,0,0,0.5)"
-              strokeWidth={1}
-            />
-          )}
+          {this.state.editing && <MapView.Polygon
+            coordinates={this.state.editing.coordinates}
+            strokeColor={colors.BLUE2}
+            fillColor="rgba(255,0,0,0.2)"
+            strokeWidth={3}
+          />}
         </MapView>
+
         <View style={styles.buttonContainer}>
-          {this.state.editing && (
-            <TouchableOpacity
-              onPress={() => this.createHole()}
-              style={[styles.bubble, styles.button]}
-            >
-              <Text>{this.state.creatingHole ? 'Finish Hole' : 'Create Hole'}</Text>
-            </TouchableOpacity>
-          )}
           {this.state.editing && (
             <TouchableOpacity
               onPress={() => this.finish()}
@@ -169,6 +118,13 @@ class PolygonCreator extends React.Component {
               <Text>Finish</Text>
             </TouchableOpacity>
           )}
+
+          <TouchableOpacity
+            onPress={() => this.remove()}
+            style={[styles.bubble, styles.button]}
+          >
+            <Text>Remove</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
