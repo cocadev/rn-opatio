@@ -6,7 +6,7 @@ import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
 import { MapView, Marker, Animated } from 'expo';
-import Header from '../../components/Header2';
+import Header from '../../components/Header';
 import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS, LOTES1, INTRO } from '../../common/config'
 import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
 
@@ -77,7 +77,9 @@ export default class MaquinariasTab extends Component {
                     <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
                     {markers}
                 </MapView>
-                <Header title={'Lote 21'} />
+
+                <Header title={'Maquinarias'} icon={images.track} color={colors.ORANGE} />
+
                 <View style={customStyles.searchView}>
                     <Image source={images.blackSearch} style={customStyles.searchIcon} />
                     <TextInput
@@ -87,6 +89,7 @@ export default class MaquinariasTab extends Component {
                         value={this.state.text}
                     />
                 </View>
+
                 <View style={{ position: 'absolute', right: 15, top: p(132) }}>
                     <TouchableOpacity>
                         <Image source={images.layer1} style={{ width: p(65), height: p(65), marginBottom: p(5) }} />
@@ -95,10 +98,12 @@ export default class MaquinariasTab extends Component {
                         <Image source={images.locate1} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
                     </TouchableOpacity>
                 </View>
+
                 <View style={styles.searchView}>
-                    <TextInput style={styles.searchInput} placeholder={'Notas del lote'} />
+                    <TextInput style={styles.searchInput} placeholder={'Todas las máquinas'} />
                     <Image source={images.search_white} style={{ width: p(18), height: p(18), marginRight: p(20) }} />
                 </View>
+
                 <View style={styles.tab}>
                     <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 1 ? colors.ORANGE : colors.GREY3, backgroundColor: selectTab == 1 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 1 })}>
                         <Text style={{ color: colors.TEXT, fontSize: p(14) }}>NOTAS</Text>
@@ -111,9 +116,9 @@ export default class MaquinariasTab extends Component {
                     </TouchableOpacity>
                 </View>
 
-                {selectTab == 1 && <Maquinarias />}
-                {selectTab == 2 && <Alarmas />}
-                {selectTab == 3 && <Contratistas />}
+                { selectTab == 1 && <Maquinarias /> }
+                { selectTab == 2 && <Alarmas /> }
+                { selectTab == 3 && <Contratistas /> }
 
             </ScrollView>
         );
@@ -191,4 +196,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+
 });

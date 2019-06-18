@@ -98,6 +98,13 @@ const styles = StyleSheet.create({
         width: p(146),
         height: p(32),
         marginHorizontal: p(10)
+    },
+    textTitle: {
+        color: '#354052',
+        fontSize: p(15),
+        fontWeight: '700',
+        marginVertical: p(18),
+        marginLeft: p(31)
     }
 
 });

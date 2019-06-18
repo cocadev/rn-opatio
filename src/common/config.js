@@ -22,6 +22,45 @@ export const REGION = {
 
 export const INTRO = 'Con nuestra plataforma podrás ver imágenes satelitales, imágenes de indice verde, detectar anomalías y ambientar tus lotes.'
 
+export const Tractores = [
+  {
+    id: 0,
+    type: 'success',
+    title: 'En vivo',
+    number: 150,
+    name: 'John Deere 6130J',
+    status: 'Cesar Cuestas',
+    switch: true,
+  },
+  {
+    id: 1,
+    type: 'grey',
+    title: '5 días sin datos',
+    number: 152,
+    name: 'John Deere 6130J',
+    status: 'Cesar Cuestas',
+    switch: false,
+  },
+  {
+    id: 2,
+    type: 'red',
+    title: '5 días sin datos',
+    number: 153,
+    name: 'John Deere 6130J',
+    status: 'Cesar Cuestas',
+    switch: false,
+  },
+  {
+    id: 3,
+    type: 'orange',
+    title: 'Sin GPS asignado',
+    number: 158,
+    name: 'John Deere 6130J',
+    status: 'Cesar Cuestas',
+    switch: false,
+  },
+]
+
 export const CULTIVOS = [
   {
     id: 0,

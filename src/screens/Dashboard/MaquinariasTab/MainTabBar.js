@@ -13,19 +13,19 @@ class MainTabBar extends Component {
 
                 <TouchableWithoutFeedback onPress={() => navigate('Tab1')}>
                     <View style={active === 'Tab1' ? styles.active1 : styles.nonactive}>
-                        <Text>NOTAS</Text>
+                        <Text>MAQUINARIAS</Text>
                     </View>
                 </TouchableWithoutFeedback>
 
                 <TouchableWithoutFeedback onPress={() => navigate('Tab2')}>
                     <View style={active === 'Tab2' ? styles.active2 : styles.nonactive}>
-                        <Text>TAREAS</Text>
+                        <Text>ALARMAS</Text>
                     </View>
                 </TouchableWithoutFeedback>
 
                 <TouchableWithoutFeedback onPress={() => navigate('Tab3')}>
                     <View style={active === 'Tab3' ? styles.active3 : styles.nonactive}>
-                        <Text>CULTIVOS</Text>
+                        <Text>CONTRATISTAS</Text>
                     </View>
                 </TouchableWithoutFeedback>
 

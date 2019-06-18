@@ -2,58 +2,36 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
 import { colors } from '../../../common/colors';
 import Timeline from 'react-native-timeline-listview'
-import { NOTAS } from '../../../common/config';
-import { Entypo } from '@expo/vector-icons';
+import { Tractores } from '../../../common/config';
 import { images } from '../../../common/images';
 import { p } from '../../../common/normalize';
-import styles from './styles'
 import { Actions } from 'react-native-router-flux';
+import UtilService from '../../../common/utils';
 
 export default class Maquinarias extends React.Component {
 
     render() {
         return (
-            <View style={styles.containerView}>
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: p(12) }}>
-                    <View style={styles.dropdown}>
-                        <Text>{'Fecha: 23/03/18'}</Text>
-                        <Entypo name={'chevron-down'} size={24} color={colors.GREY4}/>
-                    </View>
-                    <View style={styles.dropdown}>
-                        <Text>{'Fecha: 23/04/18'}</Text>
-                        <Entypo name={'chevron-down'} size={24} color={colors.GREY4}/>
-                    </View>
-                </View>
+            <View style={styles.container}>
+
+                <Text style={styles.textTitle}>{'Tractores'}</Text>
+
                 <ScrollView>
                     {
-                        NOTAS.map((item, index) => {
+                        Tractores.map((item, index) => {
                             return (
-                                <View key={index} style={{ paddingHorizontal: p(15), flexDirection: 'row', backgroundColor: colors.WHITE }}>
-                                    <View style={{ width: 40 }}>
-                                        <Text style={{ fontSize: 9 }}>{item.name}</Text>
-                                        <Text style={{ fontSize: 9 }}>{item.time}</Text>
+                                <View key={index} style={styles.view}>
+                                    <View style={{ width: p(40) }}>
+                                        <Image source={UtilService.getCircleColr(item.type)} style={styles.circle} />
+                                        <Text style={styles.text0}>{item.title}</Text>
                                     </View>
-                                    <View style={{ marginLeft: 10 }}>
-                                        <View style={styles.timeDot}></View>
-                                        {/* <View style={index == NOTAS.length - 1 ? null : styles.dot}></View> */}
-                                        <View style={styles.dot}></View>
-
+                                    <View>
+                                        <Text style={styles.text1}>{'Tractor ' + item.number}</Text>
+                                        <Text style={styles.text2}>{item.name}</Text>
                                     </View>
-
-                                    <View style={{ flex: 1 }}>
-                                        {
-                                            item.visible &&
-                                            <View style={{ flexDirection: 'row', marginHorizontal: p(22), marginVertical: p(14) }}>
-                                                <View style={{ backgroundColor: colors.GREY5, height: 1, flex: 1, alignSelf: 'center' }} />
-                                                <Text style={{ alignSelf: 'center', paddingHorizontal: p(16), fontSize: p(12) }}>Semana 11 del 2019</Text>
-                                                <View style={{ backgroundColor: colors.GREY5, height: 1, flex: 1, alignSelf: 'center' }} />
-                                            </View>
-                                        }
-                                        <TouchableOpacity style={styles.timeView} onPress={()=>Actions.lotedetail()}>
-                                            <Image source={images.msg} style={styles.img} />
-                                            <Text style={{ color: '#fff', fontSize: p(16) }}>{item.title}</Text>
-                                        </TouchableOpacity>
-                                    </View>
+                                    <View style={styles.vertical}></View>
+                                    <Text style={styles.text3}>{item.status}</Text>
+                                    <Image source={ item.switch ? images.switch_on : images.switch_off} style={styles.switchButton} />
 
                                 </View>
                             );
@@ -65,3 +43,66 @@ export default class Maquinarias extends React.Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingVertical: 12,
+        backgroundColor: colors.WHITE
+    },
+    view: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: p(15),
+        height: p(87),
+        borderBottomColor: colors.GREY3,
+        borderBottomWidth: 1,
+        borderLeftColor: colors.ORANGE,
+        borderLeftWidth: p(8),
+        borderTopLeftRadius: p(6),
+        borderBottomLeftRadius: p(6)
+    },
+    circle: {
+        width: p(30),
+        height: p(30)
+    },
+    vertical: {
+        backgroundColor: colors.GREY7,
+        width: 1,
+        height: p(50)
+    },
+    switchButton: {
+        width: p(36),
+        height: p(18)
+    },
+    text0: {
+        color: '#212121',
+        fontSize: p(11),
+        fontWeight: '400',
+        textAlign: 'center'
+    },
+    text1: {
+        color: '#354052',
+        fontSize: p(15),
+        fontWeight: '700',
+    },
+    text2: {
+        color: '#354052',
+        fontSize: p(14),
+        fontWeight: '700',
+    },
+    text3: {
+        color: '#212121',
+        fontSize: p(13),
+        fontWeight: '700',
+    },
+    textTitle: {
+        marginHorizontal: p(31),
+        marginVertical: p(18),
+        color: '#354052',
+        fontSize: p(16),
+        fontWeight: '700',
+    }
+
+});

@@ -1,63 +1,79 @@
 export const images = {
 
-    logo: require('../../assets/logo.png'),
-    intro: require('../../assets/images/intro.png'),
-    user: require('../../assets/images/user.png'),
-    splash: require('../../assets/images/splash.png'),
-    logoIcon: require('../../assets/images/logoIcon.png'),
-    menu: require('../../assets/images/menu.png'),
-    ring: require('../../assets/images/ring.png'),
-    location: require('../../assets/images/location.png'),
-    track: require('../../assets/images/track.png'),
-    chart: require('../../assets/images/chart.png'),
-    news: require('../../assets/images/news.png'),
-    position: require('../../assets/images/position1.png'),
+    add: require('../../assets/images/add1.png'),
+
     back: require('../../assets/images/back.png'),
     back_black: require('../../assets/images/back_black.png'),
+    bigCheck: require('../../assets/images/big-check.png'),
+    blackSearch: require('../../assets/images/blackSearch.png'),
 
-    add: require('../../assets/images/add1.png'),
+    calendar: require('../../assets/images/calendar.png'),
+    check: require('../../assets/images/check.png'),
+    chart: require('../../assets/images/chart.png'),
+    cultivo: require('../../assets/images/cultivo.png'),
+    circleGrey: require('../../assets/images/circle-grey.png'),
+    circleRed: require('../../assets/images/circle-red.png'),
+    circleGreen: require('../../assets/images/circle-green.png'),
+    circleOrange: require('../../assets/images/circle-orange.png'),
+    circlePink: require('../../assets/images/circle-pink.png'),
+
+    direction: require('../../assets/images/direction1.png'),
+    dot1: require('../../assets/images/dot1.png'),
+    dot2: require('../../assets/images/dot2.png'),
+    dots: require('../../assets/images/dots.png'),
+    download: require('../../assets/images/download.png'),
+
+    edit: require('../../assets/images/edit.png'),
+
+    intro: require('../../assets/images/intro.png'),
+
     layer: require('../../assets/images/layer1.png'),
     layer1: require('../../assets/images/layer.png'),
 
-    direction: require('../../assets/images/direction1.png'),
+    logo: require('../../assets/logo.png'),
+    logoIcon: require('../../assets/images/logoIcon.png'),
+
     locate: require('../../assets/images/locate1.png'),
     locate1: require('../../assets/images/locate.png'),
     lotes: require('../../assets/images/lotes1.png'),
     lotes2: require('../../assets/images/lotes.png'),
-    cultivo: require('../../assets/images/cultivo.png'),
-    nota: require('../../assets/images/nota.png'),
-    tarea: require('../../assets/images/tarea.png'),
     lote: require('../../assets/images/lote.png'),
-    marker: require('../../assets/images/marker.png'),
-    search_white: require('../../assets/images/search_white.png'),
+    location: require('../../assets/images/location.png'),
 
-    dot1: require('../../assets/images/dot1.png'),
-    dot2: require('../../assets/images/dot2.png'),
-    dots: require('../../assets/images/dots.png'),
-    check: require('../../assets/images/check.png'),
-    download: require('../../assets/images/download.png'),
+    menu: require('../../assets/images/menu.png'),
     msg: require('../../assets/images/msg.png'),
-    edit: require('../../assets/images/edit.png'),
-
-    tareaW: require('../../assets/images/tarea-white.png'),
-    tareaG: require('../../assets/images/tarea-grey.png'),
     map: require('../../assets/images/map.png'),
-    square: require('../../assets/images/square.png'),
+    menu_yellow: require('../../assets/images/menu-yellow.png'),
+    menu_blue: require('../../assets/images/menu_blue.png'),
+    members: require('../../assets/images/members.png'),
+    marker: require('../../assets/images/marker.png'),
+
+    news: require('../../assets/images/news.png'),
+    nota: require('../../assets/images/nota.png'),
+
     pin: require('../../assets/images/pin.png'),
     pause: require('../../assets/images/pause.png'),
     play: require('../../assets/images/play.png'),
-    menu_yellow: require('../../assets/images/menu-yellow.png'),
-    menu_blue: require('../../assets/images/menu_blue.png'),
-
     profile: require('../../assets/images/profile.png'),
-    members: require('../../assets/images/members.png'),
-    calendar: require('../../assets/images/calendar.png'),
-
-    bigCheck: require('../../assets/images/big-check.png'),
     photoAdd: require('../../assets/images/photo-add.png'),
+    position: require('../../assets/images/position1.png'),
 
     record: require('../../assets/images/record.png'),
-    blackSearch: require('../../assets/images/blackSearch.png'),
+    ring: require('../../assets/images/ring.png'),
+
+    splash: require('../../assets/images/splash.png'),
+    square: require('../../assets/images/square.png'),
+    search_white: require('../../assets/images/search_white.png'),
+    switch_on: require('../../assets/images/switch-on.png'),
+    switch_off: require('../../assets/images/switch-off.png'),
+
+
+    tareaW: require('../../assets/images/tarea-white.png'),
+    tareaG: require('../../assets/images/tarea-grey.png'),
     trackRound: require('../../assets/images/track-round.png'),
+    tarea: require('../../assets/images/tarea.png'),
+    track: require('../../assets/images/track.png'),
+
+    user: require('../../assets/images/user.png'),
 
 };
