@@ -5,11 +5,14 @@ import {
   Text,
   Dimensions,
   TouchableOpacity,
+  Image
 } from 'react-native';
 
 import { MapView } from 'expo';
 import { colors } from '../../common/colors';
 import { CUSTOM_STYLE } from '../../common/config';
+import { images } from '../../common/images';
+import { p } from '../../common/normalize';
 
 const { width, height } = Dimensions.get('window');
 
@@ -47,11 +50,11 @@ class PolygonCreator extends React.Component {
   remove() {
     const { editing } = this.state;
     const array = editing.coordinates;
-    console.log('editing.coordinates.length', parseInt(array.length - 1 ) )
+    console.log('editing.coordinates.length', parseInt(array.length - 1))
     this.setState({
       editing: {
         ...editing,
-        coordinates: this.state.editing.coordinates.filter((_, i) => i !== parseInt(array.length - 1 ))
+        coordinates: this.state.editing.coordinates.filter((_, i) => i !== parseInt(array.length - 1))
       },
     });
   }
@@ -79,8 +82,6 @@ class PolygonCreator extends React.Component {
 
   render() {
 
-    console.log('**********************', this.state.editing)
-
     const mapOptions = {
       scrollEnabled: true,
     };
@@ -104,9 +105,18 @@ class PolygonCreator extends React.Component {
           {this.state.editing && <MapView.Polygon
             coordinates={this.state.editing.coordinates}
             strokeColor={colors.BLUE2}
-            fillColor="rgba(255,0,0,0.2)"
+            // fillColor="rgba(255,0,0,0.2)"
             strokeWidth={3}
           />}
+          {this.state.editing && this.state.editing.coordinates.map((marker, key) => (
+            <MapView.Marker
+              key={key}
+              coordinate={marker}
+              // pinColor={colors.PURPLE}
+            >
+              <Image source={images.circleWhite} style={{ width: p(24), height: p(24) }} />
+            </MapView.Marker>
+          ))}
         </MapView>
 
         <View style={styles.buttonContainer}>

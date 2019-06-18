@@ -16,6 +16,7 @@ export const images = {
     circleGreen: require('../../assets/images/circle-green.png'),
     circleOrange: require('../../assets/images/circle-orange.png'),
     circlePink: require('../../assets/images/circle-pink.png'),
+    circleWhite: require('../../assets/images/circle-white.png'),
 
     direction: require('../../assets/images/direction1.png'),
     dot1: require('../../assets/images/dot1.png'),
