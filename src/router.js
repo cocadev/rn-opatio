@@ -15,7 +15,7 @@ import Inbox from './screens/Dashboard/index';
 import Lotes from './screens/Dashboard/Lotes';
 
 import { images } from './common/images';
-import Test from './screens/Map/test';
+import Test from './screens/Map/Test/index';
 import Overlays from './screens/Map/ZIndexMarkers';
 import LoteSelection from './screens/Dashboard/Loteselection';
 import LotesTab from './screens/Dashboard/LotesTab';
@@ -30,6 +30,7 @@ import Maquinarias from './screens/Dashboard/Maquinarias';
 import MaquinariasTab from './screens/Dashboard/MaquinariasTab';
 
 import PolygonCreator from './screens/Map/PolygonCreator';
+import LoteCreateDetail from './screens/Dashboard/LotesCreateDetail';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -83,7 +84,7 @@ export default class App extends PureComponent {
                 drawerWidth={width / 1.4}
                 drawerPosition="left"
               >
-                <Scene key="inbox" component={Inbox} initial={false} hideNavBar />
+                <Scene key="inbox" component={Inbox} initial={true} hideNavBar />
 
               </Drawer>
 
@@ -92,6 +93,9 @@ export default class App extends PureComponent {
               <Scene key="lotetab" component={LotesTab} initial={false} hideNavBar/>
               <Scene key="lotedetail" component={LoteDetail} initial={false} hideNavBar/>
               <Scene key="lotesedit" component={LotesEdit} initial={false} hideNavBar/>
+              <Scene key="lotecultivosdetail" component={CultivosDetail} initial={false} hideNavBar/>
+              <Scene key="lotecreatedetail" component={LoteCreateDetail} initial={false} hideNavBar/>
+
               <Scene key="tareasdetail" component={TareasDetail} initial={false} hideNavBar/>
               <Scene key="tareasedit" component={TareasEdit} initial={false} hideNavBar/>
               <Scene key="cultivosDetail" component={CultivosDetail} initial={false} hideNavBar/>
@@ -100,7 +104,7 @@ export default class App extends PureComponent {
               <Scene key="maquinariastab" component={MaquinariasTab} initial={false} hideNavBar/>
 
 
-              <Scene key="test" component={PolygonCreator} initial={true} hideNavBar/>
+              <Scene key="test" component={Test} initial={true} hideNavBar/>
 
             </Scene>
           </Router>

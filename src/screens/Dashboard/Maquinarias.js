@@ -84,7 +84,7 @@ export default class Maquinarias extends Component {
                     <TouchableOpacity>
                         <Image source={images.locate1} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => Actions.lotetab()}>
+                    <TouchableOpacity onPress={() => Actions.maquinariastab()}>
                         <Image source={images.trackRound} style={{ width: p(65), height: p(65) }} />
                     </TouchableOpacity>
                 </View>

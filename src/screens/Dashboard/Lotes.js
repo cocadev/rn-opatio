@@ -26,11 +26,65 @@ export default class Lotes extends Component {
             });
         }
         this.state = {
-            markerInfo
+            markerInfo,
+            editing: null,
+            create: false
+        }
+    }
+
+    finish() {
+        const { editing } = this.state;
+        this.setState({
+            editing: null, create: false
+        });
+        Actions.lotecreatedetail();
+    }
+
+    remove() {
+        const { editing } = this.state;
+        const array = editing.coordinates;
+        this.setState({
+            editing: {
+                ...editing,
+                coordinates: this.state.editing.coordinates.filter((_, i) => i !== parseInt(array.length - 1))
+            },
+        });
+    }
+
+    onPress(e) {
+        const { editing } = this.state;
+        if (!editing) {
+            this.setState({
+                editing: {
+                    coordinates: [e.nativeEvent.coordinate],
+                },
+            });
+        } else {
+            this.setState({
+                editing: {
+                    ...editing,
+                    coordinates: [
+                        ...editing.coordinates,
+                        e.nativeEvent.coordinate,
+                    ],
+                },
+            });
         }
     }
 
     render() {
+
+        const { create } = this.state
+
+        const mapOptions = {
+            scrollEnabled: true,
+        };
+
+        if (this.state.editing) {
+            mapOptions.scrollEnabled = false;
+            mapOptions.onPanDrag = e => this.onPress(e);
+        }
+
         const markers = this.state.markerInfo.map((markerInfo) =>
             <MapView.Marker
                 coordinate={markerInfo}
@@ -59,11 +113,29 @@ export default class Lotes extends Component {
                     cacheEnabled={true}
                     initialRegion={REGION}
                     customMapStyle={CUSTOM_STYLE}
-                    compassOffset={{x: 10, y:50}}
+                    compassOffset={{ x: 10, y: 50 }}
+                    onPress={e => this.onPress(e)}
+
 
                 >
                     <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
                     {markers}
+
+                    {this.state.editing && create && <MapView.Polygon
+                        coordinates={this.state.editing.coordinates}
+                        strokeColor={colors.BLUE2}
+                        // fillColor="rgba(255,0,0,0.2)"
+                        strokeWidth={3}
+                    />}
+                    {this.state.editing && create && this.state.editing.coordinates.map((marker, key) => (
+                        <MapView.Marker
+                            key={key}
+                            coordinate={marker}
+                        // pinColor={colors.PURPLE}
+                        >
+                            <Image source={images.circleWhite} style={{ width: p(24), height: p(24), marginTop: p(5) }} />
+                        </MapView.Marker>
+                    ))}
                 </MapView>
 
                 <Header title={'Lotes'} icon={images.location} color={colors.BLUE} />
@@ -79,6 +151,15 @@ export default class Lotes extends Component {
                 </View>
 
                 <View style={{ position: 'absolute', right: 21, bottom: p(120) }}>
+
+                    { create && <TouchableOpacity onPress={() => this.finish()}>
+                        <Image source={images.save} style={{ width: p(55), height: p(55), marginBottom: p(7), marginLeft: p(5) }} />
+                    </TouchableOpacity>}
+
+                    { create && <TouchableOpacity onPress={() => this.remove()}>
+                        <Image source={images.undo} style={{ width: p(55), height: p(55), marginBottom: p(7), marginLeft: p(5) }} />
+                    </TouchableOpacity>}
+
                     <TouchableOpacity>
                         <Image source={images.locate1} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
                     </TouchableOpacity>
@@ -98,7 +179,7 @@ export default class Lotes extends Component {
                     {/* <ActionButton.Item size={60} buttonColor={colors.WHITE} onPress={() => {}}>
                         <Image source={images.direction} style={{ width: p(19), height: p(50) }} />
                     </ActionButton.Item> */}
-                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
+                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { this.setState({ create: true }) }}>
                         <Image source={images.lote} style={{ width: p(34), height: p(42) }} />
                     </ActionButton.Item>
                     <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>

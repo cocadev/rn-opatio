@@ -34,9 +34,7 @@ class PolygonCreator extends React.Component {
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
       },
-      polygons: [],
       editing: null,
-      creatingHole: false,
     };
   }
 
@@ -50,7 +48,6 @@ class PolygonCreator extends React.Component {
   remove() {
     const { editing } = this.state;
     const array = editing.coordinates;
-    console.log('editing.coordinates.length', parseInt(array.length - 1))
     this.setState({
       editing: {
         ...editing,
