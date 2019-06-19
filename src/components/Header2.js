@@ -9,7 +9,7 @@ import { p } from '../common/normalize';
 export default class Header2 extends React.Component {
 
   render() {
-    const { title } = this.props
+    const { title, address, description } = this.props
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={()=>Actions.pop()}>
@@ -17,13 +17,13 @@ export default class Header2 extends React.Component {
         </TouchableOpacity>
 
         <View style={{ marginRight: p(15)}}>
-          <Text style={styles.text1}>Lote 21</Text>
-          <Text style={styles.text2}>100 ha</Text>
+          <Text style={styles.text1}>{title}</Text>
+          <Text style={styles.text2}>{address}</Text>
         </View>
 
         <View style={styles.vertical}></View>
 
-        <Text style={styles.head}>{'La Morocha'}</Text>     
+        <Text style={styles.head}>{description}</Text>     
         <Image source={images.dots} style={{ width: p(7), height: p(23), marginLeft: p(14) }} />
      
       </View>

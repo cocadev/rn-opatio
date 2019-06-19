@@ -26,6 +26,7 @@ export const images = {
     dots: require('../../assets/images/dots.png'),
     download: require('../../assets/images/download.png'),
     downloadRound: require('../../assets/images/download-round.png'),
+    downloadGrey: require('../../assets/images/download-grey.png'),
 
     edit: require('../../assets/images/edit.png'),
 

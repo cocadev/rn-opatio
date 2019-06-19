@@ -10,9 +10,9 @@ import Header from '../../components/Header2';
 import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS, LOTES1, INTRO } from '../../common/config'
 import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
 
-import Maquinarias from './MaquinariasTab/Maquinarias';
+import GPS from './MaquinariasTab/gps';
 import AlarmasDetail from './MaquinariasTab/alarmasDetail';
-import Contratistas from './MaquinariasTab/contratistas';
+import Statistic from './MaquinariasTab/statistics';
 import { customStyles } from './customStyles'
 
 const height = Math.round(Dimensions.get('window').height);
@@ -78,7 +78,7 @@ export default class MachineTrackDetail extends Component {
                     {markers}
                 </MapView>
 
-                <Header title={'Tractor '} icon={images.track} color={colors.ORANGE} />
+                <Header title={'Tractor 150'} address={'John Deere 6130J '} description={'Cesar Cuestas'} />
 
                 <View style={customStyles.searchView}>
                     <Image source={images.blackSearch} style={customStyles.searchIcon} />
@@ -108,8 +108,9 @@ export default class MachineTrackDetail extends Component {
                     <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 1 ? colors.PINK : colors.GREY3, backgroundColor: selectTab == 1 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 1 })}>
                         <Text style={{ color: colors.TEXT, fontSize: p(14) }}>ALARMAS</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 2 ? colors.PINK : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
+                    <TouchableOpacity style={[styles.tabItem, { flexDirection: 'row',  borderTopColor: selectTab == 2 ? colors.PINK : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
                         <Text style={{ color: colors.TEXT, fontSize: p(14) }}>GPS</Text>
+                        <View style={{ width: p(16), height: p(16), borderRadius: p(8), backgroundColor: colors.GREEN2, marginLeft: p(12)}}></View>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 3 ? colors.PINK : colors.GREY3, backgroundColor: selectTab == 3 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 3 })}>
                         <Text style={{ color: colors.TEXT, fontSize: p(14) }}>ESTADÍSTICAS</Text>
@@ -117,8 +118,8 @@ export default class MachineTrackDetail extends Component {
                 </View>
 
                 { selectTab == 1 && <AlarmasDetail /> }
-                { selectTab == 2 && <AlarmasDetail /> }
-                { selectTab == 3 && <Contratistas /> }
+                { selectTab == 2 && <GPS /> }
+                { selectTab == 3 && <Statistic /> }
 
             </ScrollView>
         );
