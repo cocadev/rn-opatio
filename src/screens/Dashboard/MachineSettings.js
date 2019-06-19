@@ -5,9 +5,12 @@ import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
 
 import GPS from './MaquinariasTab/gps';
-import AlarmasDetail from './MaquinariasTab/alarmasDetail';
+import MachineryAlerts from './MaquinariasTab/alerts';
 import { customStyles } from './customStyles'
 import { Actions } from 'react-native-router-flux';
+import EvilIcons from '@expo/vector-icons/EvilIcons';
+import text from '../../common/text';
+import * as ICON from '../../components/Icons';
 
 const height = Math.round(Dimensions.get('window').height);
 const width = Math.round(Dimensions.get('window').width);
@@ -27,31 +30,27 @@ export default class MachineSettings extends Component {
         return (
             <ScrollView style={styles.container}>
 
-                <View style={styles.header}>
-
-                    <TouchableOpacity onPress={() => Actions.pop()}>
-                        <Image source={images.back} style={{ width: 20, height: 18 }} />
-                    </TouchableOpacity>
-
-                    <View style={{ flexDirection: 'row' }}>
-                        <View style={[styles.vertical, { backgroundColor: colors.WHITE }]}>
-                            <Text style={{ color: colors.BLACK, fontWeight: '700' }}>{'GUARDAR'}</Text>
-                        </View>
+                <View style={{ backgroundColor: colors.RED }}>
+                    <View style={styles.header}>
+                        <ICON.IconBack top={p(5)}/>
+                        <ICON.IconWhiteSearch right={p(30)}/>
                     </View>
-
+                    <View style={{ alignItems: 'center', marginTop: p(30), marginBottom: p(50)}}>
+                        <Text style={text.t_28_700_ff}>{'Configuración Alertas'}</Text>
+                        <Text style={[text.t_16_500_ff, { marginTop: p(30), textAlign: 'center'}]}>{'Puedes configurar las alertas y vigilar el \nfuncionamiento de las maquinarias \ndesde donde estés.'}</Text>
+                    </View>
                 </View>
 
                 <View style={styles.tab}>
                     <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 1 ? colors.GREY4 : colors.GREY3, backgroundColor: selectTab == 1 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 1 })}>
-                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>ALERTAS DE LA MAQUINARIA</Text>
+                        <Text style={text.t_11_400_2a}>ALERTAS DE LA MAQUINARIA</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.tabItem, { flexDirection: 'row', borderTopColor: selectTab == 2 ? colors.GREY4 : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
-                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>CREAR ALERTAS</Text>
-                        <View style={{ width: p(16), height: p(16), borderRadius: p(8), backgroundColor: colors.GREEN2, marginLeft: p(12) }}></View>
+                        <Text style={text.t_11_400_2a}>CREAR ALERTAS</Text>
                     </TouchableOpacity>
                 </View>
 
-                {selectTab == 1 && <AlarmasDetail />}
+                {selectTab == 1 && <MachineryAlerts />}
                 {selectTab == 2 && <GPS />}
 
             </ScrollView>
@@ -78,21 +77,11 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     header: {
-        backgroundColor: colors.RED,
         justifyContent: 'space-between',
         flexDirection: 'row',
         paddingHorizontal: p(20),
+        paddingVertical: p(20),
         height: p(60),
         alignItems: 'center',
-    },
-    vertical: {
-        backgroundColor: colors.BLUE2,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: p(142),
-        height: p(29),
-        borderRadius: p(3),
-        elevation: 1,
-        color: colors.WHITE
-    },
+    }
 });

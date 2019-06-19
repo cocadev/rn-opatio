@@ -1,6 +1,8 @@
 export const images = {
 
     add: require('../../assets/images/add1.png'),
+    addPlusGreen: require('../../assets/images/add-plus-green.png'),
+
     apart: require('../../assets/images/apart.png'),
     active: require('../../assets/images/active.png'),
 
@@ -28,8 +30,11 @@ export const images = {
     download: require('../../assets/images/download.png'),
     downloadRound: require('../../assets/images/download-round.png'),
     downloadGrey: require('../../assets/images/download-grey.png'),
+    down: require('../../assets/images/down.png'),
+    dustbin: require('../../assets/images/dustbin.png'),
 
     edit: require('../../assets/images/edit.png'),
+    folder: require('../../assets/images/folder.png'),
 
     intro: require('../../assets/images/intro.png'),
     inactive: require('../../assets/images/inactive.png'),
@@ -78,6 +83,9 @@ export const images = {
     splash: require('../../assets/images/splash.png'),
     square: require('../../assets/images/square.png'),
     search_white: require('../../assets/images/search_white.png'),
+    switch_green: require('../../assets/images/switch-green.png'),
+    switch_red: require('../../assets/images/switch-red.png'),
+
     switch_on: require('../../assets/images/switch-on.png'),
     switch_off: require('../../assets/images/switch-off.png'),
     switch_on_pink: require('../../assets/images/switch-on-pink.png'),

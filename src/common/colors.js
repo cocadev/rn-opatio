@@ -6,7 +6,6 @@ export const colors = {
   GREY3: '#EEEEED',
   GREY4: '#606060',
   GREY5: '#a0a0a0',
-  GREY5: '#B8B8B8',
   GREY6: '#707070',
   GREY7: '#727272',
   GREY8: '#989898',
