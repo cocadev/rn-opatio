@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
 import { colors } from '../../../common/colors';
-import Timeline from 'react-native-timeline-listview'
 import { Tractores } from '../../../common/config';
 import { images } from '../../../common/images';
 import { p } from '../../../common/normalize';
