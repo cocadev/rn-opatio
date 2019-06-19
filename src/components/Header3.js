@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, TouchableHighlight, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Ionicons } from '@expo/vector-icons';
 import { images } from '../common/images';
 import { colors } from '../common/colors'
 import { p } from '../common/normalize';
@@ -40,7 +39,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: 1,
     height: p(60),
-    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',

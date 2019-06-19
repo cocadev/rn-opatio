@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
         height: p(32),
         marginHorizontal: p(10)
     }
-
 });
 
 export default styles;

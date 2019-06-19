@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
 import { colors } from '../../../common/colors';
-import Timeline from 'react-native-timeline-listview'
 import { CULTIVOS } from '../../../common/config';
 import { Entypo } from '@expo/vector-icons';
 import { images } from '../../../common/images';

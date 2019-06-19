@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, TouchableHighlight, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Ionicons } from '@expo/vector-icons';
 import { images } from '../common/images';
 import { colors } from '../common/colors'
 import { p } from '../common/normalize';
@@ -32,7 +31,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     width: '100%',
-    flexDirection: "row",
     paddingHorizontal: p(20),
     backgroundColor: colors.BLUE,
   },
@@ -42,5 +40,4 @@ const styles = StyleSheet.create({
     color: colors.WHITE,
     textAlign: 'center'
   },
-
 });

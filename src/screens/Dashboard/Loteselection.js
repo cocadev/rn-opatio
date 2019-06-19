@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, Image, Platform, Dimensions, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import ActionButton from 'react-native-action-button';
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
