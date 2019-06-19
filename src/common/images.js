@@ -1,6 +1,7 @@
 export const images = {
 
     add: require('../../assets/images/add1.png'),
+    apart: require('../../assets/images/apart.png'),
 
     back: require('../../assets/images/back.png'),
     back_black: require('../../assets/images/back_black.png'),
@@ -17,12 +18,14 @@ export const images = {
     circleOrange: require('../../assets/images/circle-orange.png'),
     circlePink: require('../../assets/images/circle-pink.png'),
     circleWhite: require('../../assets/images/circle-white.png'),
+    circleExc: require('../../assets/images/circle-exc.png'),
 
     direction: require('../../assets/images/direction1.png'),
     dot1: require('../../assets/images/dot1.png'),
     dot2: require('../../assets/images/dot2.png'),
     dots: require('../../assets/images/dots.png'),
     download: require('../../assets/images/download.png'),
+    downloadRound: require('../../assets/images/download-round.png'),
 
     edit: require('../../assets/images/edit.png'),
 
@@ -49,6 +52,8 @@ export const images = {
     menu_blue: require('../../assets/images/menu_blue.png'),
     members: require('../../assets/images/members.png'),
     marker: require('../../assets/images/marker.png'),
+    mapPositionYellow: require('../../assets/images/map-position-yellow.png'),
+    mapPositionGrey: require('../../assets/images/map-position-grey.png'),
 
     news: require('../../assets/images/news.png'),
     needle: require('../../assets/images/needle.png'),
@@ -74,6 +79,7 @@ export const images = {
     switch_off: require('../../assets/images/switch-off.png'),
     switch_on_pink: require('../../assets/images/switch-on-pink.png'),
     switch_ignore: require('../../assets/images/switch-ignore.png'),
+    settings: require('../../assets/images/settings.png'),
 
     tareaW: require('../../assets/images/tarea-white.png'),
     tareaG: require('../../assets/images/tarea-grey.png'),

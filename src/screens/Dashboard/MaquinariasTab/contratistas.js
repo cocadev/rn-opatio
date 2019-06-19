@@ -14,20 +14,32 @@ export default class Contratistas extends React.Component {
         return (
             <View style={styles.container}>
 
-                <Text style={styles.textTitle}>{'Tractores'}</Text>
+                <View style={{ alignItems: 'center', marginTop: p(8)}}>
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={styles.headText}>{'NUEVO CONTRATISTA'}</Text>
+                    </TouchableOpacity>
+                </View>
 
                 <ScrollView>
                     {
                         contratistas.map((item, index) => {
                             return (
                                 <View key={index} style={styles.view}>
-                                    <Image source={item.img} style={styles.circle} />
-                                    <View>
+                                    <Image source={images.user} style={styles.circle} />
+                                    <View style={{ width: p(190), marginLeft: p(3) }}>
                                         <Text style={styles.text1}>{item.name}</Text>
                                         <Text style={styles.text2}>{item.address}</Text>
                                     </View>
-                                    <Text style={styles.text3}>{item.count + ' Máquinas'}</Text>
-                                    <Image source={ item.switch ? images.switch_on : images.switch_off} style={styles.switchButton} />
+                                    <View style={styles.count}>
+                                        <Text style={styles.text3}>{item.count}</Text>
+                                    </View>
+                                    <View style={{ marginTop: p(6) }}>
+                                        <View style={{ flexDirection: 'row', marginLeft: p(18) }}>
+                                            <Image source={item.switch ? images.mapPositionGrey : images.mapPositionYellow} style={styles.position} />
+                                            <Text style={styles.text5}>{'Ver en\nel mapa'}</Text>
+                                        </View>
+                                        <Text style={styles.text4}>{item.count + ' Máquinas'}</Text>
+                                    </View>
                                 </View>
                             );
                         })
@@ -55,17 +67,17 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
     },
     circle: {
-        width: p(30),
-        height: p(30)
+        width: p(38),
+        height: p(38)
+    },
+    position: {
+        width: p(22),
+        height: p(21)
     },
     vertical: {
         backgroundColor: colors.GREY7,
         width: 1,
         height: p(50)
-    },
-    switchButton: {
-        width: p(36),
-        height: p(18)
     },
     text0: {
         color: '#212121',
@@ -74,26 +86,55 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     text1: {
-        color: '#354052',
-        fontSize: p(15),
+        color: '#2e2e2e',
+        fontSize: p(18),
         fontWeight: '700',
     },
     text2: {
-        color: '#354052',
+        color: '#727272',
+        fontSize: p(17),
+        fontWeight: '400',
+    },
+    text3: {
+        color: colors.GREY3,
         fontSize: p(14),
         fontWeight: '700',
     },
-    text3: {
-        color: '#212121',
-        fontSize: p(13),
+    text4: {
+        marginTop: p(8),
+        color: colors.GREY7,
+        fontSize: p(15),
+        fontWeight: '400',
+    },
+    text5: {
+        marginLeft: p(8),
+        color: colors.GREY8,
+        fontSize: p(9),
         fontWeight: '700',
     },
-    textTitle: {
-        marginHorizontal: p(31),
-        marginVertical: p(18),
-        color: '#354052',
-        fontSize: p(16),
+    count: {
+        width: p(26),
+        height: p(26),
+        borderRadius: p(13),
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: colors.PURPLE
+    },
+    button: {
+        width: p(178),
+        height: p(30),
+        marginBottom: p(18),
+        justifyContent: 'center',
+        alignItems: 'center',
+        shadowColor: 'rgba(0, 0, 0, 0.16)',
+        shadowOffset: { width: 3, height: 0 },
+        shadowRadius: 6,
+        borderRadius: 3,
+        backgroundColor: '#2298d7',
+    },
+    headText: {
+        color: colors.GREY3,
+        fontSize: p(13),
         fontWeight: '700',
     }
-
 });
