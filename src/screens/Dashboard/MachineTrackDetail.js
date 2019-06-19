@@ -16,6 +16,7 @@ import Statistic from './MaquinariasTab/statistics';
 import { customStyles } from './customStyles'
 
 const height = Math.round(Dimensions.get('window').height);
+const width = Math.round(Dimensions.get('window').width);
 
 export default class MachineTrackDetail extends Component {
 
@@ -61,7 +62,7 @@ export default class MachineTrackDetail extends Component {
         return (
             <ScrollView style={styles.container}>
 
-                <MapView
+                {selectTab == 1 && <MapView
                     ref={instance => this.map = instance}
                     style={styles.map}
                     showsUserLocation={true}
@@ -76,11 +77,16 @@ export default class MachineTrackDetail extends Component {
                 >
                     <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
                     {markers}
-                </MapView>
+                </MapView>}
 
                 <Header title={'Tractor 150'} address={'John Deere 6130J '} description={'Cesar Cuestas'} />
+               
+                {selectTab !== 1 &&<View>
+                    <Image source={images.downloadRound} style={{ width: p(65), height: p(65), position: 'absolute', right: 15, top: p(132), zIndex: 1 }} />
+                    <Image source={images.trackImg} style={{ width: width, height: p(210) }} />
+                </View>}
 
-                <View style={customStyles.searchView}>
+                {selectTab == 1 && <View style={customStyles.searchView}>
                     <Image source={images.blackSearch} style={customStyles.searchIcon} />
                     <TextInput
                         style={customStyles.textinput}
@@ -88,38 +94,38 @@ export default class MachineTrackDetail extends Component {
                         onChangeText={(text) => this.setState({ text })}
                         value={this.state.text}
                     />
-                </View>
+                </View>}
 
-                <View style={{ position: 'absolute', right: 15, top: p(132) }}>
+                {selectTab == 1 && <View style={{ position: 'absolute', right: 15, top: p(172) }}>
                     <TouchableOpacity>
                         <Image source={images.layer1} style={{ width: p(65), height: p(65), marginBottom: p(5) }} />
                     </TouchableOpacity>
                     <TouchableOpacity>
                         <Image source={images.downloadRound} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
                     </TouchableOpacity>
-                </View>
+                </View>}
 
-                <View style={styles.searchView}>
+                {selectTab == 1 && <View style={styles.searchView}>
                     <TextInput style={styles.searchInput} placeholder={'Alarmas de la máquina'} />
                     <Image source={images.search_white} style={{ width: p(18), height: p(18), marginRight: p(20) }} />
-                </View>
+                </View>}
 
                 <View style={styles.tab}>
                     <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 1 ? colors.PINK : colors.GREY3, backgroundColor: selectTab == 1 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 1 })}>
                         <Text style={{ color: colors.TEXT, fontSize: p(14) }}>ALARMAS</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.tabItem, { flexDirection: 'row',  borderTopColor: selectTab == 2 ? colors.PINK : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
+                    <TouchableOpacity style={[styles.tabItem, { flexDirection: 'row', borderTopColor: selectTab == 2 ? colors.PINK : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
                         <Text style={{ color: colors.TEXT, fontSize: p(14) }}>GPS</Text>
-                        <View style={{ width: p(16), height: p(16), borderRadius: p(8), backgroundColor: colors.GREEN2, marginLeft: p(12)}}></View>
+                        <View style={{ width: p(16), height: p(16), borderRadius: p(8), backgroundColor: colors.GREEN2, marginLeft: p(12) }}></View>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 3 ? colors.PINK : colors.GREY3, backgroundColor: selectTab == 3 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 3 })}>
                         <Text style={{ color: colors.TEXT, fontSize: p(14) }}>ESTADÍSTICAS</Text>
                     </TouchableOpacity>
                 </View>
 
-                { selectTab == 1 && <AlarmasDetail /> }
-                { selectTab == 2 && <GPS /> }
-                { selectTab == 3 && <Statistic /> }
+                {selectTab == 1 && <AlarmasDetail />}
+                {selectTab == 2 && <GPS />}
+                {selectTab == 3 && <Statistic />}
 
             </ScrollView>
         );
@@ -134,7 +140,7 @@ const styles = StyleSheet.create({
     },
     map: {
         ...StyleSheet.absoluteFillObject,
-        height: p(300),
+        height: p(310),
     },
     welcome: {
         fontSize: 20,
@@ -150,7 +156,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         height: p(55),
-        marginTop: p(200)
+        marginTop: p(250)
     },
     searchInput: {
         flex: 1,

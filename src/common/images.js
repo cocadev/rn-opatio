@@ -2,6 +2,7 @@ export const images = {
 
     add: require('../../assets/images/add1.png'),
     apart: require('../../assets/images/apart.png'),
+    active: require('../../assets/images/active.png'),
 
     back: require('../../assets/images/back.png'),
     back_black: require('../../assets/images/back_black.png'),
@@ -31,6 +32,7 @@ export const images = {
     edit: require('../../assets/images/edit.png'),
 
     intro: require('../../assets/images/intro.png'),
+    inactive: require('../../assets/images/inactive.png'),
 
     layer: require('../../assets/images/layer1.png'),
     layer1: require('../../assets/images/layer.png'),
@@ -87,6 +89,7 @@ export const images = {
     trackRound: require('../../assets/images/track-round.png'),
     tarea: require('../../assets/images/tarea.png'),
     track: require('../../assets/images/track.png'),
+    trackImg: require('../../assets/images/track-image.png'),
 
     user: require('../../assets/images/user.png'),
     undo: require('../../assets/images/undo.png'),
