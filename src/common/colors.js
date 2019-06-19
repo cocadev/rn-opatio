@@ -31,13 +31,13 @@ export const colors = {
 
   YEL: '#ffff00',
 
+  RED: '#c73735',
 
 
 
 
 
 
-  RED: '#de5351',
   MAINGREEN: '#39baa6',
   DARK: '#4c4c4c',
   DARK2: '#868686',

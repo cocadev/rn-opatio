@@ -33,6 +33,7 @@ import PolygonCreator from './screens/Map/PolygonCreator';
 import LoteCreateDetail from './screens/Dashboard/LotesCreateDetail';
 import MachineNewContractor from './screens/Dashboard/MachineNewContractor';
 import MachineTrackDetail from './screens/Dashboard/MachineTrackDetail';
+import MachineSettings from './screens/Dashboard/MachineSettings';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -105,7 +106,9 @@ export default class App extends PureComponent {
               <Scene key="maquinarias" component={Maquinarias} initial={false} hideNavBar/>
               <Scene key="maquinariastab" component={MaquinariasTab} initial={false} hideNavBar/>
               <Scene key="machinenewcontractor" component={MachineNewContractor} initial={false} hideNavBar/>
-              <Scene key="machinetrackdetail" component={MachineTrackDetail} initial={true} hideNavBar/>
+              <Scene key="machinetrackdetail" component={MachineTrackDetail} initial={false} hideNavBar/>
+              <Scene key="machinesettings" component={MachineSettings} initial={true} hideNavBar/>
+
 
 
               <Scene key="test" component={Test} initial={false} hideNavBar/>
