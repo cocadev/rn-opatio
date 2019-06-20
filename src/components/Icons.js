@@ -20,6 +20,13 @@ export const IconNeedle3 = props => (<Image source={images.needle3} style={{ wid
 export const IconActive = props => (<Image source={images.active} style={{ width: p(25), height: p(25), marginRight: props.right, marginLeft: props.left  }} />)
 export const IconInActive = props => (<Image source={images.inactive} style={{ width: p(25), height: p(25), marginRight: props.right, marginLeft: props.left  }} />)
 
+export const IconParameter = props => (<Image source={images.parameter} style={{ width: p(22), height: p(16), marginRight: props.right, marginLeft: props.left  }} />)
+export const IconError = props => (<Image source={images.error} style={{ width: p(23), height: p(20), marginRight: props.right, marginLeft: props.left  }} />)
+export const IconTrackGrey = props => (<Image source={images.trackGrey} style={{ width: p(23), height: p(25), marginRight: props.right, marginLeft: props.left  }} />)
+export const IconGreenCheck = props => (<Image source={images.greenCheck} style={{ width: p(20), height: p(20), marginRight: props.right, marginLeft: props.left  }} />)
+export const IconCircleExc = props => (<Image source={images.circleExc} style={{ width: p(20), height: p(20), marginRight: props.right, marginLeft: props.left  }} />)
+
+export const ImgMessageBar = props => (<Image source={images.message_bar} style={{ width: p(344), height: p(36), marginRight: props.right, marginLeft: props.left  }} />)
 
 export const IconBack = props => (
   <TouchableOpacity onPress={() => Actions.pop()}>

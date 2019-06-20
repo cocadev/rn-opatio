@@ -33,8 +33,11 @@ export const images = {
     down: require('../../assets/images/down.png'),
     dustbin: require('../../assets/images/dustbin.png'),
 
+
     edit: require('../../assets/images/edit.png'),
+    error: require('../../assets/images/error.png'),
     folder: require('../../assets/images/folder.png'),
+    greenCheck: require('../../assets/images/greenCheck.png'),
 
     intro: require('../../assets/images/intro.png'),
     inactive: require('../../assets/images/inactive.png'),
@@ -62,6 +65,7 @@ export const images = {
     marker: require('../../assets/images/marker.png'),
     mapPositionYellow: require('../../assets/images/map-position-yellow.png'),
     mapPositionGrey: require('../../assets/images/map-position-grey.png'),
+    message_bar: require('../../assets/images/message-bar.png'),
 
     news: require('../../assets/images/news.png'),
     needle: require('../../assets/images/needle.png'),
@@ -75,6 +79,7 @@ export const images = {
     profile: require('../../assets/images/profile.png'),
     photoAdd: require('../../assets/images/photo-add.png'),
     position: require('../../assets/images/position1.png'),
+    parameter: require('../../assets/images/parameter.png'),
 
     record: require('../../assets/images/record.png'),
     ring: require('../../assets/images/ring.png'),
@@ -98,6 +103,7 @@ export const images = {
     tarea: require('../../assets/images/tarea.png'),
     track: require('../../assets/images/track.png'),
     trackImg: require('../../assets/images/track-image.png'),
+    trackGrey: require('../../assets/images/track-grey.png'),
 
     user: require('../../assets/images/user.png'),
     undo: require('../../assets/images/undo.png'),

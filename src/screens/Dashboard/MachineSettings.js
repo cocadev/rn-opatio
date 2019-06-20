@@ -4,7 +4,7 @@ import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
 
-import GPS from './MaquinariasTab/gps';
+import MachineryAlertsCreate from './MaquinariasTab/alertCreate';
 import MachineryAlerts from './MaquinariasTab/alerts';
 import { customStyles } from './customStyles'
 import { Actions } from 'react-native-router-flux';
@@ -51,7 +51,7 @@ export default class MachineSettings extends Component {
                 </View>
 
                 {selectTab == 1 && <MachineryAlerts />}
-                {selectTab == 2 && <GPS />}
+                {selectTab == 2 && <MachineryAlertsCreate />}
 
             </ScrollView>
         );

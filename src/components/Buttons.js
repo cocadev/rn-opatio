@@ -12,6 +12,12 @@ export const BlueWhite = props => (
   </TouchableOpacity>
 )
 
+export const WhiteDark = props => (
+  <TouchableOpacity style={styles.whiteBack}>
+    <Text style={text.t_11_700_00}>{props.title}</Text>
+  </TouchableOpacity>
+)
+
 
 const styles = StyleSheet.create({
   rectNgulo: {
@@ -25,4 +31,15 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     backgroundColor: '#2298d7',
   },
+  whiteBack: {
+    width: p(119),
+    height: p(29),
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: 'rgba(0, 0, 0, 0.16)',
+    shadowOffset: { width: 3, height: 0 },
+    shadowRadius: 6,
+    borderRadius: 3,
+    backgroundColor: '#eeeeed',
+  }
 });
