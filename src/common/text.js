@@ -9,6 +9,8 @@ export default {
   t_12_700_ee:{ color: '#eeeeed', fontSize: p(14), fontWeight: '700' },
   t_12_400_98:{ color: '#989898', fontSize: p(14), fontWeight: '400' },
 
+  t_14_700_60:{ color: '#606060', fontSize: p(15), fontWeight: '700' },
+
   t_15_400_98:{ color: '#989898', fontSize: p(17), fontWeight: '400' },
   t_15_400_72:{ color: '#727272', fontSize: p(17), fontWeight: '400' },
 

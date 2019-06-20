@@ -7,15 +7,21 @@ import { Actions } from 'react-native-router-flux';
 import text from '../common/text';
 
 export const BlueWhite = props => (
-  <TouchableOpacity style={styles.rectNgulo}>
+  <View style={styles.rectNgulo}>
     <Text style={text.t_12_700_ee}>{props.title}</Text>
-  </TouchableOpacity>
+  </View>
 )
 
 export const WhiteDark = props => (
   <TouchableOpacity style={styles.whiteBack}>
     <Text style={text.t_11_700_00}>{props.title}</Text>
   </TouchableOpacity>
+)
+
+export const AcceptCancel = props => (
+  <View style={[styles.rectNgulo, { width: p(86)}]} >
+    <Text style={text.t_12_700_ee}>{props.title}</Text>
+  </View>
 )
 
 

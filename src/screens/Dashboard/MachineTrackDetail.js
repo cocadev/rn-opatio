@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, Image, Platform, Dimensions, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native';
+import { AppRegistry, StyleSheet, Text, View, Image, Platform, Dimensions, TextInput, FlatList, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import ActionButton from 'react-native-action-button';
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
@@ -13,6 +13,8 @@ import GPS from './MaquinariasTab/gps';
 import AlarmasDetail from './MaquinariasTab/alarmasDetail';
 import Statistic from './MaquinariasTab/statistics';
 import { customStyles } from './customStyles'
+import * as BTN from '../../components/Buttons';
+import text from '../../common/text';
 
 const height = Math.round(Dimensions.get('window').height);
 const width = Math.round(Dimensions.get('window').width);
@@ -32,7 +34,9 @@ export default class MachineTrackDetail extends Component {
         }
         this.state = {
             markerInfo,
-            selectTab: 1
+            selectTab: 1,
+            modal1: false,
+            modal2: false
         }
     }
 
@@ -45,8 +49,67 @@ export default class MachineTrackDetail extends Component {
         </View>
     )
 
+    update1() {
+        this.setState({ modal1: true })
+    }
+    update2() {
+        this.setState({ modal2: true })
+    }
+
+    renderModal1() {
+        return (
+            <Modal
+                visible={this.state.modal1}
+                transparent={true}
+                onRequestClose={() => { }}
+            >
+                <View style={styles.modalContainer}>
+                    <View style={styles.modal}>
+                        <Text style={[text.t_14_700_60, { textAlign: 'center'}]}>{'\n\nVas a descargar las alarmas, el recorrido y las estadísticas de esta maquinaria para los últimos 7 días.\n\n Podrás acceder a esta información desde donde estés, sin necesidad de tener conexión a internet.\n\n'}</Text>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+
+                            <TouchableOpacity onPress={() => this.setState({ modal1: false })}>
+                                <BTN.AcceptCancel title={'CANCELAR'} />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.setState({ modal1: false })}>
+                                <BTN.AcceptCancel title={'ACEPTAR'} />
+                            </TouchableOpacity>
+
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+        );
+    }
+
+    renderModal2() {
+        return (
+            <Modal
+                visible={this.state.modal2}
+                transparent={true}
+                onRequestClose={() => { }}
+            >
+                <View style={styles.modalContainer}>
+                    <View style={styles.modal}>
+                        <Text style={[text.t_14_700_60, { textAlign: 'center', lineHeight: p(21)}]}>{'\nVas a desvincular el GPS de esta maquinaria. Esto quiere decir que todo lo que haga este GPS de ahora hasta que sea vinculado con una nueva maquinaria no se guardara. \n\n\n\n'}</Text>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+
+                            <TouchableOpacity onPress={() => this.setState({ modal2: false })}>
+                                <BTN.AcceptCancel title={'CANCELAR'} />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.setState({ modal2: false })}>
+                                <BTN.AcceptCancel title={'ACEPTAR'} />
+                            </TouchableOpacity>
+
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+        );
+    }
+
     render() {
-        const { selectTab } = this.state;
+        const { selectTab, modal1, modal2 } = this.state;
         const markers = this.state.markerInfo.map((markerInfo) =>
             <MapView.Marker
                 coordinate={markerInfo}
@@ -79,8 +142,8 @@ export default class MachineTrackDetail extends Component {
                 </MapView>}
 
                 <Header title={'Tractor 150'} address={'John Deere 6130J '} description={'Cesar Cuestas'} />
-               
-                {selectTab !== 1 &&<View>
+
+                {selectTab !== 1 && <View>
                     <Image source={images.downloadRound} style={{ width: p(65), height: p(65), position: 'absolute', right: 15, top: p(132), zIndex: 1 }} />
                     <Image source={images.trackImg} style={{ width: width, height: p(210) }} />
                 </View>}
@@ -123,8 +186,11 @@ export default class MachineTrackDetail extends Component {
                 </View>
 
                 {selectTab == 1 && <AlarmasDetail />}
-                {selectTab == 2 && <GPS />}
+                {selectTab == 2 && <GPS update1={() => this.setState({ modal1: true })} update2={() => this.setState({ modal2: true })} />}
                 {selectTab == 3 && <Statistic />}
+
+                {modal1 && this.renderModal1()}
+                {modal2 && this.renderModal2()}
 
             </ScrollView>
         );
@@ -202,5 +268,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-
+    modal: {
+        width: p(240),
+        height: p(257),
+        padding: p(22),
+        backgroundColor: "white",
+        paddingTop: p(10),
+    },
+    modalContainer: {
+        flex: 1,
+        height: height + 24,
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        alignItems: "center",
+        justifyContent: 'center'
+    },
 });

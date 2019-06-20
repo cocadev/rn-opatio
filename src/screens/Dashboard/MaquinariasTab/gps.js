@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, TouchableHighlight, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, TouchableHighlight, StyleSheet, Image, Modal } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Ionicons } from '@expo/vector-icons';
 import { images } from '../../../common/images';
 import { colors } from '../../../common/colors'
 import { p } from '../../../common/normalize';
+import * as BTN from '../../../components/Buttons';
+import * as ICON from '../../../components/Icons';
 
 export default class GPS extends React.Component {
 
@@ -21,7 +23,7 @@ export default class GPS extends React.Component {
 
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Image source={images.locate} style={{ width: p(37), height: p(36) }} />
+              <ICON.IconLocate />
               <Text style={[styles.text2, { marginLeft: p(16) }]}>{'GPS'}</Text>
             </View>
             <Text style={styles.text3}>{'Código de GPS: 002BA98C'}</Text>
@@ -31,11 +33,9 @@ export default class GPS extends React.Component {
           <Text style={styles.text4}>{'Estas utilizando el GPS de optiagro para obtener información de la maquinaria.'}</Text>
           <Text style={styles.text4}>{'Puedes desvincular el GPS de está máquina, para ponerselo a otra o para remplazarlo, presionando "Quitar GPS".'}</Text>
 
-          <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-            <TouchableOpacity style={styles.rectNgulo}>
-              <Text style={styles.btnText}>{'QUITAR GPS'}</Text>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity onPress={this.props.update1} style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <BTN.BlueWhite title={'QUITAR GPS'}/>
+          </TouchableOpacity>
 
         </View>
 
@@ -43,18 +43,16 @@ export default class GPS extends React.Component {
 
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Image source={images.downloadGrey} style={{ width: p(21), height: p(26) }} />
+              <ICON.IconDownload right={p(15)}/>
               <Text style={[styles.text2, { marginLeft: p(16) }]}>{'Extraer datos de GPS'}</Text>
             </View>
           </View>
 
           <Text style={styles.text4}>{'Puedes extraer los datos del GPS de la máquina para verlos mas tarde desde donde quieras.'}</Text>
 
-          <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-            <TouchableOpacity style={styles.rectNgulo}>
-              <Text style={styles.btnText}>{'EXTRAER DATOS'}</Text>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity onPress={this.props.update2} style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <BTN.BlueWhite title={'EXTRAER DATOS'}/>
+          </TouchableOpacity>
 
         </View>
       </View>
