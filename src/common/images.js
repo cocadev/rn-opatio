@@ -31,6 +31,8 @@ export const images = {
     downloadRound: require('../../assets/images/download-round.png'),
     downloadGrey: require('../../assets/images/download-grey.png'),
     down: require('../../assets/images/down.png'),
+    down_white: require('../../assets/images/down-white.png'),
+
     dustbin: require('../../assets/images/dustbin.png'),
 
 

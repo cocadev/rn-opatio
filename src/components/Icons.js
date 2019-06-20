@@ -6,6 +6,8 @@ import { images } from '../common/images';
 import { Actions } from 'react-native-router-flux';
 
 export const IconDown = props => (<Image source={images.down} style={{ width: p(12), height: p(8) }} />)
+export const IconDownWhite = props => (<Image source={images.down_white} style={{ width: p(12), height: p(8) }} />)
+
 export const IconUp = props => (<Image source={images.play} style={{ width: p(22), height: p(28) }} />)
 export const IconWhiteSearch = props => (<Image source={images.search_white} style={{ width: p(17), height: p(17), marginRight: props.right }} />)
 export const IconFolder = props => (<Image source={images.folder} style={{ width: p(20), height: p(16), marginRight: props.right }} />)
@@ -24,9 +26,11 @@ export const IconParameter = props => (<Image source={images.parameter} style={{
 export const IconError = props => (<Image source={images.error} style={{ width: p(23), height: p(20), marginRight: props.right, marginLeft: props.left  }} />)
 export const IconTrackGrey = props => (<Image source={images.trackGrey} style={{ width: p(23), height: p(25), marginRight: props.right, marginLeft: props.left  }} />)
 export const IconGreenCheck = props => (<Image source={images.greenCheck} style={{ width: p(20), height: p(20), marginRight: props.right, marginLeft: props.left  }} />)
-export const IconCircleExc = props => (<Image source={images.circleExc} style={{ width: p(20), height: p(20), marginRight: props.right, marginLeft: props.left  }} />)
+export const IconCircleExc = props => (<Image source={images.circleExc} style={{ width: p(20), height: p(20), marginRight: props.right, marginLeft: props.left, marginTop: props.top  }} />)
 export const IconLocate = props => (<Image source={images.locate} style={{ width: p(37), height: p(36), marginRight: props.right, marginLeft: props.left  }} />)
 export const IconDownload = props => (<Image source={images.download} style={{ width: p(21), height: p(26), marginRight: props.right, marginLeft: props.left  }} />)
+export const IconCamera = props => (<Image source={images.photoAdd} style={{ width: p(23), height: p(21), marginRight: props.right, marginLeft: props.left  }} />)
+export const IconProfile = props => (<Image source={images.profile} style={{ width: p(20), height: p(20), marginRight: props.right, marginLeft: props.left  }} />)
 
 export const ImgMessageBar = props => (<Image source={images.message_bar} style={{ width: p(344), height: p(36), marginRight: props.right, marginLeft: props.left  }} />)
 

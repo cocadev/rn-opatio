@@ -17,9 +17,11 @@ export default {
   t_16_500_ff:{ color: '#ffffff', fontSize: p(18), fontWeight: '400' },
   t_16_700_2e:{ color: '#2e2e2e', fontSize: p(18), fontWeight: '700' },
   t_16_500_98:{ color: '#989898', fontSize: p(18), fontWeight: '500' },
+  t_16_500_00:{ color: '#000000', fontSize: p(18), fontWeight: '500' },
 
   t_18_500_2b:{ color: '#2b2b2b', fontSize: p(18), fontWeight: '500' },
 
   t_28_700_ff:{ color: '#ffffff', fontSize: p(31), fontWeight: '700' },
+  t_30_700_ff:{ color: '#ffffff', fontSize: p(31), fontWeight: '700' },
 
 }

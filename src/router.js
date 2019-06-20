@@ -35,6 +35,7 @@ import MachineNewContractor from './screens/Dashboard/MachineNewContractor';
 import MachineTrackDetail from './screens/Dashboard/MachineTrackDetail';
 import MachineSettings from './screens/Dashboard/MachineSettings';
 import MachineryAlertsCreateEdit from './screens/Dashboard/MaquinariasTab/alertCreateEdit';
+import MachineNew from './screens/Dashboard/MachineNew';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -107,9 +108,10 @@ export default class App extends PureComponent {
               <Scene key="maquinarias" component={Maquinarias} initial={false} hideNavBar/>
               <Scene key="maquinariastab" component={MaquinariasTab} initial={false} hideNavBar/>
               <Scene key="machinenewcontractor" component={MachineNewContractor} initial={false} hideNavBar/>
-              <Scene key="machinetrackdetail" component={MachineTrackDetail} initial={true} hideNavBar/>
+              <Scene key="machinetrackdetail" component={MachineTrackDetail} initial={false} hideNavBar/>
               <Scene key="machinesettings" component={MachineSettings} initial={false} hideNavBar/>
               <Scene key="MachineryAlertsCreateEdit" component={MachineryAlertsCreateEdit} initial={false} hideNavBar/>
+              <Scene key="MachineNew" component={MachineNew} initial={true} hideNavBar/>
 
 
 
