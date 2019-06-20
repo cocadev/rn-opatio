@@ -12,6 +12,7 @@ export const images = {
     blackSearch: require('../../assets/images/blackSearch.png'),
 
     calendar: require('../../assets/images/calendar.png'),
+    call: require('../../assets/images/call.png'),
     check: require('../../assets/images/check.png'),
     chart: require('../../assets/images/chart.png'),
     cultivo: require('../../assets/images/cultivo.png'),
@@ -38,6 +39,8 @@ export const images = {
 
     edit: require('../../assets/images/edit.png'),
     error: require('../../assets/images/error.png'),
+    excWhite: require('../../assets/images/exc-white.png'),
+
     folder: require('../../assets/images/folder.png'),
     greenCheck: require('../../assets/images/greenCheck.png'),
 

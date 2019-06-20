@@ -36,6 +36,7 @@ import MachineTrackDetail from './screens/Dashboard/MachineTrackDetail';
 import MachineSettings from './screens/Dashboard/MachineSettings';
 import MachineryAlertsCreateEdit from './screens/Dashboard/MaquinariasTab/alertCreateEdit';
 import MachineNew from './screens/Dashboard/MachineNew';
+import MachineSpeedAlarm from './screens/Dashboard/MachineSpeedAlarm';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -93,7 +94,7 @@ export default class App extends PureComponent {
 
               </Drawer>
 
-              <Scene key="lotes" component={Lotes} initial={true} hideNavBar/>
+              <Scene key="lotes" component={Lotes} initial={false} hideNavBar/>
               <Scene key="loteselection" component={LoteSelection} initial={false} hideNavBar/>
               <Scene key="lotetab" component={LotesTab} initial={false} hideNavBar/>
               <Scene key="lotedetail" component={LoteDetail} initial={false} hideNavBar/>
@@ -111,7 +112,8 @@ export default class App extends PureComponent {
               <Scene key="machinetrackdetail" component={MachineTrackDetail} initial={false} hideNavBar/>
               <Scene key="machinesettings" component={MachineSettings} initial={false} hideNavBar/>
               <Scene key="MachineryAlertsCreateEdit" component={MachineryAlertsCreateEdit} initial={false} hideNavBar/>
-              <Scene key="MachineNew" component={MachineNew} initial={true} hideNavBar/>
+              <Scene key="MachineNew" component={MachineNew} initial={false} hideNavBar/>
+              <Scene key="MachineSpeedAlarm" component={MachineSpeedAlarm} initial={true} hideNavBar/>
 
 
 

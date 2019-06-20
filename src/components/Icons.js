@@ -22,7 +22,7 @@ export const IconNeedle3 = props => (<Image source={images.needle3} style={{ wid
 export const IconActive = props => (<Image source={images.active} style={{ width: p(25), height: p(25), marginRight: props.right, marginLeft: props.left  }} />)
 export const IconInActive = props => (<Image source={images.inactive} style={{ width: p(25), height: p(25), marginRight: props.right, marginLeft: props.left  }} />)
 
-export const IconParameter = props => (<Image source={images.parameter} style={{ width: p(22), height: p(16), marginRight: props.right, marginLeft: props.left  }} />)
+export const IconParameter = props => (<Image source={images.parameter} style={{ width: p(22), height: p(16), marginRight: props.right, marginLeft: props.left, marginTop: props.top  }} />)
 export const IconError = props => (<Image source={images.error} style={{ width: p(23), height: p(20), marginRight: props.right, marginLeft: props.left  }} />)
 export const IconTrackGrey = props => (<Image source={images.trackGrey} style={{ width: p(23), height: p(25), marginRight: props.right, marginLeft: props.left  }} />)
 export const IconGreenCheck = props => (<Image source={images.greenCheck} style={{ width: p(20), height: p(20), marginRight: props.right, marginLeft: props.left  }} />)
@@ -31,6 +31,11 @@ export const IconLocate = props => (<Image source={images.locate} style={{ width
 export const IconDownload = props => (<Image source={images.download} style={{ width: p(21), height: p(26), marginRight: props.right, marginLeft: props.left  }} />)
 export const IconCamera = props => (<Image source={images.photoAdd} style={{ width: p(23), height: p(21), marginRight: props.right, marginLeft: props.left  }} />)
 export const IconProfile = props => (<Image source={images.profile} style={{ width: p(20), height: p(20), marginRight: props.right, marginLeft: props.left  }} />)
+export const IconExcWhite = props => (<Image source={images.excWhite} style={{ width: p(22), height: p(26), marginRight: props.right, marginLeft: props.left  }} />)
+export const IconCall = props => (<Image source={images.call} style={{ width: p(25), height: p(24), marginBottom: props.bottom, marginLeft: props.left  }} />)
+
+export const IconRoundLayer = props => (<Image source={images.layer1} style={{ width: p(48), height: p(49), marginRight: props.right, marginLeft: props.left  }} />)
+
 
 export const ImgMessageBar = props => (<Image source={images.message_bar} style={{ width: p(344), height: p(36), marginRight: props.right, marginLeft: props.left  }} />)
 
