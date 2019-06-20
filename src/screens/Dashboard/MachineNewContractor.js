@@ -4,43 +4,40 @@ import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
 import Header from '../../components/Header2';
+import { Actions } from 'react-native-router-flux';
+
+import * as ICON from '../../components/Icons';
+import * as BTN from '../../components/Buttons';
 
 const height = Math.round(Dimensions.get('window').height);
 const width = Math.round(Dimensions.get('window').width);
 
 export default class MachineNewContractor extends Component {
 
-    constructor() {
+    constructor(){
         super();
         this.state = {
-            video: false
+            email: '',
+            tel: '',
+            social: '',
+            ciu: '',
+            prov: '',
+            direction: ''
         }
     }
 
-    renderPage(image, index) {
-        return (
-            <View key={index}>
-                <Image style={{ width: width, height: p(209) }} source={{ uri: image }} />
-            </View>
-        );
-    }
-
     render() {
-        const { video } = this.state;
+        const { email, tel, social, ciu, prov, direction } = this.state
         return (
             <ScrollView style={styles.container}>
 
                 <View style={styles.header}>
 
-                    <TouchableOpacity onPress={() => Actions.pop()}>
-                        <Image source={images.back} style={{ width: 20, height: 18 }} />
-                    </TouchableOpacity>
+                    <ICON.IconBack />
 
-                    <View style={{ flexDirection: 'row' }}>
-                        <View style={[styles.vertical, { backgroundColor: colors.WHITE }]}>
-                            <Text style={{ color: colors.BLACK, fontWeight: '700' }}>{'GUARDAR'}</Text>
-                        </View>
-                    </View>
+                    <TouchableOpacity onPress={()=>Actions.pop()}>
+                        <BTN.WhiteDark title={'GUARDAR'} />
+                    </TouchableOpacity>
 
                 </View>
 
@@ -55,38 +52,38 @@ export default class MachineNewContractor extends Component {
                         <TextInput
                             style={styles.input}
                             placeholder="Email"
-                            onChangeText={(text) => this.setState({ text })}
-                            value={this.state.text}
+                            onChangeText={(email) => this.setState({ email })}
+                            value={email}
                         />
                         <TextInput
                             style={styles.input}
                             placeholder="Tel*"
-                            onChangeText={(text) => this.setState({ text })}
-                            value={this.state.text}
+                            onChangeText={(tel) => this.setState({ tel })}
+                            value={tel}
                         />
                         <TextInput
                             style={styles.input}
                             placeholder="Razón social*"
-                            onChangeText={(text) => this.setState({ text })}
-                            value={this.state.text}
+                            onChangeText={(social) => this.setState({ social })}
+                            value={social}
                         />
                         <TextInput
                             style={styles.input}
                             placeholder="Dirección"
-                            onChangeText={(text) => this.setState({ text })}
-                            value={this.state.text}
+                            onChangeText={(direction) => this.setState({ direction })}
+                            value={direction}
                         />
                         <TextInput
                             style={styles.input}
                             placeholder="Ciudad"
-                            onChangeText={(text) => this.setState({ text })}
-                            value={this.state.text}
+                            onChangeText={(ciu) => this.setState({ ciu })}
+                            value={ciu}
                         />
                         <TextInput
                             style={styles.input}
                             placeholder="Provincia"
-                            onChangeText={(text) => this.setState({ text })}
-                            value={this.state.text}
+                            onChangeText={(prov) => this.setState({ prov })}
+                            value={prov}
                         />
                     </View>
                 </View>

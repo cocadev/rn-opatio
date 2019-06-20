@@ -37,6 +37,8 @@ import MachineSettings from './screens/Dashboard/MachineSettings';
 import MachineryAlertsCreateEdit from './screens/Dashboard/MaquinariasTab/alertCreateEdit';
 import MachineNew from './screens/Dashboard/MachineNew';
 import MachineSpeedAlarm from './screens/Dashboard/MachineSpeedAlarm';
+import MaquinariasSwitch from './screens/Dashboard/MaquinariasSwitch';
+
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -90,7 +92,7 @@ export default class App extends PureComponent {
                 drawerWidth={width / 1.4}
                 drawerPosition="left"
               >
-                <Scene key="inbox" component={Inbox} initial={false} hideNavBar />
+                <Scene key="inbox" component={Inbox} initial={true} hideNavBar />
 
               </Drawer>
 
@@ -113,7 +115,9 @@ export default class App extends PureComponent {
               <Scene key="machinesettings" component={MachineSettings} initial={false} hideNavBar/>
               <Scene key="MachineryAlertsCreateEdit" component={MachineryAlertsCreateEdit} initial={false} hideNavBar/>
               <Scene key="MachineNew" component={MachineNew} initial={false} hideNavBar/>
-              <Scene key="MachineSpeedAlarm" component={MachineSpeedAlarm} initial={true} hideNavBar/>
+              <Scene key="MachineSpeedAlarm" component={MachineSpeedAlarm} initial={false} hideNavBar/>
+              <Scene key="MaquinariasSwitch" component={MaquinariasSwitch} initial={true} hideNavBar/>
+
 
 
 

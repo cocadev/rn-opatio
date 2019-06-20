@@ -2,6 +2,7 @@ export const images = {
 
     add: require('../../assets/images/add1.png'),
     addPlusGreen: require('../../assets/images/add-plus-green.png'),
+    addYellow: require('../../assets/images/add-yellow.png'),
 
     apart: require('../../assets/images/apart.png'),
     active: require('../../assets/images/active.png'),
@@ -12,6 +13,8 @@ export const images = {
     blackSearch: require('../../assets/images/blackSearch.png'),
 
     calendar: require('../../assets/images/calendar.png'),
+    calendar_green: require('../../assets/images/calendar-green.png'),
+
     call: require('../../assets/images/call.png'),
     check: require('../../assets/images/check.png'),
     chart: require('../../assets/images/chart.png'),

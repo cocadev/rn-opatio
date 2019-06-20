@@ -13,9 +13,9 @@ export const BlueWhite = props => (
 )
 
 export const WhiteDark = props => (
-  <TouchableOpacity style={styles.whiteBack}>
+  <View style={styles.whiteBack}>
     <Text style={text.t_11_700_00}>{props.title}</Text>
-  </TouchableOpacity>
+  </View>
 )
 
 export const AcceptCancel = props => (

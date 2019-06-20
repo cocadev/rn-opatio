@@ -13,10 +13,12 @@ import Maquinarias from './MaquinariasTab/Maquinarias';
 import Alarmas from './MaquinariasTab/alarmas';
 import Contratistas from './MaquinariasTab/contratistas';
 import { customStyles } from './customStyles'
+import * as ICON from '../../components/Icons';
+import text from '../../common/text';
 
 const height = Math.round(Dimensions.get('window').height);
 
-export default class MaquinariasTab extends Component {
+export default class MaquinariasSwitch extends Component {
 
     constructor(props) {
         super(props)
@@ -31,12 +33,12 @@ export default class MaquinariasTab extends Component {
         }
         this.state = {
             markerInfo,
-            selectTab: 1
+            calendar: false
         }
     }
 
     render() {
-        const { selectTab } = this.state;
+        const { calendar } = this.state;
         const markers = this.state.markerInfo.map((markerInfo) =>
             <MapView.Marker
                 coordinate={markerInfo}
@@ -78,37 +80,61 @@ export default class MaquinariasTab extends Component {
                         onChangeText={(text) => this.setState({ text })}
                         value={this.state.text}
                     />
+                    <View style={styles.dateView}>
+                        <Text style={text.t_18_700_ff}>{'Mar 23/07  -  Vier 26/07'}</Text>
+                    </View>
                 </View>
 
-                <View style={{ position: 'absolute', right: 15, top: p(165) }}>
+                <View style={{ position: 'absolute', right: 15, top: p(260) }}>
+
                     <TouchableOpacity>
-                        <Image source={images.layer1} style={{ width: p(65), height: p(65), marginBottom: p(5) }} />
+                        <ICON.IconRoundLayer bottom={p(4)} left={p(10)} />
                     </TouchableOpacity>
+
                     <TouchableOpacity>
-                        <Image source={images.locate1} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
+                        <ICON.IconLocate1 bottom={p(4)} left={p(10)} />
                     </TouchableOpacity>
+
+                    {
+                        !calendar &&
+                        <TouchableOpacity style={{ zIndex: 1 }} onPress={() => this.setState({ calendar: true })}>
+                            <ICON.IconCalendarGreen bottom={p(4)} />
+                        </TouchableOpacity>
+                    }
+
                 </View>
 
-                <View style={styles.searchView}>
-                    <TextInput style={styles.searchInput} placeholder={'Todas las máquinas'} />
-                    <Image source={images.search_white} style={{ width: p(18), height: p(18), marginRight: p(20) }} />
-                </View>
+                {
+                    !calendar &&
+                    <View style={styles.searchView}>
+                        <Maquinarias hidden={true} />
+                    </View>
+                }
 
-                <View style={styles.tab}>
-                    <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 1 ? colors.ORANGE : colors.GREY3, backgroundColor: selectTab == 1 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 1 })}>
-                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>MAQUINARIAS</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 2 ? colors.ORANGE : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
-                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>ALARMAS</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 3 ? colors.ORANGE : colors.GREY3, backgroundColor: selectTab == 3 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 3 })}>
-                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>CONTRATISTAS</Text>
-                    </TouchableOpacity>
-                </View>
+                {
+                    calendar &&
+                    <View style={[styles.searchView, { backgroundColor: colors.GREEN2, padding: p(21), alignItems: 'flex-start', flexDirection: 'column' }]}>
+                        <ICON.IconBack />
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: p(10)}}>
+                            <View style={{ flex:1, alignItems: 'center'}}>
+                                <Text style={text.t_30_700_ff}>{'Desde'}</Text>
+                                <ICON.IconCalendar top={p(10)} bottom={p(10)}/>
+                                <Text style={text.t_15_400_60}>{'Martes 23/07'}</Text>
+                            </View>
 
-                { selectTab == 1 && <Maquinarias /> }
-                { selectTab == 2 && <Alarmas /> }
-                { selectTab == 3 && <Contratistas /> }
+                            <View style={{ flex:0.01, width: 2, height: p(125), backgroundColor: colors.GREY6, marginTop: p(5) }}>
+
+                            </View>
+
+                            <View style={{ flex:1,alignItems: 'center'}}>
+                                <Text style={text.t_30_700_ff}>{'Desde'}</Text>
+                                <ICON.IconCalendar top={p(10)} bottom={p(10)}/>
+                                <Text style={text.t_15_400_60}>{'Martes 23/07'}</Text>
+                            </View>
+                        </View>
+                        <Text style={[text.t_16_500_ff, { textAlign: 'center', marginTop: p(22)}]}>{'Selecciona el período para el cual quieras ver la actividad de las maquinarias'}</Text>
+                    </View>
+                }
 
             </ScrollView>
         );
@@ -119,11 +145,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         ...StyleSheet.absoluteFillObject,
-        backgroundColor: '#F5FCFF'
+        backgroundColor: colors.GREEN2
     },
     map: {
         ...StyleSheet.absoluteFillObject,
-        height: p(300),
+        height: p(400),
     },
     welcome: {
         fontSize: 20,
@@ -135,11 +161,11 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     searchView: {
-        backgroundColor: colors.GREY4,
+        flex: 1,
+        backgroundColor: colors.WHITE,
         alignItems: 'center',
         flexDirection: 'row',
-        height: p(55),
-        marginTop: p(240)
+        marginTop: p(340)
     },
     searchInput: {
         flex: 1,
@@ -168,23 +194,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: p(72)
     },
-    headText: {
-        fontWeight: '700',
-        color: '#354052',
-        fontSize: p(16)
-    },
-    tab: {
-        flexDirection: 'row',
-        backgroundColor: colors.GREY3,
-        height: p(60)
-    },
-    tabItem: {
-        flex: 1,
-        borderTopColor: colors.GREY3,
-        borderTopWidth: p(8),
-        backgroundColor: colors.GREY3,
+    dateView: {
+        width: p(238),
+        height: p(36),
+        backgroundColor: colors.GREEN2,
+        borderRadius: 5,
+        margin: p(12),
         justifyContent: 'center',
         alignItems: 'center'
-    },
-
+    }
 });

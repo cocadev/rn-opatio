@@ -6,14 +6,16 @@ import { images } from '../../../common/images';
 import { p } from '../../../common/normalize';
 import { Actions } from 'react-native-router-flux';
 import UtilService from '../../../common/utils';
+import * as ICON from '../../../components/Icons';
 
 export default class Maquinarias extends React.Component {
 
     render() {
+        const { hidden } = this.props;
         return (
             <View style={styles.container}>
 
-                <Text style={styles.textTitle}>{'Tractores'}</Text>
+                { !hidden && <Text style={styles.textTitle}>{'Tractores'}</Text>}
 
                 <ScrollView>
                     {
@@ -30,7 +32,10 @@ export default class Maquinarias extends React.Component {
                                     </View>
                                     <View style={styles.vertical}></View>
                                     <Text style={styles.text3}>{item.status}</Text>
-                                    <Image source={ item.switch ? images.switch_on : images.switch_off} style={styles.switchButton} />
+
+                                    <TouchableOpacity onPress={()=>Actions.MaquinariasSwitch()}>
+                                       <ICON.IconSwitchOff />
+                                    </TouchableOpacity>
                                 </View>
                             );
                         })

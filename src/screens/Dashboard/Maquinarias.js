@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, Image, Platform, TouchableOpacity, TextInput } from 'react-native';
-import ActionButton from 'react-native-action-button';
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
@@ -10,6 +9,7 @@ import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONG
 import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
 import { Actions } from 'react-native-router-flux';
 import { customStyles } from './customStyles';
+import * as ICON from '../../components/Icons';
 
 export default class Maquinarias extends Component {
 
@@ -88,33 +88,8 @@ export default class Maquinarias extends Component {
                     </TouchableOpacity>
                 </View>
 
-                <ActionButton
-                    buttonColor={colors.ORANGE}
-                    size={80}
-                    offsetX={12}
-                    offsetY={12}
-                    spacing={5}
-                    renderIcon={active => active ? (<Image source={images.add} style={{ width: p(30), height: p(30) }} />) : (<Image source={images.add} style={{ width: p(27), height: p(27) }} />)}>
-                    >
-                    <ActionButton.Item size={60} buttonColor={colors.WHITE} onPress={() => console.log("notes tapped!")}>
-                        <Image source={images.layer} style={{ width: p(30), height: p(30) }} />
-                    </ActionButton.Item>
-                    {/* <ActionButton.Item size={60} buttonColor={colors.WHITE} onPress={() => {}}>
-                        <Image source={images.direction} style={{ width: p(19), height: p(50) }} />
-                    </ActionButton.Item> */}
-                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
-                        <Image source={images.lote} style={{ width: p(34), height: p(42) }} />
-                    </ActionButton.Item>
-                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
-                        <Image source={images.nota} style={{ width: p(28), height: p(45) }} />
-                    </ActionButton.Item>
-                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
-                        <Image source={images.tarea} style={{ width: p(28), height: p(48) }} />
-                    </ActionButton.Item>
-                    <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
-                        <Image source={images.cultivo} style={{ width: p(33), height: p(46) }} />
-                    </ActionButton.Item>
-                </ActionButton>
+                <ICON.IconAddYellow />
+                
             </View>
         );
     }

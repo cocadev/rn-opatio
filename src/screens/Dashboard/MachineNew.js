@@ -11,23 +11,27 @@ import * as BTN from '../../components/Buttons';
 
 export default class MachineNew extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            selectTab: 1
+    constructor(){
+        super();
+        this.state={
+            brand: '',
+            model: '',
+            width: '',
+            code: '',
         }
     }
 
     render() {
-        const { selectTab } = this.state;
-
+        const { brand, model, width, code } = this.state;
         return (
             <ScrollView style={styles.container}>
 
                 <View style={{ backgroundColor: colors.ORANGE }}>
                     <View style={styles.header}>
                         <ICON.IconBack top={p(5)} />
-                        <BTN.WhiteDark title={'GUARDAR'} />
+                        <TouchableOpacity onPress={()=>Actions.maquinariastab()}>
+                            <BTN.WhiteDark title={'GUARDAR'} />
+                        </TouchableOpacity>
                     </View>
                     <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center', marginVertical: p(50) }}>
                         <ICON.IconCamera right={p(16)} />
@@ -45,37 +49,39 @@ export default class MachineNew extends Component {
                         <TextInput
                             style={styles.input}
                             placeholder="Marca*"
-                            onChangeText={(text) => this.setState({ text })}
-                            value={this.state.brand}
+                            onChangeText={(brand) => this.setState({ brand })}
+                            value={brand}
                         />
                         <TextInput
                             style={styles.input}
                             placeholder="Modelo*"
                             onChangeText={(model) => this.setState({ model })}
-                            value={this.state.model}
+                            value={model}
                         />
                         <TextInput
                             style={styles.input}
                             placeholder="Ancho de labor (metros)*"
                             onChangeText={(width) => this.setState({ width })}
-                            value={this.state.width}
+                            value={width}
                         />
                         <TextInput
                             style={styles.input}
                             placeholder="Código de GPS"
                             onChangeText={(code) => this.setState({ code })}
-                            value={this.state.code}
+                            value={code}
                         />
                     </View>
                 </View>
 
                 <View style={styles.bar}>
-                    <ICON.IconProfile left={p(5)} right={p(23)}/>
+                    <ICON.IconProfile left={p(5)} right={p(23)} />
                     <View style={{ flex: 1 }}>
                         <Text style={text.t_16_500_00}>{'Contratista:'}</Text>
                         <Text style={text.t_15_400_98}>{'Sin asignar:'}</Text>
                     </View>
-                    <BTN.BlueWhite title={'NUEVO CONTRATISTA'}/>
+                    <TouchableOpacity onPress={()=>Actions.machinenewcontractor()}>
+                        <BTN.BlueWhite title={'NUEVO CONTRATISTA'} />
+                    </TouchableOpacity>
                 </View>
 
 
@@ -118,9 +124,9 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1
     },
     bar: {
-        flexDirection: 'row', 
-        alignItems: 'center', 
-        padding: p(24), 
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: p(24),
         paddingVertical: p(17),
         borderBottomColor: '#d0d0d0',
         borderBottomWidth: 1.5,
