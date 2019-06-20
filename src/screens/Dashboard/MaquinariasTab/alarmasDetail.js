@@ -24,7 +24,9 @@ export default class AlarmasDetail extends React.Component {
             <Text>{'Fecha: 23/04/18'}</Text>
             <Entypo name={'chevron-down'} size={24} color={colors.GREY4} />
           </View>
-          <Image source={images.settings} style={{ width: p(26), height: p(27), marginHorizontal: p(10)}} />
+          <TouchableOpacity onPress={()=>Actions.machinesettings()}>
+             <Image source={images.settings} style={{ width: p(26), height: p(27), marginHorizontal: p(10)}} />
+          </TouchableOpacity>
         </View>
 
         <ScrollView>

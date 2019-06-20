@@ -5,6 +5,7 @@ import { p } from '../../../common/normalize';
 import text from '../../../common/text';
 import * as ICON from '../../../components/Icons';
 import * as BTN from '../../../components/Buttons';
+import { Actions } from 'react-native-router-flux';
 
 export default class MachineryAlertsCreate extends React.Component {
 
@@ -22,7 +23,9 @@ export default class MachineryAlertsCreate extends React.Component {
           <View style={{ flex: 1}}>
             <Text style={text.t_16_700_2e}>{'Velocidad'}</Text>
           </View>
-          <ICON.IconAddPlusGreen right={p(30)}/>
+          <TouchableOpacity onPress={()=>Actions.MachineryAlertsCreateEdit()}>
+            <ICON.IconAddPlusGreen right={p(30)}/>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.itemView}>

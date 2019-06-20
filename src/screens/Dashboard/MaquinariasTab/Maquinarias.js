@@ -26,10 +26,10 @@ export default class Maquinarias extends React.Component {
                                         <Image source={UtilService.getCircleColr(item.type)} style={styles.circle} />
                                         <Text style={styles.text0}>{item.title}</Text>
                                     </View>
-                                    <View>
+                                    <TouchableOpacity onPress={()=>Actions.machinetrackdetail()}>
                                         <Text style={styles.text1}>{'Tractor ' + item.number}</Text>
                                         <Text style={styles.text2}>{item.name}</Text>
-                                    </View>
+                                    </TouchableOpacity>
                                     <View style={styles.vertical}></View>
                                     <Text style={styles.text3}>{item.status}</Text>
 

@@ -23,7 +23,9 @@ export default class MachineryAlertsCreateEdit extends React.Component {
         <View style={styles.view}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <ICON.IconBack />
-            <BTN.WhiteDark title={'GUARDAR'} />
+            <TouchableOpacity onPress={()=>Actions.pop()}>
+              <BTN.WhiteDark title={'GUARDAR'} />
+            </TouchableOpacity>
           </View>
           <View style={{ marginHorizontal: p(65), justifyContent: 'center' }}>
             <TextInput
@@ -50,7 +52,7 @@ export default class MachineryAlertsCreateEdit extends React.Component {
           </View>
         </View>
 
-        <View style={[styles.itemView, { borderBottomWidth: 0}]}>
+        <View style={[styles.itemView, { borderBottomWidth: 0 }]}>
           <ICON.IconGreenCheck right={p(20)} left={p(7)} />
           <Text style={text.t_10_500_8b}>{'Velocidad Máxima: '}</Text>
           <TextInput
@@ -61,7 +63,7 @@ export default class MachineryAlertsCreateEdit extends React.Component {
           <Text style={text.t_18_500_2b}>{'km/h'}</Text>
         </View>
 
-        <View style={[styles.itemView, { borderBottomWidth: 0}]}>
+        <View style={[styles.itemView, { borderBottomWidth: 0 }]}>
           <ICON.IconError right={p(22)} left={p(5)} />
           <Text style={text.t_10_500_8b}>{'Velocidad Mínima: '}</Text>
           <TextInput
@@ -72,11 +74,11 @@ export default class MachineryAlertsCreateEdit extends React.Component {
           <Text style={text.t_18_500_2b}>{'km/h'}</Text>
         </View>
 
-        <View style={{ alignItems: 'center', marginTop: p(-15)}}>
+        <View style={{ alignItems: 'center', marginTop: p(-15) }}>
           <ICON.ImgMessageBar />
         </View>
 
-        <View style={[styles.itemView, { borderBottomWidth: 0, marginLeft: p(46)}]}>
+        <View style={[styles.itemView, { borderBottomWidth: 0, marginLeft: p(46) }]}>
           <Text style={text.t_10_500_8b}>{'Margen de tiempo: '}</Text>
           <TextInput
             style={styles.textinput2}
@@ -87,12 +89,12 @@ export default class MachineryAlertsCreateEdit extends React.Component {
         </View>
 
         <View style={styles.exclamation}>
-           <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Text style={text.t_16_500_98}>{'Alerta de Velocidad'}</Text>
-              <ICON.IconCircleExc right={p(12)} />
-           </View>
-           <Text style={[text.t_12_400_98, { marginVertical: p(12)}]}>{'Ingresa umbrales de velocidad que coincidan con el óptimo para una determinada labor, cuando la velocidad de la maquinaria exceda el umbral, se disparará la alarma.'}</Text>
-           <Text style={text.t_12_400_98}>{'Ejemplo: Si la velocidad máxima ingresada es 7 km/h y el márgen de tiemo ingresado es de 10 min, y la máquina va a 9 km/h durante 10 min, se disparará la alarma.'}</Text>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text style={text.t_16_500_98}>{'Alerta de Velocidad'}</Text>
+            <ICON.IconCircleExc right={p(12)} />
+          </View>
+          <Text style={[text.t_12_400_98, { marginVertical: p(12) }]}>{'Ingresa umbrales de velocidad que coincidan con el óptimo para una determinada labor, cuando la velocidad de la maquinaria exceda el umbral, se disparará la alarma.'}</Text>
+          <Text style={text.t_12_400_98}>{'Ejemplo: Si la velocidad máxima ingresada es 7 km/h y el márgen de tiemo ingresado es de 10 min, y la máquina va a 9 km/h durante 10 min, se disparará la alarma.'}</Text>
         </View>
 
       </ScrollView>

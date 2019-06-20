@@ -27,7 +27,7 @@ export const IconError = props => (<Image source={images.error} style={{ width: 
 export const IconTrackGrey = props => (<Image source={images.trackGrey} style={{ width: p(23), height: p(25), marginRight: props.right, marginLeft: props.left }} />)
 export const IconGreenCheck = props => (<Image source={images.greenCheck} style={{ width: p(20), height: p(20), marginRight: props.right, marginLeft: props.left }} />)
 export const IconCircleExc = props => (<Image source={images.circleExc} style={{ width: p(20), height: p(20), marginRight: props.right, marginLeft: props.left, marginTop: props.top }} />)
-export const IconLocate = props => (<Image source={images.locate} style={{ width: p(52), height: p(52), marginRight: props.right, marginLeft: props.left }} />)
+export const IconLocate = props => (<Image source={images.locate} style={{ width: p(28), height: p(28), marginRight: props.right, marginLeft: props.left }} />)
 export const IconLocate1 = props => (<Image source={images.locate1} style={{ width: p(52), height: p(52), marginRight: props.right, marginBottom: props.bottom, marginLeft: props.left }} />)
 
 export const IconDownload = props => (<Image source={images.download} style={{ width: p(21), height: p(26), marginRight: props.right, marginLeft: props.left }} />)

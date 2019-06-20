@@ -116,7 +116,7 @@ export default class App extends PureComponent {
               <Scene key="MachineryAlertsCreateEdit" component={MachineryAlertsCreateEdit} initial={false} hideNavBar/>
               <Scene key="MachineNew" component={MachineNew} initial={false} hideNavBar/>
               <Scene key="MachineSpeedAlarm" component={MachineSpeedAlarm} initial={false} hideNavBar/>
-              <Scene key="MaquinariasSwitch" component={MaquinariasSwitch} initial={true} hideNavBar/>
+              <Scene key="MaquinariasSwitch" component={MaquinariasSwitch} initial={false} hideNavBar/>
 
 
 
