@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { colors } from '../../../common/colors'
 import { p } from '../../../common/normalize';
 import { images } from '../../../common/images';
+import { Actions } from 'react-native-router-flux';
 
 export default class RenderItem extends React.Component {
 
@@ -26,10 +27,10 @@ export default class RenderItem extends React.Component {
 
           <View style={{ flexDirection: 'column' }}>
             <View style={Cstyles.view}>
-              <View>
+              <TouchableOpacity onPress={()=>Actions.MachineSpeedAlarm()}>
                 <Text style={Cstyles.text1}>{'Tractor 150'}</Text>
                 <Text style={Cstyles.text2}>{'John Deere 6130J'}</Text>
-              </View>
+              </TouchableOpacity>
               <View style={Cstyles.vertical}></View>
               <View style={{}}>
                 <Text style={Cstyles.text3}>{'Cesar Cuestas'}</Text>

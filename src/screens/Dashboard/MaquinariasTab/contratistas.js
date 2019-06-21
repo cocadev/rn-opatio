@@ -14,7 +14,7 @@ export default class Contratistas extends React.Component {
             <View style={styles.container}>
 
                 <View style={{ alignItems: 'center', marginTop: p(8)}}>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={()=>Actions.machinenewcontractor()}>
                         <Text style={styles.headText}>{'NUEVO CONTRATISTA'}</Text>
                     </TouchableOpacity>
                 </View>
@@ -25,10 +25,10 @@ export default class Contratistas extends React.Component {
                             return (
                                 <View key={index} style={styles.view}>
                                     <Image source={images.user} style={styles.circle} />
-                                    <View style={{ width: p(190), marginLeft: p(3) }}>
+                                    <TouchableOpacity onPress={()=>Actions.MachinesContractorTab()} style={{ width: p(190), marginLeft: p(3) }}>
                                         <Text style={styles.text1}>{item.name}</Text>
                                         <Text style={styles.text2}>{item.address}</Text>
-                                    </View>
+                                    </TouchableOpacity>
                                     <View style={styles.count}>
                                         <Text style={styles.text3}>{item.count}</Text>
                                     </View>

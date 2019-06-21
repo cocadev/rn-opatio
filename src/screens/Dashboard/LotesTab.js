@@ -110,9 +110,9 @@ export default class LotesTab extends Component {
                     </TouchableOpacity>
                 </View>
 
-                {selectTab == 1 && <Notes />}
-                {selectTab == 2 && <Tareas />}
-                {selectTab == 3 && <Cultivos />}
+                { selectTab == 1 && <Notes />}
+                { selectTab == 2 && <Tareas />}
+                { selectTab == 3 && <Cultivos />}
 
             </ScrollView>
         );

@@ -16,6 +16,8 @@ export const images = {
     calendar_green: require('../../assets/images/calendar-green.png'),
 
     call: require('../../assets/images/call.png'),
+    call_white: require('../../assets/images/call-white.png'),
+    call_round: require('../../assets/images/call-round.png'),
     check: require('../../assets/images/check.png'),
     chart: require('../../assets/images/chart.png'),
     cultivo: require('../../assets/images/cultivo.png'),
@@ -31,6 +33,7 @@ export const images = {
     dot1: require('../../assets/images/dot1.png'),
     dot2: require('../../assets/images/dot2.png'),
     dots: require('../../assets/images/dots.png'),
+    dots_white: require('../../assets/images/dots-white.png'),
     download: require('../../assets/images/download.png'),
     downloadRound: require('../../assets/images/download-round.png'),
     downloadGrey: require('../../assets/images/download-grey.png'),
@@ -85,6 +88,8 @@ export const images = {
     pause: require('../../assets/images/pause.png'),
     play: require('../../assets/images/play.png'),
     profile: require('../../assets/images/profile.png'),
+    profile_big: require('../../assets/images/profile-big.png'),
+
     photoAdd: require('../../assets/images/photo-add.png'),
     position: require('../../assets/images/position1.png'),
     parameter: require('../../assets/images/parameter.png'),

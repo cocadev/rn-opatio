@@ -14,6 +14,8 @@ import AlarmasDetail from './MaquinariasTab/alarmasDetail';
 import Statistic from './MaquinariasTab/statistics';
 import { customStyles } from './customStyles'
 import * as BTN from '../../components/Buttons';
+import * as ICON from '../../components/Icons';
+
 import text from '../../common/text';
 
 const height = Math.round(Dimensions.get('window').height);
@@ -36,7 +38,8 @@ export default class MachineTrackDetail extends Component {
             markerInfo,
             selectTab: 1,
             modal1: false,
-            modal2: false
+            modal2: false,
+            modal3: false
         }
     }
 
@@ -54,6 +57,9 @@ export default class MachineTrackDetail extends Component {
     }
     update2() {
         this.setState({ modal2: true })
+    }
+    update3() {
+        this.setState({ modal3: true })
     }
 
     renderModal1() {
@@ -108,8 +114,38 @@ export default class MachineTrackDetail extends Component {
         );
     }
 
+    renderModal3() {
+        return (
+            <Modal
+                visible={this.state.modal3}
+                transparent={true}
+                onRequestClose={() => { }}
+            >
+                <View style={styles.modalContainer}>
+                    <View style={[styles.modal, { alignItems: 'center', height: p(240)}]}>
+                        <Text style={[text.t_14_700_60, { textAlign: 'center', lineHeight: p(21)}]}>{'\nIngresar Código de GPS:\n\n'}</Text>
+                        <View style={styles.dropdown}>
+                            <Text style={{ color: colors.WHITE}}>.</Text>
+                            <ICON.IconDown />
+                        </View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+
+                            <TouchableOpacity style={{ marginHorizontal: p(10)}} onPress={() => this.setState({ modal3: false })}>
+                                <BTN.AcceptCancel title={'CANCELAR'} />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ marginHorizontal: p(10)}} onPress={() => this.setState({ modal3: false })}>
+                                <BTN.AcceptCancel title={'ACEPTAR'} />
+                            </TouchableOpacity>
+
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+        );
+    }
+
     render() {
-        const { selectTab, modal1, modal2 } = this.state;
+        const { selectTab, modal1, modal2, modal3 } = this.state;
         const markers = this.state.markerInfo.map((markerInfo) =>
             <MapView.Marker
                 coordinate={markerInfo}
@@ -186,11 +222,13 @@ export default class MachineTrackDetail extends Component {
                 </View>
 
                 {selectTab == 1 && <AlarmasDetail />}
-                {selectTab == 2 && <GPS update1={() => this.setState({ modal1: true })} update2={() => this.setState({ modal2: true })} />}
+                {selectTab == 2 && <GPS update1={() => this.setState({ modal1: true })} update2={() => this.setState({ modal2: true })} update3={() => this.setState({ modal3: true })} />}
                 {selectTab == 3 && <Statistic />}
 
                 {modal1 && this.renderModal1()}
                 {modal2 && this.renderModal2()}
+                {modal3 && this.renderModal3()}
+
 
             </ScrollView>
         );
@@ -282,4 +320,17 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: 'center'
     },
+    dropdown: {
+        width: p(142),
+        height: p(32),
+        padding: p(10),
+        marginVertical: p(30),
+        flexDirection: 'row',
+        borderRadius: 5,
+        borderColor: '#707070',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    }
 });

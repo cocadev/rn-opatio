@@ -90,7 +90,12 @@ export default class MaquinariasTab extends Component {
                 </View>
 
                 <View style={styles.searchView}>
-                    <TextInput style={styles.searchInput} placeholder={'Todas las máquinas'} />
+                    <TextInput
+                        style={styles.searchInput}
+                        placeholder={
+                            selectTab !== 1 ? ( selectTab == 2 ? 'Todas las Alarmas' : 'Todas las Contratistas') : 'Todas las Maquinarias'
+                        }
+                    />
                     <Image source={images.search_white} style={{ width: p(18), height: p(18), marginRight: p(20) }} />
                 </View>
 
@@ -106,9 +111,9 @@ export default class MaquinariasTab extends Component {
                     </TouchableOpacity>
                 </View>
 
-                { selectTab == 1 && <Maquinarias /> }
-                { selectTab == 2 && <Alarmas /> }
-                { selectTab == 3 && <Contratistas /> }
+                { selectTab == 1 && <Maquinarias />}
+                { selectTab == 2 && <Alarmas />}
+                { selectTab == 3 && <Contratistas />}
 
             </ScrollView>
         );

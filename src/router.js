@@ -38,6 +38,7 @@ import MachineryAlertsCreateEdit from './screens/Dashboard/MaquinariasTab/alertC
 import MachineNew from './screens/Dashboard/MachineNew';
 import MachineSpeedAlarm from './screens/Dashboard/MachineSpeedAlarm';
 import MaquinariasSwitch from './screens/Dashboard/MaquinariasSwitch';
+import MachinesContractorTab from './screens/Dashboard/MachinesContractorTab';
 
 
 const width = Dimensions.get('window').width
@@ -117,6 +118,7 @@ export default class App extends PureComponent {
               <Scene key="MachineNew" component={MachineNew} initial={false} hideNavBar/>
               <Scene key="MachineSpeedAlarm" component={MachineSpeedAlarm} initial={false} hideNavBar/>
               <Scene key="MaquinariasSwitch" component={MaquinariasSwitch} initial={false} hideNavBar/>
+              <Scene key="MachinesContractorTab" component={MachinesContractorTab} initial={false} hideNavBar/>
 
 
 

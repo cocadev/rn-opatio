@@ -26,7 +26,9 @@ export default class GPS extends React.Component {
               <ICON.IconLocate />
               <Text style={[styles.text2, { marginLeft: p(16) }]}>{'GPS'}</Text>
             </View>
-            <Text style={styles.text3}>{'Código de GPS: 002BA98C'}</Text>
+            <TouchableOpacity onPress={this.props.update3}>
+              <Text style={styles.text3}>{'Código de GPS: 002BA98C'}</Text>
+            </TouchableOpacity>
           </View>
 
           <Text style={styles.text4}>{'Última conexión: Ahora'}</Text>
