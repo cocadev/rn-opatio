@@ -42,7 +42,13 @@ export const IconSwitchOff = props => (<Image source={images.switch_off} style={
 export const IconCalendarGreen = props => (<Image source={images.calendar_green} style={{ width: p(66), height: p(67), marginBottom: props.bottom, marginRight: props.right, marginLeft: props.left }} />)
 export const IconCalendar = props => (<Image source={images.calendar} style={{ width: p(44), height: p(50), marginTop: props.top, marginBottom: props.bottom, marginRight: props.right, marginLeft: props.left }} />)
 export const IconDots = props => (<Image source={images.dots_white} style={{ width: p(6), height: p(21), marginRight: props.right, marginLeft: props.left }} />)
+export const IconClose = props => (<Image source={images.close} style={{ width: p(15), height: p(14), marginRight: props.right, marginLeft: props.left }} />)
 
+export const IconModalField1 = props => (<Image source={images.map_field1} style={{ width: p(58), height: p(58), marginRight: props.right, marginLeft: props.left }} />)
+export const IconModalField2 = props => (<Image source={images.map_field2} style={{ width: p(58), height: p(58), marginRight: props.right, marginLeft: props.left }} />)
+export const IconModalField3 = props => (<Image source={images.map_field3} style={{ width: p(58), height: p(58), marginRight: props.right, marginLeft: props.left }} />)
+export const IconModalField4 = props => (<Image source={images.map_field4} style={{ width: p(58), height: p(58), marginRight: props.right, marginLeft: props.left }} />)
+export const IconModalField5 = props => (<Image source={images.map_field5} style={{ width: p(58), height: p(58), marginRight: props.right, marginLeft: props.left }} />)
 
 
 export const IconRoundLayer = props => (<Image source={images.layer1} style={{ width: p(52), height: p(52), marginRight: props.right, marginLeft: props.left, marginBottom: props.bottom }} />)

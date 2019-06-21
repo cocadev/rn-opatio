@@ -20,6 +20,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-action-button": "^2.8.5",
     "react-native-banner-carousel": "^1.0.3",
+    "react-native-calendars": "^1.188.0",
     "react-native-drawer": "^2.5.1",
     "react-native-geojson": "^0.1.1",
     "react-native-maps": "^0.24.2",

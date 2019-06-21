@@ -15,7 +15,7 @@ import Inbox from './screens/Dashboard/index';
 import Lotes from './screens/Dashboard/Lotes';
 
 import { images } from './common/images';
-import Test from './screens/Map/Test/index';
+import Test from './screens/Map/Test/test';
 import Overlays from './screens/Map/ZIndexMarkers';
 import LoteSelection from './screens/Dashboard/Loteselection';
 import LotesTab from './screens/Dashboard/LotesTab';

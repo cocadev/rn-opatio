@@ -539,7 +539,13 @@ export const CUSTOM_STYLE = [
     },
   ];
 
-
+export const customCalendarStyles = {
+  container: {
+    borderColor: '#1982e5',
+    borderWidth: 2,
+    borderRadius: 0
+  }
+}
 
 
 

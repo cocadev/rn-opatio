@@ -28,6 +28,7 @@ export const images = {
     circlePink: require('../../assets/images/circle-pink.png'),
     circleWhite: require('../../assets/images/circle-white.png'),
     circleExc: require('../../assets/images/circle-exc.png'),
+    close: require('../../assets/images/close.png'),
 
     direction: require('../../assets/images/direction1.png'),
     dot1: require('../../assets/images/dot1.png'),
@@ -77,6 +78,11 @@ export const images = {
     mapPositionYellow: require('../../assets/images/map-position-yellow.png'),
     mapPositionGrey: require('../../assets/images/map-position-grey.png'),
     message_bar: require('../../assets/images/message-bar.png'),
+    map_field1: require('../../assets/images/map-field1.png'),
+    map_field2: require('../../assets/images/map-field2.png'),
+    map_field3: require('../../assets/images/map-field3.png'),
+    map_field4: require('../../assets/images/map-field4.png'),
+    map_field5: require('../../assets/images/map-field5.png'),
 
     news: require('../../assets/images/news.png'),
     needle: require('../../assets/images/needle.png'),

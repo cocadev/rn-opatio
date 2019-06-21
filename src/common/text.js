@@ -35,5 +35,6 @@ export default {
 
   t_28_700_ff:{ color: '#ffffff', fontSize: p(31), fontWeight: '700' },
   t_30_700_ff:{ color: '#ffffff', fontSize: p(31), fontWeight: '700' },
+  t_30_400_ff:{ color: '#ffffff', fontSize: p(31), fontWeight: '400' },
 
 }

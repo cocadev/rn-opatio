@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Optiagro",
+    "name": "Optiagro-1",
     "description": "Google Auth/MapView/Autocomplete-expo 32",
-    "slug": "optiagro",
+    "slug": "optiagro-1",
     "privacy": "unlisted",
     "platforms": [
       "ios",
