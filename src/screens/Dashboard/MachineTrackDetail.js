@@ -71,13 +71,13 @@ export default class MachineTrackDetail extends Component {
             >
                 <View style={styles.modalContainer}>
                     <View style={styles.modal}>
-                        <Text style={[text.t_14_700_60, { textAlign: 'center'}]}>{'\n\nVas a descargar las alarmas, el recorrido y las estadísticas de esta maquinaria para los últimos 7 días.\n\n Podrás acceder a esta información desde donde estés, sin necesidad de tener conexión a internet.\n\n'}</Text>
+                        <Text style={[text.t_14_700_60, { textAlign: 'center', lineHeight: p(21) }]}>{'\nVas a desvincular el GPS de esta maquinaria. Esto quiere decir que todo lo que haga este GPS de ahora hasta que sea vinculado con una nueva maquinaria no se guardara. \n\n\n\n'}</Text>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 
                             <TouchableOpacity onPress={() => this.setState({ modal1: false })}>
                                 <BTN.AcceptCancel title={'CANCELAR'} />
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.setState({ modal1: false })}>
+                            <TouchableOpacity onPress={() => this.setState({ modal1: false, modal3: true })}>
                                 <BTN.AcceptCancel title={'ACEPTAR'} />
                             </TouchableOpacity>
 
@@ -97,7 +97,8 @@ export default class MachineTrackDetail extends Component {
             >
                 <View style={styles.modalContainer}>
                     <View style={styles.modal}>
-                        <Text style={[text.t_14_700_60, { textAlign: 'center', lineHeight: p(21)}]}>{'\nVas a desvincular el GPS de esta maquinaria. Esto quiere decir que todo lo que haga este GPS de ahora hasta que sea vinculado con una nueva maquinaria no se guardara. \n\n\n\n'}</Text>
+
+                        <Text style={[text.t_14_700_60, { textAlign: 'center' }]}>{'\n\nVas a descargar las alarmas, el recorrido y las estadísticas de esta maquinaria para los últimos 7 días.\n\n Podrás acceder a esta información desde donde estés, sin necesidad de tener conexión a internet.\n\n'}</Text>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 
                             <TouchableOpacity onPress={() => this.setState({ modal2: false })}>
@@ -122,18 +123,18 @@ export default class MachineTrackDetail extends Component {
                 onRequestClose={() => { }}
             >
                 <View style={styles.modalContainer}>
-                    <View style={[styles.modal, { alignItems: 'center', height: p(240)}]}>
-                        <Text style={[text.t_14_700_60, { textAlign: 'center', lineHeight: p(21)}]}>{'\nIngresar Código de GPS:\n\n'}</Text>
+                    <View style={[styles.modal, { alignItems: 'center', height: p(240) }]}>
+                        <Text style={[text.t_14_700_60, { textAlign: 'center', lineHeight: p(21) }]}>{'\nIngresar Código de GPS:\n\n'}</Text>
                         <View style={styles.dropdown}>
-                            <Text style={{ color: colors.WHITE}}>.</Text>
+                            <Text style={{ color: colors.WHITE }}>.</Text>
                             <ICON.IconDown />
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 
-                            <TouchableOpacity style={{ marginHorizontal: p(10)}} onPress={() => this.setState({ modal3: false })}>
+                            <TouchableOpacity style={{ marginHorizontal: p(10) }} onPress={() => this.setState({ modal3: false })}>
                                 <BTN.AcceptCancel title={'CANCELAR'} />
                             </TouchableOpacity>
-                            <TouchableOpacity style={{ marginHorizontal: p(10)}} onPress={() => this.setState({ modal3: false })}>
+                            <TouchableOpacity style={{ marginHorizontal: p(10) }} onPress={() => this.setState({ modal3: false })}>
                                 <BTN.AcceptCancel title={'ACEPTAR'} />
                             </TouchableOpacity>
 
@@ -221,13 +222,13 @@ export default class MachineTrackDetail extends Component {
                     </TouchableOpacity>
                 </View>
 
-                {selectTab == 1 && <AlarmasDetail />}
-                {selectTab == 2 && <GPS update1={() => this.setState({ modal1: true })} update2={() => this.setState({ modal2: true })} update3={() => this.setState({ modal3: true })} />}
-                {selectTab == 3 && <Statistic />}
+                { selectTab == 1 && <AlarmasDetail />}
+                { selectTab == 2 && <GPS update1={() => this.setState({ modal1: true })} update2={() => this.setState({ modal2: true })} />}
+                { selectTab == 3 && <Statistic />}
 
-                {modal1 && this.renderModal1()}
-                {modal2 && this.renderModal2()}
-                {modal3 && this.renderModal3()}
+                { modal1 && this.renderModal1()}
+                { modal2 && this.renderModal2()}
+                { modal3 && this.renderModal3()}
 
 
             </ScrollView>

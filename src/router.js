@@ -80,7 +80,7 @@ export default class App extends PureComponent {
           <Router>
             <Scene>
 
-              <Scene key="intro" component={Intro} initial={false} hideNavBar />
+              <Scene key="intro" component={Intro} initial={true} hideNavBar />
               <Scene key="signin" component={SignIn} hideNavBar initial={false} />
               <Scene key="signup" component={SignUp} hideNavBar initial={false} />
               <Scene key="forgot" component={Forgot} initial={false} hideNavBar />
@@ -93,7 +93,7 @@ export default class App extends PureComponent {
                 drawerWidth={width / 1.4}
                 drawerPosition="left"
               >
-                <Scene key="inbox" component={Inbox} initial={true} hideNavBar />
+                <Scene key="inbox" component={Inbox} initial={false} hideNavBar />
 
               </Drawer>
 
@@ -112,7 +112,7 @@ export default class App extends PureComponent {
               <Scene key="maquinarias" component={Maquinarias} initial={false} hideNavBar/>
               <Scene key="maquinariastab" component={MaquinariasTab} initial={false} hideNavBar/>
               <Scene key="machinenewcontractor" component={MachineNewContractor} initial={false} hideNavBar/>
-              <Scene key="machinetrackdetail" component={MachineTrackDetail} initial={false} hideNavBar/>
+              <Scene key="machinetrackdetail" component={MachineTrackDetail} initial={true} hideNavBar/>
               <Scene key="machinesettings" component={MachineSettings} initial={false} hideNavBar/>
               <Scene key="MachineryAlertsCreateEdit" component={MachineryAlertsCreateEdit} initial={false} hideNavBar/>
               <Scene key="MachineNew" component={MachineNew} initial={false} hideNavBar/>

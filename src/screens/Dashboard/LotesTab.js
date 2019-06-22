@@ -161,7 +161,7 @@ export default class LotesTab extends Component {
                         <View style={{ height: p(63), backgroundColor: colors.BLUE2, justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={text.t_30_400_ff}>{'NDVI'}</Text>
                         </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: p(8)}}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', paddingVertical: p(8)}}>
                             <Calendar
                                 style={styles.calendar}
                                 theme={{
