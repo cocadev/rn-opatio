@@ -14,7 +14,7 @@ import Alarmas from './MaquinariasTab/alarmas';
 import Contratistas from './MaquinariasTab/contratistas';
 import { customStyles } from './customStyles'
 import * as ICON from '../../components/Icons';
-import CustomCallout from '../Map/CustomCallout';
+import * as CALLOUT from '../../components/Callouts';
 
 const height = Math.round(Dimensions.get('window').height);
 
@@ -41,6 +41,7 @@ export default class MaquinariasTab extends Component {
         const { selectTab } = this.state;
         const markers = this.state.markerInfo.map((markerInfo) =>
             <MapView.Marker
+                style={{zIndex: 2}}
                 coordinate={markerInfo}
                 key={markerInfo.id}
             >
@@ -49,10 +50,8 @@ export default class MaquinariasTab extends Component {
                     <Text style={{ fontSize: p(18), fontWeight: '700', color: colors.WHITE }}> Lote {markerInfo.id}</Text>
                 </View> */}
                 <ICON.IconTrackLocation />
-                <MapView.Callout tooltip style={styles.customView}>
-                    <CustomCallout>
-                        <Text>This is a custom callout bubble view</Text>
-                    </CustomCallout>
+                <MapView.Callout tooltip style={{ marginTop: -20}}>
+                    <CALLOUT.ORANGE children={'This is a custom callout bubble view'}/>
                 </MapView.Callout>
             </MapView.Marker>
         );

@@ -5,7 +5,7 @@ import { p } from '../../common/normalize';
 export const customStyles = StyleSheet.create({
     textinput: {
         width: p(260),
-        height: p(50),
+        height: p(44),
         paddingLeft: p(48),
         fontSize: p(16),
         borderColor: colors.GREY8,
@@ -18,7 +18,7 @@ export const customStyles = StyleSheet.create({
         left: p(60)
     },
     searchIcon: {
-        top: p(35), 
+        top: p(32), 
         left: p(22), 
         width: p(20), 
         height: p(19)

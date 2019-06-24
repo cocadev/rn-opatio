@@ -93,7 +93,7 @@ export const MainPage = props => {
       >
         <Scene key="inbox" component={Inbox} initial={false} hideNavBar />
       </Drawer>
-      { MAIN.map(a => (<Scene key={a.key} component={a.component} initial={false} hideNavBar />))}
+      { MAIN.map(a => (<Scene key={a.key} component={a.component} initial={a.key == 'maquinariastab' ? true : false} hideNavBar />))}
     </Stack>
   </Router>)
 }

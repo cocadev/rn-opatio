@@ -55,7 +55,6 @@ export default class App extends PureComponent {
   }
 
   async loggedIn(res) {
-    console.log('*** You are logged In ***', res)
     Cache.ACCESS_TOKEN = res.success.access_token;
     Cache.COMPANY_ID = res.success.company_id;
     Cache.EMAIL = res.success.email;

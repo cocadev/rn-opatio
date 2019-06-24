@@ -29,6 +29,7 @@ export const images = {
     circleWhite: require('../../assets/images/circle-white.png'),
     circleExc: require('../../assets/images/circle-exc.png'),
     close: require('../../assets/images/close.png'),
+    callout: require('../../assets/images/callout.png'),
 
     direction: require('../../assets/images/direction1.png'),
     dot1: require('../../assets/images/dot1.png'),
