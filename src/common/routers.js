@@ -37,14 +37,43 @@ import MaquinariasSwitch from '../screens/Dashboard/MaquinariasSwitch';
 import MachinesContractorTab from '../screens/Dashboard/MachinesContractorTab';
 
 const width = Dimensions.get('window').width
+const AUTH = [
+  { key: 'intro',  component: Intro},
+  { key: 'signin', component: SignIn},
+  { key: 'signup', component: SignUp},
+  { key: 'forgot', component: Forgot},
+]
+
+const MAIN = [
+  { key: 'lotes',                     component: Lotes},
+  { key: 'loteselection',             component: LoteSelection},
+  { key: 'lotetab',                   component: LotesTab},
+  { key: 'lotedetail',                component: LoteDetail},
+  { key: 'lotesedit',                 component: LotesEdit},
+  { key: 'lotedetail',                component: LoteDetail},
+  { key: 'lotecultivosdetail',        component: CultivosDetail},
+  { key: 'lotecreatedetail',          component: LoteCreateDetail},
+  { key: 'tareasdetail',              component: TareasDetail},
+  { key: 'tareasedit',                component: TareasEdit},
+  { key: 'lotedetail',                component: LoteDetail},
+  { key: 'cultivosDetail',            component: CultivosDetail},
+  { key: 'maquinarias',               component: Maquinarias},
+  { key: 'maquinariastab',            component: MaquinariasTab},
+  { key: 'machinenewcontractor',      component: MachineNewContractor},
+  { key: 'machinetrackdetail',        component: MachineTrackDetail},
+  { key: 'machinesettings',           component: MachineSettings},
+  { key: 'MachineryAlertsCreateEdit', component: MachineryAlertsCreateEdit},
+  { key: 'MachineNew',                component: MachineNew},
+  { key: 'MachineSpeedAlarm',         component: MachineSpeedAlarm},
+  { key: 'MaquinariasSwitch',         component: MaquinariasSwitch},
+  { key: 'MachinesContractorTab',     component: MachinesContractorTab},
+  { key: 'test',                      component: Callouts},
+]
 
 export const AuthPage = props => (
   <Router>
     <Stack key='root'>
-      <Scene key="intro" component={Intro} initial={false} hideNavBar />
-      <Scene key="signin" component={SignIn} initial={false} hideNavBar />
-      <Scene key="signup" component={SignUp} initial={false} hideNavBar />
-      <Scene key="forgot" component={Forgot} initial={false} hideNavBar />
+     { AUTH.map(a => (<Scene key={a.key} component={a.component} initial={false} hideNavBar />))}
     </Stack>
   </Router>
 )
@@ -52,44 +81,16 @@ export const AuthPage = props => (
 export const MainPage = props => (
   <Router>
     <Stack key='root'>
-
       <Drawer
         hideNavBar
         key="drawerMenu"
-        initial={false}
         contentComponent={SideMenu}
         drawerWidth={width / 1.4}
         drawerPosition="left"
       >
         <Scene key="inbox" component={Inbox} initial={false} hideNavBar />
-
       </Drawer>
-
-      <Scene key="lotes" component={Lotes} initial={false} hideNavBar />
-      <Scene key="loteselection" component={LoteSelection} initial={false} hideNavBar />
-      <Scene key="lotetab" component={LotesTab} initial={false} hideNavBar />
-      <Scene key="lotedetail" component={LoteDetail} initial={false} hideNavBar />
-      <Scene key="lotesedit" component={LotesEdit} initial={false} hideNavBar />
-      <Scene key="lotecultivosdetail" component={CultivosDetail} initial={false} hideNavBar />
-      <Scene key="lotecreatedetail" component={LoteCreateDetail} initial={false} hideNavBar />
-
-      <Scene key="tareasdetail" component={TareasDetail} initial={false} hideNavBar />
-      <Scene key="tareasedit" component={TareasEdit} initial={false} hideNavBar />
-      <Scene key="cultivosDetail" component={CultivosDetail} initial={false} hideNavBar />
-
-      <Scene key="maquinarias" component={Maquinarias} initial={false} hideNavBar />
-      <Scene key="maquinariastab" component={MaquinariasTab} initial={false} hideNavBar />
-      <Scene key="machinenewcontractor" component={MachineNewContractor} initial={false} hideNavBar />
-      <Scene key="machinetrackdetail" component={MachineTrackDetail} initial={false} hideNavBar />
-      <Scene key="machinesettings" component={MachineSettings} initial={false} hideNavBar />
-      <Scene key="MachineryAlertsCreateEdit" component={MachineryAlertsCreateEdit} initial={false} hideNavBar />
-      <Scene key="MachineNew" component={MachineNew} initial={false} hideNavBar />
-      <Scene key="MachineSpeedAlarm" component={MachineSpeedAlarm} initial={false} hideNavBar />
-      <Scene key="MaquinariasSwitch" component={MaquinariasSwitch} initial={false} hideNavBar />
-      <Scene key="MachinesContractorTab" component={MachinesContractorTab} initial={false} hideNavBar />
-
-      <Scene key="test" component={Callouts} initial={false} hideNavBar />
-
+      { MAIN.map(a => (<Scene key={a.key} component={a.component} initial={false} hideNavBar />))}
     </Stack>
   </Router>
 )
