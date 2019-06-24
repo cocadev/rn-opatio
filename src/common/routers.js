@@ -39,7 +39,6 @@ import MachinesContractorTab from '../screens/Dashboard/MachinesContractorTab';
 const width = Dimensions.get('window').width
 const AUTH = [
   { key: 'intro',  component: Intro},
-  { key: 'signin', component: SignIn},
   { key: 'signup', component: SignUp},
   { key: 'forgot', component: Forgot},
 ]
@@ -73,18 +72,22 @@ const MAIN = [
 export const AuthPage = props => (
   <Router>
     <Stack key='root'>
-     { AUTH.map(a => (<Scene key={a.key} component={a.component} initial={false} hideNavBar />))}
+     { AUTH.map(a => (<Scene key={a.key} component={a.component} hideNavBar />))}
+     <Scene key="signin" component={SignIn} update={(res)=>props.logIn(res)} hideNavBar />
+
     </Stack>
   </Router>
 )
 
-export const MainPage = props => (
+export const MainPage = props => {
+
+  return(
   <Router>
     <Stack key='root'>
       <Drawer
         hideNavBar
         key="drawerMenu"
-        contentComponent={SideMenu}
+        contentComponent={() => (<SideMenu update={()=>props.signOut()}/>)}
         drawerWidth={width / 1.4}
         drawerPosition="left"
       >
@@ -92,5 +95,5 @@ export const MainPage = props => (
       </Drawer>
       { MAIN.map(a => (<Scene key={a.key} component={a.component} initial={false} hideNavBar />))}
     </Stack>
-  </Router>
-)
+  </Router>)
+}

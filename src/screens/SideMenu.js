@@ -9,26 +9,19 @@ import { p } from '../common/normalize';
 const width = Dimensions.get('window').width
 
 export default class SideMenu extends Component {
-    constructor(props) {
-        super(props);
-    };
 
     render() {
         return (
             <View style={styles.container}>
-              
               <View style={{flex:3, justifyContent:'center', backgroundColor:'#eaf7f8'}}>
                  <TouchableOpacity style={{flexDirection:'row', alignItems:'center', marginLeft: 25,marginTop: 15,}}>
                      <Image source={images.user} style={styles.avatar}/>
                      <Text style={{ marginLeft:16, fontSize: p(21), fontWeight: '600', color: colors.TEXT}}>Martín García</Text>
                  </TouchableOpacity>
-                
                  <Text style={styles.textH}>Configuración de cuenta</Text>
-
               </View>
 
               <View style={{flex:12, backgroundColor:'#fff', paddingLeft: p(20)}}>
-           
                 <TouchableOpacity style={styles.menu}>
                     <Text style={styles.text}>Información de cuenta</Text>
                 </TouchableOpacity>
@@ -38,11 +31,10 @@ export default class SideMenu extends Component {
                 <TouchableOpacity style={styles.menu}>
                     <Text style={styles.text}>Cambiar contraseña</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.menu, { marginTop: p(15)}]}>
+                <TouchableOpacity style={[styles.menu, { marginTop: p(15)}]} onPress={()=>this.props.update()}>
                     <Text style={[styles.text, { fontWeight: '600'}]}>Log out</Text>
                 </TouchableOpacity>
               </View>
-            
             </View>
         );
     }

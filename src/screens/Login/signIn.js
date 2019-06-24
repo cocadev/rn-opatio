@@ -18,7 +18,6 @@ import * as BTN from '../../components/Buttons';
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
-
 class SignIn extends React.Component {
 
     constructor() {
@@ -38,20 +37,7 @@ class SignIn extends React.Component {
             await api.auth(this.state.email, this.state.password, async (res, err) => {
                 this.setState({ isWaiting: false })
                 if (err == null) {
-                    Cache.ACCESS_TOKEN = res.success.access_token;
-                    Cache.COMPANY_ID = res.success.company_id;
-                    Cache.EMAIL = res.success.email;
-                    Cache.ID = res.success.id;
-                    try {
-                        await AsyncStorage.setItem('TOKEN', res.success.access_token);
-                        await AsyncStorage.setItem('COMPANY_ID', res.success.company_id);
-                        await AsyncStorage.setItem('EMAIL', res.success.email);
-                        await AsyncStorage.setItem('ID', res.success.id);
-                    } catch (error) {
-                        console.log('ERR------------', error)
-                    }
-                    console.log("*res*", res)
-
+                    this.props.update(res)
                 } else {
                     console.log("*err*", err)
                 }
@@ -114,7 +100,6 @@ class SignIn extends React.Component {
 
                 </View>
             </View>
-
         )
     }
 }

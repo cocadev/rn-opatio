@@ -12,10 +12,13 @@ const height = Dimensions.get('window').height
 
 export default class App extends PureComponent {
 
-  state = {
-    fontLoaded: false,
-    authed: 0
-  };
+  constructor() {
+    super();
+    this.state = {
+      fontLoaded: false,
+      authed: 0
+    };
+  }
 
   async componentDidMount() {
     StatusBar.setHidden(true, 'none');
@@ -27,11 +30,9 @@ export default class App extends PureComponent {
     try {
       const token = await AsyncStorage.getItem('TOKEN');
       if (token !== null) {
-        console.log('token', token);
         this.setState({ authed: 2 })
       } else {
         this.setState({ authed: 1 })
-        console.log('token no', token);
       }
     } catch (error) {
       console.log('error', error);
@@ -53,6 +54,32 @@ export default class App extends PureComponent {
     this.setState({ fontLoaded: true });
   }
 
+  async loggedIn(res) {
+    console.log('*** You are logged In ***', res)
+    Cache.ACCESS_TOKEN = res.success.access_token;
+    Cache.COMPANY_ID = res.success.company_id;
+    Cache.EMAIL = res.success.email;
+    Cache.ID = res.success.id;
+    try {
+      await AsyncStorage.setItem('TOKEN', res.success.access_token);
+      await AsyncStorage.setItem('COMPANY_ID', res.success.company_id);
+      await AsyncStorage.setItem('EMAIL', res.success.email);
+      await AsyncStorage.setItem('ID', res.success.id);
+    } catch (error) {
+      console.log('** **', error)
+    }
+    this.setState({ authed: 2 })
+  }
+
+  async logOut() {
+    try {
+      await AsyncStorage.clear();
+    } catch (error) {
+
+    }
+    this.setState({ authed: 1 })
+  }
+
   render() {
 
     const { fontLoaded, authed } = this.state
@@ -61,8 +88,8 @@ export default class App extends PureComponent {
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : null}
         style={{ flex: 1 }}>
-        { fontLoaded == true && authed > 0 ? (
-          authed == 2 ? <ROUTER.MainPage /> : <ROUTER.AuthPage />
+        {fontLoaded == true && authed > 0 ? (
+          authed == 2 ? <ROUTER.MainPage signOut={() => this.logOut()} /> : <ROUTER.AuthPage logIn={(res) => this.loggedIn(res)}/>
         )
           : <Image source={images.splash} style={{ width, height }} />}
       </KeyboardAvoidingView>
