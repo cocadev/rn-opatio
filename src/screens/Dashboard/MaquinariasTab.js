@@ -13,6 +13,7 @@ import Maquinarias from './MaquinariasTab/Maquinarias';
 import Alarmas from './MaquinariasTab/alarmas';
 import Contratistas from './MaquinariasTab/contratistas';
 import { customStyles } from './customStyles'
+import * as ICON from '../../components/Icons';
 
 const height = Math.round(Dimensions.get('window').height);
 
@@ -42,10 +43,16 @@ export default class MaquinariasTab extends Component {
                 coordinate={markerInfo}
                 key={markerInfo.id}
             >
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                {/* <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Image source={images.marker} style={{ width: p(35), height: p(35) }} />
                     <Text style={{ fontSize: p(18), fontWeight: '700', color: colors.WHITE }}> Lote {markerInfo.id}</Text>
-                </View>
+                </View> */}
+                <ICON.IconTrackLocation />
+                <MapView.Callout tooltip style={styles.customView}>
+                    <CustomCallout>
+                        <Text>This is a custom callout bubble view</Text>
+                    </CustomCallout>
+                </MapView.Callout>
             </MapView.Marker>
         );
         return (
@@ -80,20 +87,16 @@ export default class MaquinariasTab extends Component {
                     />
                 </View>
 
-                <View style={{ position: 'absolute', right: 15, top: p(165) }}>
-                    <TouchableOpacity>
-                        <Image source={images.layer1} style={{ width: p(65), height: p(65), marginBottom: p(5) }} />
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image source={images.locate1} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
-                    </TouchableOpacity>
+                <View style={{ position: 'absolute', right: 15, top: p(195) }}>
+                    <ICON.IconRoundLayer />
+                    <ICON.IconLocate1 />
                 </View>
 
                 <View style={styles.searchView}>
                     <TextInput
                         style={styles.searchInput}
                         placeholder={
-                            selectTab !== 1 ? ( selectTab == 2 ? 'Todas las Alarmas' : 'Todas las Contratistas') : 'Todas las Maquinarias'
+                            selectTab !== 1 ? (selectTab == 2 ? 'Todas las Alarmas' : 'Todas las Contratistas') : 'Todas las Maquinarias'
                         }
                     />
                     <Image source={images.search_white} style={{ width: p(18), height: p(18), marginRight: p(20) }} />
@@ -111,9 +114,9 @@ export default class MaquinariasTab extends Component {
                     </TouchableOpacity>
                 </View>
 
-                { selectTab == 1 && <Maquinarias />}
-                { selectTab == 2 && <Alarmas />}
-                { selectTab == 3 && <Contratistas />}
+                {selectTab == 1 && <Maquinarias />}
+                {selectTab == 2 && <Alarmas />}
+                {selectTab == 3 && <Contratistas />}
 
             </ScrollView>
         );
@@ -128,16 +131,8 @@ const styles = StyleSheet.create({
     },
     map: {
         ...StyleSheet.absoluteFillObject,
-        height: p(300),
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-    },
-    actionButtonIcon: {
-        fontSize: 20,
-        height: 22,
-        color: 'white',
+        height: p(240),
+        marginTop: p(60)
     },
     searchView: {
         backgroundColor: colors.GREY4,
@@ -156,27 +151,6 @@ const styles = StyleSheet.create({
         height: p(36),
         color: colors.GREY4,
         fontWeight: '700'
-    },
-    head: {
-        backgroundColor: '#eeeeed',
-        justifyContent: 'center',
-        paddingLeft: p(25),
-        height: p(50),
-        borderBottomColor: '#e8e8e7',
-        borderBottomWidth: 1
-    },
-    itemLote: {
-        borderBottomColor: colors.GREY2,
-        borderBottomWidth: 1,
-        flexDirection: 'row',
-        paddingHorizontal: p(20),
-        alignItems: 'center',
-        height: p(72)
-    },
-    headText: {
-        fontWeight: '700',
-        color: '#354052',
-        fontSize: p(16)
     },
     tab: {
         flexDirection: 'row',

@@ -43,15 +43,6 @@ export default class MachineTrackDetail extends Component {
         }
     }
 
-    _renderItem = ({ item }) => (
-        <View style={styles.itemLote}>
-            <Image source={item.visible ? images.dot1 : images.dot2} style={{ width: p(30), height: p(30), marginRight: p(20) }} />
-            <Text style={{ fontSize: p(20), fontWeight: '700', color: colors.TEXT, marginTop: -5 }}>Lote{item.id}</Text>
-            <Text style={{ fontSize: p(15), flex: 1, marginLeft: p(20), color: colors.TEXT, marginTop: -5 }}>{item.count} ha</Text>
-            <Image source={item.download ? images.download : images.check} style={{ width: p(16), height: p(20) }} />
-        </View>
-    )
-
     update1() {
         this.setState({ modal1: true })
     }

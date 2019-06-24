@@ -43,6 +43,7 @@ export const IconCalendarGreen = props => (<Image source={images.calendar_green}
 export const IconCalendar = props => (<Image source={images.calendar} style={{ width: p(44), height: p(50), marginTop: props.top, marginBottom: props.bottom, marginRight: props.right, marginLeft: props.left }} />)
 export const IconDots = props => (<Image source={images.dots_white} style={{ width: p(6), height: p(21), marginRight: props.right, marginLeft: props.left }} />)
 export const IconClose = props => (<Image source={images.close} style={{ width: p(15), height: p(14), marginRight: props.right, marginLeft: props.left }} />)
+export const IconTrackLocation = props => (<Image source={images.trackLocation} style={{ width: p(34), height: p(45), marginRight: props.right, marginLeft: props.left }} />)
 
 export const IconModalField1 = props => (<Image source={images.map_field1} style={{ width: p(58), height: p(58), marginRight: props.right, marginLeft: props.left }} />)
 export const IconModalField2 = props => (<Image source={images.map_field2} style={{ width: p(58), height: p(58), marginRight: props.right, marginLeft: props.left }} />)

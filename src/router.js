@@ -29,7 +29,7 @@ import LotesEdit from './screens/Dashboard/LotesEdit';
 import Maquinarias from './screens/Dashboard/Maquinarias';
 import MaquinariasTab from './screens/Dashboard/MaquinariasTab';
 
-import PolygonCreator from './screens/Map/PolygonCreator';
+import Callouts from './screens/Map/Callouts';
 import LoteCreateDetail from './screens/Dashboard/LotesCreateDetail';
 import MachineNewContractor from './screens/Dashboard/MachineNewContractor';
 import MachineTrackDetail from './screens/Dashboard/MachineTrackDetail';
@@ -110,9 +110,9 @@ export default class App extends PureComponent {
               <Scene key="cultivosDetail" component={CultivosDetail} initial={false} hideNavBar/>
 
               <Scene key="maquinarias" component={Maquinarias} initial={false} hideNavBar/>
-              <Scene key="maquinariastab" component={MaquinariasTab} initial={false} hideNavBar/>
+              <Scene key="maquinariastab" component={MaquinariasTab} initial={true} hideNavBar/>
               <Scene key="machinenewcontractor" component={MachineNewContractor} initial={false} hideNavBar/>
-              <Scene key="machinetrackdetail" component={MachineTrackDetail} initial={true} hideNavBar/>
+              <Scene key="machinetrackdetail" component={MachineTrackDetail} initial={false} hideNavBar/>
               <Scene key="machinesettings" component={MachineSettings} initial={false} hideNavBar/>
               <Scene key="MachineryAlertsCreateEdit" component={MachineryAlertsCreateEdit} initial={false} hideNavBar/>
               <Scene key="MachineNew" component={MachineNew} initial={false} hideNavBar/>
@@ -120,10 +120,7 @@ export default class App extends PureComponent {
               <Scene key="MaquinariasSwitch" component={MaquinariasSwitch} initial={false} hideNavBar/>
               <Scene key="MachinesContractorTab" component={MachinesContractorTab} initial={false} hideNavBar/>
 
-
-
-
-              <Scene key="test" component={Test} initial={false} hideNavBar/>
+              <Scene key="test" component={Callouts} initial={false} hideNavBar/>
 
             </Scene>
           </Router>

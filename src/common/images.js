@@ -123,6 +123,7 @@ export const images = {
     track: require('../../assets/images/track.png'),
     trackImg: require('../../assets/images/track-image.png'),
     trackGrey: require('../../assets/images/track-grey.png'),
+    trackLocation: require('../../assets/images/track-location.png'),
 
     user: require('../../assets/images/user.png'),
     undo: require('../../assets/images/undo.png'),
