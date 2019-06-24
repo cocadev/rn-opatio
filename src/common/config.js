@@ -19,6 +19,7 @@ export const REGION = {
   latitudeDelta: LATITUDE_DELTA,
   longitudeDelta: LONGITUDE_DELTA,
 };
+export const SERVICE_API_URL = 'https://api.qa.optiagro.com/'
 
 export const INTRO = 'Con nuestra plataforma podrás ver imágenes satelitales, imágenes de indice verde, detectar anomalías y ambientar tus lotes.'
 

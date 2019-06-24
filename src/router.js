@@ -1,45 +1,11 @@
 import React, { PureComponent } from 'react'
 import { Image, StatusBar } from 'react-native';
-
-import SignIn from './screens/Login/signIn'
-import SignUp from './screens/Login/signup'
-import Forgot from './screens/Login/forgot'
-
-import { KeyboardAvoidingView, Platform, Dimensions } from 'react-native'
-import { Scene, Router, Drawer } from 'react-native-router-flux'
-import { Font } from 'expo'
-
-import SideMenu from './SideMenu';
-import Intro from './screens/Login/intro';
-import Inbox from './screens/Dashboard/index';
-import Lotes from './screens/Dashboard/Lotes';
-
 import { images } from './common/images';
-import Test from './screens/Map/Test/test';
-import Overlays from './screens/Map/ZIndexMarkers';
-import LoteSelection from './screens/Dashboard/Loteselection';
-import LotesTab from './screens/Dashboard/LotesTab';
-import LoteDetail from './screens/Dashboard/LoteDetail';
-import TareasDetail from './screens/Dashboard/LotesTareasDetail';
-import TareasEdit from './screens/Dashboard/LotesTareasEdit';
-import Cultivos from './screens/Dashboard/LotesTab/cultivos';
-import CultivosDetail from './screens/Dashboard/LotescultivosDetail';
-import LotesEdit from './screens/Dashboard/LotesEdit';
-
-import Maquinarias from './screens/Dashboard/Maquinarias';
-import MaquinariasTab from './screens/Dashboard/MaquinariasTab';
-
-import Callouts from './screens/Map/Callouts';
-import LoteCreateDetail from './screens/Dashboard/LotesCreateDetail';
-import MachineNewContractor from './screens/Dashboard/MachineNewContractor';
-import MachineTrackDetail from './screens/Dashboard/MachineTrackDetail';
-import MachineSettings from './screens/Dashboard/MachineSettings';
-import MachineryAlertsCreateEdit from './screens/Dashboard/MaquinariasTab/alertCreateEdit';
-import MachineNew from './screens/Dashboard/MachineNew';
-import MachineSpeedAlarm from './screens/Dashboard/MachineSpeedAlarm';
-import MaquinariasSwitch from './screens/Dashboard/MaquinariasSwitch';
-import MachinesContractorTab from './screens/Dashboard/MachinesContractorTab';
-
+import { KeyboardAvoidingView, Platform, Dimensions, AsyncStorage } from 'react-native'
+import { Scene, Router, Drawer, Stack } from 'react-native-router-flux'
+import { Font } from 'expo'
+import Cache from "./common/cache"
+import * as ROUTER from './common/routers';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -48,12 +14,29 @@ export default class App extends PureComponent {
 
   state = {
     fontLoaded: false,
+    authed: 0
   };
 
   async componentDidMount() {
     StatusBar.setHidden(true, 'none');
     await this._loadAssets();
+    this._retrieveData()
   }
+
+  _retrieveData = async () => {
+    try {
+      const token = await AsyncStorage.getItem('TOKEN');
+      if (token !== null) {
+        console.log('token', token);
+        this.setState({ authed: 2 })
+      } else {
+        this.setState({ authed: 1 })
+        console.log('token no', token);
+      }
+    } catch (error) {
+      console.log('error', error);
+    }
+  };
 
   async _loadAssets() {
     await Font.loadAsync({
@@ -69,62 +52,19 @@ export default class App extends PureComponent {
     console.log('fonts loaded!');
     this.setState({ fontLoaded: true });
   }
+
   render() {
+
+    const { fontLoaded, authed } = this.state
 
     return (
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : null}
         style={{ flex: 1 }}>
-        {this.state.fontLoaded == true ?
-
-          <Router>
-            <Scene>
-
-              <Scene key="intro" component={Intro} initial={true} hideNavBar />
-              <Scene key="signin" component={SignIn} hideNavBar initial={false} />
-              <Scene key="signup" component={SignUp} hideNavBar initial={false} />
-              <Scene key="forgot" component={Forgot} initial={false} hideNavBar />
-
-              <Drawer
-                hideNavBar
-                key="drawerMenu"
-                initial={true}
-                contentComponent={SideMenu}
-                drawerWidth={width / 1.4}
-                drawerPosition="left"
-              >
-                <Scene key="inbox" component={Inbox} initial={false} hideNavBar />
-
-              </Drawer>
-
-              <Scene key="lotes" component={Lotes} initial={false} hideNavBar/>
-              <Scene key="loteselection" component={LoteSelection} initial={false} hideNavBar/>
-              <Scene key="lotetab" component={LotesTab} initial={false} hideNavBar/>
-              <Scene key="lotedetail" component={LoteDetail} initial={false} hideNavBar/>
-              <Scene key="lotesedit" component={LotesEdit} initial={false} hideNavBar/>
-              <Scene key="lotecultivosdetail" component={CultivosDetail} initial={false} hideNavBar/>
-              <Scene key="lotecreatedetail" component={LoteCreateDetail} initial={false} hideNavBar/>
-
-              <Scene key="tareasdetail" component={TareasDetail} initial={false} hideNavBar/>
-              <Scene key="tareasedit" component={TareasEdit} initial={false} hideNavBar/>
-              <Scene key="cultivosDetail" component={CultivosDetail} initial={false} hideNavBar/>
-
-              <Scene key="maquinarias" component={Maquinarias} initial={false} hideNavBar/>
-              <Scene key="maquinariastab" component={MaquinariasTab} initial={true} hideNavBar/>
-              <Scene key="machinenewcontractor" component={MachineNewContractor} initial={false} hideNavBar/>
-              <Scene key="machinetrackdetail" component={MachineTrackDetail} initial={false} hideNavBar/>
-              <Scene key="machinesettings" component={MachineSettings} initial={false} hideNavBar/>
-              <Scene key="MachineryAlertsCreateEdit" component={MachineryAlertsCreateEdit} initial={false} hideNavBar/>
-              <Scene key="MachineNew" component={MachineNew} initial={false} hideNavBar/>
-              <Scene key="MachineSpeedAlarm" component={MachineSpeedAlarm} initial={false} hideNavBar/>
-              <Scene key="MaquinariasSwitch" component={MaquinariasSwitch} initial={false} hideNavBar/>
-              <Scene key="MachinesContractorTab" component={MachinesContractorTab} initial={false} hideNavBar/>
-
-              <Scene key="test" component={Callouts} initial={false} hideNavBar/>
-
-            </Scene>
-          </Router>
-          : <Image source={images.splash} style={{ width, height}}/>}
+        { fontLoaded == true && authed > 0 ? (
+          authed == 2 ? <ROUTER.MainPage /> : <ROUTER.AuthPage />
+        )
+          : <Image source={images.splash} style={{ width, height }} />}
       </KeyboardAvoidingView>
     );
   }

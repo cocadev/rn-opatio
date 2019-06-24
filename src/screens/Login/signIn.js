@@ -1,14 +1,19 @@
 import * as React from 'react';
-import { View, StyleSheet, Image, Text, TextInput, TouchableOpacity, Modal, ToastAndroid, Dimensions, KeyboardAvoidingView, ScrollView } from 'react-native';
-import { colors } from '../../common/colors';
-import { images } from '../../common/images';
 import * as actions from "../../store/common/actions";
+
+import { View, StyleSheet, Text, TextInput, TouchableOpacity, Dimensions, AsyncStorage } from 'react-native';
+import { colors } from '../../common/colors';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Actions } from 'react-native-router-flux';
 import { p } from '../../common/normalize';
-import Button from '../../components/Button';
 import { Entypo, Ionicons } from '@expo/vector-icons';
+import Button from '../../components/Button';
+import api from '../../common/api'
+import Cache from "../../common/cache"
+
+import * as ICON from '../../components/Icons';
+import * as BTN from '../../components/Buttons';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -16,11 +21,45 @@ const height = Dimensions.get('window').height
 
 class SignIn extends React.Component {
 
-    state = {
-        email: '',
-        password: '',
-        eye: false,
-        isWaiting: false,
+    constructor() {
+        super();
+        this.state = {
+            email: 'demo@optiagro.com',
+            password: 'demo',
+            eye: false,
+            isWaiting: false,
+        }
+        this.auth = this.auth.bind(this)
+    }
+
+    auth = async () => {
+        this.setState({ isWaiting: true })
+        try {
+            await api.auth(this.state.email, this.state.password, async (res, err) => {
+                this.setState({ isWaiting: false })
+                if (err == null) {
+                    Cache.ACCESS_TOKEN = res.success.access_token;
+                    Cache.COMPANY_ID = res.success.company_id;
+                    Cache.EMAIL = res.success.email;
+                    Cache.ID = res.success.id;
+                    try {
+                        await AsyncStorage.setItem('TOKEN', res.success.access_token);
+                        await AsyncStorage.setItem('COMPANY_ID', res.success.company_id);
+                        await AsyncStorage.setItem('EMAIL', res.success.email);
+                        await AsyncStorage.setItem('ID', res.success.id);
+                    } catch (error) {
+                        console.log('ERR------------', error)
+                    }
+                    console.log("*res*", res)
+
+                } else {
+                    console.log("*err*", err)
+                }
+            })
+
+        } catch (e) {
+            console.log("error", e)
+        }
     }
 
     render() {
@@ -64,13 +103,15 @@ class SignIn extends React.Component {
                 </View>
 
                 <View style={{ alignItems: 'center', marginVertical: p(40) }}>
-                    <TouchableOpacity onPress={() => Actions.drawerMenu()}>
+
+                    <TouchableOpacity onPress={this.auth}>
                         <Button text={'INGRASAR'} type={'SKY'} />
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => Actions.forgot()}>
                         <Text style={styles.btnText}>?YA TIENES CUENTA?</Text>
                     </TouchableOpacity>
+
                 </View>
             </View>
 

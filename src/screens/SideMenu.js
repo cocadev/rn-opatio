@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 
 import { StyleSheet, Platform, View, Text, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { colors } from './common/colors';
-import { images } from './common/images';
-import { p } from './common/normalize';
+import { colors } from '../common/colors';
+import { images } from '../common/images';
+import { p } from '../common/normalize';
 
 const width = Dimensions.get('window').width
 
 export default class SideMenu extends Component {
     constructor(props) {
         super(props);
-
     };
 
     render() {

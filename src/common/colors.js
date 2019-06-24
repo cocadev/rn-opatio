@@ -11,31 +11,20 @@ export const colors = {
   GREY8: '#989898',
   GREY9: '#DCDCDC',
   GREY0: '#a1a1a0',
-
   BLACK: '#000000',
   BLUE: '#1982e5',
   BLUE2: '#1296D7',
-
   BACKGROUND: '#f0f3f6',
   YELLOW: '#ff8d08',
   YELLOW2: '#ffffcc',
-
   GREEN: '#29d3b2',
   GREEN2: '#23d13c',
   GREEN3: '#007F00',
-
   TEXT: '#222c3c',
   PURPLE: "#EA1064",
   PURPLE2: "#335789",
-
   YEL: '#ffff00',
-
   RED: '#c73735',
-
-
-
-
-
 
   MAINGREEN: '#39baa6',
   DARK: '#4c4c4c',
@@ -45,9 +34,6 @@ export const colors = {
   CYAN: '#14B1F8',
   LIGHTPURPLE: '#D7CCEA',
   WHITEPURPLE: '#ECE9F2',
-
-
-  // SKY :'#27a0d4',
   SKY2: '#929fd0',
   PINK: "#ec1765"
 }

@@ -7,9 +7,6 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Actions } from 'react-native-router-flux';
 import LottieScreen from '../../components/Lottie';
-import api from "../../service/api";
-import Cache from "../../utils/cache";
-import { LinearGradient } from 'expo';
 import { p } from '../../common/normalize';
 import Button from '../../components/Button';
 import { Entypo } from '@expo/vector-icons';
@@ -26,37 +23,6 @@ class Forgot extends React.Component {
         isWaiting: false,
     }
 
-    onSignIn = () => {
-        if (!this.state.email) {
-            ToastAndroid.show('Email is empty', ToastAndroid.SHORT);
-            return false
-        }
-        if (!this.state.password) {
-            ToastAndroid.show('Password is empty', ToastAndroid.SHORT);
-            return false
-        }
-        this.setState({ isWaiting: true })
-        setTimeout(() => { this.setState({ isWaiting: false }) }, 10000);
-        api.login(this.state.email, this.state.password, (err, res) => {
-            // console.log('********************* res ************************', res)
-            // console.log('********************* err ************************', err)
-
-            if (err == null) {
-                Cache.currentUser = res.user
-                // console.log('********************* currentUser ************************', Cache.currentUser)
-                this.setState({ isWaiting: false })
-                if (!res.message) {
-                    Actions.drawerMenu()
-                } else {
-                    ToastAndroid.show('Wrong Password', ToastAndroid.SHORT);
-                }
-            } else {
-                ToastAndroid.show('Wrong User', ToastAndroid.SHORT);
-            }
-
-            this.setState({ isWaiting: false })
-        })
-    };
 
     renderIndicator() {
         return (

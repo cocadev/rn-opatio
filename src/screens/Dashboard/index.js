@@ -1,11 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, TouchableHighlight, TextInput, Modal } from 'react-native';
-import api from "../../service/api";
 import { images } from '../../common/images';
 import { colors } from '../../common/colors';
-import Cache from "../../utils/cache";
 import { Actions } from 'react-native-router-flux';
-import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { p } from '../../common/normalize';
 import { NOTIFICATION } from '../../common/config';

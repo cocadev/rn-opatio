@@ -14,6 +14,7 @@ import Alarmas from './MaquinariasTab/alarmas';
 import Contratistas from './MaquinariasTab/contratistas';
 import { customStyles } from './customStyles'
 import * as ICON from '../../components/Icons';
+import CustomCallout from '../Map/CustomCallout';
 
 const height = Math.round(Dimensions.get('window').height);
 

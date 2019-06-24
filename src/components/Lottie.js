@@ -4,7 +4,7 @@ import { DangerZone } from 'expo';
 const { Lottie } = DangerZone;
 const window = Dimensions.get('window');
 
-import LOADING from "../utils/reload.json";
+import LOADING from "../common/loading.json";
 
 export default class LottieScreen extends React.Component {
   state = {

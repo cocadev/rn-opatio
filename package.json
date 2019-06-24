@@ -24,6 +24,7 @@
     "react-native-drawer": "^2.5.1",
     "react-native-geojson": "^0.1.1",
     "react-native-maps": "^0.24.2",
+    "react-native-root-toast": "^3.1.1",
     "react-native-router-flux": "4.0.6",
     "react-navigation": "2.18.2",
     "react-redux": "5.1.1",
