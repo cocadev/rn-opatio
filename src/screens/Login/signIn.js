@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 import { Actions } from 'react-native-router-flux';
 import { p } from '../../common/normalize';
 import { Entypo, Ionicons } from '@expo/vector-icons';
-import Button from '../../components/Button';
 import api from '../../common/api'
 import Cache from "../../common/cache"
 
@@ -90,9 +89,7 @@ class SignIn extends React.Component {
 
                 <View style={{ alignItems: 'center', marginVertical: p(40) }}>
 
-                    <TouchableOpacity onPress={this.auth}>
-                        <Button text={'INGRASAR'} type={'SKY'} />
-                    </TouchableOpacity>
+                    <BTN.SkyWhite title={'INGRASAR'} onClick={this.auth} bottom={20}/>
 
                     <TouchableOpacity onPress={() => Actions.forgot()}>
                         <Text style={styles.btnText}>?YA TIENES CUENTA?</Text>

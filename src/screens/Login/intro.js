@@ -4,9 +4,9 @@ import { Actions } from 'react-native-router-flux';
 import { images } from '../../common/images';
 import { colors } from '../../common/colors';
 import { INTRO } from '../../common/config';
-import Button from '../../components/Button';
 import text from '../../common/text';
 import * as ICON from '../../components/Icons';
+import * as BTN from '../../components/Buttons';
 
 const width = Math.round(Dimensions.get('window').width);
 
@@ -22,9 +22,7 @@ export default class Intro extends React.Component {
                 <View style={{ alignItems: 'center', marginTop: -50}}>
                     <Text style={[text.t_14_500_ff, { textAlign: 'center'}]}>{INTRO}</Text>
 
-                    <TouchableOpacity style={{ marginVertical: 14 }} onPress={() => Actions.signup()}>
-                        <Button text={'CREATE CUENTA GRATIS'} type={'white'}/>
-                    </TouchableOpacity>
+                    <BTN.WhiteSky title={'CREATE CUENTA GRATIS'} onClick={()=>Actions.signup()} top={20} bottom={20}/>
 
                     <TouchableOpacity style={{ marginVertical: 14 }} onPress={() => Actions.signin()}>
                         <Text style={text.t_15_600_ff}>?YA TIENES CUENTA?</Text>

@@ -8,12 +8,11 @@ import { connect } from "react-redux";
 import { Actions } from 'react-native-router-flux';
 import LottieScreen from '../../components/Lottie';
 import { p } from '../../common/normalize';
-import Button from '../../components/Button';
+import * as BTN from '../../components/Buttons';
 import { Entypo } from '@expo/vector-icons';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
-
 
 class Forgot extends React.Component {
 
@@ -21,23 +20,6 @@ class Forgot extends React.Component {
         email: '',
         password: '',
         isWaiting: false,
-    }
-
-
-    renderIndicator() {
-        return (
-            <Modal
-                visible={this.state.isWaiting}
-                transparent={true}
-                onRequestClose={() => { }}
-            >
-                <View style={i.indicatorContainer}>
-                    <View style={i.indicator}>
-                        <LottieScreen />
-                    </View>
-                </View>
-            </Modal>
-        );
     }
 
     render() {
@@ -65,13 +47,13 @@ class Forgot extends React.Component {
                 </View>
 
                 <View style={{ alignItems: 'center', marginVertical: p(40) }}>
-                    <TouchableOpacity onPress={() => Actions.drawerMenu()}>
-                        <Button text={'ENVIAR'} type={'SKY'} />
-                    </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => Actions.forgot()}>
+                    <TouchableOpacity onClick={()=>console.log('waiting api ...')}>
                         <Text style={styles.btnText}>CONTACTAR A SOPORTE</Text>
                     </TouchableOpacity>
+
+                    <BTN.SkyWhite title={'ENVIAR'} onClick={()=>console.log('waiting api ...')} top={20} bottom={20}/>
+
                 </View>
             </View>
 

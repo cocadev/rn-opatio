@@ -9,12 +9,11 @@ import { Actions } from 'react-native-router-flux';
 import LottieScreen from '../../components/Lottie';
 import { LinearGradient } from 'expo';
 import { p } from '../../common/normalize';
-import Button from '../../components/Button';
 import { Entypo, Ionicons } from '@expo/vector-icons';
+import * as BTN from '../../components/Buttons';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
-
 
 class SignUp extends React.Component {
 
@@ -25,22 +24,6 @@ class SignUp extends React.Component {
         password: '',
         eye: false,
         isWaiting: false,
-    }
-
-    renderIndicator() {
-        return (
-            <Modal
-                visible={this.state.isWaiting}
-                transparent={true}
-                onRequestClose={() => { }}
-            >
-                <View style={i.indicatorContainer}>
-                    <View style={i.indicator}>
-                        <LottieScreen />
-                    </View>
-                </View>
-            </Modal>
-        );
     }
 
     render() {
@@ -100,12 +83,9 @@ class SignUp extends React.Component {
                     </View>
                 </View>
 
-                <View style={{ alignItems: 'center', marginVertical: p(70) }}>
-                    <TouchableOpacity onPress={() => Actions.drawerMenu()}>
-                        <Button text={'CREAR'} type={'SKY'} />
-                    </TouchableOpacity>
+                <View style={{ alignItems: 'center'}}>            
+                    <BTN.SkyWhite title={'CREAR'} onClick={()=>console.log('Waiting api...')} top={70} bottom={70}/>
                 </View>
-
 
             </KeyboardAvoidingView>
 

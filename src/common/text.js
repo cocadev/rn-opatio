@@ -19,6 +19,7 @@ export default {
   t_15_400_72:{ color: '#727272', fontSize: p(17), fontWeight: '400' },
   t_15_400_60:{ color: '#606060', fontSize: p(17), fontWeight: '400' },
   t_15_600_ff:{ color: '#ffffff', fontSize: p(17), fontWeight: '600' },
+  t_15_600_sky:{ color: colors.SKY, fontSize: p(17), fontWeight: '600' },
 
   t_15_400_ff:{ color: '#ffffff', fontSize: p(17), fontWeight: '400' },
   t_15_500_ff:{ color: '#ffffff', fontSize: p(17), fontWeight: '500' },
