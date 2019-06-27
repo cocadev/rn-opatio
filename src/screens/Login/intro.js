@@ -3,9 +3,10 @@ import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'rea
 import { Actions } from 'react-native-router-flux';
 import { images } from '../../common/images';
 import { colors } from '../../common/colors';
-import { p } from '../../common/normalize';
 import { INTRO } from '../../common/config';
 import Button from '../../components/Button';
+import text from '../../common/text';
+import * as ICON from '../../components/Icons';
 
 const width = Math.round(Dimensions.get('window').width);
 
@@ -14,24 +15,24 @@ export default class Intro extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Image source={images.logo} style={styles.logo} />
-                <Image source={images.intro} style={styles.intro} />
 
-                <View style={{ alignItems: 'center'}}>
-                    <Text style={styles.intro_text}>{INTRO}</Text>
+                <ICON.ImgLogo />
+                <ICON.ImgIntro />
 
-                    <TouchableOpacity style={{ marginVertical: p(14)}} onPress={() => Actions.signup()}>
+                <View style={{ alignItems: 'center', marginTop: -50}}>
+                    <Text style={[text.t_14_500_ff, { textAlign: 'center'}]}>{INTRO}</Text>
+
+                    <TouchableOpacity style={{ marginVertical: 14 }} onPress={() => Actions.signup()}>
                         <Button text={'CREATE CUENTA GRATIS'} type={'white'}/>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={{ marginVertical: p(12)}} onPress={() => Actions.signin()}>
-                        <Text style={styles.text}>?YA TIENES CUENTA?</Text>
+                    <TouchableOpacity style={{ marginVertical: 14 }} onPress={() => Actions.signin()}>
+                        <Text style={text.t_15_600_ff}>?YA TIENES CUENTA?</Text>
                     </TouchableOpacity>
                 </View>
 
             </View>
         )
-
     }
 }
 
@@ -43,25 +44,4 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center'
     },
-    logo: {
-        marginTop: p(10),
-        width: p(202),
-        height: p(58)
-    },
-    intro: {
-        width: width,
-        height: p(220)
-    },
-    intro_text: {
-        color: colors.WHITE,
-        fontSize: p(15),
-        marginHorizontal: p(12),
-        textAlign: "center"
-    },
-    text: {
-        color: colors.WHITE,
-        fontSize: p(16),
-        fontWeight: "600",
-        textAlign: "center"
-    }
 })
