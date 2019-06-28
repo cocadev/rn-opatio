@@ -45,6 +45,7 @@ export const IconCalendar = props => (<Image source={images.calendar} style={{ w
 export const IconDots = props => (<Image source={images.dots_white} style={{ width: p(6), height: p(21), marginRight: props.right, marginLeft: props.left }} />)
 export const IconClose = props => (<Image source={images.close} style={{ width: p(15), height: p(14), marginRight: props.right, marginLeft: props.left }} />)
 export const IconTrackLocation = props => (<Image source={images.trackLocation} style={{ width: p(29), height: p(38), marginRight: props.right, marginLeft: props.left, marginTop: props.top, }} />)
+export const IconSkyLogo = props => (<Image source={images.logoIcon} style={{ width: p(33), height: p(40), marginRight: props.right, marginLeft: props.left, marginTop: props.top, }} />)
 
 export const IconModalField1 = props => (<Image source={images.map_field1} style={{ width: p(58), height: p(58), marginRight: props.right, marginLeft: props.left }} />)
 export const IconModalField2 = props => (<Image source={images.map_field2} style={{ width: p(58), height: p(58), marginRight: props.right, marginLeft: props.left }} />)
@@ -59,9 +60,9 @@ export const IconBigProfile = props => (<Image source={images.profile_big} style
 
 
 export const IconAddYellow = props => (
-  <TouchableOpacity onPress={()=>Actions.MachineNew()} style={{ position: 'absolute', bottom: p(12), right: p(15) }}>
-    <Image source={images.addYellow} style={{  width: p(77), height: p(77) }} />
-</TouchableOpacity>);
+  <TouchableOpacity onPress={() => Actions.MachineNew()} style={{ position: 'absolute', bottom: p(12), right: p(15) }}>
+    <Image source={images.addYellow} style={{ width: p(77), height: p(77) }} />
+  </TouchableOpacity>);
 
 export const ImgMessageBar = props => (<Image source={images.message_bar} style={{ width: p(344), height: p(36), marginRight: props.right, marginLeft: props.left }} />)
 export const ImgCallOut = props => (<Image source={images.callout} style={{ width: p(145), height: p(126), marginRight: props.right, marginLeft: props.left }} />)
@@ -73,6 +74,31 @@ export const IconBack = props => (
   <TouchableOpacity onPress={() => Actions.pop()}>
     <Image source={images.back} style={{ width: p(20), height: p(20), marginTop: props.top }} />
   </TouchableOpacity>)
+
+export const IconMenu = props => (
+  <TouchableOpacity onPress={()=>props.onClick()}>
+    <Image
+      source={images.menu}
+      style={{
+        width: p(27),
+        height: p(20),
+        marginTop: props.top,
+      }} />
+  </TouchableOpacity>
+)
+
+export const IconRing = props => (
+  <TouchableOpacity onPress={()=>props.onClick()}>
+    <Image
+      source={images.ring}
+      style={{
+        width: p(26),
+        height: p(28),
+        marginTop: props.top,
+      }} />
+  </TouchableOpacity>
+)
+
 
 const styles = StyleSheet.create({
 

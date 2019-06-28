@@ -134,16 +134,10 @@ export default class Lotes extends Component {
                     loadingIndicatorColor={"#ffbbbb"}
                     loadingBackgroundColor={"#ffbbbb"}
                     region={region}
-
                     style={styles.map}
                     showsUserLocation={true}
-                    // followUserLocation={true}
-                    // showsMyLocationButton={true}
-                    // showsPointsOfInterest={true}
                     showsCompass={true}
                     zoomEnabled={true}
-                    // minZoomLevel={5}
-                    // maxZoomLevel={20}
                     cacheEnabled={true}
                     initialRegion={REGION}
                     customMapStyle={CUSTOM_STYLE}
@@ -151,23 +145,19 @@ export default class Lotes extends Component {
                     onPress={e => this.onPress(e)}
                     onRegionChangeComplete={region => this.setState({ region })}
 
-
                 >
-                    {/* <XMarksTheSpot coordinates={COORDINATES} center={CENTER} /> */}
 
                     {cluster.markers.map((marker, index) => this.renderMarker(marker, index))}
 
                     {this.state.editing && create && <MapView.Polygon
                         coordinates={this.state.editing.coordinates}
                         strokeColor={colors.BLUE2}
-                        // fillColor="rgba(255,0,0,0.2)"
                         strokeWidth={3}
                     />}
                     {this.state.editing && create && this.state.editing.coordinates.map((marker, key) => (
                         <MapView.Marker
                             key={key}
                             coordinate={marker}
-                        // pinColor={colors.PURPLE}
                         >
                             <Image source={images.circleWhite} style={{ width: p(24), height: p(24), marginTop: p(5) }} />
                         </MapView.Marker>
@@ -188,14 +178,14 @@ export default class Lotes extends Component {
 
                 {
                     create && editing && editing.coordinates.length > 2 &&
-                    <TouchableOpacity onPress={() => this.finish()} style={{ position: 'absolute', right:12, bottom: 70 }}>
+                    <TouchableOpacity onPress={() => this.finish()} style={{ position: 'absolute', right: 12, bottom: 70 }}>
                         <Image source={images.save} style={{ width: p(55), height: p(55), marginBottom: p(7), marginLeft: p(5) }} />
                     </TouchableOpacity>
                 }
 
                 {
                     create &&
-                    <TouchableOpacity onPress={() => this.remove()} style={{ position: 'absolute', right:12, bottom: 10 }}>
+                    <TouchableOpacity onPress={() => this.remove()} style={{ position: 'absolute', right: 12, bottom: 10 }}>
                         <Image source={images.undo} style={{ width: p(55), height: p(55), marginBottom: p(7), marginLeft: p(5) }} />
                     </TouchableOpacity>
                 }
@@ -226,10 +216,8 @@ export default class Lotes extends Component {
                         offsetY={12}
                         spacing={5}
                         renderIcon={active => active ? (<Image source={images.add} style={{ width: p(30), height: p(30) }} />) : (<Image source={images.add} style={{ width: p(27), height: p(27) }} />)}>
-                        >
-                    {/* <ActionButton.Item size={60} buttonColor={colors.WHITE} onPress={() => {}}>
-                        <Image source={images.direction} style={{ width: p(19), height: p(50) }} />
-                    </ActionButton.Item> */}
+                    >
+    
                         <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { this.setState({ create: true }) }}>
                             <Image source={images.lote} style={{ width: p(34), height: p(42) }} />
                         </ActionButton.Item>

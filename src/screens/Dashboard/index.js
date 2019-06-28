@@ -6,6 +6,8 @@ import { Actions } from 'react-native-router-flux';
 import { Entypo } from '@expo/vector-icons';
 import { p } from '../../common/normalize';
 import { NOTIFICATION } from '../../common/config';
+import * as ICON from '../../components/Icons';
+import text from '../../common/text';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -18,14 +20,14 @@ class Inbox extends React.Component {
 
   _renderItem = ({ item }) => (
     <View style={styles.itemNotify}>
-      <View style={{width: p(8), height: p(40), backgroundColor: colors.BLUE, borderTopLeftRadius: 2, borderBottomLeftRadius: 2}}>
+      <View style={{ width: p(8), height: p(40), backgroundColor: colors.BLUE, borderTopLeftRadius: 2, borderBottomLeftRadius: 2 }}>
 
       </View>
-      <Image source={images.news} style={{ width: p(30), height: p(25), marginLeft: p(18)}}/>
-      <View style={{ paddingTop: p(2), marginLeft: p(12)}}>
-        <Text style={{fontSize: p(9)}}>{item.title}</Text>
-        <Text style={{fontSize: p(9)}}>{item.content}</Text>
-        <Text style={{fontSize: p(9)}}>{item.name}</Text>
+      <Image source={images.news} style={{ width: p(30), height: p(25), marginLeft: p(18) }} />
+      <View style={{ paddingTop: p(2), marginLeft: p(12) }}>
+        <Text style={{ fontSize: p(9) }}>{item.title}</Text>
+        <Text style={{ fontSize: p(9) }}>{item.content}</Text>
+        <Text style={{ fontSize: p(9) }}>{item.name}</Text>
       </View>
     </View>
   )
@@ -60,33 +62,31 @@ class Inbox extends React.Component {
       <View style={styles.container}>
 
         <View style={styles.header}>
-          <TouchableOpacity style={styles.menu} onPress={() => Actions.drawerOpen()}>
-            <Image source={images.menu} style={styles.menuIcon} />
-          </TouchableOpacity>
 
-          <TouchableOpacity style={styles.ring} onPress={() => this.setState({ notification: true })}>
-            <Image source={images.ring} style={styles.ringIcon} />
-          </TouchableOpacity>
+          <ICON.IconMenu top={p(21)} onClick={() => Actions.drawerOpen()} />
+          <ICON.IconRing top={p(21)} onClick={() => this.setState({ notification: true })} />
+
         </View>
 
-        <View style={{ alignItems: 'center', marginTop: p(10) }}>
-          <Image source={images.logoIcon} style={styles.logoIcon} />
+        <View style={{ alignItems: 'center' }}>
+          <ICON.IconSkyLogo top={p(10)} />
         </View>
 
-        <View>
-          <Text style={{ textAlign: 'center', fontSize: p(15), marginTop: p(25) }}>Bienvenido otra vez</Text>
-          <Text style={{ textAlign: 'center', fontSize: p(20), fontWeight: '700', marginTop: p(10) }}>Joaquin Otero</Text>
+        <View style={{ alignItems: 'center', marginTop: p(25) }}>
+          <Text style={text.t_14_700_00}>Bienvenido otra vez</Text>
+          <Text style={[text.t_19_500_00, { marginTop: p(12) }]}>Joaquin Otero</Text>
         </View>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <TouchableOpacity onPress={()=>Actions.lotes()} style={styles.rectNgulo}>
+
+          <TouchableOpacity onPress={() => Actions.lotes()} style={styles.rectNgulo}>
             <View style={styles.box}>
               <Image source={images.location} style={styles.itemImg1} />
             </View>
             <Text style={styles.text}>Lotes</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={()=>Actions.maquinarias()} style={styles.rectNgulo}>
+          <TouchableOpacity onPress={() => Actions.maquinarias()} style={styles.rectNgulo}>
             <View style={[styles.box, { backgroundColor: colors.YELLOW }]}>
               <Image source={images.track} style={styles.itemImg2} />
             </View>
@@ -117,24 +117,6 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between'
-  },
-  menu: {
-    marginTop: p(21)
-  },
-  ring: {
-    marginTop: p(21),
-  },
-  menuIcon: {
-    width: p(27),
-    height: p(20)
-  },
-  ringIcon: {
-    width: p(24),
-    height: p(26)
-  },
-  logoIcon: {
-    width: p(31),
-    height: p(37)
   },
   box: {
     width: p(165),
