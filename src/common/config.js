@@ -4,8 +4,10 @@ const { width, height } = Dimensions.get('window');
 export const ASPECT_RATIO = width / height;
 export const LATITUDE_DELTA = 0.04;
 export const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-export const LATITUDE = 37.795690;
-export const LONGITUDE = -122.434728;
+export const LONGITUDE = -32.571482;
+export const LATITUDE = -64.105139;
+// export const LATITUDE = 37.795690;
+// export const LONGITUDE = -122.434728;
 export const MARKERS_LATITUDE_DELTA = 0.03;
 export const MARKERS_LONGITUDE_DELTA = MARKERS_LATITUDE_DELTA * ASPECT_RATIO;
 export const MAP_LATITUDE_DELTA = 0.3;
@@ -548,5 +550,283 @@ export const customCalendarStyles = {
   }
 }
 
+export const TTTTT = [
+  {
+      "nombre": "testing german",
+      "campo_id": "976a71d3-b858-11e8-84f4-12d9585c98a0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  },
+  {
+      "nombre": "La Morocha",
+      "campo_id": "27030f13-bb69-11e8-84f4-12d9585c98a0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  },
+  {
+      "nombre": "Demo",
+      "campo_id": "7a27383d-bb71-11e8-84f4-12d9585c98a0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  },
+  {
+      "nombre": "LL",
+      "campo_id": "d2f672d1-bb75-11e8-84f4-12d9585c98a0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  },
+  {
+      "nombre": "prueba",
+      "campo_id": "f77c2471-bdae-11e8-84f4-12d9585c98a0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  },
+  {
+      "nombre": "dc",
+      "campo_id": "e768c595-bdc6-11e8-84f4-12d9585c98a0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  },
+  {
+      "nombre": "test_gonza",
+      "campo_id": "ff85f87d-c0c8-11e8-84f4-12d9585c98a0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  },
+  {
+      "nombre": "Campo Abuelo guille",
+      "campo_id": "77c1c553-c644-11e8-84f6-12d9585c98a0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  },
+  {
+      "nombre": "Inta manfredi",
+      "campo_id": "44486b1d-c64f-11e8-84f6-12d9585c98a0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  },
+  {
+      "nombre": "Río Cuarto",
+      "campo_id": "c49775ad-c8c4-11e8-84f6-12d9585c98a0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  },
+  {
+      "nombre": "LC",
+      "campo_id": "978b1e8d-c8c5-11e8-84f6-12d9585c98a0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  },
+  {
+      "nombre": "depetris",
+      "campo_id": "a00aa875-d2f8-11e8-9299-12ad69fe4ff0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  },
+  {
+      "nombre": "prueba depetris",
+      "campo_id": "4e51ce59-d2f9-11e8-9299-12ad69fe4ff0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  },
+  {
+      "nombre": "Córdoba",
+      "campo_id": "a6e9d479-d4a9-11e8-9299-12ad69fe4ff0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  },
+  {
+      "nombre": "test_gonza",
+      "campo_id": "a3c9be37-dc72-11e8-929b-12ad69fe4ff0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  },
+  {
+      "nombre": "Demo",
+      "campo_id": "9df1b277-ddfc-11e8-9b94-12ad69fe4ff0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": [
+          {
+              "name": "1",
+              "ha": 96.98,
+              "field_id": "9df1b276-ddfc-11e8-9b94-12ad69fe4ff0"
+          },
+          {
+              "name": "2",
+              "ha": 97.22,
+              "field_id": "b8300128-ddfd-11e8-9b94-12ad69fe4ff0"
+          },
+          {
+              "name": "3",
+              "ha": 97.73,
+              "field_id": "2da7d620-de02-11e8-9b94-12ad69fe4ff0"
+          },
+          {
+              "name": "4",
+              "ha": 97.37,
+              "field_id": "68453aca-de02-11e8-9b94-12ad69fe4ff0"
+          },
+          {
+              "name": "5",
+              "ha": 98.29,
+              "field_id": "74cec2a2-de02-11e8-9b94-12ad69fe4ff0"
+          },
+          {
+              "name": "6",
+              "ha": 98.59,
+              "field_id": "7db83e3e-de02-11e8-9b94-12ad69fe4ff0"
+          },
+          {
+              "name": "7",
+              "ha": 98.89,
+              "field_id": "86f16a02-de02-11e8-9b94-12ad69fe4ff0"
+          },
+          {
+              "name": "8",
+              "ha": 98.24,
+              "field_id": "90e8bd9e-de02-11e8-9b94-12ad69fe4ff0"
+          },
+          {
+              "name": "9A",
+              "ha": 64.14,
+              "field_id": "c05bbb76-de02-11e8-9b94-12ad69fe4ff0"
+          },
+          {
+              "name": "10",
+              "ha": 102.89,
+              "field_id": "caa40f34-de02-11e8-9b94-12ad69fe4ff0"
+          },
+          {
+              "name": "11",
+              "ha": 100.65,
+              "field_id": "d75877a6-de02-11e8-9b94-12ad69fe4ff0"
+          },
+          {
+              "name": "12",
+              "ha": 101.84,
+              "field_id": "e0b83e26-de02-11e8-9b94-12ad69fe4ff0"
+          },
+          {
+              "name": "Demo",
+              "ha": 346.92,
+              "field_id": "a2b2d318-0e9d-11e9-9b95-12ad69fe4ff0"
+          },
+          {
+              "name": "9B",
+              "ha": 35.8,
+              "field_id": "9c8ef3c0-19da-11e9-9b96-12ad69fe4ff0"
+          },
+          {
+              "name": "test",
+              "ha": 845.62,
+              "field_id": "e5d36b72-588e-11e9-bee1-123cbe7b1526"
+          }
+      ]
+  },
+  {
+      "nombre": "Demo Maquinarias",
+      "campo_id": "12621235-ed1d-11e8-9b94-12ad69fe4ff0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": [
+          {
+              "name": "1",
+              "ha": 40.43,
+              "field_id": "12621234-ed1d-11e8-9b94-12ad69fe4ff0"
+          }
+      ]
+  },
+  {
+      "nombre": "el durazno",
+      "campo_id": "d7404c21-f03c-11e8-9b94-12ad69fe4ff0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  },
+  {
+      "nombre": "Río Cuarto",
+      "campo_id": "45a3328f-f193-11e8-9b94-12ad69fe4ff0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": [
+          {
+              "name": "Centro",
+              "ha": 33.21,
+              "field_id": "45a3328e-f193-11e8-9b94-12ad69fe4ff0"
+          },
+          {
+              "name": "Clima",
+              "ha": 4709.99,
+              "field_id": "b8867388-2497-11e9-bcca-12ad69fe4ff0"
+          }
+      ]
+  },
+  {
+      "nombre": "bbb",
+      "campo_id": "25040359-1878-11e9-9b96-12ad69fe4ff0",
+      "company_id": "67415a6c-e842-11e8-9b94-12ad69fe4ff0",
+      "active": 1,
+      "user_id": "33",
+      "fields": []
+  }
+]
 
-
+export const PPPPPPPP = [
+  [
+      [
+          -32.571482,
+          -64.105139
+      ],
+      [
+          -32.573336,
+          -64.094859
+      ],
+      [
+          -32.58192,
+          -64.09713
+      ],
+      [
+          -32.579999,
+          -64.107541
+      ],
+      [
+          -32.571482,
+          -64.105139
+      ]
+  ]
+]

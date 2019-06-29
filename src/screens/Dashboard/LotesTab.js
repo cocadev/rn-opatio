@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, Image, Platform, Dimensions, TextInput, FlatList, ScrollView, TouchableOpacity, Modal } from 'react-native';
-import ActionButton from 'react-native-action-button';
+import { StyleSheet, Text, View, Image, Dimensions, TextInput, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
-import { MapView, Marker, Animated } from 'expo';
+import { MapView } from 'expo';
 import Header from '../../components/Header2';
-import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS, LOTES1, INTRO, customCalendarStyles } from '../../common/config'
+import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS, customCalendarStyles } from '../../common/config'
 import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
+import Polygons from '../../components/Polygons';
 
 import Notes from './LotesTab/notes';
 import Tareas from './LotesTab/tareas';
@@ -16,7 +16,6 @@ import { customStyles } from './customStyles'
 import * as ICON from '../../components/Icons';
 import text from '../../common/text';
 import { Calendar } from 'react-native-calendars';
-import { Actions } from 'react-native-router-flux';
 
 
 const height = Math.round(Dimensions.get('window').height);
@@ -104,8 +103,8 @@ export default class LotesTab extends Component {
                     loadingIndicatorColor="#666666"
                     loadingBackgroundColor="#eeeeee"
                 >
-                    <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
-                    {markers}
+                    <Polygons coordinates={COORDINATES} center={CENTER} />
+                    {/* {markers} */}
                 </MapView>
                 <Header title={'Lote 21'} />
                 <View style={customStyles.searchView}>

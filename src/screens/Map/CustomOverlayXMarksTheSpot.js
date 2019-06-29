@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { View } from 'react-native';
-import { MapView, Marker, Animated } from 'expo';
+import { MapView } from 'expo';
 import { colors } from '../../common/colors';
 import { images } from '../../common/images';
 

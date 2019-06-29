@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react'
 import { Image, StatusBar } from 'react-native';
 import { images } from './common/images';
 import { KeyboardAvoidingView, Platform, Dimensions, AsyncStorage } from 'react-native'
-import { Scene, Router, Drawer, Stack } from 'react-native-router-flux'
 import { Font } from 'expo'
 import Cache from "./common/cache"
 import * as ROUTER from './common/routers';
@@ -30,6 +29,7 @@ export default class App extends PureComponent {
     try {
       const token = await AsyncStorage.getItem('TOKEN');
       if (token !== null) {
+        Cache.ACCESS_TOKEN = token;
         this.setState({ authed: 2 })
       } else {
         this.setState({ authed: 1 })

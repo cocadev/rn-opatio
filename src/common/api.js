@@ -7,6 +7,7 @@ module.exports = {
     try {
       let response = await fetch(url, request);
       let responseJson = await response.json()
+
       if (response.status == 200) {
         cb(null, responseJson);
       } else {
@@ -21,15 +22,17 @@ module.exports = {
       this.fetchData(url, request, cb)
   },
   baseApi(sub_url, method, json_data, cb) {
+
+    console.log('*- my token -*', Cache.ACCESS_TOKEN ? "bearer " + Cache.ACCESS_TOKEN : null)
    
     let request = {
       method,
       headers: {
-        Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: Cache.currentUser
-          ? "bearer " + Cache.token
+        Authorization: Cache.ACCESS_TOKEN
+          ? "Bearer " + Cache.ACCESS_TOKEN
           : null,
+        "Accept": "*/*",
       }
     };
     if (method == "POST" || method == "PUT") {
@@ -224,9 +227,9 @@ module.exports = {
 
 
 
-  //////////////////////////////
-  getAllCategories(cb){
-    this.baseApi('Category/GetAllCategories', 'GET', {}, cb)
+  ////////////////////////////// Lotes //////////////////////
+  getAllLotes(cb){
+    this.baseApi('campos?skip=10', 'GET', {}, cb)
   },
 
   getAllItems(type, count, cb){
