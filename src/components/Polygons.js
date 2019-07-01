@@ -5,32 +5,22 @@ import { View } from 'react-native';
 import { MapView } from 'expo';
 
 class Polygons extends React.Component {
+
+  state = { ticket: [], myState: [] };
+
+  componentWillMount(){
+    const tempticket = [];
+    for (i = 0; i < this.props.coordinates[0].length; i++) {
+      tempticket.push({ longitude: this.props.coordinates[0][i][0], latitude: this.props.coordinates[0][i][1] });
+    }
+    this.setState({ ticket: tempticket });    
+  }
+
   render() {
     return (
       <View>
         <MapView.Polygon
-          coordinates={[
-            {
-              longitude: -32.571482,
-              latitude: -64.105139,
-            },
-            {
-              longitude: -32.573336,
-              latitude: -64.094859,
-            },
-            {
-              longitude: -32.58192,
-              latitude: -64.09713,
-            },
-            {
-              longitude: -32.579999,
-              latitude: -64.107541,
-            },
-            {
-              longitude: -32.571482,
-              latitude: -64.105139,
-            },
-          ]}
+          coordinates={this.state.ticket}
           strokeColor={'#cc00cc'}
           strokeWidth={4}
         />

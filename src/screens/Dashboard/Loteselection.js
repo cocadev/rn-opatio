@@ -4,12 +4,13 @@ import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
 import { MapView } from 'expo'
-import Header from '../../components/Header'
-import { CUSTOM_STYLE, REGION, TTTTT } from '../../common/config'
+import { CUSTOM_STYLE, REGION } from '../../common/config'
 import { Actions } from 'react-native-router-flux'
 import { customStyles } from './customStyles'
+import Header from '../../components/Header'
 import api from '../../common/api'
 import LottieScreen from '../../components/Lottie'
+import * as ICON from '../../components/Icons';
 
 export default class LoteSelection extends Component {
 
@@ -23,11 +24,7 @@ export default class LoteSelection extends Component {
 
     componentDidMount() {
         this.setState({ isWaiting: true })
-
         api.getAllLotes((err, res) => {
-            console.log('****res**** ----------------------------->', res)
-            console.log('****err****', err)
-
             if (err == null) {
                 this.setState({ isWaiting: false, lotes: res.data })
             } else {
@@ -52,7 +49,6 @@ export default class LoteSelection extends Component {
                 )
             })}
         </>
-
     )
 
     render() {
@@ -70,7 +66,6 @@ export default class LoteSelection extends Component {
                     initialRegion={REGION}
                     customMapStyle={CUSTOM_STYLE}
                 >
-
                 </MapView>
 
                 <Header title={'Lote 21'} color={colors.BLUE} icon={images.location} />
@@ -85,18 +80,14 @@ export default class LoteSelection extends Component {
                     />
                 </View>
 
-                <View style={{ position: 'absolute', right: 15, top: p(162) }}>
-                    <TouchableOpacity>
-                        <Image source={images.layer1} style={{ width: p(65), height: p(65), marginBottom: p(5) }} />
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image source={images.locate1} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
-                    </TouchableOpacity>
+                <View style={{ position: 'absolute', right: 15, top: p(190) }}>
+                    <ICON.IconRoundLayer />
+                    <ICON.IconLocate1 top={p(5)}/>
                 </View>
 
                 <View style={styles.searchView}>
                     <TextInput style={styles.searchInput} placeholder={'Campos y Lotes'} />
-                    <Image source={images.search_white} style={{ width: p(18), height: p(18), marginRight: p(20) }} />
+                    <ICON.IconWhiteSearch right={p(20)} />
                 </View>
 
                 { isWaiting ? <LottieScreen /> : <FlatList  data={lotes} keyExtractor={(item, i) => String(i)} renderItem={this._renderItem} />}

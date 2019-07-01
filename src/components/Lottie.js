@@ -25,7 +25,7 @@ export default class LottieScreen extends React.Component {
             }}
             style={{
               width: window.width,
-              height: window.width / 4,
+              height: window.width / 2,
             }}
             source={this.state.animation}
           />
@@ -51,6 +51,7 @@ export default class LottieScreen extends React.Component {
 const styles = StyleSheet.create({
   animationContainer: {
     flex:1,
+    marginTop: 30,
     backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',

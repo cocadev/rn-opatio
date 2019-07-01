@@ -35,12 +35,15 @@
     "whatwg-fetch": "2.0.4"
   },
   "android": {
-    "package": "com.noernova.ggLoginTest",
+    "package": "com.optiagro.wangharry",
     "config": {
       "googleMaps": {
         "apiKey": "AIzaSyBTFwGaraAS6YkKyeyZWH-jSY10mdkoD2E"
       }
     }
+  },
+  "ios": {
+    "bundleIdentifier": "com.optiagro.wangharry"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0"

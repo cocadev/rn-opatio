@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "Optiagro-2",
+    "name": "optiagro",
     "description": "Google Auth/MapView/Autocomplete-expo 32",
-    "slug": "optiagro-2",
+    "slug": "optiagro",
     "privacy": "unlisted",
     "platforms": [
       "ios",
       "android"
     ],
     "sdkVersion": "32.0.0",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
     "icon": "./assets/images/icon.png",
@@ -31,9 +31,10 @@
       ]
     },
     "android": {
-      "package": "com.wang"
+      "package": "com.optiagro.wangharry"
     },
     "ios": {
+      "bundleIdentifier": "com.optiagro.wangharry",
       "supportsTablet": true
     },
     "updates": {

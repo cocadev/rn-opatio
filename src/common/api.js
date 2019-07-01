@@ -21,10 +21,7 @@ module.exports = {
   async middleware(url, request, cb) {  
       this.fetchData(url, request, cb)
   },
-  baseApi(sub_url, method, json_data, cb) {
-
-    console.log('*- my token -*', Cache.ACCESS_TOKEN ? "bearer " + Cache.ACCESS_TOKEN : null)
-   
+  baseApi(sub_url, method, json_data, cb) {   
     let request = {
       method,
       headers: {
@@ -210,15 +207,6 @@ module.exports = {
   auth( email, password, cb){
     this.baseApi('auth', 'POST', { email, password }, cb)
   },
-  signinJobSeeker( email, password, cb){
-    this.baseApi('jobseekers/login', 'POST', { email, password }, cb)
-  },
-  registerEmployer( email, password, cb){
-    this.baseApi('employers/register/', 'POST', { email, password }, cb)
-  },
-  registerJobSeeker( email, password, cb){
-    this.baseApi('jobseekers/register/', 'POST', { email, password }, cb)
-  },
 
 
 
@@ -232,10 +220,9 @@ module.exports = {
     this.baseApi('campos?skip=10', 'GET', {}, cb)
   },
 
-  getAllItems(type, count, cb){
-    this.baseApi('Appointment/GetAll'+ type +'?PageIndex=0&PageSize=' + count, 'GET', {}, cb)
+  getLotesCamposByFieldId(field_id, cb){
+    this.baseApi('campos/gis/'+ field_id, 'GET', {}, cb)
   },
-
 
   getAllJobs(cb){
     this.baseApi('jobs/', 'GET', {}, cb)

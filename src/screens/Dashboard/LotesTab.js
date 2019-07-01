@@ -4,18 +4,17 @@ import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
 import { MapView } from 'expo';
-import Header from '../../components/Header2';
-import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS, customCalendarStyles } from '../../common/config'
-import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
+import { Calendar } from 'react-native-calendars';
+import { customStyles } from './customStyles'
 import Polygons from '../../components/Polygons';
-
 import Notes from './LotesTab/notes';
 import Tareas from './LotesTab/tareas';
 import Cultivos from './LotesTab/cultivos';
-import { customStyles } from './customStyles'
-import * as ICON from '../../components/Icons';
 import text from '../../common/text';
-import { Calendar } from 'react-native-calendars';
+import api from '../../common/api'
+import Header from '../../components/Header2';
+import * as ICON from '../../components/Icons';
+import * as CONFIG  from '../../common/config'
 
 
 const height = Math.round(Dimensions.get('window').height);
@@ -24,21 +23,39 @@ export default class LotesTab extends Component {
 
     constructor(props) {
         super(props)
-        const markerInfo = [];
-        for (let i = 1; i < NUM_MARKERS; i++) {
-            markerInfo.push({
-                latitude: (((Math.random() * 2) - 1) * MARKERS_LATITUDE_DELTA) + LATITUDE,
-                longitude: (((Math.random() * 2) - 1) * MARKERS_LATITUDE_DELTA) + LONGITUDE,
-                isSpecial: Math.random() < PERCENT_SPECIAL_MARKERS,
-                id: i,
-            });
-        }
         this.state = {
-            markerInfo,
             selectTab: 1,
             modal: false,
-            calendar: false
+            calendar: false,
+            isWaiting: true,
+            polygons: null,
+            REGION : {
+                latitude: CONFIG.LATITUDE,
+                longitude: CONFIG.LONGITUDE,
+                latitudeDelta: CONFIG.LATITUDE_DELTA,
+                longitudeDelta: CONFIG.LONGITUDE_DELTA,
+            }
         }
+    }
+
+    componentDidMount(){
+        const field_id = this.props.navigation.state.params.field_id;
+        api.getLotesCamposByFieldId(field_id,(err, res) => {
+            if (err == null) {
+                this.setState({ 
+                    isWaiting: false, 
+                    polygons: res.data.polygons.coordinates,
+                    REGION : {
+                        latitude: 12,
+                        longitude: 22,
+                        latitudeDelta: CONFIG.LATITUDE_DELTA,
+                        longitudeDelta: CONFIG.LONGITUDE_DELTA,
+                    }
+                })
+            } else {
+                this.setState({ isWaiting: false })
+            }
+        })
     }
 
     renderModal() {
@@ -75,18 +92,7 @@ export default class LotesTab extends Component {
     }
 
     render() {
-        const { selectTab, modal, calendar } = this.state;
-        const markers = this.state.markerInfo.map((markerInfo) =>
-            <MapView.Marker
-                coordinate={markerInfo}
-                key={markerInfo.id}
-            >
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Image source={images.marker} style={{ width: p(35), height: p(35) }} />
-                    <Text style={{ fontSize: p(18), fontWeight: '700', color: colors.WHITE }}> Lote {markerInfo.id}</Text>
-                </View>
-            </MapView.Marker>
-        );
+        const { selectTab, modal, calendar, polygons, REGION } = this.state;
         return (
             <ScrollView style={styles.container}>
 
@@ -96,17 +102,18 @@ export default class LotesTab extends Component {
                     showsUserLocation={true}
                     zoomEnabled={true}
                     initialRegion={REGION}
-                    customMapStyle={CUSTOM_STYLE}
+                    customMapStyle={CONFIG.CUSTOM_STYLE}
                     cacheEnabled={true}
                     zoomEnabled
                     scrollingEnabled
                     loadingIndicatorColor="#666666"
                     loadingBackgroundColor="#eeeeee"
                 >
-                    <Polygons coordinates={COORDINATES} center={CENTER} />
-                    {/* {markers} */}
+                    { polygons && <Polygons coordinates={ polygons } /> }
                 </MapView>
+
                 <Header title={'Lote 21'} />
+                
                 <View style={customStyles.searchView}>
                     <Image source={images.blackSearch} style={customStyles.searchIcon} />
                     <TextInput
