@@ -3,10 +3,7 @@ import { StyleSheet, Text, View, Image, Dimensions, TextInput, ScrollView, Touch
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
-import { MapView } from 'expo';
 import { Calendar } from 'react-native-calendars';
-import { customStyles } from './customStyles'
-import Polygons from '../../components/Polygons';
 import Notes from './LotesTab/notes';
 import Tareas from './LotesTab/tareas';
 import Cultivos from './LotesTab/cultivos';
@@ -15,7 +12,7 @@ import api from '../../common/api'
 import Header from '../../components/Header2';
 import * as ICON from '../../components/Icons';
 import * as CONFIG  from '../../common/config'
-
+import Map from '../../components/Map';
 
 const height = Math.round(Dimensions.get('window').height);
 
@@ -29,12 +26,7 @@ export default class LotesTab extends Component {
             calendar: false,
             isWaiting: true,
             polygons: null,
-            REGION : {
-                latitude: CONFIG.LATITUDE,
-                longitude: CONFIG.LONGITUDE,
-                latitudeDelta: CONFIG.LATITUDE_DELTA,
-                longitudeDelta: CONFIG.LONGITUDE_DELTA,
-            }
+            REGION : null
         }
     }
 
@@ -42,12 +34,22 @@ export default class LotesTab extends Component {
         const field_id = this.props.navigation.state.params.field_id;
         api.getLotesCamposByFieldId(field_id,(err, res) => {
             if (err == null) {
+
+                const c = res.data.polygons.coordinates[0];
+                let longitude = 0;
+                let latitude = 0;
+
+                for (i = 0; i < c.length; i++) {
+                    longitude = longitude + c[i][0];
+                    latitude = latitude + c[i][1];
+                }
+
                 this.setState({ 
                     isWaiting: false, 
                     polygons: res.data.polygons.coordinates,
                     REGION : {
-                        latitude: 12,
-                        longitude: 22,
+                        latitude: latitude/c.length,
+                        longitude: longitude/c.length,
                         latitudeDelta: CONFIG.LATITUDE_DELTA,
                         longitudeDelta: CONFIG.LONGITUDE_DELTA,
                     }
@@ -92,45 +94,15 @@ export default class LotesTab extends Component {
     }
 
     render() {
-        const { selectTab, modal, calendar, polygons, REGION } = this.state;
+        const { selectTab, modal, calendar, polygons, REGION, isWaiting } = this.state;
         return (
             <ScrollView style={styles.container}>
-
-                <MapView
-                    ref={instance => this.map = instance}
-                    style={styles.map}
-                    showsUserLocation={true}
-                    zoomEnabled={true}
-                    initialRegion={REGION}
-                    customMapStyle={CONFIG.CUSTOM_STYLE}
-                    cacheEnabled={true}
-                    zoomEnabled
-                    scrollingEnabled
-                    loadingIndicatorColor="#666666"
-                    loadingBackgroundColor="#eeeeee"
-                >
-                    { polygons && <Polygons coordinates={ polygons } /> }
-                </MapView>
+                
+                {
+                    !isWaiting && <Map region={REGION} polygons={polygons}/>
+                }
 
                 <Header title={'Lote 21'} />
-                
-                <View style={customStyles.searchView}>
-                    <Image source={images.blackSearch} style={customStyles.searchIcon} />
-                    <TextInput
-                        style={customStyles.textinput}
-                        placeholder={'Buscar'}
-                        onChangeText={(text) => this.setState({ text })}
-                        value={this.state.text}
-                    />
-                </View>
-                <View style={{ position: 'absolute', right: 15, top: p(190) }}>
-                    <TouchableOpacity onPress={() => this.setState({ modal: true })}>
-                        <ICON.IconRoundLayer />
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <ICON.IconLocate1 />
-                    </TouchableOpacity>
-                </View>
 
                 {
                     !calendar &&
@@ -176,12 +148,12 @@ export default class LotesTab extends Component {
                                 onDayPress={(day) => { console.log('selected day', day) }}
                                 markingType={'custom'}
                                 markedDates={{
-                                    '2019-06-05': { customStyles: customCalendarStyles },
-                                    '2019-06-10': { customStyles: customCalendarStyles },
-                                    '2019-06-15': { customStyles: customCalendarStyles },
-                                    '2019-06-20': { customStyles: customCalendarStyles },
-                                    '2019-06-25': { customStyles: customCalendarStyles },
-                                    '2019-06-30': { customStyles: customCalendarStyles },
+                                    '2019-06-05': { customStyles: CONFIG.customCalendarStyles },
+                                    '2019-06-10': { customStyles: CONFIG.customCalendarStyles },
+                                    '2019-06-15': { customStyles: CONFIG.customCalendarStyles },
+                                    '2019-06-20': { customStyles: CONFIG.customCalendarStyles },
+                                    '2019-06-25': { customStyles: CONFIG.customCalendarStyles },
+                                    '2019-06-30': { customStyles: CONFIG.customCalendarStyles },
                                 }}
                                 hideArrows={false}
                             />
@@ -197,25 +169,7 @@ export default class LotesTab extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        ...StyleSheet.absoluteFillObject,
-        backgroundColor: '#F5FCFF'
-    },
-    map: {
-        ...StyleSheet.absoluteFillObject,
-        height: p(300),
-        marginTop: p(60)
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-    },
-    actionButtonIcon: {
-        fontSize: 20,
-        height: 22,
-        color: 'white',
-    },
+
     searchView: {
         backgroundColor: colors.GREY4,
         alignItems: 'center',
@@ -233,27 +187,6 @@ const styles = StyleSheet.create({
         height: p(36),
         color: colors.GREY4,
         fontWeight: '700'
-    },
-    head: {
-        backgroundColor: '#eeeeed',
-        justifyContent: 'center',
-        paddingLeft: p(25),
-        height: p(50),
-        borderBottomColor: '#e8e8e7',
-        borderBottomWidth: 1
-    },
-    itemLote: {
-        borderBottomColor: colors.GREY2,
-        borderBottomWidth: 1,
-        flexDirection: 'row',
-        paddingHorizontal: p(20),
-        alignItems: 'center',
-        height: p(72)
-    },
-    headText: {
-        fontWeight: '700',
-        color: '#354052',
-        fontSize: p(16)
     },
     tab: {
         flexDirection: 'row',
