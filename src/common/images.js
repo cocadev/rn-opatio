@@ -67,6 +67,7 @@ export const images = {
     lotes2: require('../../assets/images/lotes.png'),
     lote: require('../../assets/images/lote.png'),
     location: require('../../assets/images/location.png'),
+    locationPink: require('../../assets/images/location-pink.png'),
     line: require('../../assets/images/line.png'),
 
     menu: require('../../assets/images/menu.png'),

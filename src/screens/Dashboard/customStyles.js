@@ -14,7 +14,7 @@ export const customStyles = StyleSheet.create({
     },
     searchView: {
         position: 'absolute', 
-        top: p(55), 
+        top: p(0), 
         left: p(60)
     },
     searchIcon: {

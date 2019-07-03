@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Image, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, FlatList, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
@@ -56,43 +56,44 @@ export default class LoteSelection extends Component {
         const { isWaiting, lotes } = this.state
 
         return (
-            <ScrollView style={styles.container}>
-
-                <MapView
-                    ref={instance => this.map = instance}
-                    style={styles.map}
-                    showsUserLocation={true}
-                    zoomEnabled={true}
-                    initialRegion={REGION}
-                    customMapStyle={CUSTOM_STYLE}
-                >
-                </MapView>
+            <View style={styles.container}>
 
                 <Header title={'Lote 21'} color={colors.BLUE} icon={images.location} />
 
-                <View style={customStyles.searchView}>
-                    <Image source={images.blackSearch} style={customStyles.searchIcon} />
-                    <TextInput
-                        style={customStyles.textinput}
-                        placeholder={'Buscar'}
-                        onChangeText={(text) => this.setState({ text })}
-                        value={this.state.text}
-                    />
-                </View>
+                <ScrollView>
+                    <MapView
+                        ref={instance => this.map = instance}
+                        style={styles.map}
+                        showsUserLocation={true}
+                        zoomEnabled={true}
+                        initialRegion={REGION}
+                        customMapStyle={CUSTOM_STYLE}
+                    >
+                    </MapView>
 
-                <View style={{ position: 'absolute', right: 15, top: p(190) }}>
-                    <ICON.IconRoundLayer />
-                    <ICON.IconLocate1 top={p(5)}/>
-                </View>
+                    <View style={customStyles.searchView}>
+                        <Image source={images.blackSearch} style={customStyles.searchIcon} />
+                        <TextInput
+                            style={customStyles.textinput}
+                            placeholder={'Buscar'}
+                            onChangeText={(text) => this.setState({ text })}
+                            value={this.state.text}
+                        />
+                    </View>
 
-                <View style={styles.searchView}>
-                    <TextInput style={styles.searchInput} placeholder={'Campos y Lotes'} />
-                    <ICON.IconWhiteSearch right={p(20)} />
-                </View>
+                    <View style={{ position: 'absolute', right: 15, top: p(130) }}>
+                        <ICON.IconRoundLayer />
+                        <ICON.IconLocate1 top={p(5)} />
+                    </View>
 
-                { isWaiting ? <LottieScreen /> : <FlatList  data={lotes} keyExtractor={(item, i) => String(i)} renderItem={this._renderItem} />}
+                    <View style={styles.searchView}>
+                        <TextInput style={styles.searchInput} placeholder={'Campos y Lotes'} />
+                        <ICON.IconWhiteSearch right={p(20)} />
+                    </View>
 
-            </ScrollView>
+                    {isWaiting ? <ActivityIndicator /> : <FlatList data={lotes} keyExtractor={(item, i) => String(i)} renderItem={this._renderItem} />}
+                </ScrollView>
+            </View>
         );
     }
 }

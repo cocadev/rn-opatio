@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import { Scene, Router, Drawer, Stack } from 'react-native-router-flux'
 
 import SideMenu from '../screens/SideMenu';
-import Test from '../screens/Map/Test/test';
 
 import SignIn from '../screens/Login/signIn'
 import SignUp from '../screens/Login/signup'
@@ -12,20 +11,18 @@ import Forgot from '../screens/Login/forgot'
 import Intro from '../screens/Login/intro';
 import Inbox from '../screens/Dashboard/index';
 import Lotes from '../screens/Dashboard/Lotes';
-import Overlays from '../screens/Map/ZIndexMarkers';
 import LoteSelection from '../screens/Dashboard/Loteselection';
 import LotesTab from '../screens/Dashboard/LotesTab';
 import LoteDetail from '../screens/Dashboard/LoteDetail';
 import TareasDetail from '../screens/Dashboard/LotesTareasDetail';
 import TareasEdit from '../screens/Dashboard/LotesTareasEdit';
-import Cultivos from '../screens/Dashboard/LotesTab/cultivos';
 import CultivosDetail from '../screens/Dashboard/LotescultivosDetail';
 import LotesEdit from '../screens/Dashboard/LotesEdit';
 
 import Maquinarias from '../screens/Dashboard/Maquinarias';
 import MaquinariasTab from '../screens/Dashboard/MaquinariasTab';
 
-import Callouts from '../screens/Map/Callouts';
+import Test from '../screens/Map/Test/test';
 import LoteCreateDetail from '../screens/Dashboard/LotesCreateDetail';
 import MachineNewContractor from '../screens/Dashboard/MachineNewContractor';
 import MachineTrackDetail from '../screens/Dashboard/MachineTrackDetail';
@@ -66,7 +63,7 @@ const MAIN = [
   { key: 'MachineSpeedAlarm',         component: MachineSpeedAlarm},
   { key: 'MaquinariasSwitch',         component: MaquinariasSwitch},
   { key: 'MachinesContractorTab',     component: MachinesContractorTab},
-  { key: 'test',                      component: Callouts},
+  { key: 'test',                      component: Test},
 ]
 
 export const AuthPage = props => (
@@ -93,7 +90,7 @@ export const MainPage = props => {
       >
         <Scene key="inbox" component={Inbox} initial={false} hideNavBar />
       </Drawer>
-      { MAIN.map(a => (<Scene key={a.key} component={a.component} initial={a.key == 'loteselection' ? true : false} hideNavBar />))}
+      { MAIN.map(a => (<Scene key={a.key} component={a.component} initial={a.key == 'test' ? true : false} hideNavBar />))}
     </Stack>
   </Router>)
 }

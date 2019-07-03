@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions, ActivityIndicator } from 'react-native';
 import { DangerZone } from 'expo';
 const { Lottie } = DangerZone;
 const window = Dimensions.get('window');
@@ -18,18 +18,7 @@ export default class LottieScreen extends React.Component {
   render() {
     return (
       <View style={styles.animationContainer}>
-        {this.state.animation && (
-          <Lottie
-            ref={animation => {
-              this.animation = animation;
-            }}
-            style={{
-              width: window.width,
-              height: window.width / 2,
-            }}
-            source={this.state.animation}
-          />
-        )}
+        <ActivityIndicator />
       </View>
     );
   }
