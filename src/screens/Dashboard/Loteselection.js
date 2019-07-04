@@ -91,7 +91,7 @@ export default class LoteSelection extends Component {
                         <ICON.IconWhiteSearch right={p(20)} />
                     </View>
 
-                    {isWaiting ? <ActivityIndicator /> : <FlatList data={lotes} keyExtractor={(item, i) => String(i)} renderItem={this._renderItem} />}
+                    {isWaiting ? <LottieScreen /> : <FlatList data={lotes} keyExtractor={(item, i) => String(i)} renderItem={this._renderItem} />}
                 </ScrollView>
             </View>
         );
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     },
     map: {
         ...StyleSheet.absoluteFillObject,
-        height: p(300),
+        height: p(240),
     },
     welcome: {
         fontSize: 20,

@@ -162,14 +162,12 @@ export default class LotesTab extends Component {
 
                 }
 
-
             </ScrollView>
         );
     }
 }
 
 const styles = StyleSheet.create({
-
     searchView: {
         backgroundColor: colors.GREY4,
         alignItems: 'center',

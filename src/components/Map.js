@@ -1,58 +1,131 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet, Image, TextInput } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Image, Text, Dimensions } from 'react-native';
 import { images } from '../common/images';
 import { p } from '../common/normalize';
 import { MapView } from 'expo';
-import { customStyles } from '../screens/Dashboard/customStyles'
 import Polygons from './Polygons';
-import * as CONFIG from '../common/config'
 import * as ICON from '../components/Icons';
+import { Actions } from 'react-native-router-flux';
+import { colors } from '../common/colors';
 
 export default class Map extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      text: ''
+      text: 'Buscar',
+      latitude: 0,
+      longitude: 0,
     }
+  }
+
+  _findMe() {
+    navigator.geolocation.getCurrentPosition(
+      ({ coords }) => {
+        const { latitude, longitude } = coords
+        this.setState({
+          position: {
+            latitude,
+            longitude,
+          },
+          region: {
+            latitude,
+            longitude,
+            latitudeDelta: 0.005,
+            longitudeDelta: 0.001,
+          }
+        })
+      },
+      (error) => alert(JSON.stringify(error)),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    )
+  }
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      ({ coords }) => {
+        const { latitude, longitude } = coords
+        this.setState({
+          position: {
+            latitude,
+            longitude,
+          },
+          region: this.props.region
+        })
+      },
+      (error) => alert('Error: Are location services on?'),
+      { enableHighAccuracy: true }
+    );
+    this.watchID = navigator.geolocation.watchPosition(
+      ({ coords }) => {
+        const { lat, long } = coords
+        this.setState({
+          position: {
+            lat,
+            long
+          }
+        })
+      });
+  }
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
+  }
+
+  viewMap = () => {
+    Actions.mapSearch({
+      update: (location, key) => {
+        this.setState({
+          region: {
+            latitude: location.lat,
+            longitude: location.lng,
+            latitudeDelta: 0.02,
+            longitudeDelta: 0.02,
+          }, 
+          text: key
+        });
+      }
+    })
   }
 
   render() {
     const { polygons, region } = this.props;
+
     return (
       <View style={styles.container}>
 
         <MapView
-          ref={instance => this.map = instance}
-          style={styles.map}
-          showsUserLocation={true}
-          zoomEnabled={true}
+          // ref={instance => this.map = instance}
+          provider="google"
+          style={{ ...styles.map }}
+          showsCompass={true}
           initialRegion={region}
-          customMapStyle={CONFIG.CUSTOM_STYLE}
+          region={this.state.region}
+          showsMyLocationButton={true}
+          showsUserLocation={true}
+          // customMapStyle={CONFIG.CUSTOM_STYLE}
           cacheEnabled={true}
-          zoomEnabled
-          scrollingEnabled
-          loadingIndicatorColor="#666666"
-          loadingBackgroundColor="#eeeeee"
+          loadingEnabled={true}
+          loadingIndicatorColor="#111"
+          loadingBackgroundColor="#eee"
+
         >
           <Polygons coordinates={polygons} />
         </MapView>
 
-        <View style={customStyles.searchView}>
-          <Image source={images.blackSearch} style={customStyles.searchIcon} />
-          <TextInput
-            style={customStyles.textinput}
-            placeholder={'Buscar'}
-            onChangeText={(text) => this.setState({ text })}
-            value={this.state.text}
-          />
-        </View>
+        <TouchableOpacity
+          onPress={this.viewMap}
+          style={styles.searchView}>
+          <Image source={images.blackSearch} style={styles.searchIcon} />
+          <View style={styles.textinput}>
+            <Text>{this.state.text}</Text>
+          </View>
+        </TouchableOpacity>
 
         <View style={{ position: 'absolute', right: 15, top: p(190) }}>
           <TouchableOpacity onPress={() => this.setState({ modal: true })}>
             <ICON.IconRoundLayer />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => this._findMe()}>
             <ICON.IconLocate1 />
           </TouchableOpacity>
         </View>
@@ -70,7 +143,30 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
-    height: p(300),
-    marginTop: p(60)
+    height: p(240),
+    marginTop: p(60),
+    marginBottom: 1,
+    flex: 1
   },
+  textinput: {
+    width: p(260),
+    height: p(44),
+    justifyContent: 'center',
+    paddingLeft: p(48),
+    fontSize: p(16),
+    borderColor: colors.GREY8,
+    borderWidth: 1,
+    borderRadius: p(25)
+  },
+  searchView: {
+    position: 'absolute',
+    top: p(56),
+    left: p(60)
+  },
+  searchIcon: {
+    top: p(32),
+    left: p(22),
+    width: p(20),
+    height: p(19)
+  }
 });

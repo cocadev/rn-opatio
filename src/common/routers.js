@@ -22,7 +22,6 @@ import LotesEdit from '../screens/Dashboard/LotesEdit';
 import Maquinarias from '../screens/Dashboard/Maquinarias';
 import MaquinariasTab from '../screens/Dashboard/MaquinariasTab';
 
-import Test from '../screens/Map/Test/test';
 import LoteCreateDetail from '../screens/Dashboard/LotesCreateDetail';
 import MachineNewContractor from '../screens/Dashboard/MachineNewContractor';
 import MachineTrackDetail from '../screens/Dashboard/MachineTrackDetail';
@@ -32,6 +31,9 @@ import MachineNew from '../screens/Dashboard/MachineNew';
 import MachineSpeedAlarm from '../screens/Dashboard/MachineSpeedAlarm';
 import MaquinariasSwitch from '../screens/Dashboard/MaquinariasSwitch';
 import MachinesContractorTab from '../screens/Dashboard/MachinesContractorTab';
+
+import ToDoList from '../screens/ToDoList';
+import MapSearch from '../screens/Dashboard/Other/mapSearch';
 
 const width = Dimensions.get('window').width
 const AUTH = [
@@ -63,7 +65,9 @@ const MAIN = [
   { key: 'MachineSpeedAlarm',         component: MachineSpeedAlarm},
   { key: 'MaquinariasSwitch',         component: MaquinariasSwitch},
   { key: 'MachinesContractorTab',     component: MachinesContractorTab},
-  { key: 'test',                      component: Test},
+  { key: 'test',                      component: ToDoList},
+  { key: 'mapSearch',                 component: MapSearch},
+
 ]
 
 export const AuthPage = props => (
@@ -90,7 +94,7 @@ export const MainPage = props => {
       >
         <Scene key="inbox" component={Inbox} initial={false} hideNavBar />
       </Drawer>
-      { MAIN.map(a => (<Scene key={a.key} component={a.component} initial={a.key == 'test' ? true : false} hideNavBar />))}
+      { MAIN.map(a => (<Scene key={a.key} component={a.component} initial={a.key == 'mapSearch' ? true : false} hideNavBar />))}
     </Stack>
   </Router>)
 }

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, Image, Platform, Dimensions, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native';
-import ActionButton from 'react-native-action-button';
+import { StyleSheet, Text, View, Image, TextInput,  ScrollView, TouchableOpacity } from 'react-native';
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
-import { MapView, Marker, Animated } from 'expo';
+import { MapView } from 'expo';
 import Header from '../../components/Header';
-import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS, LOTES1, INTRO } from '../../common/config'
+import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS } from '../../common/config'
 import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
 
 import Maquinarias from './MaquinariasTab/Maquinarias';
@@ -15,8 +14,6 @@ import Contratistas from './MaquinariasTab/contratistas';
 import { customStyles } from './customStyles'
 import * as ICON from '../../components/Icons';
 import * as CALLOUT from '../../components/Callouts';
-
-const height = Math.round(Dimensions.get('window').height);
 
 export default class MaquinariasTab extends Component {
 

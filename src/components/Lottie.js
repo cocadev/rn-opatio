@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import { DangerZone } from 'expo';
 const { Lottie } = DangerZone;
 const window = Dimensions.get('window');
 
-import LOADING from "../common/loading.json";
+import LOADING from "../common/reload.json";
 
 export default class LottieScreen extends React.Component {
   state = {
@@ -18,7 +18,18 @@ export default class LottieScreen extends React.Component {
   render() {
     return (
       <View style={styles.animationContainer}>
-        <ActivityIndicator />
+        {this.state.animation && (
+          <Lottie
+            ref={animation => {
+              this.animation = animation;
+            }}
+            style={{
+              width: window.width,
+              height: window.width / 3,
+            }}
+            source={this.state.animation}
+          />
+        )}
       </View>
     );
   }
@@ -40,7 +51,6 @@ export default class LottieScreen extends React.Component {
 const styles = StyleSheet.create({
   animationContainer: {
     flex:1,
-    marginTop: 30,
     backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
