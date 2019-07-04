@@ -40,7 +40,7 @@ export default class LoteSelection extends Component {
             </View>
             {item.fields !== [] && item.fields.map(function (field, key) {
                 return (
-                    <TouchableOpacity key={key} style={styles.itemLote} onPress={() => Actions.lotetab({ field_id: field.field_id })}>
+                    <TouchableOpacity key={key} style={styles.itemLote} onPress={() => Actions.lotetab({ field, description: item.nombre })}>
                         <Image source={images.dot1} style={{ width: p(30), height: p(30), marginRight: p(20) }} />
                         <Text style={{ fontSize: p(20), fontWeight: '700', color: colors.TEXT, marginTop: -5 }}>Lote{field.name}</Text>
                         <Text style={{ fontSize: p(15), flex: 1, marginLeft: p(20), color: colors.TEXT, marginTop: -5 }}>{field.ha} ha</Text>

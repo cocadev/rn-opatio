@@ -31,7 +31,9 @@ export default class LotesTab extends Component {
     }
 
     componentDidMount(){
-        const field_id = this.props.navigation.state.params.field_id;
+
+        const field_id = this.props.navigation.state.params.field.field_id;
+
         api.getLotesCamposByFieldId(field_id,(err, res) => {
             if (err == null) {
 
@@ -94,7 +96,11 @@ export default class LotesTab extends Component {
     }
 
     render() {
+
         const { selectTab, modal, calendar, polygons, REGION, isWaiting } = this.state;
+        const area = this.props.navigation.state.params.field.ha;
+        const description = this.props.navigation.state.params.description;
+
         return (
             <ScrollView style={styles.container}>
                 
@@ -102,7 +108,7 @@ export default class LotesTab extends Component {
                     !isWaiting && <Map region={REGION} polygons={polygons}/>
                 }
 
-                <Header title={'Lote 21'} />
+                <Header title={'Lote 21'} address={ area + ' ha' } description={description}/>
 
                 {
                     !calendar &&
