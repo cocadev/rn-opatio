@@ -230,6 +230,17 @@ module.exports = {
   getProfile(id, cb){
     this.baseApi('jobseekers/' + id, 'GET', {}, cb)
   },
+
+
+
+
+
+
+
+
+
+
+
   
   //JOB
   changeJobType(id, job_type, expected_salary, salery_type,  cb){

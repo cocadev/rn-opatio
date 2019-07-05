@@ -11,8 +11,12 @@ import text from '../../common/text';
 import api from '../../common/api'
 import Header from '../../components/Header2';
 import * as ICON from '../../components/Icons';
-import * as CONFIG  from '../../common/config'
+import * as CONFIG from '../../common/config'
 import Map from '../../components/Map';
+import DateTimePicker from 'react-native-modal-datetime-picker';
+import UtilService from '../../common/utils';
+import axios from 'axios';
+import LottieScreen from '../../components/Lottie'
 
 const height = Math.round(Dimensions.get('window').height);
 
@@ -26,15 +30,45 @@ export default class LotesTab extends Component {
             calendar: false,
             isWaiting: true,
             polygons: null,
-            REGION : null
+            REGION: null,
+
+            isDateTimePickerVisible1: false,
+            isDateTimePickerVisible2: false,
+
+            startDate_note: UtilService.getDatebylongNumber(new Date()),
+            endDate_note: UtilService.getDatebylongNumber(new Date()),
+
+            results: null
         }
     }
 
-    componentDidMount(){
+    _showDateTimePicker1 = () => this.setState({ isDateTimePickerVisible1: true });
+    _showDateTimePicker2 = () => this.setState({ isDateTimePickerVisible2: true });
+
+    _hideDateTimePicker1 = () => this.setState({ isDateTimePickerVisible1: false });
+    _hideDateTimePicker2 = () => this.setState({ isDateTimePickerVisible2: false });
+
+    _handleDatePicked1 = (date) => {
+        console.log('A date has been picked: ', date);
+        this.setState({ startDate_note: UtilService.getDatebylongNumber(date) });
+        this._hideDateTimePicker1();
+        this.onApiCallMoke()
+    };
+
+    _handleDatePicked2 = (date) => {
+        console.log('A date has been picked: ', date);
+        this.setState({ endDate_note: UtilService.getDatebylongNumber(date) });
+        this._hideDateTimePicker2();
+        this.onApiCallMoke()
+    };
+
+    componentDidMount() {
+
+        this.onApiCallMoke()
 
         const field_id = this.props.navigation.state.params.field.field_id;
 
-        api.getLotesCamposByFieldId(field_id,(err, res) => {
+        api.getLotesCamposByFieldId(field_id, (err, res) => {
             if (err == null) {
 
                 const c = res.data.polygons.coordinates[0];
@@ -46,12 +80,12 @@ export default class LotesTab extends Component {
                     latitude = latitude + c[i][1];
                 }
 
-                this.setState({ 
-                    isWaiting: false, 
+                this.setState({
+                    isWaiting: false,
                     polygons: res.data.polygons.coordinates,
-                    REGION : {
-                        latitude: latitude/c.length,
-                        longitude: longitude/c.length,
+                    REGION: {
+                        latitude: latitude / c.length,
+                        longitude: longitude / c.length,
                         latitudeDelta: CONFIG.LATITUDE_DELTA,
                         longitudeDelta: CONFIG.LONGITUDE_DELTA,
                     }
@@ -60,6 +94,16 @@ export default class LotesTab extends Component {
                 this.setState({ isWaiting: false })
             }
         })
+    }
+
+
+    onApiCallMoke() {
+        this.setState({ isWaiting: true})
+        axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=X&release_date.gte=`+ UtilService.getDatebyTMDB(this.state.startDate_note) + `&release_date.lte=`+ UtilService.getDatebyTMDB(this.state.endDate_note)+`&with_release_type=2|3&sort_by=primary_release_date.desc`)
+            .then(res => {
+                const results = res.data.results;
+                this.setState({ results, isWaiting: false });
+            })
     }
 
     renderModal() {
@@ -95,20 +139,30 @@ export default class LotesTab extends Component {
         );
     }
 
+    startOpen = () => {
+        this.setState({ isDateTimePickerVisible1: true });
+    }
+
+    endOpen = () => {
+        this.setState({ isDateTimePickerVisible2: true });
+    }
+
+
     render() {
 
         const { selectTab, modal, calendar, polygons, REGION, isWaiting } = this.state;
+        const name = this.props.navigation.state.params.field.name;
         const area = this.props.navigation.state.params.field.ha;
         const description = this.props.navigation.state.params.description;
 
         return (
             <ScrollView style={styles.container}>
-                
+
                 {
-                    !isWaiting && <Map region={REGION} polygons={polygons}/>
+                    !isWaiting && <Map region={REGION} polygons={polygons} />
                 }
 
-                <Header title={'Lote 21'} address={ area + ' ha' } description={description}/>
+                <Header title={'Lote ' + name} address={area + ' ha'} description={description} />
 
                 {
                     !calendar &&
@@ -133,10 +187,12 @@ export default class LotesTab extends Component {
                     </View>
                 }
 
+                { isWaiting && <LottieScreen /> }
 
-                {!calendar && selectTab == 1 && <Notes />}
-                {!calendar && selectTab == 2 && <Tareas />}
-                {!calendar && selectTab == 3 && <Cultivos />}
+
+                {!isWaiting && !calendar && selectTab == 1 && this.state.results && <Notes results={this.state.results} endModal={this.endOpen} startModal={this.startOpen} startDate={this.state.startDate_note} endDate={this.state.endDate_note} />}
+                {!isWaiting && !calendar && selectTab == 2 && <Tareas />}
+                {!isWaiting && !calendar && selectTab == 3 && <Cultivos />}
 
                 {modal && this.renderModal()}
 
@@ -145,7 +201,7 @@ export default class LotesTab extends Component {
                         <View style={{ height: p(63), backgroundColor: colors.BLUE2, justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={text.t_30_400_ff}>{'NDVI'}</Text>
                         </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', paddingVertical: p(8)}}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', paddingVertical: p(8) }}>
                             <Calendar
                                 style={styles.calendar}
                                 theme={{
@@ -167,6 +223,18 @@ export default class LotesTab extends Component {
                     </View>
 
                 }
+
+                <DateTimePicker
+                    isVisible={this.state.isDateTimePickerVisible1}
+                    onConfirm={this._handleDatePicked1}
+                    onCancel={this._hideDateTimePicker1}
+                />
+
+                <DateTimePicker
+                    isVisible={this.state.isDateTimePickerVisible2}
+                    onConfirm={this._handleDatePicked2}
+                    onCancel={this._hideDateTimePicker2}
+                />
 
             </ScrollView>
         );

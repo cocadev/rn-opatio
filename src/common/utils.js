@@ -1,4 +1,3 @@
-import { AsyncStorage } from 'react-native';
 import { images } from './images';
 
 
@@ -18,6 +17,19 @@ class UtilService {
         };
         let year = d.getFullYear()
         return padWithZero(d.getMonth() + 1) + '/' + padWithZero(d.getDate()) + '/' + year.toString().substring(2)
+    }
+
+    static getDatebyTMDB(date) {
+        let d = new Date(date);
+        const padWithZero = number => {
+            const string = number.toString();
+            if (number < 10) {
+                return "0" + string;
+            }
+            return string;
+        };
+        let year = d.getFullYear()
+        return year + '-' + padWithZero(d.getMonth() + 1) + '-' + padWithZero(d.getDate())
     }
 
     static getCircleColr(index) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Image, TextInput, FlatList, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native'
 import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'

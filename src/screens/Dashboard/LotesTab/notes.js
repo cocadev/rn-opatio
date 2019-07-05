@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { colors } from '../../../common/colors';
-import { NOTAS } from '../../../common/config';
 import { Entypo } from '@expo/vector-icons';
 import { images } from '../../../common/images';
 import { p } from '../../../common/normalize';
@@ -11,17 +10,19 @@ import { Actions } from 'react-native-router-flux';
 export default class Noteas extends React.Component {
 
     render() {
+        const NOTAS = this.props.results
+
         return (
             <View style={styles.containerView}>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: p(12) }}>
-                    <View style={styles.dropdown}>
-                        <Text>{'Fecha: 23/03/18'}</Text>
+                    <TouchableOpacity onPress={()=>this.props.startModal()} style={styles.dropdown}>
+                        <Text>{'Fecha: ' + this.props.startDate }</Text>
                         <Entypo name={'chevron-down'} size={24} color={colors.GREY4}/>
-                    </View>
-                    <View style={styles.dropdown}>
-                        <Text>{'Fecha: 23/04/18'}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={()=>this.props.endModal()} style={styles.dropdown}>
+                        <Text>{'Fecha: ' + this.props.endDate }</Text>
                         <Entypo name={'chevron-down'} size={24} color={colors.GREY4}/>
-                    </View>
+                    </TouchableOpacity>
                 </View>
                 <ScrollView>
                     {
@@ -29,8 +30,8 @@ export default class Noteas extends React.Component {
                             return (
                                 <View key={index} style={{ paddingHorizontal: p(15), flexDirection: 'row', backgroundColor: colors.WHITE }}>
                                     <View style={{ width: 40 }}>
-                                        <Text style={{ fontSize: 9 }}>{item.name}</Text>
-                                        <Text style={{ fontSize: 9 }}>{item.time}</Text>
+                                        <Text style={{ fontSize: 9 }}>{item.original_language}</Text>
+                                        <Text style={{ fontSize: 9 }}>{item.release_date.substring(2)}</Text>
                                     </View>
                                     <View style={{ marginLeft: 10 }}>
                                         <View style={styles.timeDot}></View>
@@ -42,7 +43,7 @@ export default class Noteas extends React.Component {
                                             item.visible &&
                                             <View style={{ flexDirection: 'row', marginHorizontal: p(22), marginVertical: p(14) }}>
                                                 <View style={{ backgroundColor: colors.GREY5, height: 1, flex: 1, alignSelf: 'center' }} />
-                                                <Text style={{ alignSelf: 'center', paddingHorizontal: p(16), fontSize: p(12) }}>Semana 11 del 2019</Text>
+                                                <Text style={{ alignSelf: 'center', paddingHorizontal: p(16), fontSize: p(12) }}>{item.release_date}</Text>
                                                 <View style={{ backgroundColor: colors.GREY5, height: 1, flex: 1, alignSelf: 'center' }} />
                                             </View>
                                         }
