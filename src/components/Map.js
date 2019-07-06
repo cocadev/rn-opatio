@@ -41,36 +41,6 @@ export default class Map extends React.Component {
     )
   }
 
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      ({ coords }) => {
-        const { latitude, longitude } = coords
-        this.setState({
-          position: {
-            latitude,
-            longitude,
-          },
-          region: this.props.region
-        })
-      },
-      (error) => alert('Error: Are location services on?'),
-      { enableHighAccuracy: true }
-    );
-    this.watchID = navigator.geolocation.watchPosition(
-      ({ coords }) => {
-        const { lat, long } = coords
-        this.setState({
-          position: {
-            lat,
-            long
-          }
-        })
-      });
-  }
-  componentWillUnmount() {
-    navigator.geolocation.clearWatch(this.watchID);
-  }
-
   viewMap = () => {
     Actions.mapSearch({
       update: (location, key) => {

@@ -49,22 +49,18 @@ export default class LotesTab extends Component {
     _hideDateTimePicker2 = () => this.setState({ isDateTimePickerVisible2: false });
 
     _handleDatePicked1 = (date) => {
-        console.log('A date has been picked: ', date);
         this.setState({ startDate_note: UtilService.getDatebylongNumber(date) });
         this._hideDateTimePicker1();
         this.onApiCallMoke()
     };
 
     _handleDatePicked2 = (date) => {
-        console.log('A date has been picked: ', date);
         this.setState({ endDate_note: UtilService.getDatebylongNumber(date) });
         this._hideDateTimePicker2();
         this.onApiCallMoke()
     };
 
     componentDidMount() {
-
-        this.onApiCallMoke()
 
         const field_id = this.props.navigation.state.params.field.field_id;
 
@@ -90,6 +86,9 @@ export default class LotesTab extends Component {
                         longitudeDelta: CONFIG.LONGITUDE_DELTA,
                     }
                 })
+
+                this.onApiCallMoke()
+
             } else {
                 this.setState({ isWaiting: false })
             }
@@ -99,7 +98,7 @@ export default class LotesTab extends Component {
 
     onApiCallMoke() {
         this.setState({ isWaiting: true})
-        axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=X&release_date.gte=`+ UtilService.getDatebyTMDB(this.state.startDate_note) + `&release_date.lte=`+ UtilService.getDatebyTMDB(this.state.endDate_note)+`&with_release_type=2|3&sort_by=primary_release_date.desc`)
+        axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=f3e9f7d1677c7aa63c9ab526381eeceb&release_date.gte=`+ UtilService.getDatebyTMDB(this.state.startDate_note) + `&release_date.lte=`+ UtilService.getDatebyTMDB(this.state.endDate_note)+`&with_release_type=2|3&sort_by=primary_release_date.desc`)
             .then(res => {
                 const results = res.data.results;
                 this.setState({ results, isWaiting: false });
@@ -147,12 +146,12 @@ export default class LotesTab extends Component {
         this.setState({ isDateTimePickerVisible2: true });
     }
 
-
     render() {
 
         const { selectTab, modal, calendar, polygons, REGION, isWaiting } = this.state;
-        const name = this.props.navigation.state.params.field.name;
-        const area = this.props.navigation.state.params.field.ha;
+        const field = this.props.navigation.state.params.field;
+        const name = field.name;
+        const area = field.ha;
         const description = this.props.navigation.state.params.description;
 
         return (
@@ -190,7 +189,7 @@ export default class LotesTab extends Component {
                 { isWaiting && <LottieScreen /> }
 
 
-                {!isWaiting && !calendar && selectTab == 1 && this.state.results && <Notes results={this.state.results} endModal={this.endOpen} startModal={this.startOpen} startDate={this.state.startDate_note} endDate={this.state.endDate_note} />}
+                {!isWaiting && !calendar && selectTab == 1 && this.state.results && <Notes field={field} polygons={this.state.polygons} results={this.state.results} endModal={this.endOpen} startModal={this.startOpen} startDate={this.state.startDate_note} endDate={this.state.endDate_note} />}
                 {!isWaiting && !calendar && selectTab == 2 && <Tareas />}
                 {!isWaiting && !calendar && selectTab == 3 && <Cultivos />}
 
@@ -242,6 +241,10 @@ export default class LotesTab extends Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: colors.WHITE
+    },
     searchView: {
         backgroundColor: colors.GREY4,
         alignItems: 'center',

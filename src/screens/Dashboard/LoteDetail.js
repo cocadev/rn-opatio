@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, Image, Platform, Dimensions, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
 import Carousel from 'react-native-banner-carousel';
 import Header from '../../components/Header3';
 
-const height = Math.round(Dimensions.get('window').height);
 const width = Math.round(Dimensions.get('window').width);
 
 const carouselList = [
@@ -35,7 +34,12 @@ export default class LoteDetail extends Component {
     }
 
     render() {
+
         const { video } = this.state;
+        const data = this.props.navigation.state.params.data;
+        const position = this.props.navigation.state.params.position;
+        const field = this.props.navigation.state.params.field
+
         return (
             <ScrollView style={styles.container}>
                 <Header color={colors.ORANGE} title={'EDITOR'}/>
@@ -53,15 +57,15 @@ export default class LoteDetail extends Component {
                 </Carousel>
                 <View style={{ backgroundColor: colors.ORANGE, elevation: 3, padding: p(30), paddingBottom: p(10) }}>
                     <Image source={images.msg} style={{ width: p(30), height: p(30) }} />
-                    <Text style={styles.text1}>{'Manchón de malezas'}</Text>
-                    <Text numberOfLines={4} style={styles.text2}>{'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod blandit fermentum. Ut consectetur, felis imperdiet luctus cursus, justo lorem maximus orci, in commodo ipsum massa sit amet ante. Aliquam sollicitudin, enim et elementum condimentum, lectus leo consectetur dolor'}</Text>
+                    <Text style={styles.text1}>{data.original_title}</Text>
+                    <Text numberOfLines={4} style={styles.text2}>{data.overview}</Text>
                 </View>
 
                 <View style={styles.item}>
                     <Image source={images.map} style={{ width: p(18), height: p(25), marginTop: p(7) }} />
                     <View style={{ marginLeft: p(25) }}>
                         <Text style={styles.text3}>{'Ubicación y coordenadas'}</Text>
-                        <Text style={styles.text4}>{'Long: 36646 - Lat: 184750'}</Text>
+                        <Text style={styles.text4}>{'Long: ' + Math.round( position[0] * 100 ) / 100 + ' - Lat: ' + Math.round( position[1] * 100 ) / 100}</Text>
                     </View>
                 </View>
 
@@ -69,7 +73,7 @@ export default class LoteDetail extends Component {
                     <Image source={images.square} style={{ width: p(22), height: p(22), marginTop: p(7) }} />
                     <View style={{ marginLeft: p(25) }}>
                         <Text style={styles.text3}>{'En lote'}</Text>
-                        <Text style={styles.text4}>{'Lote 21 - Santa Rosa'}</Text>
+                        <Text style={styles.text4}>{'Lote ' + field.name + ' - Santa Rosa'}</Text>
                     </View>
                 </View>
 
@@ -77,12 +81,12 @@ export default class LoteDetail extends Component {
                     <Image source={images.pin} style={{ width: p(12), height: p(22), marginTop: p(7), marginLeft: p(8) }} />
                     <View style={{ marginLeft: p(25) }}>
                         <Text style={styles.text3}>{'Archivos adjuntos'}</Text>
-                        <Text style={styles.text4}>{'1 Archivo'}</Text>
+                        <Text style={styles.text4}>{ data.vote_count + ' Archivo'}</Text>
                     </View>
                 </View>
 
                 <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.WHITE, paddingBottom: p(18) }}>
-                    <Image source={{ uri: 'https://www.disneyfanatic.com/wp-content/uploads/2015/09/99Characters-620x330.jpg' }} style={styles.video} />
+                    <Image source={{ uri: 'https://image.tmdb.org/t/p/w300' + data.poster_path }} style={styles.video} />
                     <TouchableOpacity onPress={()=>this.setState({video: !video})}>
                         <Image
                             source={ video ? images.pause: images.play}
@@ -133,7 +137,7 @@ const styles = StyleSheet.create({
     },
     video: {
         width: p(225),
-        height: p(136),
+        height: p(225),
         marginBottom: p(23),
         marginRight: p(3),
         borderRadius: p(5)
