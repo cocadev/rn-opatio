@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, Image, Platform, Dimensions, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image,  TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
-import Carousel from 'react-native-banner-carousel';
 import { Entypo } from '@expo/vector-icons';
 import { Actions } from 'react-native-router-flux';
-
-const height = Math.round(Dimensions.get('window').height);
-const width = Math.round(Dimensions.get('window').width);
+import text from '../../common/text';
 
 export default class LotesEdit extends Component {
 
     state = {
-        text: ''
+        text: this.props.navigation.state.params.data.overview
     }
 
     render() {
+
+        const data = this.props.navigation.state.params.data;
+
         return (
             <ScrollView style={styles.container}>
 
@@ -35,7 +35,7 @@ export default class LotesEdit extends Component {
                 </View>
 
                 <View style={styles.textRow}>
-                    <Text style={styles.text1}>{'Título Nota'}</Text>
+                    <Text style={text.t_37_400_ff_t8}>{data.original_title}</Text>
                     <Image source={images.photoAdd} style={{ width: p(38), height: p(35) }} />
                 </View>
 
@@ -105,12 +105,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.ORANGE
-    },
-    text1: {
-        color: colors.WHITE,
-        fontWeight: '700',
-        marginTop: p(8),
-        fontSize: p(37)
     },
     text2: {
         color: colors.WHITE,

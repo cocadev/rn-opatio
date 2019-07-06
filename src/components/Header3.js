@@ -19,7 +19,7 @@ export default class Header3 extends React.Component {
         <View style={{ flexDirection: 'row' }}>
           <TouchableOpacity
             onPress={() => {
-              color == colors.BLUE2 ? Actions.tareasedit() : Actions.lotesedit()
+              color == colors.BLUE2 ? Actions.tareasedit() : Actions.lotesedit({ data: this.props.data})
             }}
             style={[styles.vertical, { backgroundColor: color }]}
           >

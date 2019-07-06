@@ -99,7 +99,26 @@ export const IconRing = props => (
   </TouchableOpacity>
 )
 
+export const IconVideo = props => (
+  <TouchableOpacity onPress={()=>props.onClick()}>
+    <Image
+      source={images.play}
+      style={{
+        width: p(77),
+        height: p(77),
+        marginBottom: p(12),
+      }} />
+  </TouchableOpacity>
+)
 
-const styles = StyleSheet.create({
-
-});
+export const IconPause = props => (
+  <TouchableOpacity onPress={()=>props.onClick()}>
+    <Image
+      source={images.pause}
+      style={{
+        width: p(77),
+        height: p(77),
+        marginBottom: p(12),
+      }} />
+  </TouchableOpacity>
+)

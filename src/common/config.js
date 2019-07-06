@@ -830,3 +830,11 @@ export const PPPPPPPP = [
       ]
   ]
 ]
+
+export const carouselList = [
+  "https://www.disneyfanatic.com/wp-content/uploads/2015/02/What-Do-Your-Favorite-Disney-Characters-Say-About-You.jpg",
+  "http://dslv9ilpbe7p1.cloudfront.net/q_AGGYqTPGhBMa1QKtWLcg_store_header_image",
+  "https://images-na.ssl-images-amazon.com/images/I/81uUIk9PAHL._SX355_.jpg",
+  "https://cdn7.wdwnt.com/wp-content/uploads/2019/03/b3cff0c9ba63adc8d8bd8a806c33f351.jpg",
+  "https://i.ytimg.com/vi/CNV3WLx5Ez4/maxresdefault.jpg",
+];

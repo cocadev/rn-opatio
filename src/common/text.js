@@ -15,6 +15,7 @@ export default {
   t_14_700_60:{ color: '#606060', fontSize: p(15), fontWeight: '700' },
   t_14_500_RED:{ color: colors.RED, fontSize: p(15), fontWeight: '500' },
   t_14_500_ff:{ color: '#ffffff', fontSize: p(15), fontWeight: '500' },
+  t_14_500_98:{ color: '#989898', fontSize: p(15), fontWeight: '400' },
 
   t_15_400_98:{ color: '#989898', fontSize: p(17), fontWeight: '400' },
   t_15_400_72:{ color: '#727272', fontSize: p(17), fontWeight: '400' },
@@ -30,6 +31,7 @@ export default {
   t_16_700_2e:{ color: '#2e2e2e', fontSize: p(18), fontWeight: '700' },
   t_16_500_98:{ color: '#989898', fontSize: p(18), fontWeight: '500' },
   t_16_500_00:{ color: '#000000', fontSize: p(18), fontWeight: '500' },
+  t_16_400_98:{ color: '#989898', fontSize: p(18), fontWeight: '400' },
 
   t_18_500_2b:{ color: '#2b2b2b', fontSize: p(18), fontWeight: '500' },
   t_18_700_ff:{ color: '#ffffff', fontSize: p(18), fontWeight: '500' },
@@ -42,5 +44,7 @@ export default {
   t_28_700_ff:{ color: '#ffffff', fontSize: p(31), fontWeight: '700' },
   t_30_700_ff:{ color: '#ffffff', fontSize: p(31), fontWeight: '700' },
   t_30_400_ff:{ color: '#ffffff', fontSize: p(31), fontWeight: '400' },
+
+  t_37_400_ff_t8:{ color: '#ffffff', fontSize: p(37), fontWeight: '700', marginTop: p(8) },
 
 }
