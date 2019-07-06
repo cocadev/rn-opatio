@@ -22,6 +22,7 @@ export default class Noteas extends React.Component {
 
         return (
             <View key={index} style={{ paddingHorizontal: p(15), flexDirection: 'row', backgroundColor: colors.WHITE }}>
+
                 <View style={{ width: 40 }}>
                     <Text style={{ fontSize: 9 }}>{item.original_language}</Text>
                     <Text style={{ fontSize: 9 }}>{item.release_date.substring(2)}</Text>

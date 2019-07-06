@@ -45,6 +45,7 @@ export default {
   t_30_700_ff:{ color: '#ffffff', fontSize: p(31), fontWeight: '700' },
   t_30_400_ff:{ color: '#ffffff', fontSize: p(31), fontWeight: '400' },
 
-  t_37_400_ff_t8:{ color: '#ffffff', fontSize: p(37), fontWeight: '700', marginTop: p(8) },
+  t_32_700_ff_t8:{ color: '#ffffff', fontSize: p(32), fontWeight: '700', marginTop: p(8) },
+  t_37_400_ff_t8:{ color: '#ffffff', fontSize: p(37), fontWeight: '400', marginVertical: p(8) },
 
 }

@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { colors } from '../common/colors'
 import { p } from '../common/normalize';
-import { images } from '../common/images';
-import { Actions } from 'react-native-router-flux';
+
 import text from '../common/text';
 
 export const BlueWhite = props => (

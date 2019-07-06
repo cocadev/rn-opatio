@@ -91,7 +91,7 @@ export default class Map extends React.Component {
           </View>
         </TouchableOpacity>
 
-        <View style={{ position: 'absolute', right: 15, top: p(190) }}>
+        <View style={{ position: 'absolute', right: 15, top: p(130) }}>
           <TouchableOpacity onPress={() => this.setState({ modal: true })}>
             <ICON.IconRoundLayer />
           </TouchableOpacity>
@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
     height: p(240),
-    marginTop: p(60),
     marginBottom: 1,
     flex: 1
   },
@@ -130,7 +129,6 @@ const styles = StyleSheet.create({
   },
   searchView: {
     position: 'absolute',
-    top: p(56),
     left: p(60)
   },
   searchIcon: {

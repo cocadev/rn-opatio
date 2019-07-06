@@ -17,6 +17,7 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import UtilService from '../../common/utils';
 import axios from 'axios';
 import LottieScreen from '../../components/Lottie'
+import Cstyles from '../../common/c_style';
 
 const height = Math.round(Dimensions.get('window').height);
 
@@ -97,8 +98,8 @@ export default class LotesTab extends Component {
 
 
     onApiCallMoke() {
-        this.setState({ isWaiting: true})
-        axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=f3e9f7d1677c7aa63c9ab526381eeceb&release_date.gte=`+ UtilService.getDatebyTMDB(this.state.startDate_note) + `&release_date.lte=`+ UtilService.getDatebyTMDB(this.state.endDate_note)+`&with_release_type=2|3&sort_by=primary_release_date.desc`)
+        this.setState({ isWaiting: true })
+        axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=f3e9f7d1677c7aa63c9ab526381eeceb&release_date.gte=` + UtilService.getDatebyTMDB(this.state.startDate_note) + `&release_date.lte=` + UtilService.getDatebyTMDB(this.state.endDate_note) + `&with_release_type=2|3&sort_by=primary_release_date.desc`)
             .then(res => {
                 const results = res.data.results;
                 this.setState({ results, isWaiting: false });
@@ -155,96 +156,93 @@ export default class LotesTab extends Component {
         const description = this.props.navigation.state.params.description;
 
         return (
-            <ScrollView style={styles.container}>
-
-                {
-                    !isWaiting && <Map region={REGION} polygons={polygons} />
-                }
+            <View style={Cstyles.container}>
 
                 <Header title={'Lote ' + name} address={area + ' ha'} description={description} />
 
-                {
-                    !calendar &&
-                    <View style={styles.searchView}>
-                        <TextInput style={styles.searchInput} placeholder={'Notas del lote'} />
-                        <Image source={images.search_white} style={{ width: p(18), height: p(18), marginRight: p(20) }} />
-                    </View>
-                }
+                <ScrollView>
+                    {
+                        !isWaiting && <Map region={REGION} polygons={polygons} />
+                    }
 
-                {
-                    !calendar &&
-                    <View style={styles.tab}>
-                        <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 1 ? colors.ORANGE : colors.GREY3, backgroundColor: selectTab == 1 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 1 })}>
-                            <Text style={{ color: colors.TEXT, fontSize: p(14) }}>NOTAS</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 2 ? colors.BLUE : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
-                            <Text style={{ color: colors.TEXT, fontSize: p(14) }}>TAREAS</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 3 ? colors.GREEN2 : colors.GREY3, backgroundColor: selectTab == 3 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 3 })}>
-                            <Text style={{ color: colors.TEXT, fontSize: p(14) }}>CULTIVOS</Text>
-                        </TouchableOpacity>
-                    </View>
-                }
-
-                { isWaiting && <LottieScreen /> }
-
-
-                {!isWaiting && !calendar && selectTab == 1 && this.state.results && <Notes field={field} polygons={this.state.polygons} results={this.state.results} endModal={this.endOpen} startModal={this.startOpen} startDate={this.state.startDate_note} endDate={this.state.endDate_note} />}
-                {!isWaiting && !calendar && selectTab == 2 && <Tareas />}
-                {!isWaiting && !calendar && selectTab == 3 && <Cultivos />}
-
-                {modal && this.renderModal()}
-
-                {
-                    calendar && <View style={{ marginTop: p(240), flex: 1 }}>
-                        <View style={{ height: p(63), backgroundColor: colors.BLUE2, justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={text.t_30_400_ff}>{'NDVI'}</Text>
+                    {
+                        !calendar &&
+                        <View style={styles.searchView}>
+                            <TextInput style={styles.searchInput} placeholder={'Notas del lote'} />
+                            <Image source={images.search_white} style={{ width: p(18), height: p(18), marginRight: p(20) }} />
                         </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', paddingVertical: p(8) }}>
-                            <Calendar
-                                style={styles.calendar}
-                                theme={{
-                                    arrowColor: '#707070',
-                                }}
-                                onDayPress={(day) => { console.log('selected day', day) }}
-                                markingType={'custom'}
-                                markedDates={{
-                                    '2019-06-05': { customStyles: CONFIG.customCalendarStyles },
-                                    '2019-06-10': { customStyles: CONFIG.customCalendarStyles },
-                                    '2019-06-15': { customStyles: CONFIG.customCalendarStyles },
-                                    '2019-06-20': { customStyles: CONFIG.customCalendarStyles },
-                                    '2019-06-25': { customStyles: CONFIG.customCalendarStyles },
-                                    '2019-06-30': { customStyles: CONFIG.customCalendarStyles },
-                                }}
-                                hideArrows={false}
-                            />
+                    }
+
+                    {
+                        !calendar &&
+                        <View style={styles.tab}>
+                            <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 1 ? colors.ORANGE : colors.GREY3, backgroundColor: selectTab == 1 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 1 })}>
+                                <Text style={{ color: colors.TEXT, fontSize: p(14) }}>NOTAS</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 2 ? colors.BLUE : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
+                                <Text style={{ color: colors.TEXT, fontSize: p(14) }}>TAREAS</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 3 ? colors.GREEN2 : colors.GREY3, backgroundColor: selectTab == 3 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 3 })}>
+                                <Text style={{ color: colors.TEXT, fontSize: p(14) }}>CULTIVOS</Text>
+                            </TouchableOpacity>
                         </View>
-                    </View>
+                    }
 
-                }
+                    {isWaiting && <LottieScreen />}
 
-                <DateTimePicker
-                    isVisible={this.state.isDateTimePickerVisible1}
-                    onConfirm={this._handleDatePicked1}
-                    onCancel={this._hideDateTimePicker1}
-                />
+                    {!isWaiting && !calendar && selectTab == 1 && this.state.results && <Notes field={field} polygons={this.state.polygons} results={this.state.results} endModal={this.endOpen} startModal={this.startOpen} startDate={this.state.startDate_note} endDate={this.state.endDate_note} />}
+                    {!isWaiting && !calendar && selectTab == 2 && <Tareas />}
+                    {!isWaiting && !calendar && selectTab == 3 && <Cultivos />}
 
-                <DateTimePicker
-                    isVisible={this.state.isDateTimePickerVisible2}
-                    onConfirm={this._handleDatePicked2}
-                    onCancel={this._hideDateTimePicker2}
-                />
+                    {modal && this.renderModal()}
 
-            </ScrollView>
+                    {
+                        calendar && <View style={{ marginTop: p(240), flex: 1 }}>
+                            <View style={{ height: p(63), backgroundColor: colors.BLUE2, justifyContent: 'center', alignItems: 'center' }}>
+                                <Text style={text.t_30_400_ff}>{'NDVI'}</Text>
+                            </View>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', paddingVertical: p(8) }}>
+                                <Calendar
+                                    style={styles.calendar}
+                                    theme={{
+                                        arrowColor: '#707070',
+                                    }}
+                                    onDayPress={(day) => { console.log('selected day', day) }}
+                                    markingType={'custom'}
+                                    markedDates={{
+                                        '2019-06-05': { customStyles: CONFIG.customCalendarStyles },
+                                        '2019-06-10': { customStyles: CONFIG.customCalendarStyles },
+                                        '2019-06-15': { customStyles: CONFIG.customCalendarStyles },
+                                        '2019-06-20': { customStyles: CONFIG.customCalendarStyles },
+                                        '2019-06-25': { customStyles: CONFIG.customCalendarStyles },
+                                        '2019-06-30': { customStyles: CONFIG.customCalendarStyles },
+                                    }}
+                                    hideArrows={false}
+                                />
+                            </View>
+                        </View>
+
+                    }
+
+                    <DateTimePicker
+                        isVisible={this.state.isDateTimePickerVisible1}
+                        onConfirm={this._handleDatePicked1}
+                        onCancel={this._hideDateTimePicker1}
+                    />
+
+                    <DateTimePicker
+                        isVisible={this.state.isDateTimePickerVisible2}
+                        onConfirm={this._handleDatePicked2}
+                        onCancel={this._hideDateTimePicker2}
+                    />
+
+                </ScrollView>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.WHITE
-    },
     searchView: {
         backgroundColor: colors.GREY4,
         alignItems: 'center',
@@ -265,7 +263,7 @@ const styles = StyleSheet.create({
     },
     tab: {
         flexDirection: 'row',
-        backgroundColor: colors.GREY3,
+        // backgroundColor: colors.GREY3,
         height: p(60)
     },
     tabItem: {

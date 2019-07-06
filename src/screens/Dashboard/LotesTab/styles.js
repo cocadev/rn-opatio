@@ -6,8 +6,6 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         backgroundColor: '#fff',
-        borderTopColor:'#ddd',
-        borderTopWidth:1,
         margin:0
     },
     

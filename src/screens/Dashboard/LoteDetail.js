@@ -8,12 +8,14 @@ import Header from '../../components/Header3';
 import text from '../../common/text';
 import * as ICON from '../../components/Icons';
 import * as CONFIG from '../../common/config';
+import * as ATOM from '../../components/Atoms';
+import Cstyles from '../../common/c_style';
 
 const width = Math.round(Dimensions.get('window').width);
 
 export default class LoteDetail extends Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
             video: false
@@ -36,86 +38,65 @@ export default class LoteDetail extends Component {
         const field = this.props.navigation.state.params.field
 
         return (
-            <ScrollView style={styles.container}>
-                <Header color={colors.ORANGE} title={'EDITOR'} data={data}/>
-                <Carousel
-                    autoplay
-                    autoplayTimeout={5000}
-                    loop
-                    pageIndicatorStyle={{ backgroundColor: colors.WHITE }}
-                    activePageIndicatorStyle={{ backgroundColor: colors.ORANGE }}
-                    pageIndicatorContainerStyle={{ fontSize: 70 }}
-                    index={0}
-                    pageSize={width}
-                >
-                    {CONFIG.carouselList.map((image, index) => this.renderPage(image, index))}
-                </Carousel>
-                <View style={{ backgroundColor: colors.ORANGE, elevation: 3, padding: p(30), paddingBottom: p(10) }}>
-                    <Image source={images.msg} style={{ width: p(30), height: p(30) }} />
-                    <Text style={styles.text1}>{data.original_title}</Text>
-                    <Text numberOfLines={4} style={styles.text2}>{data.overview}</Text>
-                </View>
+            <View style={Cstyles.container}>
+                <Header color={colors.ORANGE} title={'EDITOR'} data={data} />
+                <ScrollView>
+                    <Carousel
+                        autoplay
+                        autoplayTimeout={5000}
+                        loop
+                        pageIndicatorStyle={{ backgroundColor: colors.WHITE }}
+                        activePageIndicatorStyle={{ backgroundColor: colors.ORANGE }}
+                        pageIndicatorContainerStyle={{ fontSize: 70 }}
+                        index={0}
+                        pageSize={width}
+                    >
+                        {CONFIG.carouselList.map((image, index) => this.renderPage(image, index))}
+                    </Carousel>
 
-                <View style={styles.item}>
-                    <Image source={images.map} style={{ width: p(18), height: p(25), marginTop: p(7) }} />
-                    <View style={{ marginLeft: p(25) }}>
-                        <Text style={text.t_16_500_00}>{'Ubicación y coordenadas'}</Text>
-                        <Text style={text.t_16_400_98}>{'Long: ' + Math.round( position[0] * 100 ) / 100 + ' - Lat: ' + Math.round( position[1] * 100 ) / 100}</Text>
+                    <View style={styles.view}>
+                        <Image source={images.msg} style={{ width: p(30), height: p(30) }} />
+                        <Text style={text.t_32_700_ff_t8}>{data.original_title}</Text>
+                        <Text numberOfLines={4} style={text.t_15_600_ff}>{data.overview}</Text>
                     </View>
-                </View>
 
-                <View style={styles.item}>
-                    <Image source={images.square} style={{ width: p(22), height: p(22), marginTop: p(7) }} />
-                    <View style={{ marginLeft: p(25) }}>
-                        <Text style={text.t_16_500_00}>{'En lote'}</Text>
-                        <Text style={text.t_16_400_98}>{'Lote ' + field.name + ' - Santa Rosa'}</Text>
+                    <ATOM.Atom1
+                        icon={<ICON.IconMap />}
+                        title={'Ubicación y coordenadas'}
+                        note={'Long: ' + Math.round(position[0] * 100) / 100 + ' - Lat: ' + Math.round(position[1] * 100) / 100}
+                    />
+
+                    <ATOM.Atom1
+                        icon={<ICON.IconSquare />}
+                        title={'En lote'}
+                        note={'Lote ' + field.name + ' - Santa Rosa'}
+                    />
+
+                    <ATOM.Atom1
+                        icon={<ICON.IconPin />}
+                        title={'Archivos adjuntos'}
+                        note={data.vote_count + ' Archivo'}
+                    />
+
+                    <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.WHITE, paddingVertical: p(22) }}>
+                        <Image source={{ uri: 'https://image.tmdb.org/t/p/w300' + data.poster_path }} style={styles.video} />
+                        {
+                            video ? <ICON.IconPause onClick={() => this.setState({ video: !video })} /> : <ICON.IconVideo onClick={() => this.setState({ video: !video })} />
+                        }
+                        <Text style={text.t_14_500_98}>{'Nota de voz 0:23 '}</Text>
                     </View>
-                </View>
-
-                <View style={[styles.item, { borderBottomWidth: 0 }]}>
-                    <Image source={images.pin} style={{ width: p(12), height: p(22), marginTop: p(7), marginLeft: p(8) }} />
-                    <View style={{ marginLeft: p(25) }}>
-                        <Text style={text.t_16_500_00}>{'Archivos adjuntos'}</Text>
-                        <Text style={text.t_16_400_98}>{ data.vote_count + ' Archivo'}</Text>
-                    </View>
-                </View>
-
-                <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.WHITE, paddingBottom: p(18) }}>
-                    <Image source={{ uri: 'https://image.tmdb.org/t/p/w300' + data.poster_path }} style={styles.video} />
-                    {
-                        video ? <ICON.IconPause onClick={()=>this.setState({video: !video})} /> : <ICON.IconVideo onClick={()=>this.setState({video: !video})} />
-                    }
-                    <Text style={text.t_14_500_98}>{'Nota de voz 0:23 '}</Text>
-                </View>
-
-            </ScrollView>
+                </ScrollView>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.BLUE
-    },
-    text1: {
-        color: colors.WHITE,
-        fontWeight: '700',
-        marginTop: p(8),
-        fontSize: p(32)
-    },
-    text2: {
-        color: colors.WHITE,
-        fontWeight: '500',
-        fontSize: p(17),
-        marginVertical: p(14)
-    },
-    item: {
-        flexDirection: 'row',
-        backgroundColor: colors.WHITE,
+    view: {
+        backgroundColor: colors.ORANGE,
+        elevation: 3,
         padding: p(30),
-        borderBottomColor: colors.GREY3,
-        borderBottomWidth: p(7)
+        paddingVertical: p(30)
     },
     video: {
         width: p(225),

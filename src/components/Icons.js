@@ -70,6 +70,15 @@ export const ImgCallOut = props => (<Image source={images.callout} style={{ widt
 export const ImgLogo = props => (<Image source={images.logo} style={{ width: p(202), height: p(58), marginRight: props.right, marginLeft: props.left }} />)
 export const ImgIntro = props => (<Image source={images.intro} style={{ width: width, height: p(220), marginRight: props.right, marginLeft: props.left }} />)
 
+
+export const IconSquare = props => (<Image source={images.square} style={{ width: p(22), height: p(22), marginTop: p(7) }} />)
+export const IconPin = props => (<Image source={images.pin} style={{ width: p(12), height: p(22), marginTop: p(7), marginLeft: p(8) }} />)
+export const IconMap = props => (<Image source={images.map} style={{ width: p(18), height: p(25), marginTop: p(7) }} />)
+
+
+
+
+
 export const IconBack = props => (
   <TouchableOpacity onPress={() => Actions.pop()}>
     <Image source={images.back} style={{ width: p(20), height: p(20), marginTop: props.top }} />
