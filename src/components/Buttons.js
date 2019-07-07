@@ -18,24 +18,60 @@ export const WhiteDark = props => (
 )
 
 export const WhiteSky = props => (
-  <TouchableOpacity onPress={()=>props.onClick()} style={[styles.WhiteSky, { marginTop: props.top, marginBottom: props.bottom}]} >
+  <TouchableOpacity onPress={() => props.onClick()} style={[styles.WhiteSky, { marginTop: props.top, marginBottom: props.bottom }]} >
     <Text style={text.t_15_600_sky}>{props.title}</Text>
   </TouchableOpacity>
 )
 
 export const SkyWhite = props => (
-  <TouchableOpacity onPress={()=>props.onClick()} style={[styles.WhiteSky, { marginTop: props.top, marginBottom: props.bottom, backgroundColor: colors.SKY}]} >
+  <TouchableOpacity onPress={() => props.onClick()} style={[styles.WhiteSky, { marginTop: props.top, marginBottom: props.bottom, backgroundColor: colors.SKY }]} >
     <Text style={text.t_15_600_ff}>{props.title}</Text>
   </TouchableOpacity>
 )
 
 export const AcceptCancel = props => (
-  <View style={[styles.rectNgulo, { width: p(86)}]} >
+  <View style={[styles.rectNgulo, { width: p(86) }]} >
     <Text style={text.t_12_700_ee}>{props.title}</Text>
   </View>
 )
 
+
+
+export const BtnNormal = props => (
+  <TouchableOpacity
+    onPress={() => props.onClick()}
+    style={[styles.BtnNormal, {
+      backgroundColor: props.back,
+      marginTop: props.top
+    }]}
+  >
+    <Text style={text.t_15_600_ff}>{props.title}</Text>
+  </TouchableOpacity>
+)
+
+
+
+
+
+
+
 const styles = StyleSheet.create({
+
+
+  BtnNormal: {
+    paddingHorizontal: p(25),
+    paddingVertical: p(10),
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: 'rgba(0, 0, 0, 0.16)',
+    shadowOffset: { width: 3, height: 0 },
+    shadowRadius: 6,
+    borderRadius: 3,
+    backgroundColor: colors.WHITE,
+  },
+
+
+
   rectNgulo: {
     width: p(142),
     height: p(30),

@@ -81,7 +81,7 @@ export const IconMap = props => (<Image source={images.map} style={{ width: p(18
 
 export const IconBack = props => (
   <TouchableOpacity onPress={() => Actions.pop()}>
-    <Image source={images.back} style={{ width: p(20), height: p(20), marginTop: props.top }} />
+    <Image source={images.back} style={{ width: p(20), height: p(20), marginTop: props.top, marginLeft: props.left }} />
   </TouchableOpacity>)
 
 export const IconMenu = props => (

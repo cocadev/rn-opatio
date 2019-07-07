@@ -67,7 +67,6 @@ const MAIN = [
   { key: 'MachinesContractorTab',     component: MachinesContractorTab},
   { key: 'test',                      component: ToDoList},
   { key: 'mapSearch',                 component: MapSearch},
-
 ]
 
 export const AuthPage = props => (

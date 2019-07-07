@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native';
 import { colors } from '../../../common/colors';
-import { Entypo } from '@expo/vector-icons';
 import { images } from '../../../common/images';
 import { p } from '../../../common/normalize';
 import styles from './styles'
 import { Actions } from 'react-native-router-flux';
+import * as DROPDOWN from '../../../components/DropDown';
+import Cstyles from '../../../common/c_style';
 
 export default class Noteas extends React.Component {
 
@@ -52,24 +53,20 @@ export default class Noteas extends React.Component {
     }
 
     render() {
-        const NOTAS = this.props.results
 
         return (
-            <View style={styles.containerView}>
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: p(12) }}>
-                    <TouchableOpacity onPress={() => this.props.startModal()} style={styles.dropdown}>
-                        <Text>{'Fecha: ' + this.props.startDate}</Text>
-                        <Entypo name={'chevron-down'} size={24} color={colors.GREY4} />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.props.endModal()} style={styles.dropdown}>
-                        <Text>{'Fecha: ' + this.props.endDate}</Text>
-                        <Entypo name={'chevron-down'} size={24} color={colors.GREY4} />
-                    </TouchableOpacity>
+            <View style={Cstyles.container}>
+                
+                <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: p(25) }}>
+
+                    <DROPDOWN.XSmall onClick={() => this.props.startModal()} title={'Fecha: ' + this.props.startDate}/>
+
+                    <DROPDOWN.XSmall onClick={() => this.props.endModal()} title={'Fecha: ' + this.props.endDate}/>
+
                 </View>
 
                 <FlatList
-                    style={styles.container}
-                    data={NOTAS}
+                    data={this.props.results}
                     renderItem={this.renderItem}
                     keyExtractor={(item, i) => String(i)}
                 />

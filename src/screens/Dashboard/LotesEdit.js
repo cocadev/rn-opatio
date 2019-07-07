@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity 
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
-import { Entypo } from '@expo/vector-icons';
 import { Actions } from 'react-native-router-flux';
 import text from '../../common/text';
 import Cstyles from '../../common/c_style';

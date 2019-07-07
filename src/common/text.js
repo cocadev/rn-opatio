@@ -34,7 +34,8 @@ export default {
   t_16_400_98:{ color: '#989898', fontSize: p(18), fontWeight: '400' },
 
   t_18_500_2b:{ color: '#2b2b2b', fontSize: p(18), fontWeight: '500' },
-  t_18_700_ff:{ color: '#ffffff', fontSize: p(18), fontWeight: '500' },
+  t_18_700_ff:{ color: '#ffffff', fontSize: p(18), fontWeight: '700' },
+  t_19_500_ff:{ color: '#ffffff', fontSize: p(19), fontWeight: '500' },
 
   t_21_700_ff:{ color: '#ffffff', fontSize: p(22), fontWeight: '700' },
   t_21_500_ff:{ color: '#ffffff', fontSize: p(22), fontWeight: '500' },
@@ -45,7 +46,7 @@ export default {
   t_30_700_ff:{ color: '#ffffff', fontSize: p(31), fontWeight: '700' },
   t_30_400_ff:{ color: '#ffffff', fontSize: p(31), fontWeight: '400' },
 
-  t_32_700_ff_t8:{ color: '#ffffff', fontSize: p(32), fontWeight: '700', marginTop: p(8) },
+  t_32_700_ff_t30:{ color: '#ffffff', fontSize: p(32), fontWeight: '700', marginTop: p(30), marginBottom: p(20) },
   t_37_400_ff_t8:{ color: '#ffffff', fontSize: p(37), fontWeight: '400', marginVertical: p(8) },
 
 }
