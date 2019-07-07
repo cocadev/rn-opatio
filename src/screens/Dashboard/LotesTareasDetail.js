@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, Image, Platform, Dimensions, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions, ScrollView } from 'react-native';
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
 import Carousel from 'react-native-banner-carousel';
-import Header from '../../components/Header3';
+import * as ATOM from '../../components/Atoms';
+import * as ICON from '../../components/Icons';
+import * as BTN from '../../components/Buttons';
+import * as CONFIG from '../../common/config';
+import * as HEADERS from '../../components/Headers';
 
-const height = Math.round(Dimensions.get('window').height);
+import text from '../../common/text';
+import { Actions } from 'react-native-router-flux';
+
 const width = Math.round(Dimensions.get('window').width);
-
-const carouselList = [
-    "https://www.disneyfanatic.com/wp-content/uploads/2015/02/What-Do-Your-Favorite-Disney-Characters-Say-About-You.jpg",
-    "http://dslv9ilpbe7p1.cloudfront.net/q_AGGYqTPGhBMa1QKtWLcg_store_header_image",
-    "https://images-na.ssl-images-amazon.com/images/I/81uUIk9PAHL._SX355_.jpg",
-    "https://cdn7.wdwnt.com/wp-content/uploads/2019/03/b3cff0c9ba63adc8d8bd8a806c33f351.jpg",
-    "https://i.ytimg.com/vi/CNV3WLx5Ez4/maxresdefault.jpg",
-];
 
 export default class TareasDetail extends Component {
 
@@ -35,10 +33,9 @@ export default class TareasDetail extends Component {
     }
 
     render() {
-        const { video } = this.state;
         return (
             <ScrollView style={styles.container}>
-                <Header color={colors.BLUE2} title={'EDITOR'}/>
+                <HEADERS.Gradient color={colors.BLUE2} title={'EDITOR'} onClick={()=>Actions.tareasedit()}/>
                 <Carousel
                     autoplay
                     autoplayTimeout={5000}
@@ -48,80 +45,62 @@ export default class TareasDetail extends Component {
                     index={0}
                     pageSize={width}
                 >
-                    {carouselList.map((image, index) => this.renderPage(image, index))}
+                    { CONFIG.carouselList.map((image, index) => this.renderPage(image, index))}
                 </Carousel>
 
-                <Image source={images.bigCheck} style={styles.big}/>
+                <Image source={images.bigCheck} style={styles.big} />
 
-                <View style={{ backgroundColor: colors.BLUE2, padding: p(30), paddingBottom: p(10) }}>
-                    <Image source={images.tareaW} style={{ width: p(30), height: p(30) }} />
-                    <Text style={styles.text1}>{'Pulverizar'}</Text>
-                    <Text numberOfLines={4} style={styles.text2}>{'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod blandit fermentum. Ut consectetur, felis imperdiet luctus cursus, justo lorem maximus orci, in commodo ipsum massa sit amet ante. Aliquam sollicitudin, enim et elementum condimentum, lectus leo consectetur dolor'}</Text>
+                <View style={{ backgroundColor: colors.BLUE2, padding: p(30), paddingBottom: p(22) }}>
+                    <ICON.IconTareaW bottom={p(6)}/>
+                    <Text style={text.t_30_700_ff}>{'Pulverizar'}</Text>
+                    <Text numberOfLines={4} style={text.t_15_500_ff}>{'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod blandit fermentum. Ut consectetur, felis imperdiet luctus cursus, justo lorem maximus orci, in commodo ipsum massa sit amet ante. Aliquam sollicitudin, enim et elementum condimentum, lectus leo consectetur dolor'}</Text>
                 </View>
 
-                <View style={styles.item}>
-                    <Image source={images.calendar} style={{ width: p(23), height: p(25), marginTop: p(7) }} />
-                    <View style={{ marginLeft: p(25) }}>
-                        <Text style={styles.text3}>{'Inicio'}</Text>
-                        <Text style={styles.text4}>{'15/05/19'}</Text>
-                    </View>
-                </View>
+                <ATOM.Atom1
+                    icon={<ICON.IconCalendarX />}
+                    title={'Inicio'}
+                    note={'15/05/19'}
+                />
 
-                <View style={styles.item}>
-                    <Image source={images.calendar} style={{ width: p(23), height: p(25), marginTop: p(7) }} />
-                    <View style={{ marginLeft: p(25) }}>
-                        <Text style={styles.text3}>{'Vence'}</Text>
-                        <Text style={styles.text4}>{'18/05/19'}</Text>
-                    </View>
-                </View>
+                <ATOM.Atom1
+                    icon={<ICON.IconCalendarX />}
+                    title={'Vence'}
+                    note={'18/05/19'}
+                />
 
-                <View style={styles.item}>
-                    <Image source={images.map} style={{ width: p(18), height: p(25), marginTop: p(7) }} />
-                    <View style={{ marginLeft: p(25) }}>
-                        <Text style={styles.text3}>{'Ubicación y coordenadas'}</Text>
-                        <Text style={styles.text4}>{'Long: 36646 - Lat: 184750'}</Text>
-                    </View>
-                </View>
+                <ATOM.Atom1
+                    icon={<ICON.IconMap />}
+                    title={'Ubicación y coordenadas'}
+                    note={'Long: 36646 - Lat: 184750'}
+                />
 
-                <View style={styles.item}>
-                    <Image source={images.square} style={{ width: p(22), height: p(22), marginTop: p(7) }} />
-                    <View style={{ marginLeft: p(25) }}>
-                        <Text style={styles.text3}>{'En lote'}</Text>
-                        <Text style={styles.text4}>{'Lote 21 - Santa Rosa'}</Text>
-                    </View>
-                </View>
+                <ATOM.Atom1
+                    icon={<ICON.IconSquare />}
+                    title={'En lote'}
+                    note={'Lote 21 - Santa Rosa'}
+                />
 
-                <View style={styles.item}>
-                    <Image source={images.profile} style={{ width: p(24), height: p(24), marginTop: p(7) }} />
-                    <View style={{ marginLeft: p(25) }}>
-                        <Text style={styles.text3}>{'Asignado a'}</Text>
-                        <Text style={styles.text4}>{'Walter'}</Text>
-                    </View>
-                </View>
+                <ATOM.Atom1
+                    icon={<ICON.IconProfile />}
+                    title={'Asignado a'}
+                    note={'Walter'}
+                />
 
-                <View style={styles.item}>
-                    <Image source={images.members} style={{ width: p(25), height: p(22), marginTop: p(7) }} />
-                    <View style={{ marginLeft: p(25) }}>
-                        <Text style={styles.text3}>{'Responsable'}</Text>
-                        <Text style={styles.text4}>{'joaquin@optiagro.com'}</Text>
-                    </View>
-                </View>
+                <ATOM.Atom1
+                    icon={<ICON.IconMember />}
+                    title={'Responsable'}
+                    note={'joaquin@optiagro.com'}
+                />
 
-                <View style={[styles.item, { borderBottomWidth: 0 }]}>
-                    <Image source={images.pin} style={{ width: p(12), height: p(22), marginTop: p(7), marginLeft: p(8) }} />
-                    <View style={{ marginLeft: p(25) }}>
-                        <Text style={styles.text3}>{'Archivos adjuntos'}</Text>
-                        <Text style={styles.text4}>{'1 Archivo'}</Text>
-                    </View>
-                </View>
+                <ATOM.Atom1
+                    icon={<ICON.IconPin />}
+                    title={'Archivos adjuntos'}
+                    note={'1 Archivo'}
+                />
 
                 <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.WHITE, paddingBottom: p(24) }}>
                     <Image source={{ uri: 'https://www.disneyfanatic.com/wp-content/uploads/2015/09/99Characters-620x330.jpg' }} style={styles.video} />
-                    <View style={{ flexDirection: 'row' }}>
-                        <View style={styles.vertical}>
-                            <Text style={{ color: colors.WHITE, fontWeight: '700' }}>{'DESCARGAR PDF'}</Text>
-                        </View>
-                    </View>
+                    <BTN.BtnNormal title={'DESCARGAR PDF'} back={colors.BLUE2} top={p(20)} />
                 </View>
 
             </ScrollView>

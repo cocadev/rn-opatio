@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
-import { colors } from '../common/colors'
+import { TouchableOpacity, Image, Dimensions } from 'react-native';
 import { p } from '../common/normalize';
 import { images } from '../common/images';
 import { Actions } from 'react-native-router-flux';
+
 const width = Math.round(Dimensions.get('window').width);
 
 export const IconDown = props => (<Image source={images.down} style={{ width: p(12), height: p(8) }} />)
@@ -37,6 +37,9 @@ export const IconProfile = props => (<Image source={images.profile} style={{ wid
 export const IconExcWhite = props => (<Image source={images.excWhite} style={{ width: p(22), height: p(26), marginRight: props.right, marginLeft: props.left }} />)
 export const IconCall = props => (<Image source={images.call} style={{ width: p(25), height: p(24), marginBottom: props.bottom, marginLeft: props.left }} />)
 export const IconCallWhite = props => (<Image source={images.call_white} style={{ width: p(28), height: p(28), marginBottom: props.bottom, marginLeft: props.left }} />)
+export const IconMember = props => (<Image source={images.members} style={{ width: p(20), height: p(20), marginRight: props.right, marginLeft: props.left }} />)
+export const IconCalendarX = props => (<Image source={images.calendar} style={{ width: p(20), height: p(22), marginTop: props.top, marginBottom: props.bottom, marginRight: props.right, marginLeft: props.left }} />)
+export const IconTareaW = props => (<Image source={images.tareaW} style={{ width: p(24), height: p(26), marginTop: props.top, marginBottom: props.bottom, marginRight: props.right, marginLeft: props.left }} />)
 
 export const IconSwitchOn = props => (<Image source={images.switch_on} style={{ width: p(37), height: p(19), marginBottom: props.bottom, marginLeft: props.left }} />)
 export const IconSwitchOff = props => (<Image source={images.switch_off} style={{ width: p(37), height: p(19), marginBottom: props.bottom, marginLeft: props.left }} />)

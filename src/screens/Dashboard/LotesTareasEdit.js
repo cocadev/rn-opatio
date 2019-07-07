@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, Image, Platform, Dimensions, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
-import Carousel from 'react-native-banner-carousel';
 import { Entypo } from '@expo/vector-icons';
-import { Actions } from 'react-native-router-flux';
-
-const height = Math.round(Dimensions.get('window').height);
-const width = Math.round(Dimensions.get('window').width);
+import * as HEADERS from '../../components/Headers';
+import * as ATOM from '../../components/Atoms';
+import * as ICON from '../../components/Icons';
 
 export default class TareasEdit extends Component {
 
@@ -20,19 +18,7 @@ export default class TareasEdit extends Component {
         return (
             <ScrollView style={styles.container}>
 
-                <View style={styles.header}>
-
-                    <TouchableOpacity onPress={()=>Actions.pop()}>
-                        <Image source={images.back} style={{ width: 20, height: 18 }} />
-                    </TouchableOpacity>
-
-                    <View style={{ flexDirection: 'row' }}>
-                        <View style={[styles.vertical, { backgroundColor: colors.WHITE }]}>
-                            <Text style={{ color: colors.BLACK, fontWeight: '700' }}>{'GUARDAR'}</Text>
-                        </View>
-                    </View>
-
-                </View>
+                <HEADERS.GUARDAR />
 
                 <View style={styles.textRow}>
                     <Text style={styles.text1}>{'Título Tarea'}</Text>
@@ -48,13 +34,11 @@ export default class TareasEdit extends Component {
                     value={this.state.text}
                 />
 
-                <View style={styles.item}>
-                    <Image source={images.calendar} style={{ width: p(23), height: p(25), marginTop: p(7) }} />
-                    <View style={{ marginLeft: p(25) }}>
-                        <Text style={styles.text3}>{'Inicio'}</Text>
-                        <Text style={styles.text4}>{'15/05/19'}</Text>
-                    </View>
-                </View>
+                <ATOM.Atom1
+                    icon={<ICON.IconCalendarX />}
+                    title={'Inicio'}
+                    note={'15/05/19'} 
+                />
 
                 <View style={styles.item}>
                     <Image source={images.calendar} style={{ width: p(23), height: p(25), marginTop: p(7) }} />
@@ -64,7 +48,7 @@ export default class TareasEdit extends Component {
                     </View>
                 </View>
 
-                <View style={[styles.item, { borderBottomWidth: 0}]}>
+                <View style={[styles.item, { borderBottomWidth: 0 }]}>
                     <Image source={images.map} style={{ width: p(18), height: p(25), marginTop: p(7) }} />
                     <View style={{ marginLeft: p(25) }}>
                         <Text style={styles.text3}>{'Ubicación y coordenadas'}</Text>
@@ -72,15 +56,15 @@ export default class TareasEdit extends Component {
                     </View>
                 </View>
 
-                <View style={{ backgroundColor: colors.WHITE, alignItems: 'center'}}>
+                <View style={{ backgroundColor: colors.WHITE, alignItems: 'center' }}>
                     <Text style={styles.text5}>{'MARCAR EN EL MAPA'}</Text>
-                    <View style={[styles.vertical, { marginTop: p(18), width: p(160), height: p(40)}]}>
+                    <View style={[styles.vertical, { marginTop: p(18), width: p(160), height: p(40) }]}>
                         <Text style={{ color: colors.WHITE, fontWeight: '700' }}>{'USAR MI UBICACIÓN'}</Text>
                     </View>
                 </View>
 
-                <View style={[styles.item, { justifyContent: 'space-between'}]}>
-                    <View style={{ flexDirection: 'row'}}>
+                <View style={[styles.item, { justifyContent: 'space-between' }]}>
+                    <View style={{ flexDirection: 'row' }}>
                         <Image source={images.square} style={{ width: p(22), height: p(22), marginTop: p(7) }} />
                         <View style={{ marginLeft: p(25) }}>
                             <Text style={styles.text3}>{'En lote'}</Text>
@@ -116,8 +100,8 @@ export default class TareasEdit extends Component {
                     <Text style={styles.text5}>{'ADJUNTAR'}</Text>
                 </View>
 
-                <View style={{ backgroundColor: colors.WHITE, alignItems: 'center', paddingBottom: p(20)}}>
-                    <View style={[styles.vertical, { width: p(160), height: p(40)}]}>
+                <View style={{ backgroundColor: colors.WHITE, alignItems: 'center', paddingBottom: p(20) }}>
+                    <View style={[styles.vertical, { width: p(160), height: p(40) }]}>
                         <Text style={{ color: colors.WHITE, fontWeight: '700' }}>{'DESCARGAR PDF'}</Text>
                     </View>
                 </View>
