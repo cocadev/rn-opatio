@@ -49,6 +49,17 @@ export const BtnNormal = props => (
   </TouchableOpacity>
 )
 
+export const BtnSmall = props => (
+  <TouchableOpacity
+    onPress={() => props.onClick()}
+    style={[styles.BtnSmall, {
+      backgroundColor: props.back,
+      marginTop: props.top
+    }]}
+  >
+    <Text style={text.t_12_700_ff}>{props.title}</Text>
+  </TouchableOpacity>
+)
 
 
 
@@ -69,6 +80,19 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     backgroundColor: colors.WHITE,
   },
+
+  BtnSmall: {
+    paddingHorizontal: p(16),
+    paddingVertical: p(8),
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: 'rgba(0, 0, 0, 0.16)',
+    shadowOffset: { width: 3, height: 0 },
+    shadowRadius: 6,
+    borderRadius: 3,
+    backgroundColor: colors.WHITE,
+  },
+
 
 
 

@@ -22,7 +22,7 @@ export const Gradient = props => (
 )
 
 export const GUARDAR = props => (
-  <View style={styles.header}>
+  <View style={[styles.header, { backgroundColor: props.back }]}>
     <ICON.IconBack />
     <View style={[styles.vertical, { backgroundColor: colors.WHITE }]}>
       <Text style={{ color: colors.BLACK, fontWeight: '700' }}>{'GUARDAR'}</Text>
@@ -30,6 +30,13 @@ export const GUARDAR = props => (
   </View>
 )
 
+export const NormalIcon = props => (
+  <View style={[styles.header, { backgroundColor: props.back, justifyContent: 'flex-start' }]}>
+    <ICON.IconBack />
+    {props.icon}
+    <Text style={text.t_21_700_ff}>{'Alarma de Velocidad'}</Text>
+  </View>
+)
 
 const styles = StyleSheet.create({
   container: {
@@ -59,5 +66,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: p(20),
     height: p(60),
     alignItems: 'center',
-},
+  },
 });

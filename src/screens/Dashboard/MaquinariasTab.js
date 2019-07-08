@@ -3,91 +3,35 @@ import { StyleSheet, Text, View, Image, TextInput,  ScrollView, TouchableOpacity
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
-import { MapView } from 'expo';
 import Header from '../../components/Header';
-import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS } from '../../common/config'
-import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
 
 import Maquinarias from './MaquinariasTab/Maquinarias';
 import Alarmas from './MaquinariasTab/alarmas';
 import Contratistas from './MaquinariasTab/contratistas';
-import { customStyles } from './customStyles'
 import * as ICON from '../../components/Icons';
-import * as CALLOUT from '../../components/Callouts';
+import * as CONFIG from '../../common/config';
+import Map from '../../components/Map';
+import Cstyles from '../../common/c_style';
 
 export default class MaquinariasTab extends Component {
 
     constructor(props) {
         super(props)
-        const markerInfo = [];
-        for (let i = 1; i < NUM_MARKERS; i++) {
-            markerInfo.push({
-                latitude: (((Math.random() * 2) - 1) * MARKERS_LATITUDE_DELTA) + LATITUDE,
-                longitude: (((Math.random() * 2) - 1) * MARKERS_LATITUDE_DELTA) + LONGITUDE,
-                isSpecial: Math.random() < PERCENT_SPECIAL_MARKERS,
-                id: i,
-            });
-        }
         this.state = {
-            markerInfo,
             selectTab: 1
         }
     }
 
     render() {
         const { selectTab } = this.state;
-        const markers = this.state.markerInfo.map((markerInfo) =>
-            <MapView.Marker
-                style={{zIndex: 2}}
-                coordinate={markerInfo}
-                key={markerInfo.id}
-            >
-                {/* <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Image source={images.marker} style={{ width: p(35), height: p(35) }} />
-                    <Text style={{ fontSize: p(18), fontWeight: '700', color: colors.WHITE }}> Lote {markerInfo.id}</Text>
-                </View> */}
-                <ICON.IconTrackLocation />
-                <MapView.Callout tooltip style={{ marginTop: -20}}>
-                    <CALLOUT.ORANGE children={'This is a custom callout bubble view'}/>
-                </MapView.Callout>
-            </MapView.Marker>
-        );
-        return (
-            <ScrollView style={styles.container}>
 
-                <MapView
-                    ref={instance => this.map = instance}
-                    style={styles.map}
-                    showsUserLocation={true}
-                    zoomEnabled={true}
-                    initialRegion={REGION}
-                    customMapStyle={CUSTOM_STYLE}
-                    cacheEnabled={true}
-                    zoomEnabled
-                    scrollingEnabled
-                    loadingIndicatorColor="#666666"
-                    loadingBackgroundColor="#eeeeee"
-                >
-                    <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
-                    {markers}
-                </MapView>
+        return (
+            <View style={Cstyles.container}>
 
                 <Header title={'Maquinarias'} icon={images.track} color={colors.ORANGE} />
 
-                <View style={customStyles.searchView}>
-                    <Image source={images.blackSearch} style={customStyles.searchIcon} />
-                    <TextInput
-                        style={customStyles.textinput}
-                        placeholder={'Buscar'}
-                        onChangeText={(text) => this.setState({ text })}
-                        value={this.state.text}
-                    />
-                </View>
-
-                <View style={{ position: 'absolute', right: 15, top: p(195) }}>
-                    <ICON.IconRoundLayer />
-                    <ICON.IconLocate1 />
-                </View>
+                <ScrollView>
+                <Map region={CONFIG.region} />
 
                 <View style={styles.searchView}>
                     <TextInput
@@ -116,21 +60,13 @@ export default class MaquinariasTab extends Component {
                 {selectTab == 3 && <Contratistas />}
 
             </ScrollView>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        ...StyleSheet.absoluteFillObject,
-        backgroundColor: '#F5FCFF'
-    },
-    map: {
-        ...StyleSheet.absoluteFillObject,
-        height: p(240),
-        marginTop: p(60)
-    },
+
     searchView: {
         backgroundColor: colors.GREY4,
         alignItems: 'center',

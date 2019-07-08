@@ -54,6 +54,7 @@ const MAIN = [
   { key: 'tareasdetail',              component: TareasDetail},
   { key: 'tareasedit',                component: TareasEdit},
   { key: 'lotedetail',                component: LoteDetail},
+
   { key: 'cultivosDetail',            component: CultivosDetail},
   { key: 'maquinarias',               component: Maquinarias},
   { key: 'maquinariastab',            component: MaquinariasTab},
@@ -93,7 +94,7 @@ export const MainPage = props => {
       >
         <Scene key="inbox" component={Inbox} initial={false} hideNavBar />
       </Drawer>
-      { MAIN.map(a => (<Scene key={a.key} component={a.component} initial={a.key == 'tareasedit' ? true : false} hideNavBar />))}
+      { MAIN.map(a => (<Scene key={a.key} component={a.component} initial={a.key == 'MachineryAlertsCreateEdit' ? true : false} hideNavBar />))}
     </Stack>
   </Router>)
 }

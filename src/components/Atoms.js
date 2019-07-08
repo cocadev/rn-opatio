@@ -10,6 +10,7 @@ export const Atom1 = props => (
     <View style={{ marginLeft: p(25) }}>
       <Text style={text.t_16_500_00}>{props.title}</Text>
       <Text style={text.t_16_400_98}>{props.note}</Text>
+      { props.other}
     </View>
   </View>
 )

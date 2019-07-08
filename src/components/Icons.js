@@ -34,7 +34,7 @@ export const IconLocate1 = props => (<Image source={images.locate1} style={{ wid
 export const IconDownload = props => (<Image source={images.download} style={{ width: p(21), height: p(26), marginRight: props.right, marginLeft: props.left }} />)
 export const IconCamera = props => (<Image source={images.photoAdd} style={{ width: p(23), height: p(21), marginRight: props.right, marginLeft: props.left }} />)
 export const IconProfile = props => (<Image source={images.profile} style={{ width: p(20), height: p(20), marginRight: props.right, marginLeft: props.left }} />)
-export const IconExcWhite = props => (<Image source={images.excWhite} style={{ width: p(22), height: p(26), marginRight: props.right, marginLeft: props.left }} />)
+export const IconExcWhite = props => (<Image source={images.excWhite} style={{ width: p(22), height: p(26), marginRight: p(12), marginLeft: p(12) }} />)
 export const IconCall = props => (<Image source={images.call} style={{ width: p(25), height: p(24), marginBottom: props.bottom, marginLeft: props.left }} />)
 export const IconCallWhite = props => (<Image source={images.call_white} style={{ width: p(28), height: p(28), marginBottom: props.bottom, marginLeft: props.left }} />)
 export const IconMember = props => (<Image source={images.members} style={{ width: p(20), height: p(20), marginRight: props.right, marginLeft: props.left }} />)
@@ -43,12 +43,12 @@ export const IconTareaW = props => (<Image source={images.tareaW} style={{ width
 
 export const IconSwitchOn = props => (<Image source={images.switch_on} style={{ width: p(37), height: p(19), marginBottom: props.bottom, marginLeft: props.left }} />)
 export const IconSwitchOff = props => (<Image source={images.switch_off} style={{ width: p(37), height: p(19), marginBottom: props.bottom, marginLeft: props.left }} />)
-export const IconCalendarGreen = props => (<Image source={images.calendar_green} style={{ width: p(66), height: p(67), marginBottom: props.bottom, marginRight: props.right, marginLeft: props.left }} />)
 export const IconCalendar = props => (<Image source={images.calendar} style={{ width: p(44), height: p(50), marginTop: props.top, marginBottom: props.bottom, marginRight: props.right, marginLeft: props.left }} />)
 export const IconDots = props => (<Image source={images.dots_white} style={{ width: p(6), height: p(21), marginRight: props.right, marginLeft: props.left }} />)
 export const IconClose = props => (<Image source={images.close} style={{ width: p(15), height: p(14), marginRight: props.right, marginLeft: props.left }} />)
 export const IconTrackLocation = props => (<Image source={images.trackLocation} style={{ width: p(29), height: p(38), marginRight: props.right, marginLeft: props.left, marginTop: props.top, }} />)
 export const IconSkyLogo = props => (<Image source={images.logoIcon} style={{ width: p(33), height: p(40), marginRight: props.right, marginLeft: props.left, marginTop: props.top, }} />)
+export const IconTrack = props => (<Image source={images.track} style={{ width: p(20), height: p(22), marginRight: p(12), marginLeft: p(12), marginTop: props.top, }} />)
 
 export const IconModalField1 = props => (<Image source={images.map_field1} style={{ width: p(58), height: p(58), marginRight: props.right, marginLeft: props.left }} />)
 export const IconModalField2 = props => (<Image source={images.map_field2} style={{ width: p(58), height: p(58), marginRight: props.right, marginLeft: props.left }} />)
@@ -61,6 +61,14 @@ export const IconRoundLayer = props => (<Image source={images.layer1} style={{ w
 export const IconRoundCall = props => (<Image source={images.call_round} style={{ width: p(52), height: p(52), marginRight: props.right, marginLeft: props.left, marginBottom: props.bottom }} />)
 export const IconBigProfile = props => (<Image source={images.profile_big} style={{ width: p(66), height: p(66), marginRight: props.right, marginLeft: props.left, marginBottom: props.bottom }} />)
 
+export const IconCalendarGreen = props => (
+  <TouchableOpacity style={{ top: p(293), right: p(12), alignItems: 'flex-end', zIndex: 1}} onPress={()=>props.onClick()}>
+    <Image 
+      source={images.calendar_green} 
+      style={{ width: p(66), height: p(67) }} 
+    />
+  </TouchableOpacity>
+)
 
 export const IconAddYellow = props => (
   <TouchableOpacity onPress={() => Actions.MachineNew()} style={{ position: 'absolute', bottom: p(12), right: p(15) }}>

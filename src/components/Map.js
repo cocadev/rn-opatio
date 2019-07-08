@@ -59,14 +59,14 @@ export default class Map extends React.Component {
 
   render() {
     const { polygons, region } = this.props;
-
+    const height = this.props.height ? this.props.height : p(240)
     return (
       <View style={styles.container}>
 
         <MapView
           // ref={instance => this.map = instance}
           provider="google"
-          style={{ ...styles.map }}
+          style={{ ...styles.map, height }}
           showsCompass={true}
           initialRegion={region}
           region={this.state.region}
@@ -79,7 +79,7 @@ export default class Map extends React.Component {
           loadingBackgroundColor="#eee"
 
         >
-          <Polygons coordinates={polygons} />
+          { polygons && <Polygons coordinates={polygons} /> }
         </MapView>
 
         <TouchableOpacity
