@@ -1,14 +1,16 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { p } from '../common/normalize';
 import { colors } from '../common/colors';
-import { images } from '../common/images';
-import * as ICON from '../components/Icons';
 import text from '../common/text';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Actions } from 'react-native-router-flux';
 
 export const Gradient = props => (
   <View style={styles.container}>
-    <ICON.IconBack />
+    <TouchableOpacity onPress={() => Actions.pop()}>
+      <MaterialCommunityIcons name={'arrow-left'} size={30} color={colors.WHITE} />
+    </TouchableOpacity>
     <View style={{ flexDirection: 'row' }}>
       <TouchableOpacity
         onPress={() => { props.onClick() }}
@@ -16,14 +18,16 @@ export const Gradient = props => (
       >
         <Text style={text.t_14_500_ff}>EDITAR</Text>
       </TouchableOpacity>
-      <Image source={images.menu_blue} style={{ width: p(7), height: p(23), marginLeft: p(18), marginTop: p(6) }} />
+      <MaterialCommunityIcons name={'dots-vertical'} size={30} color={colors.BLUE2} />
     </View>
   </View>
 )
 
 export const GUARDAR = props => (
   <View style={[styles.header, { backgroundColor: props.back }]}>
-    <ICON.IconBack />
+    <TouchableOpacity onPress={() => Actions.pop()}>
+      <MaterialCommunityIcons name={'arrow-left'} size={30} color={colors.WHITE} />
+    </TouchableOpacity>
     <View style={[styles.vertical, { backgroundColor: colors.WHITE }]}>
       <Text style={{ color: colors.BLACK, fontWeight: '700' }}>{'GUARDAR'}</Text>
     </View>
@@ -32,9 +36,26 @@ export const GUARDAR = props => (
 
 export const NormalIcon = props => (
   <View style={[styles.header, { backgroundColor: props.back, justifyContent: 'flex-start' }]}>
-    <ICON.IconBack />
+    <TouchableOpacity onPress={() => Actions.pop()}>
+      <MaterialCommunityIcons name={'arrow-left'} size={30} color={colors.WHITE} />
+    </TouchableOpacity>
     {props.icon}
-    <Text style={text.t_21_700_ff}>{'Alarma de Velocidad'}</Text>
+    <Text style={text.t_21_700_ff}>{props.title}</Text>
+  </View>
+)
+
+export const Complex = props => (
+  <View style={[styles.container, { backgroundColor: props.back }]}>
+    <TouchableOpacity onPress={() => Actions.pop()}>
+      <MaterialCommunityIcons name={'arrow-left'} size={30} color={colors.WHITE} />
+    </TouchableOpacity>
+    <View style={{ marginLeft: p(10) }}>
+      <Text style={text.t_21_700_ff}>{props.title}</Text>
+      <Text style={text.t_15_600_ff}>{props.address}</Text>
+    </View>
+    <View style={styles.line}></View>
+    <Text style={text.t_15_600_ff}>{props.head}</Text>
+    <MaterialCommunityIcons name={'dots-vertical'} size={30} color={colors.WHITE} />
   </View>
 )
 
@@ -47,7 +68,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     flexDirection: "row",
-    paddingHorizontal: p(20),
+    paddingHorizontal: p(12),
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
   },
   vertical: {
@@ -66,5 +87,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: p(20),
     height: p(60),
     alignItems: 'center',
+  },
+  line: {
+    backgroundColor: colors.GREY6,
+    width: p(3),
+    height: p(32)
   },
 });

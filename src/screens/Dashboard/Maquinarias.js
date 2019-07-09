@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, Image, Platform, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
-import { MapView, Marker, Animated } from 'expo';
-import Header from '../../components/Header';
+import { MapView } from 'expo';
 import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS } from '../../common/config'
-import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
 import { Actions } from 'react-native-router-flux';
-import { customStyles } from './customStyles';
 import * as ICON from '../../components/Icons';
+import * as HEADER from '../../components/Headers';
+import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
 
 export default class Maquinarias extends Component {
 
@@ -44,37 +43,19 @@ export default class Maquinarias extends Component {
         return (
             <View style={styles.container}>
                 <MapView
-
                     ref={instance => this.map = instance}
                     style={styles.map}
                     showsUserLocation={true}
-                    // followUserLocation={true}
-                    // showsMyLocationButton={true}
-                    // showsPointsOfInterest={true}
-                    // showsCompass={false}
                     zoomEnabled={true}
-                    // minZoomLevel={5}
-                    // maxZoomLevel={20}
                     cacheEnabled={true}
                     initialRegion={REGION}
                     customMapStyle={CUSTOM_STYLE}
-
                 >
                     <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
                     {markers}
                 </MapView>
 
-                <Header title={'Maquinarias'} icon={images.track} color={colors.ORANGE} />
-
-                <View style={customStyles.searchView}>
-                    <Image source={images.blackSearch} style={customStyles.searchIcon} />
-                    <TextInput
-                        style={customStyles.textinput}
-                        placeholder={'Buscar'}
-                        onChangeText={(text) => this.setState({ text })}
-                        value={this.state.text}
-                    />
-                </View>
+                <HEADER.NormalIcon title={'Maquinarias'} icon={<ICON.IconTrack />} back={colors.ORANGE} />
 
                 <View style={{ position: 'absolute', right: 21, bottom: p(120) }}>
                     <TouchableOpacity>
@@ -105,22 +86,9 @@ const styles = StyleSheet.create({
         ...StyleSheet.absoluteFillObject,
         top: p(60)
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-    },
     actionButtonIcon: {
         fontSize: 20,
         height: 22,
         color: 'white',
     },
-    textinput: {
-        width: p(260),
-        height: p(50),
-        paddingLeft: p(48),
-        fontSize: p(16),
-        borderColor: colors.GREY8,
-        borderWidth: 1,
-        borderRadius: p(25)
-    }
 });

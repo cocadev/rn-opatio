@@ -9,6 +9,7 @@ import * as ICON from '../../components/Icons';
 import * as BTN from '../../components/Buttons';
 import * as HEADERS from '../../components/Headers';
 import * as DROPDOWN from '../../components/DropDown';
+import * as ATOM from '../../components/Atoms';
 
 export default class MachineNew extends Component {
 
@@ -67,29 +68,21 @@ export default class MachineNew extends Component {
                     </View>
                 </View>
 
-                <View style={styles.bar}>
-                    <ICON.IconProfile left={p(5)} right={p(23)} />
-                    <View style={{ flex: 1 }}>
-                        <Text style={text.t_16_500_00}>{'Contratista:'}</Text>
-                        <Text style={text.t_15_400_98}>{'Sin asignar:'}</Text>
-                    </View>
-                    <BTN.BtnSmall title={'NUEVO CONTRATISTA'} back={colors.BLUE2} onClick={()=>Actions.machinenewcontractor()}/>
-                </View>
+                <ATOM.Atom1 
+                    icon={<ICON.IconProfile />}
+                    title={'Contratista:'} 
+                    note={'Sin asignar:'} 
+                    right={
+                        <BTN.BtnSmall 
+                            text={colors.WHITE} 
+                            title={'NUEVO CONTRATISTA'}  
+                            back={colors.BLUE2} 
+                            onClick={()=>Actions.machinenewcontractor()}
+                        />
+                    }
+                />
 
             </View>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    bar: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: p(24),
-        paddingVertical: p(17),
-        borderBottomColor: '#d0d0d0',
-        borderBottomWidth: 1.5,
-        borderTopColor: '#d0d0d0',
-        borderTopWidth: 1.5
-    }
-});

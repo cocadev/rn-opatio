@@ -9,7 +9,7 @@ import Tareas from './LotesTab/tareas';
 import Cultivos from './LotesTab/cultivos';
 import text from '../../common/text';
 import api from '../../common/api'
-import Header from '../../components/Header2';
+import * as HEADER from '../../components/Headers'
 import * as ICON from '../../components/Icons';
 import * as CONFIG from '../../common/config'
 
@@ -159,7 +159,7 @@ export default class LotesTab extends Component {
         return (
             <View style={Cstyles.container}>
 
-                <Header title={'Lote ' + name} address={area + ' ha'} description={description} />
+                <HEADER.Complex title={'Lote ' + name} address={area + ' ha'} head={description} back={colors.BLUE}/>
 
                 <ScrollView>
                     {

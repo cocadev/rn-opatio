@@ -4,11 +4,12 @@ import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
 import Carousel from 'react-native-banner-carousel';
-import Header from '../../components/Header3';
 import text from '../../common/text';
 import * as ICON from '../../components/Icons';
 import * as CONFIG from '../../common/config';
 import * as ATOM from '../../components/Atoms';
+import * as HEADER from '../../components/Headers';
+
 import Cstyles from '../../common/c_style';
 
 const width = Math.round(Dimensions.get('window').width);
@@ -39,7 +40,7 @@ export default class LoteDetail extends Component {
 
         return (
             <View style={Cstyles.container}>
-                <Header color={colors.ORANGE} title={'EDITOR'} data={data} />
+                <HEADER.Gradient color={colors.ORANGE} title={'EDITOR'} data={data} />
                 <ScrollView>
                     <Carousel
                         autoplay

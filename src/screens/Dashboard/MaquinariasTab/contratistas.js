@@ -1,11 +1,10 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { colors } from '../../../common/colors';
 import { contratistas } from '../../../common/config';
 import { images } from '../../../common/images';
 import { p } from '../../../common/normalize';
 import { Actions } from 'react-native-router-flux';
-import UtilService from '../../../common/utils';
 
 export default class Contratistas extends React.Component {
 

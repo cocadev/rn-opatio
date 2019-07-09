@@ -3,6 +3,9 @@ import { colors } from './colors';
 
 export default {
   t_10_500_8b:{ color: '#8b8b8b', fontSize: p(10), fontWeight: '500' },
+  t_11_500_21:{ color: '#212121', fontSize: p(11), fontWeight: '500' },
+
+  t_13_700_21:{ color: '#212121', fontSize: p(13), fontWeight: '700' },
 
   t_11_400_2a:{ color: '#2a2a2a', fontSize: p(14), fontWeight: '400' },
   t_11_700_00:{ color: '#000000', fontSize: p(14), fontWeight: '700' },
@@ -10,13 +13,16 @@ export default {
   t_12_700_ee:{ color: '#eeeeed', fontSize: p(14), fontWeight: '700' },
   t_12_400_98:{ color: '#989898', fontSize: p(14), fontWeight: '400' },
   t_12_700_ff:{ color: '#ffffff', fontSize: p(14), fontWeight: '700' },
-  t_12_700_70:{ color: '#707070',   fontSize: p(14), fontWeight: '700', lineHeight: p(27), marginLeft: p(10) },
+  t_12_700_70:{ color: '#707070', fontSize: p(14), fontWeight: '700', lineHeight: p(27), marginLeft: p(10) },
+  t_12_400_2a:{ color: '#2a2a2a', fontSize: p(14), fontWeight: '400' },
 
   t_14_700_00:{ color: '#000000', fontSize: p(15), fontWeight: '700' },
   t_14_700_60:{ color: '#606060', fontSize: p(15), fontWeight: '700' },
   t_14_500_RED:{ color: colors.RED, fontSize: p(15), fontWeight: '500' },
   t_14_500_ff:{ color: '#ffffff', fontSize: p(15), fontWeight: '500' },
   t_14_500_98:{ color: '#989898', fontSize: p(15), fontWeight: '400' },
+
+  t_15_700_35:{ color: '#354052', fontSize: p(16), fontWeight: '700', marginLeft: p(30) },
 
   t_15_400_98:{ color: '#989898', fontSize: p(17), fontWeight: '400' },
   t_15_400_72:{ color: '#727272', fontSize: p(17), fontWeight: '400' },
@@ -38,10 +44,11 @@ export default {
   t_18_700_ff:{ color: '#ffffff', fontSize: p(18), fontWeight: '700' },
   t_19_500_ff:{ color: '#ffffff', fontSize: p(19), fontWeight: '500' },
 
+  t_19_500_00:{ color: '#000000', fontSize: p(20), fontWeight: '500' },
+
   t_21_700_ff:{ color: '#ffffff', fontSize: p(22), fontWeight: '700' },
   t_21_500_ff:{ color: '#ffffff', fontSize: p(22), fontWeight: '500' },
 
-  t_19_500_00:{ color: '#000000', fontSize: p(20), fontWeight: '500' },
 
   t_28_700_ff:{ color: '#ffffff', fontSize: p(31), fontWeight: '700' },
   t_30_700_ff:{ color: '#ffffff', fontSize: p(31), fontWeight: '700' },
