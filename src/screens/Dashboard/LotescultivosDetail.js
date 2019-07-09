@@ -1,12 +1,14 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import { colors } from '../../common/colors';
-import { p } from '../../common/normalize';
-import Cstyles from '../../common/c_style';
-import text from '../../common/text';
-import * as BTN from '../../components/Buttons';
-import * as ICON from '../../components/Icons';
-import * as DROPDOWN from '../../components/DropDown';
+import React from 'react'
+import { View, Text } from 'react-native'
+import { colors } from '../../common/colors'
+import { p } from '../../common/normalize'
+
+import Cstyles from '../../common/c_style'
+import text from '../../common/text'
+
+import * as BTN from '../../components/Buttons'
+import * as ICON from '../../components/Icons'
+import * as DROPDOWN from '../../components/DropDown'
 
 export default class CultivosDetail extends React.Component {
     render() {

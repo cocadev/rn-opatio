@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native';
-import { images } from '../../common/images';
-import { p } from '../../common/normalize';
-import { colors } from '../../common/colors';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native'
+import { images } from '../../common/images'
+import { p } from '../../common/normalize'
+import { colors } from '../../common/colors'
 import { customStyles } from './customStyles'
-import Cstyles from '../../common/c_style';
 
-import Maquinarias from './MaquinariasTab/Maquinarias';
-import Alarmas from './MaquinariasTab/alarmas';
-import Statistics from './MaquinariasTab/statistics';
-import Map from '../../components/Map';
-import text from '../../common/text';
+import Maquinarias from './MaquinariasTab/Maquinarias'
+import Alarmas from './MaquinariasTab/alarmas'
+import Statistics from './MaquinariasTab/statistics'
+import Map from '../../components/Map'
+import text from '../../common/text'
+import Cstyles from '../../common/c_style'
 
-import * as ICON from '../../components/Icons';
-import * as CONFIG from '../../common/config';
-import * as HEADER from '../../components/Headers';
+import * as ICON from '../../components/Icons'
+import * as CONFIG from '../../common/config'
+import * as HEADER from '../../components/Headers'
 
 export default class MachinesContractorTab extends Component {
 

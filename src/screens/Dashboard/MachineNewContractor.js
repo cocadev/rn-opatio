@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, ScrollView } from 'react-native';
-import { images } from '../../common/images';
-import { p } from '../../common/normalize';
-import { colors } from '../../common/colors';
-import Cstyles from '../../common/c_style';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, Image, TextInput, ScrollView } from 'react-native'
+import { images } from '../../common/images'
+import { p } from '../../common/normalize'
+import { colors } from '../../common/colors'
 
-import * as ICON from '../../components/Icons';
-import * as HEADERS from '../../components/Headers';
-import text from '../../common/text';
+import text from '../../common/text'
+import Cstyles from '../../common/c_style'
+
+import * as ICON from '../../components/Icons'
+import * as HEADERS from '../../components/Headers'
 
 export default class MachineNewContractor extends Component {
 

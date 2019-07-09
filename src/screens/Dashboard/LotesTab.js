@@ -34,6 +34,7 @@ export default class LotesTab extends Component {
             isWaiting: true,
             polygons: null,
             REGION: null,
+            search: '',
 
             isDateTimePickerVisible1: false,
             isDateTimePickerVisible2: false,
@@ -160,32 +161,36 @@ export default class LotesTab extends Component {
         return (
             <View style={Cstyles.container}>
 
-                <HEADER.Complex title={'Lote ' + name} address={area + ' ha'} head={description} back={colors.BLUE}/>
+                <HEADER.Complex 
+                    title={'Lote ' + name} 
+                    address={area + ' ha'} 
+                    head={description} 
+                    back={colors.WHITE}
+                />
 
-                <ScrollView>
-                    {
-                        !isWaiting && <Map region={REGION} polygons={polygons} />
-                    }
+                <ScrollView style={{ marginTop: p(60)}}>
+
+                    { !isWaiting && <Map region={REGION} polygons={polygons} /> }
 
                     {
                         !calendar &&
-                        <View style={styles.searchView}>
-                            <TextInput style={styles.searchInput} placeholder={'Notas del lote'} />
+                        <View style={Cstyles.searchView}>
+                            <TextInput style={Cstyles.searchInput} placeholder={'Notas del lote'} />
                             <Image source={images.search_white} style={{ width: p(18), height: p(18), marginRight: p(20) }} />
                         </View>
                     }
 
                     {
                         !calendar &&
-                        <View style={styles.tab}>
-                            <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 1 ? colors.ORANGE : colors.GREY3, backgroundColor: selectTab == 1 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 1 })}>
-                                <Text style={{ color: colors.TEXT, fontSize: p(14) }}>NOTAS</Text>
+                        <View style={Cstyles.tab}>
+                            <TouchableOpacity style={[Cstyles.tabItem, { borderTopColor: selectTab == 1 ? colors.ORANGE : colors.GREY3, backgroundColor: selectTab == 1 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 1 })}>
+                                <Text style={text.t_12_400_2a}>NOTAS</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 2 ? colors.BLUE : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
-                                <Text style={{ color: colors.TEXT, fontSize: p(14) }}>TAREAS</Text>
+                            <TouchableOpacity style={[Cstyles.tabItem, { borderTopColor: selectTab == 2 ? colors.BLUE : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
+                                <Text style={text.t_12_400_2a}>TAREAS</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 3 ? colors.GREEN2 : colors.GREY3, backgroundColor: selectTab == 3 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 3 })}>
-                                <Text style={{ color: colors.TEXT, fontSize: p(14) }}>CULTIVOS</Text>
+                            <TouchableOpacity style={[Cstyles.tabItem, { borderTopColor: selectTab == 3 ? colors.GREEN2 : colors.GREY3, backgroundColor: selectTab == 3 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 3 })}>
+                                <Text style={text.t_12_400_2a}>CULTIVOS</Text>
                             </TouchableOpacity>
                         </View>
                     }
@@ -245,37 +250,6 @@ export default class LotesTab extends Component {
 }
 
 const styles = StyleSheet.create({
-    searchView: {
-        backgroundColor: colors.GREY4,
-        alignItems: 'center',
-        flexDirection: 'row',
-        height: p(55),
-        marginTop: p(240)
-    },
-    searchInput: {
-        flex: 1,
-        marginHorizontal: p(26),
-        paddingHorizontal: p(12),
-        backgroundColor: colors.GREY5,
-        borderRadius: p(12),
-        fontSize: p(21),
-        height: p(36),
-        color: colors.GREY4,
-        fontWeight: '700'
-    },
-    tab: {
-        flexDirection: 'row',
-        // backgroundColor: colors.GREY3,
-        height: p(60)
-    },
-    tabItem: {
-        flex: 1,
-        borderTopColor: colors.GREY3,
-        borderTopWidth: p(8),
-        backgroundColor: colors.GREY3,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
     modal: {
         width: p(243),
         height: p(172),

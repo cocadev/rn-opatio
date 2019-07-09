@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import { images } from '../../common/images';
-import { p } from '../../common/normalize';
-import { colors } from '../../common/colors';
-import { MapView } from 'expo';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import { images } from '../../common/images'
+import { p } from '../../common/normalize'
+import { colors } from '../../common/colors'
+import { MapView } from 'expo'
 import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS } from '../../common/config'
-import { Actions } from 'react-native-router-flux';
-import * as ICON from '../../components/Icons';
-import * as HEADER from '../../components/Headers';
-import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
+import { Actions } from 'react-native-router-flux'
+
+import * as ICON from '../../components/Icons'
+import * as HEADER from '../../components/Headers'
+
+import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot'
 
 export default class Maquinarias extends Component {
 

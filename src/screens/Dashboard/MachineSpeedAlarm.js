@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import { p } from '../../common/normalize';
-import { colors } from '../../common/colors';
-import * as ICON from '../../components/Icons';
-import * as ATOM from '../../components/Atoms';
-import * as HEADER from '../../components/Headers';
-import * as CONFIG from '../../common/config';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, ScrollView } from 'react-native'
+import { p } from '../../common/normalize'
+import { colors } from '../../common/colors'
 
-import Map from '../../components/Map';
-import text from '../../common/text';
-import Cstyles from '../../common/c_style';
+import Map from '../../components/Map'
+import text from '../../common/text'
+import Cstyles from '../../common/c_style'
+
+import * as ICON from '../../components/Icons'
+import * as ATOM from '../../components/Atoms'
+import * as HEADER from '../../components/Headers'
+import * as CONFIG from '../../common/config'
 
 export default class LotesTab extends Component {
 

@@ -1,13 +1,14 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
-import { colors } from '../../../common/colors';
-import { TAREAS, TAREAS3, TAREAS2 } from '../../../common/config';
-import { Entypo } from '@expo/vector-icons';
-import { images } from '../../../common/images';
-import { p } from '../../../common/normalize';
+import React from 'react'
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native'
+import { colors } from '../../../common/colors'
+import { TAREAS, TAREAS3, TAREAS2 } from '../../../common/config'
+import { images } from '../../../common/images'
+import { p } from '../../../common/normalize'
+
 import styles from './styles'
-import { Actions } from 'react-native-router-flux';
-import  RenderItem  from './renderItem';
+import RenderItem  from './renderItem'
+
+import * as DROPDOWN from '../../../components/DropDown'
 
 export default class Alarmas extends React.Component {
 
@@ -16,14 +17,8 @@ export default class Alarmas extends React.Component {
       <View style={styles.containerView}>
 
         <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: p(12) }}>
-          <View style={styles.dropdown}>
-            <Text>{'Fecha: 23/03/18'}</Text>
-            <Entypo name={'chevron-down'} size={24} color={colors.GREY4} />
-          </View>
-          <View style={styles.dropdown}>
-            <Text>{'Fecha: 23/04/18'}</Text>
-            <Entypo name={'chevron-down'} size={24} color={colors.GREY4} />
-          </View>
+          <DROPDOWN.XSmall title={'Fecha: 23/03/18'}/>
+          <DROPDOWN.XSmall title={'Fecha: 23/04/18'}/>
         </View>
 
         <ScrollView>

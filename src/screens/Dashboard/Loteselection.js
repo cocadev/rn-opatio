@@ -3,16 +3,16 @@ import { StyleSheet, Text, View, Image, TextInput, FlatList, ScrollView, Touchab
 import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
-import { MapView } from 'expo'
-import { CUSTOM_STYLE, REGION } from '../../common/config'
 import { Actions } from 'react-native-router-flux'
-import { customStyles } from './customStyles'
 
 import api from '../../common/api'
 import LottieScreen from '../../components/Lottie'
+import Map from '../../components/Map'
+import Cstyles from '../../common/c_style'
 
 import * as ICON from '../../components/Icons'
 import * as HEADER from '../../components/Headers'
+import * as CONFIG from '../../common/config'
 
 export default class LoteSelection extends Component {
 
@@ -54,49 +54,20 @@ export default class LoteSelection extends Component {
     )
 
     render() {
-
         const { isWaiting, lotes } = this.state
-
         return (
-            <View style={styles.container}>
-
+            <View style={Cstyles.container}>
                 <HEADER.NormalIcon 
                     title={'Lote 21'} 
                     back={colors.BLUE} 
                     icon={<ICON.IconLocation />} 
                 />
-
                 <ScrollView>
-                    <MapView
-                        ref={instance => this.map = instance}
-                        style={styles.map}
-                        showsUserLocation={true}
-                        zoomEnabled={true}
-                        initialRegion={REGION}
-                        customMapStyle={CUSTOM_STYLE}
-                    >
-                    </MapView>
-
-                    <View style={customStyles.searchView}>
-                        <Image source={images.blackSearch} style={customStyles.searchIcon} />
-                        <TextInput
-                            style={customStyles.textinput}
-                            placeholder={'Buscar'}
-                            onChangeText={(text) => this.setState({ text })}
-                            value={this.state.text}
-                        />
-                    </View>
-
-                    <View style={{ position: 'absolute', right: 15, top: p(130) }}>
-                        <ICON.IconRoundLayer />
-                        <ICON.IconLocate1 top={p(5)} />
-                    </View>
-
-                    <View style={styles.searchView}>
-                        <TextInput style={styles.searchInput} placeholder={'Campos y Lotes'} />
+                    <Map region={CONFIG.region} />
+                    <View style={Cstyles.searchView}>
+                        <TextInput style={Cstyles.searchInput} placeholder={'Campos y Lotes'} />
                         <ICON.IconWhiteSearch right={p(20)} />
                     </View>
-
                     {isWaiting ? <LottieScreen /> : <FlatList data={lotes} keyExtractor={(item, i) => String(i)} renderItem={this._renderItem} />}
                 </ScrollView>
             </View>
@@ -105,44 +76,6 @@ export default class LoteSelection extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        ...StyleSheet.absoluteFillObject,
-        backgroundColor: '#F5FCFF'
-    },
-    map: {
-        ...StyleSheet.absoluteFillObject,
-        height: p(240),
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-    },
-    actionButtonIcon: {
-        fontSize: 20,
-        height: 22,
-        color: 'white',
-    },
-    searchView: {
-        backgroundColor: colors.GREY4,
-        alignItems: 'center',
-        flexDirection: 'row',
-        height: p(55),
-        marginTop: p(240),
-        borderBottomColor: colors.BLUE,
-        borderBottomWidth: 4
-    },
-    searchInput: {
-        flex: 1,
-        marginHorizontal: p(26),
-        paddingHorizontal: p(12),
-        backgroundColor: colors.GREY5,
-        borderRadius: p(12),
-        fontSize: p(21),
-        height: p(36),
-        color: colors.GREY4,
-        fontWeight: '700'
-    },
     head: {
         backgroundColor: '#eeeeed',
         justifyContent: 'center',
@@ -164,5 +97,4 @@ const styles = StyleSheet.create({
         color: '#354052',
         fontSize: p(16)
     },
-
 });
