@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, ScrollView, TouchableOpacity } from 'react-native';
-import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
-import Header from '../../components/Header';
+import { Ionicons } from '@expo/vector-icons';
 
 import Maquinarias from './MaquinariasTab/Maquinarias';
 import Alarmas from './MaquinariasTab/alarmas';
 import Contratistas from './MaquinariasTab/contratistas';
-import * as CONFIG from '../../common/config';
 import Map from '../../components/Map';
 import Cstyles from '../../common/c_style';
-import { Ionicons } from '@expo/vector-icons';
 import text from '../../common/text';
+
+import * as CONFIG from '../../common/config';
+import * as HEADER from '../../components/Headers';
+import * as ICON from '../../components/Icons';
 
 export default class MaquinariasTab extends Component {
 
@@ -30,7 +31,11 @@ export default class MaquinariasTab extends Component {
         return (
             <View style={Cstyles.container}>
 
-                <Header title={'Maquinarias'} icon={images.track} color={colors.ORANGE} />
+                <HEADER.NormalIcon 
+                    title={'Maquinarias'} 
+                    icon={<ICON.IconTrack />} 
+                    back={colors.ORANGE} 
+                />
 
                 <ScrollView>
                     <Map region={CONFIG.region} />
@@ -68,7 +73,7 @@ export default class MaquinariasTab extends Component {
                             <Text style={text.t_12_400_2a}>CONTRATISTAS</Text>
                         </TouchableOpacity>
                     </View>
-                    
+
                     {selectTab == 1 && <Maquinarias />}
                     {selectTab == 2 && <Alarmas />}
                     {selectTab == 3 && <Contratistas />}

@@ -1,24 +1,23 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, Dimensions, TextInput, ScrollView, TouchableOpacity, Modal } from 'react-native';
-import { images } from '../../common/images';
-import { p } from '../../common/normalize';
-import { colors } from '../../common/colors';
-import { MapView } from 'expo';
-import Header from '../../components/Header2';
-import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS } from '../../common/config'
-import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
-
-import GPS from './MaquinariasTab/gps';
-import AlarmasDetail from './MaquinariasTab/alarmasDetail';
-import Statistic from './MaquinariasTab/statistics';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, Image, Dimensions, TextInput, ScrollView, TouchableOpacity, Modal } from 'react-native'
+import { images } from '../../common/images'
+import { p } from '../../common/normalize'
+import { colors } from '../../common/colors'
+import { MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS } from '../../common/config'
 import { customStyles } from './customStyles'
-import * as BTN from '../../components/Buttons';
-import * as ICON from '../../components/Icons';
 
-import text from '../../common/text';
+import GPS from './MaquinariasTab/gps'
+import AlarmasDetail from './MaquinariasTab/alarmasDetail'
+import Statistic from './MaquinariasTab/statistics'
+import Map from '../../components/Map'
+import text from '../../common/text'
+
+import * as BTN from '../../components/Buttons'
+import * as ICON from '../../components/Icons'
+import * as HEADER from '../../components/Headers'
+import * as CONFIG from '../../common/config'
 
 const height = Math.round(Dimensions.get('window').height);
-const width = Math.round(Dimensions.get('window').width);
 
 export default class MachineTrackDetail extends Component {
 
@@ -137,43 +136,20 @@ export default class MachineTrackDetail extends Component {
 
     render() {
         const { selectTab, modal1, modal2, modal3 } = this.state;
-        const markers = this.state.markerInfo.map((markerInfo) =>
-            <MapView.Marker
-                coordinate={markerInfo}
-                key={markerInfo.id}
-            >
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Image source={images.marker} style={{ width: p(35), height: p(35) }} />
-                    <Text style={{ fontSize: p(18), fontWeight: '700', color: colors.WHITE }}> Lote {markerInfo.id}</Text>
-                </View>
-            </MapView.Marker>
-        );
+
         return (
-            <ScrollView style={styles.container}>
+            <View style={styles.container}>
 
-                {selectTab == 1 && <MapView
-                    ref={instance => this.map = instance}
-                    style={styles.map}
-                    showsUserLocation={true}
-                    zoomEnabled={true}
-                    initialRegion={REGION}
-                    customMapStyle={CUSTOM_STYLE}
-                    cacheEnabled={true}
-                    zoomEnabled
-                    scrollingEnabled
-                    loadingIndicatorColor="#666666"
-                    loadingBackgroundColor="#eeeeee"
-                >
-                    <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
-                    {markers}
-                </MapView>}
+                <HEADER.Complex 
+                    title={'Tractor 150'} 
+                    address={'John Deere 6130J '} 
+                    head={'Cesar Cuestas'}
+                    back={colors.WHITE}
+                />
 
-                <Header title={'Tractor 150'} address={'John Deere 6130J '} description={'Cesar Cuestas'} />
+                <ScrollView>
 
-                {selectTab !== 1 && <View>
-                    <Image source={images.downloadRound} style={{ width: p(65), height: p(65), position: 'absolute', right: 15, top: p(132), zIndex: 1 }} />
-                    <Image source={images.trackImg} style={{ width: width, height: p(210) }} />
-                </View>}
+                {selectTab == 1 && <Map region={CONFIG.region} /> }
 
                 {selectTab == 1 && <View style={customStyles.searchView}>
                     <Image source={images.blackSearch} style={customStyles.searchIcon} />
@@ -183,15 +159,6 @@ export default class MachineTrackDetail extends Component {
                         onChangeText={(text) => this.setState({ text })}
                         value={this.state.text}
                     />
-                </View>}
-
-                {selectTab == 1 && <View style={{ position: 'absolute', right: 15, top: p(172) }}>
-                    <TouchableOpacity>
-                        <Image source={images.layer1} style={{ width: p(65), height: p(65), marginBottom: p(5) }} />
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image source={images.downloadRound} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
-                    </TouchableOpacity>
                 </View>}
 
                 {selectTab == 1 && <View style={styles.searchView}>
@@ -222,6 +189,7 @@ export default class MachineTrackDetail extends Component {
 
 
             </ScrollView>
+            </View>
         );
     }
 }

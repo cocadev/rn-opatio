@@ -1,10 +1,11 @@
-import React from 'react';
+import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { p } from '../common/normalize';
-import { colors } from '../common/colors';
-import text from '../common/text';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Actions } from 'react-native-router-flux';
+import { p } from '../common/normalize'
+import { colors } from '../common/colors'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { Actions } from 'react-native-router-flux'
+
+import text from '../common/text'
 
 export const Gradient = props => (
   <View style={styles.container}>
@@ -47,15 +48,15 @@ export const NormalIcon = props => (
 export const Complex = props => (
   <View style={[styles.container, { backgroundColor: props.back }]}>
     <TouchableOpacity onPress={() => Actions.pop()}>
-      <MaterialCommunityIcons name={'arrow-left'} size={30} color={colors.WHITE} />
+      <MaterialCommunityIcons name={'arrow-left'} size={30} color={props.back == colors.WHITE ? colors.DARK : colors.WHITE} />
     </TouchableOpacity>
     <View style={{ marginLeft: p(10) }}>
-      <Text style={text.t_21_700_ff}>{props.title}</Text>
-      <Text style={text.t_15_600_ff}>{props.address}</Text>
+      <Text style={[text.t_21_700_ff, props.back == colors.WHITE ? { color: colors.DARK} : { color: colors.WHITE}]}>{props.title}</Text>
+      <Text style={[text.t_15_600_ff, props.back == colors.WHITE ? { color: colors.DARK} : { color: colors.WHITE}]}>{props.address}</Text>
     </View>
     <View style={styles.line}></View>
-    <Text style={text.t_15_600_ff}>{props.head}</Text>
-    <MaterialCommunityIcons name={'dots-vertical'} size={30} color={colors.WHITE} />
+    <Text style={[text.t_15_600_ff, props.back == colors.WHITE ? { color: colors.DARK} : { color: colors.WHITE}]}>{props.head}</Text>
+    <MaterialCommunityIcons name={'dots-vertical'} size={30} color={props.back == colors.WHITE ? colors.DARK : colors.WHITE} />
   </View>
 )
 
@@ -70,6 +71,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingHorizontal: p(12),
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    elevation: 1
   },
   vertical: {
     justifyContent: 'center',

@@ -7,10 +7,12 @@ import { MapView } from 'expo'
 import { CUSTOM_STYLE, REGION } from '../../common/config'
 import { Actions } from 'react-native-router-flux'
 import { customStyles } from './customStyles'
-import Header from '../../components/Header'
+
 import api from '../../common/api'
 import LottieScreen from '../../components/Lottie'
-import * as ICON from '../../components/Icons';
+
+import * as ICON from '../../components/Icons'
+import * as HEADER from '../../components/Headers'
 
 export default class LoteSelection extends Component {
 
@@ -58,7 +60,11 @@ export default class LoteSelection extends Component {
         return (
             <View style={styles.container}>
 
-                <Header title={'Lote 21'} color={colors.BLUE} icon={images.location} />
+                <HEADER.NormalIcon 
+                    title={'Lote 21'} 
+                    back={colors.BLUE} 
+                    icon={<ICON.IconLocation />} 
+                />
 
                 <ScrollView>
                     <MapView

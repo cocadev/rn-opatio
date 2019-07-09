@@ -1,24 +1,25 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, Dimensions, TextInput, ScrollView, TouchableOpacity, Modal } from 'react-native';
-import { images } from '../../common/images';
-import { p } from '../../common/normalize';
-import { colors } from '../../common/colors';
-import { Calendar } from 'react-native-calendars';
-import Notes from './LotesTab/notes';
-import Tareas from './LotesTab/tareas';
-import Cultivos from './LotesTab/cultivos';
-import text from '../../common/text';
-import api from '../../common/api'
-import * as HEADER from '../../components/Headers'
-import * as ICON from '../../components/Icons';
-import * as CONFIG from '../../common/config'
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, Image, Dimensions, TextInput, ScrollView, TouchableOpacity, Modal } from 'react-native'
+import { images } from '../../common/images'
+import { p } from '../../common/normalize'
+import { colors } from '../../common/colors'
+import { Calendar } from 'react-native-calendars'
 
-import Map from '../../components/Map';
-import DateTimePicker from 'react-native-modal-datetime-picker';
-import UtilService from '../../common/utils';
-import axios from 'axios';
+import Notes from './LotesTab/notes'
+import Tareas from './LotesTab/tareas'
+import Cultivos from './LotesTab/cultivos'
+import text from '../../common/text'
+import api from '../../common/api'
+import Map from '../../components/Map'
+import DateTimePicker from 'react-native-modal-datetime-picker'
+import UtilService from '../../common/utils'
+import axios from 'axios'
 import LottieScreen from '../../components/Lottie'
-import Cstyles from '../../common/c_style';
+import Cstyles from '../../common/c_style'
+
+import * as HEADER from '../../components/Headers'
+import * as ICON from '../../components/Icons'
+import * as CONFIG from '../../common/config'
 
 const height = Math.round(Dimensions.get('window').height);
 

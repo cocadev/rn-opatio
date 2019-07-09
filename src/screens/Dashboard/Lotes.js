@@ -1,17 +1,19 @@
-import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, Image, Platform, TouchableOpacity, TextInput } from 'react-native';
-import ActionButton from 'react-native-action-button';
-import { images } from '../../common/images';
-import { p } from '../../common/normalize';
-import { colors } from '../../common/colors';
-import { MapView, Marker, Animated } from 'expo';
-import Header from '../../components/Header';
-import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS } from '../../common/config'
-import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
-import { Actions } from 'react-native-router-flux';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native'
+import { images } from '../../common/images'
+import { p } from '../../common/normalize'
+import { colors } from '../../common/colors'
+import { MapView } from 'expo'
+import { CUSTOM_STYLE, REGION } from '../../common/config'
+import { Actions } from 'react-native-router-flux'
 import { customStyles } from './customStyles'
-import ClusterMarker from '../Map/Test/ClusterMarker';
-import { getCluster } from '../Map/Test/MapUtils';
+import { getCluster } from '../Map/Test/MapUtils'
+
+import ClusterMarker from '../Map/Test/ClusterMarker'
+import ActionButton from 'react-native-action-button'
+
+import * as HEADER from '../../components/Headers'
+import * as ICON from '../../components/Icons'
 
 const COORDS = [
     { lat: 37.795690, lon: -122.434728 },
@@ -108,7 +110,7 @@ export default class Lotes extends Component {
 
     render() {
 
-        const { create, markerInfo, region, editing } = this.state;
+        const { create, region, editing } = this.state;
         const allCoords = COORDS.map(c => ({
             geometry: {
                 coordinates: [c.lon, c.lat]
@@ -164,7 +166,11 @@ export default class Lotes extends Component {
                     ))}
                 </MapView>
 
-                <Header title={'Lotes'} icon={images.location} color={colors.BLUE} />
+                <HEADER.NormalIcon 
+                    title={'Lotes'} 
+                    icon={<ICON.IconLocate />} 
+                    back={colors.BLUE} 
+                />
 
                 <View style={customStyles.searchView}>
                     <Image source={images.blackSearch} style={customStyles.searchIcon} />

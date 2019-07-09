@@ -1,12 +1,13 @@
 import React from "react"
-import { StyleSheet, View, Dimensions, TouchableOpacity } from "react-native"
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { images } from "../../../common/images";
-import { Actions } from "react-native-router-flux";
-import Header from '../../../components/Header';
-import { colors } from "../../../common/colors";
+import { View } from "react-native"
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
+import { Actions } from "react-native-router-flux"
+import { colors } from "../../../common/colors"
 
-const width = Dimensions.get('window').width
+import * as ICON from '../../../components/Icons'
+import * as HEADER from '../../../components/Headers'
+
+import Cstyles from '../../../common/c_style'
 
 export default class MapSearch extends React.Component {
 
@@ -25,8 +26,13 @@ export default class MapSearch extends React.Component {
     console.log(' * - 1*',  this.props.user)
 
     return (
-      <View style={styles.container}>
-        <Header title={'Map Search'} color={colors.BLUE} icon={images.location} />
+      <View style={Cstyles.container}>
+
+        <HEADER.NormalIcon 
+          title={'Map Search'} 
+          back={colors.BLUE} 
+          icon={<ICON.IconLocation />} 
+        />
 
         <View style={{marginHorizontal:20, flex:1, width:'86%'}}>
           <GooglePlacesAutocomplete
@@ -86,33 +92,3 @@ export default class MapSearch extends React.Component {
     )
   }
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  header: {
-    fontSize: 18,
-    marginVertical: 15,
-  },
-  image: {
-    marginTop: 15,
-    width: 60,
-    height: 60,
-    borderColor: "rgba(0,0,0,0.2)",
-    borderWidth: 3,
-    borderRadius: 30
-  },
-  input: {
-    borderBottomColor: '#222',
-    borderBottomWidth: 1,
-    fontSize: 20,
-    paddingLeft: 36,
-    paddingVertical: 5,
-    width: '100%',
-  }
-})

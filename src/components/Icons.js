@@ -29,6 +29,7 @@ export const IconGreenCheck = props => (<Image source={images.greenCheck} style=
 export const IconCircleExc = props => (<Image source={images.circleExc} style={{ width: p(20), height: p(20), marginRight: props.right, marginLeft: props.left, marginTop: props.top }} />)
 export const IconLocate = props => (<Image source={images.locate} style={{ width: p(28), height: p(28), marginRight: props.right, marginLeft: props.left }} />)
 export const IconLocate1 = props => (<Image source={images.locate1} style={{ width: p(52), height: p(52), marginRight: props.right, marginBottom: props.bottom, marginLeft: props.left }} />)
+export const IconLocation = props => (<Image source={images.location} style={{ width: p(28), height: p(22), marginRight: p(12), marginLeft: p(8) }} />)
 
 export const IconDownload = props => (<Image source={images.download} style={{ width: p(21), height: p(26), marginRight: props.right, marginLeft: props.left }} />)
 export const IconCamera = props => (<Image source={images.photoAdd} style={{ width: p(23), height: p(21), marginRight: props.right, marginLeft: props.left }} />)
