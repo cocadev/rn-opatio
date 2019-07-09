@@ -5,6 +5,7 @@ import { p } from '../../../common/normalize';
 import text from '../../../common/text';
 import * as ICON from '../../../components/Icons';
 import * as BTN from '../../../components/Buttons';
+import * as ATOM from '../../../components/Atoms';
 
 export default class MachineryAlerts extends React.Component {
 
@@ -17,55 +18,45 @@ export default class MachineryAlerts extends React.Component {
           <ICON.IconDown />
         </View>
 
-        <View style={styles.itemView}>
-          <ICON.IconFolder right={p(16)}/>
-          <View style={{ flex: 1}}>
-            <Text style={text.t_16_700_2e}>{'Siembra'}</Text>
-            <Text style={text.t_15_400_72}>{'Grupo de Alertas'}</Text>
-          </View>
-          <ICON.IconAddPlusGreen right={p(30)}/>
-          <ICON.IconSwitchOnGreen />
-        </View>
+        <ATOM.Atom1
+          icon={<ICON.IconFolder left={-p(10)} />}
+          title={'Siembra'}
+          note={'Grupo de Alertas'}
+          add={<ICON.IconAddPlusGreen right={p(25)} />}
+          right={<ICON.IconSwitchOnGreen />}
+        />
 
-        <View style={styles.itemView}>
-          <ICON.IconNeedle right={p(16)} left={p(36)}/>
-          <View style={{ flex: 1}}>
-            <Text style={text.t_16_700_2e}>{'Velocidad'}</Text>
-            <Text style={text.t_15_400_72}>{'Min: 2 km/h Max: 7 km/h'}</Text>
-          </View>
-          <ICON.IconDustbin />
-        </View>
+        <ATOM.Atom1
+          icon={<ICON.IconNeedle left={p(25)} />}
+          title={'Velocidad'}
+          note={'Min: 2 km/h Max: 7 km/h'}
+          right={<ICON.IconDustbin />}
+        />
 
-        <View style={styles.itemView}>
-          <ICON.IconNeedle2 right={p(16)} left={p(36)}/>
-          <View style={{ flex: 1}}>
-            <Text style={text.t_16_700_2e}>{'Inactividad'}</Text>
-            <Text style={text.t_15_400_72}>{'Tiempo: 30 min'}</Text>
-          </View>
-          <ICON.IconDustbin />
-        </View>
+        <ATOM.Atom1
+          icon={<ICON.IconNeedle2 left={p(25)} />}
+          title={'Inactividad'}
+          note={'Tiempo: 30 min'}
+          right={<ICON.IconDustbin />}
+        />
 
-        <View style={styles.itemView}>
-          <ICON.IconNeedle3 right={p(16)} left={p(36)}/>
-          <View style={{ flex: 1}}>
-            <Text style={text.t_16_700_2e}>{'Horarios de trabajo'}</Text>
-            <Text style={text.t_15_400_72}>{'Inicio: 8:30 hs Fin: 18:00 hs'}</Text>
-          </View>
-          <ICON.IconDustbin />
-        </View>
+        <ATOM.Atom1
+          icon={<ICON.IconNeedle3 left={p(25)} />}
+          title={'Horarios de trabajo'}
+          note={'Inicio: 8:30 hs Fin: 18:00 hs'}
+          right={<ICON.IconDustbin />}
+        />
 
-        <View style={styles.itemView}>
-          <ICON.IconFolder right={p(16)}/>
-          <View style={{ flex: 1}}>
-            <Text style={text.t_16_700_2e}>{'Cosecha'}</Text>
-            <Text style={text.t_15_400_72}>{'Grupo de Alertas'}</Text>
-          </View>
-          <ICON.IconDustbin right={p(30)}/>
-          <ICON.IconSwitchOffRed />
-        </View>
+        <ATOM.Atom1
+          icon={<ICON.IconFolder left={-p(10)} />}
+          title={'Cosecha'}
+          note={'Grupo de Alertas'}
+          add={<ICON.IconDustbin right={p(25)} />}
+          right={<ICON.IconSwitchOffRed />}
+        />
 
-        <View style={{ alignItems: 'center', marginTop: p(20), marginBottom: p(40)}}>
-          <BTN.BlueWhite title={'CREAR GRUPO'} />
+        <View style={{ alignItems: 'center', marginVertical: p(40) }}>
+          <BTN.BtnSmall title={'CREAR GRUPO'} back={colors.BLUE2} text={colors.WHITE} />
         </View>
 
         <View style={styles.view}>
@@ -73,55 +64,45 @@ export default class MachineryAlerts extends React.Component {
           <ICON.IconDown />
         </View>
 
-        <View style={styles.itemView}>
-          <ICON.IconNeedle right={p(16)}/>
-          <View style={{ flex: 1}}>
-            <Text style={text.t_16_700_2e}>{'Velocidad'}</Text>
-            <Text style={text.t_15_400_72}>{'Min: 2 km/h Max: 7 km/h'}</Text>
-          </View>
-          <ICON.IconDustbin right={p(30)}/>
-          <ICON.IconSwitchOnGreen />
-        </View>
+        <ATOM.Atom1
+          icon={<ICON.IconNeedle left={-p(10)} />}
+          title={'Velocidad'}
+          note={'Min: 2 km/h Max: 7 km/h'}
+          add={<ICON.IconDustbin right={p(25)} />}
+          right={<ICON.IconSwitchOnGreen />}
+        />
 
-        <View style={styles.itemView}>
-          <ICON.IconNeedle2 right={p(16)}/>
-          <View style={{ flex: 1}}>
-            <Text style={text.t_16_700_2e}>{'Inactividad'}</Text>
-            <Text style={text.t_15_400_72}>{'Tiempo: 30 min'}</Text>
-          </View>
-          <ICON.IconDustbin right={p(30)}/>
-          <ICON.IconSwitchOffRed />
-        </View>
+        <ATOM.Atom1
+          icon={<ICON.IconNeedle2 left={-p(10)} />}
+          title={'Inactividad'}
+          note={'Tiempo: 30 min'}
+          add={<ICON.IconDustbin right={p(25)} />}
+          right={<ICON.IconSwitchOffRed />}
+        />
 
-        <View style={styles.itemView}>
-          <ICON.IconNeedle3 right={p(16)}/>
-          <View style={{ flex: 1}}>
-            <Text style={text.t_16_700_2e}>{'Horarios de trabajo'}</Text>
-            <Text style={text.t_15_400_72}>{'Inicio: 8:30 hs Fin: 18:00 hs'}</Text>
-          </View>
-          <ICON.IconDustbin right={p(30)}/>
-          <ICON.IconSwitchOffRed />
-        </View>
+        <ATOM.Atom1
+          icon={<ICON.IconNeedle3 left={-p(10)} />}
+          title={'Horarios de trabajo'}
+          note={'Inicio: 8:30 hs Fin: 18:00 hs'}
+          add={<ICON.IconDustbin right={p(25)} />}
+          right={<ICON.IconSwitchOffRed />}
+        />
 
-        <View style={styles.itemView}>
-          <ICON.IconActive right={p(16)}/>
-          <View style={{ flex: 1}}>
-            <Text style={text.t_16_700_2e}>{'Fuera del área de trabajo'}</Text>
-            <Text style={text.t_15_400_72}>{'Área de trabajo: Lote 2'}</Text>
-          </View>
-          <ICON.IconDustbin right={p(30)}/>
-          <ICON.IconSwitchOffRed />
-        </View>
+        <ATOM.Atom1
+          icon={<ICON.IconActive left={-p(10)} />}
+          title={'Fuera del área de trabajo'}
+          note={'Área de trabajo: Lote 2'}
+          add={<ICON.IconDustbin right={p(25)} />}
+          right={<ICON.IconSwitchOffRed />}
+        />
 
-        <View style={styles.itemView}>
-          <ICON.IconInActive right={p(16)}/>
-          <View style={{ flex: 1}}>
-            <Text style={text.t_16_700_2e}>{'Superficie trabajada'}</Text>
-            <Text style={text.t_15_400_72}>{'Min: 30 h'}</Text>
-          </View>
-          <ICON.IconDustbin right={p(30)}/>
-          <ICON.IconSwitchOffRed />
-        </View>
+        <ATOM.Atom1
+          icon={<ICON.IconInActive left={-p(10)} />}
+          title={'Superficie trabajada'}
+          note={'Min: 30 h'}
+          add={<ICON.IconDustbin right={p(25)} />}
+          right={<ICON.IconSwitchOffRed />}
+        />
 
       </View>
     )
@@ -135,10 +116,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.WHITE
   },
   view: {
-    flexDirection: 'row', 
-    justifyContent: 'space-between', 
-    alignItems: 'center', 
-    marginBottom: p(12), 
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: p(12),
     marginHorizontal: p(61)
   },
   itemView: {

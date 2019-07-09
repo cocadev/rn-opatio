@@ -11,8 +11,7 @@ export const IconDownWhite = props => (<Image source={images.down_white} style={
 
 export const IconUp = props => (<Image source={images.play} style={{ width: p(22), height: p(28) }} />)
 export const IconWhiteSearch = props => (<Image source={images.search_white} style={{ width: p(17), height: p(17), marginRight: props.right }} />)
-export const IconFolder = props => (<Image source={images.folder} style={{ width: p(20), height: p(16), marginRight: props.right }} />)
-export const IconAddPlusGreen = props => (<Image source={images.addPlusGreen} style={{ width: p(20), height: p(20), marginRight: props.right }} />)
+export const IconFolder = props => (<Image source={images.folder} style={{ width: p(20), height: p(16), marginRight: props.right, marginLeft: props.left }} />)
 export const IconSwitchOnGreen = props => (<Image source={images.switch_green} style={{ width: p(42), height: p(22), marginRight: props.right, marginLeft: props.left }} />)
 export const IconSwitchOffRed = props => (<Image source={images.switch_red} style={{ width: p(42), height: p(21), marginRight: props.right, marginLeft: props.left }} />)
 export const IconDustbin = props => (<Image source={images.dustbin} style={{ width: p(15), height: p(20), marginRight: props.right, marginLeft: props.left }} />)
@@ -62,10 +61,10 @@ export const IconRoundCall = props => (<Image source={images.call_round} style={
 export const IconBigProfile = props => (<Image source={images.profile_big} style={{ width: p(66), height: p(66), marginRight: props.right, marginLeft: props.left, marginBottom: props.bottom }} />)
 
 export const IconCalendarGreen = props => (
-  <TouchableOpacity style={{ top: p(293), right: p(12), alignItems: 'flex-end', zIndex: 1}} onPress={()=>props.onClick()}>
-    <Image 
-      source={images.calendar_green} 
-      style={{ width: p(66), height: p(67) }} 
+  <TouchableOpacity style={{ top: p(293), right: p(12), alignItems: 'flex-end', zIndex: 1 }} onPress={() => props.onClick()}>
+    <Image
+      source={images.calendar_green}
+      style={{ width: p(66), height: p(67) }}
     />
   </TouchableOpacity>
 )
@@ -74,6 +73,12 @@ export const IconAddYellow = props => (
   <TouchableOpacity onPress={() => Actions.MachineNew()} style={{ position: 'absolute', bottom: p(12), right: p(15) }}>
     <Image source={images.addYellow} style={{ width: p(77), height: p(77) }} />
   </TouchableOpacity>);
+
+export const IconAddPlusGreen = props => (
+  <TouchableOpacity onPress={()=>props.onClick()}>
+    <Image source={images.addPlusGreen} style={{ width: p(20), height: p(20), marginRight: props.right }} />
+  </TouchableOpacity>)
+
 
 export const ImgMessageBar = props => (<Image source={images.message_bar} style={{ width: p(344), height: p(36), marginRight: props.right, marginLeft: props.left }} />)
 export const ImgCallOut = props => (<Image source={images.callout} style={{ width: p(145), height: p(126), marginRight: props.right, marginLeft: props.left }} />)
@@ -96,7 +101,7 @@ export const IconBack = props => (
   </TouchableOpacity>)
 
 export const IconMenu = props => (
-  <TouchableOpacity onPress={()=>props.onClick()}>
+  <TouchableOpacity onPress={() => props.onClick()}>
     <Image
       source={images.menu}
       style={{
@@ -108,7 +113,7 @@ export const IconMenu = props => (
 )
 
 export const IconRing = props => (
-  <TouchableOpacity onPress={()=>props.onClick()}>
+  <TouchableOpacity onPress={() => props.onClick()}>
     <Image
       source={images.ring}
       style={{
@@ -120,7 +125,7 @@ export const IconRing = props => (
 )
 
 export const IconVideo = props => (
-  <TouchableOpacity onPress={()=>props.onClick()}>
+  <TouchableOpacity onPress={() => props.onClick()}>
     <Image
       source={images.play}
       style={{
@@ -132,7 +137,7 @@ export const IconVideo = props => (
 )
 
 export const IconPause = props => (
-  <TouchableOpacity onPress={()=>props.onClick()}>
+  <TouchableOpacity onPress={() => props.onClick()}>
     <Image
       source={images.pause}
       style={{

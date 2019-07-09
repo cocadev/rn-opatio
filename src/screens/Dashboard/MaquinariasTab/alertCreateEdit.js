@@ -10,14 +10,23 @@ import text from '../../../common/text';
 
 export default class MachineryAlertsCreateEdit extends React.Component {
 
-  state = {
-    text: 'Velocidad',
-    speed: '7',
-    speed2: 'Tres',
-    time: '10'
+  constructor(props){
+    super(props);
+    this.state = {
+      text: props.navigation.state.params.title,
+      speed: '7',
+      speed2: 'Tres',
+      time: '10'
+    }
   }
-
+  
   render() {
+
+    const title = this.props.navigation.state.params.title;
+    const icon = this.props.navigation.state.params.icon;
+
+    console.log('**************************************', title)
+
     return (
       <View style={Cstyles.container}>
 
@@ -42,9 +51,9 @@ export default class MachineryAlertsCreateEdit extends React.Component {
           />
 
           <ATOM.Atom1
-            icon={<ICON.IconNeedle />}
+            icon={icon}
             title={'Tipo de Alerta:'}
-            note={'Velocidad'}
+            note={title}
           />
 
           <View style={[styles.itemView, { borderBottomWidth: 0 }]}>
@@ -85,7 +94,7 @@ export default class MachineryAlertsCreateEdit extends React.Component {
 
           <View style={styles.exclamation}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Text style={text.t_16_500_98}>{'Alerta de Velocidad'}</Text>
+              <Text style={text.t_16_500_98}>{'Alerta de ' + title }</Text>
               <ICON.IconCircleExc right={p(12)} />
             </View>
             <Text style={[text.t_12_400_98, { marginVertical: p(12) }]}>{'Ingresa umbrales de velocidad que coincidan con el óptimo para una determinada labor, cuando la velocidad de la maquinaria exceda el umbral, se disparará la alarma.'}</Text>

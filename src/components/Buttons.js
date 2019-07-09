@@ -57,7 +57,7 @@ export const BtnSmall = props => (
       marginTop: props.top
     }]}
   >
-    <Text style={text.t_12_700_ff}>{props.title}</Text>
+    <Text style={[text.t_12_700_ff, { color: props.text}]}>{props.title}</Text>
   </TouchableOpacity>
 )
 

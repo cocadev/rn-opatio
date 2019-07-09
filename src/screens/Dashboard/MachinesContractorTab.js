@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, Image, Platform, Dimensions, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native';
-import ActionButton from 'react-native-action-button';
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import { images } from '../../common/images';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
-import { MapView, Marker, Animated } from 'expo';
 import Header from '../../components/Header4';
-import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS, LOTES1, INTRO } from '../../common/config'
-import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot';
 
 import Maquinarias from './MaquinariasTab/Maquinarias';
 import Alarmas from './MaquinariasTab/alarmas';
@@ -15,41 +11,22 @@ import Statistics from './MaquinariasTab/statistics';
 import { customStyles } from './customStyles'
 import * as ICON from '../../components/Icons';
 import text from '../../common/text';
+import * as CONFIG from '../../common/config';
+import Map from '../../components/Map';
 
-const height = Math.round(Dimensions.get('window').height);
 
 export default class MachinesContractorTab extends Component {
 
     constructor(props) {
         super(props)
-        const markerInfo = [];
-        for (let i = 1; i < NUM_MARKERS; i++) {
-            markerInfo.push({
-                latitude: (((Math.random() * 2) - 1) * MARKERS_LATITUDE_DELTA) + LATITUDE,
-                longitude: (((Math.random() * 2) - 1) * MARKERS_LATITUDE_DELTA) + LONGITUDE,
-                isSpecial: Math.random() < PERCENT_SPECIAL_MARKERS,
-                id: i,
-            });
-        }
         this.state = {
-            markerInfo,
             selectTab: 1
         }
     }
 
     render() {
         const { selectTab } = this.state;
-        const markers = this.state.markerInfo.map((markerInfo) =>
-            <MapView.Marker
-                coordinate={markerInfo}
-                key={markerInfo.id}
-            >
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Image source={images.marker} style={{ width: p(35), height: p(35) }} />
-                    <Text style={{ fontSize: p(18), fontWeight: '700', color: colors.WHITE }}> Lote {markerInfo.id}</Text>
-                </View>
-            </MapView.Marker>
-        );
+     
         return (
             <ScrollView style={styles.container}>
 
@@ -77,22 +54,7 @@ export default class MachinesContractorTab extends Component {
                 }
 
                 {selectTab !== 3 &&
-                    <MapView
-                        ref={instance => this.map = instance}
-                        style={styles.map}
-                        showsUserLocation={true}
-                        zoomEnabled={true}
-                        initialRegion={REGION}
-                        customMapStyle={CUSTOM_STYLE}
-                        cacheEnabled={true}
-                        zoomEnabled
-                        scrollingEnabled
-                        loadingIndicatorColor="#666666"
-                        loadingBackgroundColor="#eeeeee"
-                    >
-                        <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
-                        {markers}
-                    </MapView>
+                    <Map region={CONFIG.REGION}/>
                 }
                 {
                     selectTab !== 3 &&

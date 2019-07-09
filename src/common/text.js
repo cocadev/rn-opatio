@@ -10,6 +10,7 @@ export default {
   t_12_700_ee:{ color: '#eeeeed', fontSize: p(14), fontWeight: '700' },
   t_12_400_98:{ color: '#989898', fontSize: p(14), fontWeight: '400' },
   t_12_700_ff:{ color: '#ffffff', fontSize: p(14), fontWeight: '700' },
+  t_12_700_70:{ color: '#707070',   fontSize: p(14), fontWeight: '700', lineHeight: p(27), marginLeft: p(10) },
 
   t_14_700_00:{ color: '#000000', fontSize: p(15), fontWeight: '700' },
   t_14_700_60:{ color: '#606060', fontSize: p(15), fontWeight: '700' },

@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { colors } from '../../../common/colors';
 import { p } from '../../../common/normalize';
 import text from '../../../common/text';
 import * as ICON from '../../../components/Icons';
 import { Actions } from 'react-native-router-flux';
+import * as ATOM from '../../../components/Atoms';
 
 export default class MachineryAlertsCreate extends React.Component {
 
@@ -17,47 +18,36 @@ export default class MachineryAlertsCreate extends React.Component {
           <></>
         </View>
 
-        <View style={styles.itemView}>
-          <ICON.IconNeedle right={p(16)}/>
-          <View style={{ flex: 1}}>
-            <Text style={text.t_16_700_2e}>{'Velocidad'}</Text>
-          </View>
-          <TouchableOpacity onPress={()=>Actions.MachineryAlertsCreateEdit()}>
-            <ICON.IconAddPlusGreen right={p(30)}/>
-          </TouchableOpacity>
-        </View>
+        <ATOM.Atom1
+          icon={<ICON.IconNeedle left={-p(4)} />}
+          title={'Velocidad'}
+          add={<ICON.IconAddPlusGreen right={p(25)} onClick={()=>Actions.MachineryAlertsCreateEdit({ title: 'Velocidad', icon: <ICON.IconNeedle/> })} />}
+        />
 
-        <View style={styles.itemView}>
-          <ICON.IconNeedle2 right={p(16)}/>
-          <View style={{ flex: 1}}>
-            <Text style={text.t_16_700_2e}>{'Inactividad'}</Text>
-          </View>
-          <ICON.IconAddPlusGreen right={p(30)}/>
-        </View>
+        <ATOM.Atom1
+          icon={<ICON.IconNeedle2 left={-p(4)} />}
+          title={'Inactividad'}
+          add={<ICON.IconAddPlusGreen right={p(25)} onClick={()=>Actions.MachineryAlertsCreateEdit({ title: 'Inactividad', icon: <ICON.IconNeedle2/>})} />}
+        />
 
-        <View style={styles.itemView}>
-          <ICON.IconNeedle3 right={p(16)}/>
-          <View style={{ flex: 1}}>
-            <Text style={text.t_16_700_2e}>{'Horarios de trabajo'}</Text>
-          </View>
-          <ICON.IconAddPlusGreen right={p(30)}/>
-        </View>
+        <ATOM.Atom1
+          icon={<ICON.IconNeedle3 left={-p(4)} />}
+          title={'Horarios de trabajo'}
+          add={<ICON.IconAddPlusGreen right={p(25)} onClick={()=>Actions.MachineryAlertsCreateEdit({ title: 'Horarios de trabajo', icon: <ICON.IconNeedle3/>})} />}
+        />
 
-        <View style={styles.itemView}>
-          <ICON.IconActive right={p(16)}/>
-          <View style={{ flex: 1}}>
-            <Text style={text.t_16_700_2e}>{'Fuera del área de trabajo'}</Text>
-          </View>
-          <ICON.IconAddPlusGreen right={p(30)}/>
-        </View>
+        <ATOM.Atom1
+          icon={<ICON.IconActive left={-p(4)} />}
+          title={'Fuera del área de trabajo'}
+          add={<ICON.IconAddPlusGreen right={p(25)} onClick={()=>Actions.MachineryAlertsCreateEdit({ title: 'Fuera del área de trabajo', icon: <ICON.IconActive/>})} />}
+        />
 
-        <View style={styles.itemView}>
-          <ICON.IconInActive right={p(16)}/>
-          <View style={{ flex: 1}}>
-            <Text style={text.t_16_700_2e}>{'Superficie trabajada'}</Text>
-          </View>
-          <ICON.IconAddPlusGreen right={p(30)}/>
-        </View>
+        <ATOM.Atom1
+          icon={<ICON.IconInActive left={-p(4)} />}
+          title={'Superficie trabajada'}
+          add={<ICON.IconAddPlusGreen right={p(25)} onClick={()=>Actions.MachineryAlertsCreateEdit({ title: 'Superficie trabajada', icon: <ICON.IconInActive/>})} />}
+        />
+
       </View>
     )
   }
@@ -70,21 +60,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.WHITE
   },
   view: {
-    flexDirection: 'row', 
-    justifyContent: 'space-between', 
-    alignItems: 'center', 
-    marginBottom: p(12), 
-    marginHorizontal: p(61)
-  },
-  itemView: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: p(23),
-    backgroundColor: colors.WHITE,
-    shadowColor: 'rgba(0, 0, 0, 0.16)',
-    shadowOffset: { width: 3, height: 0 },
-    height: p(72),
-    borderBottomColor: colors.GREY3,
-    borderBottomWidth: 2
+    marginBottom: p(12),
+    marginHorizontal: p(61)
   },
 })
