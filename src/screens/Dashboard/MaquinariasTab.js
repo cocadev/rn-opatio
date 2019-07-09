@@ -8,7 +8,6 @@ import Header from '../../components/Header';
 import Maquinarias from './MaquinariasTab/Maquinarias';
 import Alarmas from './MaquinariasTab/alarmas';
 import Contratistas from './MaquinariasTab/contratistas';
-import * as ICON from '../../components/Icons';
 import * as CONFIG from '../../common/config';
 import Map from '../../components/Map';
 import Cstyles from '../../common/c_style';

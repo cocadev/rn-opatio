@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TextInput, ScrollView } from 'react-native';
 import { colors } from '../../../common/colors';
 import { p } from '../../../common/normalize';
-import text from '../../../common/text';
 import * as ICON from '../../../components/Icons';
-import * as BTN from '../../../components/Buttons';
-import { images } from '../../../common/images';
+import * as HEADER from '../../../components/Headers';
+import * as ATOM from '../../../components/Atoms';
+import Cstyles from '../../../common/c_style';
+import text from '../../../common/text';
 
 export default class MachineryAlertsCreateEdit extends React.Component {
 
@@ -18,97 +19,89 @@ export default class MachineryAlertsCreateEdit extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <View style={Cstyles.container}>
 
-        <View style={styles.view}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <ICON.IconBack />
-            <TouchableOpacity onPress={()=>Actions.pop()}>
-              <BTN.WhiteDark title={'GUARDAR'} />
-            </TouchableOpacity>
+        <HEADER.GUARDAR back={colors.RED} />
+
+        <ScrollView>
+
+          <View style={styles.view}>
+            <View style={{ marginHorizontal: p(65), justifyContent: 'center' }}>
+              <TextInput
+                style={styles.textinput}
+                onChangeText={(text) => this.setState({ text })}
+                value={this.state.text}
+              />
+            </View>
           </View>
-          <View style={{ marginHorizontal: p(65), justifyContent: 'center' }}>
+
+          <ATOM.Atom1
+            icon={<ICON.IconTrackGrey />}
+            title={'Maquinaria:'}
+            note={'Tractor 150'}
+          />
+
+          <ATOM.Atom1
+            icon={<ICON.IconNeedle />}
+            title={'Tipo de Alerta:'}
+            note={'Velocidad'}
+          />
+
+          <View style={[styles.itemView, { borderBottomWidth: 0 }]}>
+            <ICON.IconGreenCheck right={p(20)} left={p(7)} />
+            <Text style={text.t_10_500_8b}>{'Velocidad Máxima: '}</Text>
             <TextInput
-              style={styles.textinput}
-              onChangeText={(text) => this.setState({ text })}
-              value={this.state.text}
+              style={styles.textinput2}
+              onChangeText={(speed) => this.setState({ speed })}
+              value={this.state.speed}
             />
+            <Text style={text.t_18_500_2b}>{'km/h'}</Text>
           </View>
-        </View>
 
-        <View style={styles.itemView}>
-          <ICON.IconTrackGrey right={p(16)} />
-          <View style={{ flex: 1 }}>
-            <Text style={text.t_16_700_2e}>{'Maquinaria:'}</Text>
-            <Text style={text.t_15_400_98}>{'Tractor 150'}</Text>
+          <View style={[styles.itemView, { borderBottomWidth: 0 }]}>
+            <ICON.IconError right={p(22)} left={p(5)} />
+            <Text style={text.t_10_500_8b}>{'Velocidad Mínima: '}</Text>
+            <TextInput
+              style={styles.textinput2}
+              onChangeText={(speed2) => this.setState({ speed2 })}
+              value={this.state.speed2}
+            />
+            <Text style={text.t_18_500_2b}>{'km/h'}</Text>
           </View>
-        </View>
 
-        <View style={styles.itemView}>
-          <ICON.IconNeedle right={p(16)} />
-          <View style={{ flex: 1 }}>
-            <Text style={text.t_16_700_2e}>{'Tipo de Alerta:'}</Text>
-            <Text style={text.t_15_400_98}>{'Velocidad'}</Text>
+          <View style={{ alignItems: 'center', marginTop: p(-15) }}>
+            <ICON.ImgMessageBar />
           </View>
-        </View>
 
-        <View style={[styles.itemView, { borderBottomWidth: 0 }]}>
-          <ICON.IconGreenCheck right={p(20)} left={p(7)} />
-          <Text style={text.t_10_500_8b}>{'Velocidad Máxima: '}</Text>
-          <TextInput
-            style={styles.textinput2}
-            onChangeText={(speed) => this.setState({ speed })}
-            value={this.state.speed}
-          />
-          <Text style={text.t_18_500_2b}>{'km/h'}</Text>
-        </View>
-
-        <View style={[styles.itemView, { borderBottomWidth: 0 }]}>
-          <ICON.IconError right={p(22)} left={p(5)} />
-          <Text style={text.t_10_500_8b}>{'Velocidad Mínima: '}</Text>
-          <TextInput
-            style={styles.textinput2}
-            onChangeText={(speed2) => this.setState({ speed2 })}
-            value={this.state.speed2}
-          />
-          <Text style={text.t_18_500_2b}>{'km/h'}</Text>
-        </View>
-
-        <View style={{ alignItems: 'center', marginTop: p(-15) }}>
-          <ICON.ImgMessageBar />
-        </View>
-
-        <View style={[styles.itemView, { borderBottomWidth: 0, marginLeft: p(46) }]}>
-          <Text style={text.t_10_500_8b}>{'Margen de tiempo: '}</Text>
-          <TextInput
-            style={styles.textinput2}
-            onChangeText={(time) => this.setState({ time })}
-            value={this.state.time}
-          />
-          <Text style={text.t_18_500_2b}>{'min'}</Text>
-        </View>
-
-        <View style={styles.exclamation}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Text style={text.t_16_500_98}>{'Alerta de Velocidad'}</Text>
-            <ICON.IconCircleExc right={p(12)} />
+          <View style={[styles.itemView, { borderBottomWidth: 0, marginLeft: p(46) }]}>
+            <Text style={text.t_10_500_8b}>{'Margen de tiempo: '}</Text>
+            <TextInput
+              style={styles.textinput2}
+              onChangeText={(time) => this.setState({ time })}
+              value={this.state.time}
+            />
+            <Text style={text.t_18_500_2b}>{'min'}</Text>
           </View>
-          <Text style={[text.t_12_400_98, { marginVertical: p(12) }]}>{'Ingresa umbrales de velocidad que coincidan con el óptimo para una determinada labor, cuando la velocidad de la maquinaria exceda el umbral, se disparará la alarma.'}</Text>
-          <Text style={text.t_12_400_98}>{'Ejemplo: Si la velocidad máxima ingresada es 7 km/h y el márgen de tiemo ingresado es de 10 min, y la máquina va a 9 km/h durante 10 min, se disparará la alarma.'}</Text>
-        </View>
 
-      </ScrollView>
+          <View style={styles.exclamation}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Text style={text.t_16_500_98}>{'Alerta de Velocidad'}</Text>
+              <ICON.IconCircleExc right={p(12)} />
+            </View>
+            <Text style={[text.t_12_400_98, { marginVertical: p(12) }]}>{'Ingresa umbrales de velocidad que coincidan con el óptimo para una determinada labor, cuando la velocidad de la maquinaria exceda el umbral, se disparará la alarma.'}</Text>
+            <Text style={text.t_12_400_98}>{'Ejemplo: Si la velocidad máxima ingresada es 7 km/h y el márgen de tiemo ingresado es de 10 min, y la máquina va a 9 km/h durante 10 min, se disparará la alarma.'}</Text>
+          </View>
+
+        </ScrollView>
+
+      </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.WHITE
-  },
   view: {
-    height: p(264),
+    height: p(200),
     paddingHorizontal: p(14),
     paddingVertical: p(25),
     backgroundColor: colors.RED
@@ -126,7 +119,7 @@ const styles = StyleSheet.create({
   },
   textinput: {
     height: p(52),
-    marginTop: p(50),
+    marginTop: p(20),
     textAlign: 'center',
     color: colors.WHITE,
     fontSize: p(37),

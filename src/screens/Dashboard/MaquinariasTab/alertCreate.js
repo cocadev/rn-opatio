@@ -1,10 +1,9 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { colors } from '../../../common/colors';
 import { p } from '../../../common/normalize';
 import text from '../../../common/text';
 import * as ICON from '../../../components/Icons';
-import * as BTN from '../../../components/Buttons';
 import { Actions } from 'react-native-router-flux';
 
 export default class MachineryAlertsCreate extends React.Component {
@@ -59,8 +58,6 @@ export default class MachineryAlertsCreate extends React.Component {
           </View>
           <ICON.IconAddPlusGreen right={p(30)}/>
         </View>
-
-    
       </View>
     )
   }

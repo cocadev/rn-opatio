@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { colors } from '../../../common/colors';
 import { p } from '../../../common/normalize';
 import text from '../../../common/text';
