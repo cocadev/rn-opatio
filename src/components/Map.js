@@ -7,6 +7,7 @@ import Polygons from './Polygons';
 import * as ICON from '../components/Icons';
 import { Actions } from 'react-native-router-flux';
 import { colors } from '../common/colors';
+import text from '../common/text';
 
 export default class Map extends React.Component {
 
@@ -58,7 +59,7 @@ export default class Map extends React.Component {
   }
 
   render() {
-    const { polygons, region } = this.props;
+    const { polygons, region, custom } = this.props;
     const height = this.props.height ? this.props.height : p(240)
     return (
       <View style={styles.container}>
@@ -68,11 +69,11 @@ export default class Map extends React.Component {
           provider="google"
           style={{ ...styles.map, height }}
           showsCompass={true}
-          initialRegion={region}
+          initialRegion={this.props.region}
           region={this.state.region}
           showsMyLocationButton={true}
           showsUserLocation={true}
-          // customMapStyle={CONFIG.CUSTOM_STYLE}
+          customMapStyle={custom}
           cacheEnabled={true}
           loadingEnabled={true}
           loadingIndicatorColor="#111"
@@ -87,7 +88,7 @@ export default class Map extends React.Component {
           style={styles.searchView}>
           <Image source={images.blackSearch} style={styles.searchIcon} />
           <View style={styles.textinput}>
-            <Text>{this.state.text}</Text>
+            <Text style={text.t_12_400_98}>{this.state.text}</Text>
           </View>
         </TouchableOpacity>
 

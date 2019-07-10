@@ -1,21 +1,16 @@
-import * as React from 'react';
-import * as actions from "../../store/common/actions";
+import * as React from 'react'
+import * as actions from "../../store/common/actions"
+import * as BTN from '../../components/Buttons'
 
-import { View, StyleSheet, Text, TextInput, TouchableOpacity, Dimensions, AsyncStorage } from 'react-native';
-import { colors } from '../../common/colors';
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { Actions } from 'react-native-router-flux';
-import { p } from '../../common/normalize';
-import { Entypo, Ionicons } from '@expo/vector-icons';
+import { View, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native'
+import { colors } from '../../common/colors'
+import { bindActionCreators } from "redux"
+import { connect } from "react-redux"
+import { Actions } from 'react-native-router-flux'
+import { p } from '../../common/normalize'
+import { Entypo, Ionicons } from '@expo/vector-icons'
+
 import api from '../../common/api'
-import Cache from "../../common/cache"
-
-import * as ICON from '../../components/Icons';
-import * as BTN from '../../components/Buttons';
-
-const width = Dimensions.get('window').width
-const height = Dimensions.get('window').height
 
 class SignIn extends React.Component {
 

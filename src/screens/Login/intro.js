@@ -1,14 +1,13 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
-import { Actions } from 'react-native-router-flux';
-import { images } from '../../common/images';
-import { colors } from '../../common/colors';
-import { INTRO } from '../../common/config';
-import text from '../../common/text';
-import * as ICON from '../../components/Icons';
-import * as BTN from '../../components/Buttons';
+import React from 'react'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { Actions } from 'react-native-router-flux'
+import { colors } from '../../common/colors'
+import { INTRO } from '../../common/config'
 
-const width = Math.round(Dimensions.get('window').width);
+import * as ICON from '../../components/Icons'
+import * as BTN from '../../components/Buttons'
+
+import text from '../../common/text'
 
 export default class Intro extends React.Component {
 

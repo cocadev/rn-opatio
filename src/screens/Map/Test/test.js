@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { Button, Linking, View, StyleSheet } from 'react-native';
-import { Constants, WebBrowser } from 'expo';
+import React, { Component } from 'react'
+import { Button, Linking, View, StyleSheet } from 'react-native'
+import { WebBrowser } from 'expo'
+import Constants from 'expo-constants'
 
 export default class App extends Component {
   render() {

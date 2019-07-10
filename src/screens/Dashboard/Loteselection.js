@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Image, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, FlatList, ScrollView, TouchableOpacity, Modal } from 'react-native'
 import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
@@ -20,6 +20,7 @@ export default class LoteSelection extends Component {
         super(props)
         this.state = {
             lotes: null,
+            modal: true,
             isWaiting: true
         }
     }
@@ -33,6 +34,39 @@ export default class LoteSelection extends Component {
                 this.setState({ isWaiting: false })
             }
         })
+    }
+
+    renderModal() {
+        return (
+            <Modal
+                visible={this.state.modal}
+                transparent={true}
+                onRequestClose={() => { }}
+            >
+                <View style={Cstyles.modalContainer}>
+                    <View style={Cstyles.modal}>
+
+                        <TouchableOpacity onPress={() => this.setState({ modal: false })} style={{ alignItems: 'flex-end' }}>
+                            <ICON.IconClose />
+                        </TouchableOpacity>
+
+                        <View style={{ flexDirection: 'row', marginTop: p(12), justifyContent: 'center' }}>
+                            <ICON.IconModalField1 left={p(14)} right={p(14)} />
+                            <TouchableOpacity onPress={() => this.setState({ calendar: true, modal: false })}>
+                                <ICON.IconModalField2 left={p(14)} right={p(14)} />
+                            </TouchableOpacity>
+                            <ICON.IconModalField3 left={p(14)} right={p(14)} />
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: p(12), justifyContent: 'center' }}>
+                            <ICON.IconModalField4 left={p(14)} right={p(14)} />
+                            <ICON.IconModalField5 left={p(14)} right={p(14)} />
+                        </View>
+
+                    </View>
+                </View>
+            </Modal>
+        );
     }
 
     _renderItem = ({ item }) => (
@@ -54,7 +88,7 @@ export default class LoteSelection extends Component {
     )
 
     render() {
-        const { isWaiting, lotes } = this.state
+        const { isWaiting, lotes, modal } = this.state
         return (
             <View style={Cstyles.container}>
                 <HEADER.NormalIcon 
@@ -63,12 +97,17 @@ export default class LoteSelection extends Component {
                     icon={<ICON.IconLocation />} 
                 />
                 <ScrollView>
-                    <Map region={CONFIG.region} />
+                    <Map 
+                        region={CONFIG.REGION}
+                        custom={CONFIG.MAP_AUB}
+                        layerModal={this.state.modal}
+                    />
                     <View style={Cstyles.searchView}>
                         <TextInput style={Cstyles.searchInput} placeholder={'Campos y Lotes'} />
                         <ICON.IconWhiteSearch right={p(20)} />
                     </View>
                     {isWaiting ? <LottieScreen /> : <FlatList data={lotes} keyExtractor={(item, i) => String(i)} renderItem={this._renderItem} />}
+                    { modal && this. renderModal()}
                 </ScrollView>
             </View>
         );

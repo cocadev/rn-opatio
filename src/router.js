@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react'
-import { Image, StatusBar } from 'react-native';
-import { images } from './common/images';
+import { Image, StatusBar } from 'react-native'
+import { images } from './common/images'
 import { KeyboardAvoidingView, Platform, Dimensions, AsyncStorage } from 'react-native'
-import { Font } from 'expo'
+
+import * as Font from 'expo-font'
+import * as ROUTER from './common/routers'
+
 import Cache from "./common/cache"
-import * as ROUTER from './common/routers';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -42,13 +44,6 @@ export default class App extends PureComponent {
   async _loadAssets() {
     await Font.loadAsync({
       // 'Montserrat-Medium': require('../assets/fonts/Montserrat-Medium.ttf'),
-      'ionicons': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
-      'entypo': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
-      'MaterialIcons': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
-      'material': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
-      'Ionicons': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
-      'material-community': require('../assets/fonts/Montserrat-ThinItalic.ttf'),
-
     });
     console.log('fonts loaded!');
     this.setState({ fontLoaded: true });

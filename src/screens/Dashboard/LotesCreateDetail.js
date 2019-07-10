@@ -23,6 +23,7 @@ export default class LoteCreateDetail extends React.Component {
             bell: 'Campaña'
         }
     }
+    
     render() {
         const { campo, summer1, summer2, bell } = this.state
         return (

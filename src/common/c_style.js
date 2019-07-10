@@ -1,6 +1,8 @@
-import { StyleSheet } from 'react-native';
-import { colors } from './colors';
-import { p } from './normalize';
+import { StyleSheet, Dimensions } from 'react-native'
+import { colors } from './colors'
+import { p } from './normalize'
+
+const height = Math.round(Dimensions.get('window').height);
 
 const Cstyles = StyleSheet.create({
     container: {
@@ -46,6 +48,26 @@ const Cstyles = StyleSheet.create({
         backgroundColor: colors.GREY3,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    modal: {
+        width: p(243),
+        height: p(172),
+        padding: p(13),
+        borderRadius: 5,
+        borderColor: '#707070',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        backgroundColor: '#ffffff',
+        opacity: 0.95,
+        marginTop: 24,
+    },
+    modalContainer: {
+        height: height + 100,
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        marginTop: p(-70),
+        paddingRight: p(30),
+        alignItems: "flex-end",
+        justifyContent: 'center'
     },
     
 });

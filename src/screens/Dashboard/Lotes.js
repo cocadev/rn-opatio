@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
 import { MapView } from 'expo'
 import { CUSTOM_STYLE, REGION } from '../../common/config'
 import { Actions } from 'react-native-router-flux'
-import { customStyles } from './customStyles'
 import { getCluster } from '../Map/Test/MapUtils'
 
 import ClusterMarker from '../Map/Test/ClusterMarker'
@@ -14,6 +13,7 @@ import ActionButton from 'react-native-action-button'
 
 import * as HEADER from '../../components/Headers'
 import * as ICON from '../../components/Icons'
+import text from '../../common/text';
 
 const COORDS = [
     { lat: 37.795690, lon: -122.434728 },
@@ -30,9 +30,50 @@ export default class Lotes extends Component {
         this.state = {
             editing: null,
             create: false,
-            region: REGION
+            region: REGION,
+            text: 'Buscar',
         }
     }
+
+    viewMap = () => {
+        console.log('Where are you?')
+        Actions.mapSearch({
+          update: (location, key) => {
+            this.setState({
+              region: {
+                latitude: location.lat,
+                longitude: location.lng,
+                latitudeDelta: 0.02,
+                longitudeDelta: 0.02,
+              }, 
+              text: key
+            });
+          }
+        })
+      }
+
+    _findMe =()=> {
+        console.log('I am here')
+        navigator.geolocation.getCurrentPosition(
+          ({ coords }) => {
+            const { latitude, longitude } = coords
+            this.setState({
+              position: {
+                latitude,
+                longitude,
+              },
+              region: {
+                latitude,
+                longitude,
+                latitudeDelta: 0.005,
+                longitudeDelta: 0.001,
+              }
+            })
+          },
+          (error) => alert(JSON.stringify(error)),
+          { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+        )
+      }
 
     finish() {
         const { editing } = this.state;
@@ -172,15 +213,14 @@ export default class Lotes extends Component {
                     back={colors.BLUE} 
                 />
 
-                <View style={customStyles.searchView}>
-                    <Image source={images.blackSearch} style={customStyles.searchIcon} />
-                    <TextInput
-                        style={customStyles.textinput}
-                        placeholder={'Buscar'}
-                        onChangeText={(text) => this.setState({ text })}
-                        value={this.state.text}
-                    />
-                </View>
+                <TouchableOpacity
+                    onPress={this.viewMap}
+                    style={styles.searchView}>
+                    <Image source={images.blackSearch} style={styles.searchIcon} />
+                    <View style={styles.textinput}>
+                    <Text style={text.t_12_400_98}>{this.state.text}</Text>
+                    </View>
+                </TouchableOpacity>
 
                 {
                     create && editing && editing.coordinates.length > 2 &&
@@ -199,7 +239,7 @@ export default class Lotes extends Component {
                 <View style={{ position: 'absolute', right: 21, bottom: p(120) }}>
 
                     {
-                        !create && <TouchableOpacity>
+                        !create && <TouchableOpacity onPress={this._findMe}>
                             <Image source={images.locate1} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
                         </TouchableOpacity>
                     }
@@ -263,4 +303,25 @@ const styles = StyleSheet.create({
         height: 22,
         color: 'white',
     },
+    textinput: {
+        width: p(260),
+        height: p(44),
+        marginTop: p(60),
+        justifyContent: 'center',
+        paddingLeft: p(48),
+        fontSize: p(16),
+        borderColor: colors.GREY8,
+        borderWidth: 1,
+        borderRadius: p(25)
+      },
+      searchView: {
+        position: 'absolute',
+        left: p(60)
+      },
+      searchIcon: {
+        top: p(92),
+        left: p(22),
+        width: p(20),
+        height: p(19)
+      }
 });
