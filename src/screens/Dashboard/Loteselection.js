@@ -58,7 +58,7 @@ export default class LoteSelection extends Component {
         return (
             <View style={Cstyles.container}>
                 <HEADER.NormalIcon 
-                    title={'Lote 21'} 
+                    title={'Lotes'} 
                     back={colors.BLUE} 
                     icon={<ICON.IconLocation />} 
                 />

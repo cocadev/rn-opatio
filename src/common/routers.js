@@ -34,6 +34,8 @@ import MachinesContractorTab from '../screens/Dashboard/MachinesContractorTab';
 
 import ToDoList from '../screens/ToDoList';
 import MapSearch from '../screens/Dashboard/Other/mapSearch';
+import Test from '../screens/Map/Test/test'
+import DropDownList from '../screens/Dashboard/Other/dropDownList';
 
 const width = Dimensions.get('window').width
 const AUTH = [
@@ -53,7 +55,6 @@ const MAIN = [
   { key: 'lotecreatedetail',          component: LoteCreateDetail},
   { key: 'tareasdetail',              component: TareasDetail},
   { key: 'tareasedit',                component: TareasEdit},
-  { key: 'lotedetail',                component: LoteDetail},
 
   { key: 'cultivosDetail',            component: CultivosDetail},
   { key: 'maquinarias',               component: Maquinarias},
@@ -66,8 +67,11 @@ const MAIN = [
   { key: 'MachineSpeedAlarm',         component: MachineSpeedAlarm},
   { key: 'MaquinariasSwitch',         component: MaquinariasSwitch},
   { key: 'MachinesContractorTab',     component: MachinesContractorTab},
-  { key: 'test',                      component: ToDoList},
+  { key: 'test',                      component: Test},
   { key: 'mapSearch',                 component: MapSearch},
+
+  { key: 'dropdown',                  component: DropDownList},
+
 ]
 
 export const AuthPage = props => (
@@ -75,7 +79,6 @@ export const AuthPage = props => (
     <Stack key='root'>
      { AUTH.map(a => (<Scene key={a.key} component={a.component} hideNavBar />))}
      <Scene key="signin" component={SignIn} update={(res)=>props.logIn(res)} hideNavBar />
-
     </Stack>
   </Router>
 )
@@ -94,7 +97,13 @@ export const MainPage = props => {
       >
         <Scene key="inbox" component={Inbox} initial={false} hideNavBar />
       </Drawer>
-      { MAIN.map(a => (<Scene key={a.key} component={a.component} initial={a.key == 'maquinariastab' ? true : false} hideNavBar />))}
+      { MAIN.map(a => (
+        <Scene 
+          key={a.key} 
+          component={a.component} 
+          initial={a.key == 'lotecreatedetail' ? true : false} 
+          hideNavBar 
+        />))}
     </Stack>
   </Router>)
 }

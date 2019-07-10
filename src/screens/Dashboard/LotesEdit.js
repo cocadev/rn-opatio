@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native';
-import { images } from '../../common/images';
-import { p } from '../../common/normalize';
-import { colors } from '../../common/colors';
-import { Actions } from 'react-native-router-flux';
-import text from '../../common/text';
-import Cstyles from '../../common/c_style';
-import * as ATOM from '../../components/Atoms';
-import * as ICON from '../../components/Icons';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native'
+import { images } from '../../common/images'
+import { p } from '../../common/normalize'
+import { colors } from '../../common/colors'
+import { Actions } from 'react-native-router-flux'
+
+import text from '../../common/text'
+import Cstyles from '../../common/c_style'
+
+import * as ATOM from '../../components/Atoms'
+import * as ICON from '../../components/Icons'
 
 export default class LotesEdit extends Component {
 
@@ -44,7 +46,6 @@ export default class LotesEdit extends Component {
                     </View>
 
                     <View style={{ backgroundColor: colors.ORANGE}}>
-
                         <TextInput
                             style={styles.inputBox}
                             placeholder={'Añadir descripción'}
@@ -54,7 +55,6 @@ export default class LotesEdit extends Component {
                             onChangeText={(text) => this.setState({ text })}
                             value={this.state.text}
                         />
-
                     </View>
 
                     <ATOM.Atom1
@@ -101,22 +101,6 @@ export default class LotesEdit extends Component {
 }
 
 const styles = StyleSheet.create({
-    text2: {
-        color: colors.WHITE,
-        fontWeight: '500',
-        fontSize: p(17),
-        marginVertical: p(14)
-    },
-    text3: {
-        color: colors.BLACK,
-        fontWeight: '500',
-        fontSize: p(18)
-    },
-    text4: {
-        color: colors.GREY8,
-        fontWeight: '400',
-        fontSize: p(18)
-    },
     text5: {
         color: colors.ORANGE,
         flex: 1,

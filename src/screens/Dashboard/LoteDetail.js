@@ -11,6 +11,7 @@ import * as ATOM from '../../components/Atoms';
 import * as HEADER from '../../components/Headers';
 
 import Cstyles from '../../common/c_style';
+import { Actions } from 'react-native-router-flux';
 
 const width = Math.round(Dimensions.get('window').width);
 
@@ -40,7 +41,12 @@ export default class LoteDetail extends Component {
 
         return (
             <View style={Cstyles.container}>
-                <HEADER.Gradient color={colors.ORANGE} title={'EDITOR'} data={data} />
+                <HEADER.Gradient 
+                    color={colors.ORANGE} 
+                    title={'EDITOR'} 
+                    data={data} 
+                    onClick={()=>Actions.lotesedit({ data })}
+                />
                 <ScrollView>
                     <Carousel
                         autoplay

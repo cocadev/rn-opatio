@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, ScrollView } from 'react-native';
-import { images } from '../../common/images';
-import { p } from '../../common/normalize';
-import { colors } from '../../common/colors';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, Image, TextInput, ScrollView } from 'react-native'
+import { images } from '../../common/images'
+import { p } from '../../common/normalize'
+import { colors } from '../../common/colors'
 
-import * as HEADERS from '../../components/Headers';
-import * as ATOM from '../../components/Atoms';
-import * as ICON from '../../components/Icons';
-import * as BTN from '../../components/Buttons';
+import * as HEADERS from '../../components/Headers'
+import * as ATOM from '../../components/Atoms'
+import * as ICON from '../../components/Icons'
+import * as BTN from '../../components/Buttons'
 
-import Cstyles from '../../common/c_style';
+import Cstyles from '../../common/c_style'
 
 export default class TareasEdit extends Component {
 
@@ -21,7 +21,7 @@ export default class TareasEdit extends Component {
         return (
             <View style={Cstyles.container}>
 
-                <HEADERS.GUARDAR />
+                <HEADERS.GUARDAR back={colors.BLUE2}/>
 
                 <ScrollView>
 

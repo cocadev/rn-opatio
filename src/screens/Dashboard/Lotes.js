@@ -168,7 +168,7 @@ export default class Lotes extends Component {
 
                 <HEADER.NormalIcon 
                     title={'Lotes'} 
-                    icon={<ICON.IconLocate />} 
+                    icon={<ICON.IconLocation />} 
                     back={colors.BLUE} 
                 />
 
