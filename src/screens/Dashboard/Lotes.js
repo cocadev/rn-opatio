@@ -3,17 +3,17 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
-import { MapView } from 'expo'
 import { CUSTOM_STYLE, REGION } from '../../common/config'
 import { Actions } from 'react-native-router-flux'
 import { getCluster } from '../Map/Test/MapUtils'
 
+import MapView from 'react-native-maps'
 import ClusterMarker from '../Map/Test/ClusterMarker'
 import ActionButton from 'react-native-action-button'
+import text from '../../common/text'
 
 import * as HEADER from '../../components/Headers'
 import * as ICON from '../../components/Icons'
-import text from '../../common/text';
 
 const COORDS = [
     { lat: 37.795690, lon: -122.434728 },

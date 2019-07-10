@@ -1,8 +1,8 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { MapView } from "expo";
-import ClusterMarker from "./ClusterMarker";
-import { getCluster } from "./MapUtils";
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+import { getCluster } from "./MapUtils"
+import MapView from 'react-native-maps'
+import ClusterMarker from "./ClusterMarker"
 
 const Style = StyleSheet.create({
   container: {

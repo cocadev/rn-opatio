@@ -1,12 +1,6 @@
-import {
-  TouchableOpacity,
-  Dimensions,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-import React, { Component } from 'react';
-import { MapView } from 'expo'
+import { TouchableOpacity, Dimensions, StyleSheet, Text, View } from 'react-native'
+import React, { Component } from 'react'
+import MapView from 'react-native-maps'
 
 export default class ToDoList extends Component {
   constructor(props) {

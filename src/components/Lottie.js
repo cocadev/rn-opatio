@@ -1,10 +1,9 @@
-import React from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
-import { DangerZone } from 'expo';
-const { Lottie } = DangerZone;
-const window = Dimensions.get('window');
+import React from 'react'
+import { StyleSheet, View, Dimensions } from 'react-native'
+import Lottie from 'lottie-react-native'
+import LOADING from "../common/reload.json"
 
-import LOADING from "../common/reload.json";
+const window = Dimensions.get('window');
 
 export default class LottieScreen extends React.Component {
   state = {

@@ -101,7 +101,7 @@ export const MainPage = props => {
         <Scene 
           key={a.key} 
           component={a.component} 
-          initial={a.key == 'lotes' ? false : false} 
+          initial={a.key == 'lotes' ? true : false} 
           hideNavBar 
         />))}
     </Stack>

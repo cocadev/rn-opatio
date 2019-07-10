@@ -1,13 +1,15 @@
-import React from 'react';
-import { View, TouchableOpacity, StyleSheet, Image, Text, Dimensions } from 'react-native';
-import { images } from '../common/images';
-import { p } from '../common/normalize';
-import { MapView } from 'expo';
-import Polygons from './Polygons';
-import * as ICON from '../components/Icons';
-import { Actions } from 'react-native-router-flux';
-import { colors } from '../common/colors';
-import text from '../common/text';
+import React from 'react'
+import { View, TouchableOpacity, StyleSheet, Image, Text } from 'react-native'
+import { images } from '../common/images'
+import { p } from '../common/normalize'
+import { Actions } from 'react-native-router-flux'
+import { colors } from '../common/colors'
+
+import text from '../common/text'
+import MapView from 'react-native-maps'
+import Polygons from './Polygons'
+
+import * as ICON from '../components/Icons'
 
 export default class Map extends React.Component {
 

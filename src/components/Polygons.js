@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
+import MapView from 'react-native-maps'
 
-import { View } from 'react-native';
-import { MapView } from 'expo';
+import { View } from 'react-native'
 
 class Polygons extends React.Component {
 

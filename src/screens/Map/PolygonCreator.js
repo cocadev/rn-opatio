@@ -1,18 +1,11 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-  TouchableOpacity,
-  Image
-} from 'react-native';
+import React from 'react'
+import { StyleSheet, View, Text, Dimensions, TouchableOpacity, Image } from 'react-native'
+import { colors } from '../../common/colors'
+import { CUSTOM_STYLE } from '../../common/config'
+import { images } from '../../common/images'
+import { p } from '../../common/normalize'
 
-import { MapView } from 'expo';
-import { colors } from '../../common/colors';
-import { CUSTOM_STYLE } from '../../common/config';
-import { images } from '../../common/images';
-import { p } from '../../common/normalize';
+import MapView from 'react-native-maps'
 
 const { width, height } = Dimensions.get('window');
 

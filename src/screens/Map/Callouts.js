@@ -1,13 +1,7 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
-import { MapView, Marker, Animated } from 'expo';
-import CustomCallout from './CustomCallout';
+import React from 'react'
+import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native'
+import MapView from 'react-native-maps'
+import CustomCallout from './CustomCallout'
 
 const { width, height } = Dimensions.get('window');
 

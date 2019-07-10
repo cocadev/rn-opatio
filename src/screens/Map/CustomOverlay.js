@@ -1,12 +1,8 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-} from 'react-native';
+import React from 'react'
+import { StyleSheet, View, Dimensions } from 'react-native'
 
-import { MapView, Marker, Animated } from 'expo';
-import XMarksTheSpot from './CustomOverlayXMarksTheSpot';
+import MapView from 'react-native-maps'
+import XMarksTheSpot from './CustomOverlayXMarksTheSpot'
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;

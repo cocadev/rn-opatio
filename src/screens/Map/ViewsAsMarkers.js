@@ -1,13 +1,7 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
-import { MapView } from 'expo';
-import PriceMarker from './PriceMarker';
+import React from 'react'
+import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native'
+import MapView from 'react-native-maps'
+import PriceMarker from './PriceMarker'
 
 const { width, height } = Dimensions.get('window');
 

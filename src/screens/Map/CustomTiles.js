@@ -1,13 +1,6 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-} from 'react-native';
-
-import { MapView, MAP_TYPES, PROVIDER_DEFAULT } from 'expo';
-
+import React from 'react'
+import { StyleSheet, View, Text, Dimensions } from 'react-native'
+import MapView, { MAP_TYPES, PROVIDER_DEFAULT } from 'react-native-maps'
 
 const { width, height } = Dimensions.get('window');
 

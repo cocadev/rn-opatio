@@ -1,15 +1,8 @@
-import React from 'react';
-import {
-  Text,
-  View,
-  Dimensions,
-  StyleSheet,
-  ListView,
-  TouchableOpacity,
-} from 'react-native';
+import React from 'react'
+import { Text, View, Dimensions, StyleSheet, ListView, TouchableOpacity } from 'react-native'
 
-import { MapView, Marker } from 'expo';
-import flagImg from './assets/flag-blue.png';
+import MapView from 'react-native-maps'
+import flagImg from './assets/flag-blue.png'
 
 const HORIZONTAL_PADDING = 12;
 const VERTICAL_PADDING = 6;

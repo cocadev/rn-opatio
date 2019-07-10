@@ -2,10 +2,8 @@ import React, { PureComponent } from 'react'
 import { Image, StatusBar } from 'react-native'
 import { images } from './common/images'
 import { KeyboardAvoidingView, Platform, Dimensions, AsyncStorage } from 'react-native'
-
 import * as Font from 'expo-font'
 import * as ROUTER from './common/routers'
-
 import Cache from "./common/cache"
 
 const width = Dimensions.get('window').width

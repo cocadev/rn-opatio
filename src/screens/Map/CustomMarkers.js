@@ -1,14 +1,8 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
+import React from 'react'
+import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native'
 
-import { MapView, Marker, Animated } from 'expo';
-import flagPinkImg from './assets/flag-pink.png';
+import MapView from 'react-native-maps'
+import flagPinkImg from './assets/flag-pink.png'
 
 const { width, height } = Dimensions.get('window');
 

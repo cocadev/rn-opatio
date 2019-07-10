@@ -1,13 +1,7 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
+import React from 'react'
+import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native'
 
-import { MapView, MAP_TYPES } from 'expo';
+import MapView, { MAP_TYPES } from 'react-native-maps'
 
 const { width, height } = Dimensions.get('window');
 

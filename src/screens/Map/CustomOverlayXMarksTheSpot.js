@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
+import MapView from 'react-native-maps'
 
-import { View } from 'react-native';
-import { MapView } from 'expo';
-import { colors } from '../../common/colors';
-import { images } from '../../common/images';
+import { View } from 'react-native'
+import { colors } from '../../common/colors'
+import { images } from '../../common/images'
 
 class XMarksTheSpot extends React.Component {
   render() {

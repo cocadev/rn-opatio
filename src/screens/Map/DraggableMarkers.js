@@ -1,15 +1,9 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-} from 'react-native';
-
-import { MapView } from 'expo';
-import PriceMarker from './PriceMarker';
+import React from 'react'
+import { StyleSheet, View, Dimensions } from 'react-native'
+import MapView from 'react-native-maps'
+import PriceMarker from './PriceMarker'
 
 const { width, height } = Dimensions.get('window');
-
 const ASPECT_RATIO = width / height;
 const LATITUDE = 37.78825;
 const LONGITUDE = -122.4324;

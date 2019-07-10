@@ -1,13 +1,7 @@
-import React from 'react';
-import {
-  Text,
-  View,
-  Dimensions,
-  StyleSheet,
-} from 'react-native';
-
-import { MapView } from 'expo';
-import flagImg from './assets/flag-blue.png';
+import React from 'react'
+import { Text, View, Dimensions, StyleSheet } from 'react-native'
+import MapView from 'react-native-maps'
+import flagImg from './assets/flag-blue.png'
 
 const { width, height } = Dimensions.get('window');
 

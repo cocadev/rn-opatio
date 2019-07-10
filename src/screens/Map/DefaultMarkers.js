@@ -1,15 +1,9 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
+import React from 'react'
+import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native'
 
-import { MapView, Marker, Animated } from 'expo';
+import MapView from 'react-native-maps'
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
 const ASPECT_RATIO = width / height;
 const LATITUDE = 37.78825;

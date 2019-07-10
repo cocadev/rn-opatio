@@ -1,14 +1,9 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  Animated,
-} from 'react-native';
+import React from 'react'
+import { StyleSheet, View, Dimensions, Animated } from 'react-native'
 
-import { MapView } from 'expo';
-import PanController from './PanController';
-import PriceMarker from './AnimatedPriceMarker';
+import MapView from 'react-native-maps'
+import PanController from './PanController'
+import PriceMarker from './AnimatedPriceMarker'
 
 const screen = Dimensions.get('window');
 
