@@ -6,17 +6,17 @@ import { colors } from '../common/colors';
 import { Entypo } from '@expo/vector-icons';
 
 export const Large = props => (
-  <View style={styles.dropdown}>
+  <TouchableOpacity style={styles.dropdown} onPress={()=>props.onClick()}>
     <Text style={text.t_19_500_ff}>{props.title}</Text>
     <Entypo name={'chevron-down'} size={25} color={colors.WHITE} />
-  </View>
+  </TouchableOpacity>
 )
 
 export const Small = props => (
-  <View style={styles.dropdown2}>
+  <TouchableOpacity style={styles.dropdown2} onPress={()=>props.onClick()}>
     <Text style={text.t_19_500_00}>{props.title}</Text>
     <Entypo name={'chevron-down'} size={25} color={colors.GREY4} />
-  </View>
+  </TouchableOpacity>
 )
 
 export const XSmall = props => (

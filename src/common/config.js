@@ -838,3 +838,26 @@ export const carouselList = [
   "https://cdn7.wdwnt.com/wp-content/uploads/2019/03/b3cff0c9ba63adc8d8bd8a806c33f351.jpg",
   "https://i.ytimg.com/vi/CNV3WLx5Ez4/maxresdefault.jpg",
 ];
+
+
+/////////////// DropDown ////////////////
+export const create1 = [
+  { name: 'Campo' },
+  { name: 'Campo1' }, 
+  { name: 'Campo2' }, 
+  { name: 'Campo3' }
+]
+
+export const assign = [
+  { name: 'Sin asignar' },
+  { name: 'Asignar' }
+]
+
+export const bell = [
+  { name: 'Campaña1' },
+  { name: 'Campaña2' }, 
+  { name: 'Campaña3' }, 
+  { name: 'Campaña4' },
+  { name: 'Campaña5' }
+
+]
