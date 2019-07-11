@@ -1,14 +1,13 @@
 import React from 'react'
-import { View, TouchableOpacity, StyleSheet, Image, Text } from 'react-native'
+import { View, TouchableOpacity, StyleSheet, Image, Text, Modal } from 'react-native'
 import { images } from '../common/images'
 import { p } from '../common/normalize'
 import { Actions } from 'react-native-router-flux'
 import { colors } from '../common/colors'
-
 import text from '../common/text'
 import MapView from 'react-native-maps'
 import Polygons from './Polygons'
-
+import Cstyles from '../common/c_style'
 import * as ICON from '../components/Icons'
 
 export default class Map extends React.Component {
@@ -19,6 +18,7 @@ export default class Map extends React.Component {
       text: 'Buscar',
       latitude: 0,
       longitude: 0,
+      modal:false
     }
   }
 
@@ -60,14 +60,45 @@ export default class Map extends React.Component {
     })
   }
 
+  renderModal() {
+    return (
+        <Modal
+            visible={this.state.modal}
+            transparent={true}
+            onRequestClose={() => { }}
+        >
+            <View style={Cstyles.modalContainer}>
+                <View style={Cstyles.modal}>
+
+                    <TouchableOpacity onPress={() => this.setState({ modal: false })} style={{ alignItems: 'flex-end' }}>
+                        <ICON.IconClose />
+                    </TouchableOpacity>
+
+                    <View style={{ flexDirection: 'row', marginTop: p(12), justifyContent: 'center' }}>
+                        <ICON.IconModalField1 left={p(14)} right={p(14)} />
+                        <TouchableOpacity onPress={() => this.setState({ calendar: true, modal: false })}>
+                            <ICON.IconModalField2 left={p(14)} right={p(14)} />
+                        </TouchableOpacity>
+                        <ICON.IconModalField3 left={p(14)} right={p(14)} />
+                    </View>
+
+                    <View style={{ flexDirection: 'row', marginTop: p(12), justifyContent: 'center' }}>
+                        <ICON.IconModalField4 left={p(14)} right={p(14)} />
+                        <ICON.IconModalField5 left={p(14)} right={p(14)} />
+                    </View>
+
+                </View>
+            </View>
+        </Modal>
+    );
+}
+
   render() {
-    const { polygons, region, custom } = this.props;
+    const { polygons } = this.props;
     const height = this.props.height ? this.props.height : p(240)
     return (
       <View style={styles.container}>
-
         <MapView
-          // ref={instance => this.map = instance}
           provider="google"
           style={{ ...styles.map, height }}
           showsCompass={true}
@@ -75,12 +106,11 @@ export default class Map extends React.Component {
           region={this.state.region}
           showsMyLocationButton={true}
           showsUserLocation={true}
-          customMapStyle={custom}
           cacheEnabled={true}
           loadingEnabled={true}
           loadingIndicatorColor="#111"
           loadingBackgroundColor="#eee"
-
+          mapType={"satellite"}
         >
           { polygons && <Polygons coordinates={polygons} /> }
         </MapView>
@@ -95,14 +125,14 @@ export default class Map extends React.Component {
         </TouchableOpacity>
 
         <View style={{ position: 'absolute', right: 15, top: p(130) }}>
-          <TouchableOpacity onPress={() => this.setState({ modal: true })}>
+          <TouchableOpacity onPress={()=>this.setState({ modal: true})}>
             <ICON.IconRoundLayer />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this._findMe()}>
             <ICON.IconLocate1 />
           </TouchableOpacity>
         </View>
-
+        { this.state.modal && this. renderModal()}
       </View>
     )
   }

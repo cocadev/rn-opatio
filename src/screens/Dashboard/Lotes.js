@@ -3,18 +3,15 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
-import { CUSTOM_STYLE, REGION } from '../../common/config'
+import { REGION } from '../../common/config'
 import { Actions } from 'react-native-router-flux'
 import { getCluster } from '../Map/Test/MapUtils'
-
 import MapView from 'react-native-maps'
 import ClusterMarker from '../Map/Test/ClusterMarker'
 import ActionButton from 'react-native-action-button'
 import text from '../../common/text'
-
 import * as HEADER from '../../components/Headers'
 import * as ICON from '../../components/Icons'
-
 const COORDS = [
     { lat: 37.795690, lon: -122.434728 },
     // { lat: 37.805690, lon: -122.434728 },
@@ -171,7 +168,6 @@ export default class Lotes extends Component {
         return (
             <View style={styles.container}>
                 <MapView
-
                     ref={instance => this.map = instance}
                     provider={MapView.PROVIDER_GOOGLE}
                     loadingIndicatorColor={"#ffbbbb"}
@@ -183,11 +179,9 @@ export default class Lotes extends Component {
                     zoomEnabled={true}
                     cacheEnabled={true}
                     initialRegion={REGION}
-                    customMapStyle={CUSTOM_STYLE}
-                    compassOffset={{ x: 10, y: 50 }}
+                    mapType={"satellite"}
                     onPress={e => this.onPress(e)}
                     onRegionChangeComplete={region => this.setState({ region })}
-
                 >
 
                     {cluster.markers.map((marker, index) => this.renderMarker(marker, index))}

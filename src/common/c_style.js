@@ -64,7 +64,7 @@ const Cstyles = StyleSheet.create({
     modalContainer: {
         height: height + 100,
         backgroundColor: "rgba(0, 0, 0, 0.5)",
-        marginTop: p(-70),
+        marginTop: p(-90),
         paddingRight: p(30),
         alignItems: "flex-end",
         justifyContent: 'center'

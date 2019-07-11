@@ -1,41 +1,35 @@
-import React from 'react';
-import { Dimensions } from 'react-native';
+import React from 'react'
+import { Dimensions } from 'react-native'
 import { Scene, Router, Drawer, Stack } from 'react-native-router-flux'
-
-import SideMenu from '../screens/SideMenu';
-
+import SideMenu from '../screens/SideMenu'
 import SignIn from '../screens/Login/signIn'
 import SignUp from '../screens/Login/signup'
 import Forgot from '../screens/Login/forgot'
-
-import Intro from '../screens/Login/intro';
-import Inbox from '../screens/Dashboard/index';
-import Lotes from '../screens/Dashboard/Lotes';
-import LoteSelection from '../screens/Dashboard/Loteselection';
-import LotesTab from '../screens/Dashboard/LotesTab';
-import LoteDetail from '../screens/Dashboard/LoteDetail';
-import TareasDetail from '../screens/Dashboard/LotesTareasDetail';
-import TareasEdit from '../screens/Dashboard/LotesTareasEdit';
-import CultivosDetail from '../screens/Dashboard/LotescultivosDetail';
-import LotesEdit from '../screens/Dashboard/LotesEdit';
-
-import Maquinarias from '../screens/Dashboard/Maquinarias';
-import MaquinariasTab from '../screens/Dashboard/MaquinariasTab';
-
-import LoteCreateDetail from '../screens/Dashboard/LotesCreateDetail';
-import MachineNewContractor from '../screens/Dashboard/MachineNewContractor';
-import MachineTrackDetail from '../screens/Dashboard/MachineTrackDetail';
-import MachineSettings from '../screens/Dashboard/MachineSettings';
-import MachineryAlertsCreateEdit from '../screens/Dashboard/MaquinariasTab/alertCreateEdit';
-import MachineNew from '../screens/Dashboard/MachineNew';
-import MachineSpeedAlarm from '../screens/Dashboard/MachineSpeedAlarm';
-import MaquinariasSwitch from '../screens/Dashboard/MaquinariasSwitch';
-import MachinesContractorTab from '../screens/Dashboard/MachinesContractorTab';
-
-import ToDoList from '../screens/ToDoList';
-import MapSearch from '../screens/Dashboard/Other/mapSearch';
+import Intro from '../screens/Login/intro'
+import Inbox from '../screens/Dashboard/index'
+import Lotes from '../screens/Dashboard/Lotes'
+import LoteSelection from '../screens/Dashboard/Loteselection'
+import LotesTab from '../screens/Dashboard/LotesTab'
+import LoteDetail from '../screens/Dashboard/LoteDetail'
+import TareasDetail from '../screens/Dashboard/LotesTareasDetail'
+import TareasEdit from '../screens/Dashboard/LotesTareasEdit'
+import CultivosDetail from '../screens/Dashboard/LotescultivosDetail'
+import LotesEdit from '../screens/Dashboard/LotesEdit'
+import Maquinarias from '../screens/Dashboard/Maquinarias'
+import MaquinariasTab from '../screens/Dashboard/MaquinariasTab'
+import LoteCreateDetail from '../screens/Dashboard/LotesCreateDetail'
+import MachineNewContractor from '../screens/Dashboard/MachineNewContractor'
+import MachineTrackDetail from '../screens/Dashboard/MachineTrackDetail'
+import MachineSettings from '../screens/Dashboard/MachineSettings'
+import MachineryAlertsCreateEdit from '../screens/Dashboard/MaquinariasTab/alertCreateEdit'
+import MachineNew from '../screens/Dashboard/MachineNew'
+import MachineSpeedAlarm from '../screens/Dashboard/MachineSpeedAlarm'
+import MaquinariasSwitch from '../screens/Dashboard/MaquinariasSwitch'
+import MachinesContractorTab from '../screens/Dashboard/MachinesContractorTab'
+import ToDoList from '../screens/ToDoList'
+import MapSearch from '../screens/Dashboard/Other/mapSearch'
 import Test from '../screens/Map/Test/test'
-import DropDownList from '../screens/Dashboard/Other/dropDownList';
+import DropDownList from '../screens/Dashboard/Other/dropDownList'
 
 const width = Dimensions.get('window').width
 const AUTH = [
@@ -55,7 +49,6 @@ const MAIN = [
   { key: 'lotecreatedetail',          component: LoteCreateDetail},
   { key: 'tareasdetail',              component: TareasDetail},
   { key: 'tareasedit',                component: TareasEdit},
-
   { key: 'cultivosDetail',            component: CultivosDetail},
   { key: 'maquinarias',               component: Maquinarias},
   { key: 'maquinariastab',            component: MaquinariasTab},
@@ -69,9 +62,7 @@ const MAIN = [
   { key: 'MachinesContractorTab',     component: MachinesContractorTab},
   { key: 'test',                      component: Test},
   { key: 'mapSearch',                 component: MapSearch},
-
   { key: 'dropdown',                  component: DropDownList},
-
 ]
 
 export const AuthPage = props => (
