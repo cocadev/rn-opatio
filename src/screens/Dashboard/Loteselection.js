@@ -11,6 +11,7 @@ import Cstyles from '../../common/c_style'
 import * as ICON from '../../components/Icons'
 import * as HEADER from '../../components/Headers'
 import * as CONFIG from '../../common/config'
+import * as FileSystem from 'expo-file-system';
 
 export default class LoteSelection extends Component {
 
@@ -43,10 +44,14 @@ export default class LoteSelection extends Component {
                     <View key={key} style={styles.itemLote}>
                         <Image source={images.dot1} style={{ width: p(30), height: p(30), marginRight: p(20) }} />
                         <TouchableOpacity style={styles.touchPan} onPress={() => Actions.lotetab({ field, description: item.nombre })}>
-                            <Text style={{ fontSize: p(20), fontWeight: '700', color: colors.TEXT, marginTop: -5 }}>Lote{field.name}</Text>
-                            <Text style={{ fontSize: p(15), flex: 1, color: colors.TEXT, marginTop: -5 }}>{field.ha} ha</Text>
+                            <Text style={{ fontSize: p(20), flex: 1, fontWeight: '700', color: colors.TEXT, marginTop: -5 }}>Lote{field.name}</Text>
+                            <Text style={{ fontSize: p(15), color: colors.TEXT, marginLeft: p(20) }}>{field.ha} ha</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.downBtn}>
+                        <TouchableOpacity style={styles.downBtn} onPress={() => {
+                            console.log('**********************8888')
+                            
+                              
+                        }}>
                             <Image source={images.download} style={{ width: p(16), height: p(20) }} />
                         </TouchableOpacity>
                     </View>
@@ -97,7 +102,7 @@ const styles = StyleSheet.create({
         borderBottomColor: colors.GREY2,
         borderBottomWidth: 1,
         flexDirection: 'row',
-        paddingHorizontal: p(20),
+        paddingLeft: p(20),
         alignItems: 'center',
         height: p(72)
     },
@@ -114,7 +119,9 @@ const styles = StyleSheet.create({
     },
     touchPan: {
         flex: 1,
-        backgroundColor: colors.CYAN, 
-        alignItems: 'center'
+        height: p(40),
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row'
     }
 });
