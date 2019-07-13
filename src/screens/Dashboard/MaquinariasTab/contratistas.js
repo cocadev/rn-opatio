@@ -1,48 +1,50 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { colors } from '../../../common/colors';
 import { contratistas } from '../../../common/config';
 import { images } from '../../../common/images';
 import { p } from '../../../common/normalize';
 import { Actions } from 'react-native-router-flux';
+import text from '../../../common/text';
 
 export default class Contratistas extends React.Component {
+
+    _renderItem = ({ item, index }) => (
+        <View key={index} style={styles.view}>
+            <Image source={images.user} style={styles.circle} />
+            <TouchableOpacity onPress={() => Actions.MachinesContractorTab()} style={{ width: p(190), marginLeft: p(3) }}>
+                <Text style={text.t_16_700_2e}>{item.name}</Text>
+                <Text style={text.t_15_400_72}>{item.address}</Text>
+            </TouchableOpacity>
+            <View style={styles.count}>
+                <Text style={text.t_12_700_ee}>{item.count}</Text>
+            </View>
+            <View style={{ marginTop: p(6) }}>
+                <View style={{ flexDirection: 'row', marginLeft: p(18) }}>
+                    <Image source={item.switch ? images.mapPositionGrey : images.mapPositionYellow} style={styles.position} />
+                    <Text style={styles.text5}>{'Ver en\nel mapa'}</Text>
+                </View>
+                <Text style={styles.text4}>{item.count + ' Máquinas'}</Text>
+            </View>
+        </View>
+    );
 
     render() {
         return (
             <View style={styles.container}>
 
-                <View style={{ alignItems: 'center', marginTop: p(8)}}>
-                    <TouchableOpacity style={styles.button} onPress={()=>Actions.machinenewcontractor()}>
+                <View style={{ alignItems: 'center', marginTop: p(8) }}>
+                    <TouchableOpacity style={styles.button} onPress={() => Actions.machinenewcontractor()}>
                         <Text style={styles.headText}>{'NUEVO CONTRATISTA'}</Text>
                     </TouchableOpacity>
                 </View>
 
-                <ScrollView>
-                    {
-                        contratistas.map((item, index) => {
-                            return (
-                                <View key={index} style={styles.view}>
-                                    <Image source={images.user} style={styles.circle} />
-                                    <TouchableOpacity onPress={()=>Actions.MachinesContractorTab()} style={{ width: p(190), marginLeft: p(3) }}>
-                                        <Text style={styles.text1}>{item.name}</Text>
-                                        <Text style={styles.text2}>{item.address}</Text>
-                                    </TouchableOpacity>
-                                    <View style={styles.count}>
-                                        <Text style={styles.text3}>{item.count}</Text>
-                                    </View>
-                                    <View style={{ marginTop: p(6) }}>
-                                        <View style={{ flexDirection: 'row', marginLeft: p(18) }}>
-                                            <Image source={item.switch ? images.mapPositionGrey : images.mapPositionYellow} style={styles.position} />
-                                            <Text style={styles.text5}>{'Ver en\nel mapa'}</Text>
-                                        </View>
-                                        <Text style={styles.text4}>{item.count + ' Máquinas'}</Text>
-                                    </View>
-                                </View>
-                            );
-                        })
-                    }
-                </ScrollView>
+                <FlatList
+                    style={{ marginTop: 12 }}
+                    data={contratistas}
+                    keyExtractor={(item, i) => String(i)}
+                    renderItem={this._renderItem}
+                />
 
             </View>
         )
@@ -82,21 +84,6 @@ const styles = StyleSheet.create({
         fontSize: p(11),
         fontWeight: '400',
         textAlign: 'center'
-    },
-    text1: {
-        color: '#2e2e2e',
-        fontSize: p(18),
-        fontWeight: '700',
-    },
-    text2: {
-        color: '#727272',
-        fontSize: p(17),
-        fontWeight: '400',
-    },
-    text3: {
-        color: colors.GREY3,
-        fontSize: p(14),
-        fontWeight: '700',
     },
     text4: {
         marginTop: p(8),

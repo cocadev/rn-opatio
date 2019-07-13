@@ -3,45 +3,46 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
-import { CUSTOM_STYLE, COORDINATES, CENTER, REGION, MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS } from '../../common/config'
+import { CUSTOM_STYLE, REGION } from '../../common/config'
 import { Actions } from 'react-native-router-flux'
-
 import * as ICON from '../../components/Icons'
 import * as HEADER from '../../components/Headers'
-
-import XMarksTheSpot from '../Map/CustomOverlayXMarksTheSpot'
 import MapView from 'react-native-maps'
 
 export default class Maquinarias extends Component {
 
-    constructor(props) {
-        super(props)
-        const markerInfo = [];
-        for (let i = 1; i < NUM_MARKERS; i++) {
-            markerInfo.push({
-                latitude: (((Math.random() * 2) - 1) * MARKERS_LATITUDE_DELTA) + LATITUDE,
-                longitude: (((Math.random() * 2) - 1) * MARKERS_LATITUDE_DELTA) + LONGITUDE,
-                isSpecial: Math.random() < PERCENT_SPECIAL_MARKERS,
-                id: i,
-            });
-        }
-        this.state = {
-            markerInfo
+    constructor(){
+        super();
+        this.state={
+            region: REGION,
         }
     }
 
+    _findMe =()=> {
+        console.log('IIIIIIIIIIIIIIIIIIIII')
+        navigator.geolocation.getCurrentPosition(
+          ({ coords }) => {
+            const { latitude, longitude } = coords
+            this.setState({
+              position: {
+                latitude,
+                longitude,
+              },
+              region: {
+                latitude,
+                longitude,
+                latitudeDelta: 0.005,
+                longitudeDelta: 0.001,
+              }
+            })
+          },
+          (error) => alert(JSON.stringify(error)),
+          { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+        )
+    }
+
     render() {
-        const markers = this.state.markerInfo.map((markerInfo) =>
-            <MapView.Marker
-                coordinate={markerInfo}
-                key={markerInfo.id}
-            >
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Image source={images.marker} style={{ width: p(40), height: p(40) }} />
-                    <Text style={{ fontSize: p(21), fontWeight: '700', color: colors.WHITE }}> Lote {markerInfo.id}</Text>
-                </View>
-            </MapView.Marker>
-        );
+        const { region } = this.state
         return (
             <View style={styles.container}>
                 <MapView
@@ -49,12 +50,12 @@ export default class Maquinarias extends Component {
                     style={styles.map}
                     showsUserLocation={true}
                     zoomEnabled={true}
+                    region={region}
                     cacheEnabled={true}
+                    mapType={"satellite"}
                     initialRegion={REGION}
                     customMapStyle={CUSTOM_STYLE}
                 >
-                    <XMarksTheSpot coordinates={COORDINATES} center={CENTER} />
-                    {markers}
                 </MapView>
 
                 <HEADER.NormalIcon title={'Maquinarias'} icon={<ICON.IconTrack />} back={colors.ORANGE} />
@@ -63,7 +64,7 @@ export default class Maquinarias extends Component {
                     <TouchableOpacity>
                         <Image source={images.layer1} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this._findMe}>
                         <Image source={images.locate1} style={{ width: p(65), height: p(65), marginBottom: p(4) }} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => Actions.maquinariastab()}>

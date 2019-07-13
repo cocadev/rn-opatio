@@ -4,8 +4,7 @@ import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
 import { Actions } from 'react-native-router-flux'
-import { WebBrowser } from 'expo';
-
+import * as WebBrowser from 'expo-web-browser'
 import * as ATOM from '../../components/Atoms'
 import * as ICON from '../../components/Icons'
 import * as BTN from '../../components/Buttons'

@@ -1,51 +1,44 @@
-import React, { Component } from 'react';
-import {
-  View,
-  Dimensions,
-  Button,
-  Share,
-} from 'react-native';
-import * as FileSystem from 'expo-file-system'
+import React, { Component } from 'react'
+import { Button, Linking, View, StyleSheet } from 'react-native'
+import { WebBrowser } from 'expo'
+import Constants from 'expo-constants'
 
 export default class App extends Component {
-  static navigationOptions = {
-    title: 'Pdf Screen',
-  };
-
-  state = {
-    pdfUrl: '',
-  };
-
-   makeDowload() {
-     FileSystem.downloadAsync(
-      'http://gahp.net/wp-content/uploads/2017/09/sample.pdf',
-      FileSystem.documentDirectory + 'small.pdf'
-    )
-      .then(({ uri }) => {
-        console.log('Finished downloading to ', uri);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-
-  }
-
   render() {
     return (
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-          margin: 10,
-        }}
-      >
-        <Button          
-          title="baixar"
-          onPress={() => {
-            this.makeDowload();
-          }}/>
+      <View style={styles.container}>
+        <Button
+          title="Open URL with ReactNative.Linking"
+          onPress={this._handleOpenWithLinking}
+          style={styles.button}
+        />
+        <Button
+          title="Open URL with Expo.WebBrowser"
+          onPress={this._handleOpenWithWebBrowser}
+          style={styles.button}
+        />
       </View>
     );
   }
+  
+  _handleOpenWithLinking = () => {
+    Linking.openURL('http://dummy.restapiexample.com/api/v1/employees');
+  }
+  
+  _handleOpenWithWebBrowser = () => {
+    WebBrowser.openBrowserAsync('http://ipv4.download.thinkbroadband.com/5MB.zip');
+  }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: '#ecf0f1',
+  },
+  button: {
+    marginVertical: 10,
+  },
+});

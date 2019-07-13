@@ -20,6 +20,9 @@ export default class App extends PureComponent {
   }
 
   async componentDidMount() {
+
+    console.log('Cache.COMPANY_ID', Cache.COMPANY_ID)
+
     StatusBar.setHidden(true, 'none');
     await this._loadAssets();
     this._retrieveData()

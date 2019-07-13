@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
-import { Text, View, TextInput, ScrollView, TouchableOpacity } from 'react-native';
-import { p } from '../../common/normalize';
-import { colors } from '../../common/colors';
-import { Ionicons } from '@expo/vector-icons';
-
-import Maquinarias from './MaquinariasTab/Maquinarias';
-import Alarmas from './MaquinariasTab/alarmas';
-import Contratistas from './MaquinariasTab/contratistas';
-import Map from '../../components/Map';
-import Cstyles from '../../common/c_style';
-import text from '../../common/text';
-
-import * as CONFIG from '../../common/config';
-import * as HEADER from '../../components/Headers';
-import * as ICON from '../../components/Icons';
+import React, { Component } from 'react'
+import { Text, View, TextInput, ScrollView, TouchableOpacity } from 'react-native'
+import { p } from '../../common/normalize'
+import { colors } from '../../common/colors'
+import { Ionicons } from '@expo/vector-icons'
+import Maquinarias from './MaquinariasTab/Maquinarias'
+import Alarmas from './MaquinariasTab/alarmas'
+import Contratistas from './MaquinariasTab/contratistas'
+import Map from '../../components/Map'
+import Cstyles from '../../common/c_style'
+import text from '../../common/text'
+import * as CONFIG from '../../common/config'
+import * as HEADER from '../../components/Headers'
+import * as ICON from '../../components/Icons'
 
 export default class MaquinariasTab extends Component {
 
@@ -26,7 +24,7 @@ export default class MaquinariasTab extends Component {
     }
 
     render() {
-        const { selectTab, search } = this.state;
+        const { selectTab } = this.state;
 
         return (
             <View style={Cstyles.container}>
@@ -38,6 +36,7 @@ export default class MaquinariasTab extends Component {
                 />
 
                 <ScrollView>
+                    
                     <Map region={CONFIG.region} />
 
                     <View style={Cstyles.searchView}>
@@ -77,6 +76,7 @@ export default class MaquinariasTab extends Component {
                     {selectTab == 1 && <Maquinarias />}
                     {selectTab == 2 && <Alarmas />}
                     {selectTab == 3 && <Contratistas />}
+
                 </ScrollView>
             </View>
         );

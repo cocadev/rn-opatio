@@ -33,7 +33,6 @@ export default class Lotes extends Component {
     }
 
     viewMap = () => {
-        console.log('Where are you?')
         Actions.mapSearch({
           update: (location, key) => {
             this.setState({
@@ -47,10 +46,9 @@ export default class Lotes extends Component {
             });
           }
         })
-      }
+    }
 
     _findMe =()=> {
-        console.log('I am here')
         navigator.geolocation.getCurrentPosition(
           ({ coords }) => {
             const { latitude, longitude } = coords
@@ -70,10 +68,9 @@ export default class Lotes extends Component {
           (error) => alert(JSON.stringify(error)),
           { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
         )
-      }
+    }
 
     finish() {
-        const { editing } = this.state;
         this.setState({
             editing: null, create: false
         });
