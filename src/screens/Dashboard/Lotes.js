@@ -14,10 +14,6 @@ import * as HEADER from '../../components/Headers'
 import * as ICON from '../../components/Icons'
 const COORDS = [
     { lat: 37.795690, lon: -122.434728 },
-    // { lat: 37.805690, lon: -122.434728 },
-    // { lat: 37.815690, lon: -122.424728 },
-    // { lat: 37.795690, lon: -122.454728 },
-    // { lat: 37.795690, lon: -122.444728 }
 ];
 
 export default class Lotes extends Component {

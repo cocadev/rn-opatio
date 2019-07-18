@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, FlatList } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { colors } from '../../../common/colors';
 import { contratistas } from '../../../common/config';
 import { images } from '../../../common/images';
@@ -8,7 +8,6 @@ import { Actions } from 'react-native-router-flux';
 import text from '../../../common/text';
 
 export default class Contratistas extends React.Component {
-
     _renderItem = ({ item, index }) => (
         <View key={index} style={styles.view}>
             <Image source={images.user} style={styles.circle} />
@@ -32,20 +31,17 @@ export default class Contratistas extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-
                 <View style={{ alignItems: 'center', marginTop: p(8) }}>
                     <TouchableOpacity style={styles.button} onPress={() => Actions.machinenewcontractor()}>
                         <Text style={styles.headText}>{'NUEVO CONTRATISTA'}</Text>
                     </TouchableOpacity>
                 </View>
-
                 <FlatList
                     style={{ marginTop: 12 }}
                     data={contratistas}
                     keyExtractor={(item, i) => String(i)}
                     renderItem={this._renderItem}
                 />
-
             </View>
         )
     }
@@ -78,12 +74,6 @@ const styles = StyleSheet.create({
         backgroundColor: colors.GREY7,
         width: 1,
         height: p(50)
-    },
-    text0: {
-        color: '#212121',
-        fontSize: p(11),
-        fontWeight: '400',
-        textAlign: 'center'
     },
     text4: {
         marginTop: p(8),

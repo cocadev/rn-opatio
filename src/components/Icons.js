@@ -84,7 +84,7 @@ export const IconAddPlusGreen = props => (
 export const ImgMessageBar = props => (<Image source={images.message_bar} style={{ width: p(344), height: p(36), marginRight: props.right, marginLeft: props.left }} />)
 export const ImgCallOut = props => (<Image source={images.callout} style={{ width: p(145), height: p(126), marginRight: props.right, marginLeft: props.left }} />)
 
-export const ImgLogo = props => (<Image source={images.logo} style={{ width: p(202), height: p(58), marginRight: props.right, marginLeft: props.left }} />)
+export const ImgLogo = props => (<Image source={images.logo} style={{ width: p(205.5), height: p(58), marginRight: props.right, marginLeft: props.left }} />)
 export const ImgIntro = props => (<Image source={images.intro} style={{ width: width, height: p(220), marginRight: props.right, marginLeft: props.left }} />)
 
 

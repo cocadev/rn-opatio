@@ -1,8 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, TouchableHighlight, StyleSheet, Image, Modal } from 'react-native';
-import { Actions } from 'react-native-router-flux';
-import { Ionicons } from '@expo/vector-icons';
-import { images } from '../../../common/images';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { colors } from '../../../common/colors'
 import { p } from '../../../common/normalize';
 import * as BTN from '../../../components/Buttons';
@@ -11,7 +8,6 @@ import * as ICON from '../../../components/Icons';
 export default class GPS extends React.Component {
 
   render() {
-    const { title, address, description } = this.props
     return (
       <View style={styles.container}>
 

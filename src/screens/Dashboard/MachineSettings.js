@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
-
 import MachineryAlertsCreate from './MaquinariasTab/alertCreate'
 import MachineryAlerts from './MaquinariasTab/alerts'
 import text from '../../common/text'
 import Cstyles from '../../common/c_style'
-
 import * as ICON from '../../components/Icons'
 
 export default class MachineSettings extends Component {
@@ -48,8 +46,8 @@ export default class MachineSettings extends Component {
                         </TouchableOpacity>
                     </View>
 
-                    {selectTab == 1 && <MachineryAlerts />}
-                    {selectTab == 2 && <MachineryAlertsCreate />}
+                    { selectTab == 1 && <MachineryAlerts />}
+                    { selectTab == 2 && <MachineryAlertsCreate />}
 
                 </ScrollView>
             </View>

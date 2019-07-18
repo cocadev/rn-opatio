@@ -5,13 +5,11 @@ import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
 import { MARKERS_LATITUDE_DELTA, LONGITUDE, LATITUDE, PERCENT_SPECIAL_MARKERS, NUM_MARKERS } from '../../common/config'
 import { customStyles } from './customStyles'
-
 import GPS from './MaquinariasTab/gps'
 import AlarmasDetail from './MaquinariasTab/alarmasDetail'
 import Statistic from './MaquinariasTab/statistics'
 import Map from '../../components/Map'
 import text from '../../common/text'
-
 import * as BTN from '../../components/Buttons'
 import * as ICON from '../../components/Icons'
 import * as HEADER from '../../components/Headers'
@@ -140,55 +138,54 @@ export default class MachineTrackDetail extends Component {
         return (
             <View style={styles.container}>
 
-                <HEADER.Complex 
-                    title={'Tractor 150'} 
-                    address={'John Deere 6130J '} 
+                <HEADER.Complex
+                    title={'Tractor 150'}
+                    address={'John Deere 6130J '}
                     head={'Cesar Cuestas'}
                     back={colors.WHITE}
                 />
 
                 <ScrollView>
 
-                {selectTab == 1 && <Map region={CONFIG.region} /> }
+                    {selectTab == 1 && <Map region={CONFIG.region} />}
 
-                {selectTab == 1 && <View style={customStyles.searchView}>
-                    <Image source={images.blackSearch} style={customStyles.searchIcon} />
-                    <TextInput
-                        style={customStyles.textinput}
-                        placeholder={'Buscar'}
-                        onChangeText={(text) => this.setState({ text })}
-                        value={this.state.text}
-                    />
-                </View>}
+                    {selectTab == 1 && <View style={customStyles.searchView}>
+                        <Image source={images.blackSearch} style={customStyles.searchIcon} />
+                        <TextInput
+                            style={customStyles.textinput}
+                            placeholder={'Buscar'}
+                            onChangeText={(text) => this.setState({ text })}
+                            value={this.state.text}
+                        />
+                    </View>}
 
-                {selectTab == 1 && <View style={styles.searchView}>
-                    <TextInput style={styles.searchInput} placeholder={'Alarmas de la máquina'} />
-                    <Image source={images.search_white} style={{ width: p(18), height: p(18), marginRight: p(20) }} />
-                </View>}
+                    {selectTab == 1 && <View style={styles.searchView}>
+                        <TextInput style={styles.searchInput} placeholder={'Alarmas de la máquina'} />
+                        <Image source={images.search_white} style={{ width: p(18), height: p(18), marginRight: p(20) }} />
+                    </View>}
 
-                <View style={styles.tab}>
-                    <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 1 ? colors.PINK : colors.GREY3, backgroundColor: selectTab == 1 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 1 })}>
-                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>ALARMAS</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.tabItem, { flexDirection: 'row', borderTopColor: selectTab == 2 ? colors.PINK : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
-                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>GPS</Text>
-                        <View style={{ width: p(16), height: p(16), borderRadius: p(8), backgroundColor: colors.GREEN2, marginLeft: p(12) }}></View>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 3 ? colors.PINK : colors.GREY3, backgroundColor: selectTab == 3 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 3 })}>
-                        <Text style={{ color: colors.TEXT, fontSize: p(14) }}>ESTADÍSTICAS</Text>
-                    </TouchableOpacity>
-                </View>
+                    <View style={styles.tab}>
+                        <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 1 ? colors.PINK : colors.GREY3, backgroundColor: selectTab == 1 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 1 })}>
+                            <Text style={{ color: colors.TEXT, fontSize: p(14) }}>ALARMAS</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles.tabItem, { flexDirection: 'row', borderTopColor: selectTab == 2 ? colors.PINK : colors.GREY3, backgroundColor: selectTab == 2 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 2 })}>
+                            <Text style={{ color: colors.TEXT, fontSize: p(14) }}>GPS</Text>
+                            <View style={{ width: p(16), height: p(16), borderRadius: p(8), backgroundColor: colors.GREEN2, marginLeft: p(12) }}></View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles.tabItem, { borderTopColor: selectTab == 3 ? colors.PINK : colors.GREY3, backgroundColor: selectTab == 3 ? colors.WHITE : colors.GREY3 }]} onPress={() => this.setState({ selectTab: 3 })}>
+                            <Text style={{ color: colors.TEXT, fontSize: p(14) }}>ESTADÍSTICAS</Text>
+                        </TouchableOpacity>
+                    </View>
 
-                { selectTab == 1 && <AlarmasDetail />}
-                { selectTab == 2 && <GPS update1={() => this.setState({ modal1: true })} update2={() => this.setState({ modal2: true })} />}
-                { selectTab == 3 && <Statistic />}
+                    {selectTab == 1 && <AlarmasDetail />}
+                    {selectTab == 2 && <GPS update1={() => this.setState({ modal1: true })} update2={() => this.setState({ modal2: true })} />}
+                    {selectTab == 3 && <Statistic />}
 
-                { modal1 && this.renderModal1()}
-                { modal2 && this.renderModal2()}
-                { modal3 && this.renderModal3()}
+                    {modal1 && this.renderModal1()}
+                    {modal2 && this.renderModal2()}
+                    {modal3 && this.renderModal3()}
 
-
-            </ScrollView>
+                </ScrollView>
             </View>
         );
     }

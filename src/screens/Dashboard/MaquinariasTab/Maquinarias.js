@@ -4,10 +4,8 @@ import { colors } from '../../../common/colors'
 import { Tractores } from '../../../common/config'
 import { p } from '../../../common/normalize'
 import { Actions } from 'react-native-router-flux'
-
 import UtilService from '../../../common/utils'
 import text from '../../../common/text'
-
 import * as ICON from '../../../components/Icons'
 
 export default class Maquinarias extends React.Component {

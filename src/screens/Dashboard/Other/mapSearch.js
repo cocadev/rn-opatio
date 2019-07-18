@@ -3,10 +3,8 @@ import { View } from "react-native"
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import { Actions } from "react-native-router-flux"
 import { colors } from "../../../common/colors"
-
 import * as ICON from '../../../components/Icons'
 import * as HEADER from '../../../components/Headers'
-
 import Cstyles from '../../../common/c_style'
 
 export default class MapSearch extends React.Component {

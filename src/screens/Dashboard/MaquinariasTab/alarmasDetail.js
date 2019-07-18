@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { colors } from '../../../common/colors';
 import { TAREAS, TAREAS3, TAREAS2 } from '../../../common/config';
 import { Entypo } from '@expo/vector-icons';

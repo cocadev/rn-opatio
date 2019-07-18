@@ -1,7 +1,6 @@
 import * as React from 'react'
 import * as actions from "../../store/common/actions"
 import * as BTN from '../../components/Buttons'
-
 import { View, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native'
 import { colors } from '../../common/colors'
 import { bindActionCreators } from "redux"
@@ -9,7 +8,6 @@ import { connect } from "react-redux"
 import { Actions } from 'react-native-router-flux'
 import { p } from '../../common/normalize'
 import { Entypo, Ionicons } from '@expo/vector-icons'
-
 import api from '../../common/api'
 
 class SignIn extends React.Component {
@@ -31,6 +29,7 @@ class SignIn extends React.Component {
             await api.auth(this.state.email, this.state.password, async (res, err) => {
                 this.setState({ isWaiting: false })
                 if (err == null) {
+                    console.log("* res *", res)
                     this.props.update(res)
                 } else {
                     console.log("*err*", err)

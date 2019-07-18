@@ -3,10 +3,8 @@ import { StyleSheet, Text, View, Image, TextInput, ScrollView } from 'react-nati
 import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
-
 import text from '../../common/text'
 import Cstyles from '../../common/c_style'
-
 import * as ICON from '../../components/Icons'
 import * as HEADERS from '../../components/Headers'
 

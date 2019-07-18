@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native'
 import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
@@ -19,7 +19,6 @@ export default class Maquinarias extends Component {
     }
 
     _findMe =()=> {
-        console.log('IIIIIIIIIIIIIIIIIIIII')
         navigator.geolocation.getCurrentPosition(
           ({ coords }) => {
             const { latitude, longitude } = coords

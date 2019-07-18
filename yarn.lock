@@ -2272,7 +2272,7 @@ expo-speech@~5.0.2:
   resolved "https://registry.yarnpkg.com/expo-speech/-/expo-speech-5.0.2.tgz#ccc66e50614ebbdc06296dde150560c55b8333fd"
   integrity sha512-AbLIM0lPUA9X+iCq20W7KW4Z/k6CvtKdCHZXEzJXqmm45YnCqENpSmrhVwePG6Lem6MJ4Bzg4DTC0UXl57SD4Q==
 
-expo-sqlite@~5.0.1:
+expo-sqlite@^5.0.1, expo-sqlite@~5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/expo-sqlite/-/expo-sqlite-5.0.1.tgz#71bb054141929371330de6ac7a9c16294e05a177"
   integrity sha512-NQXFcjSScpjCRAC+oKQ1Fn+RYSLkYHudaiJSG5wqN28pKqg3yLqjpPG2gDbq/PvgHYkjZXBnvrNgmddjFzDyIQ==

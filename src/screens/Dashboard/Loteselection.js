@@ -11,7 +11,6 @@ import Cstyles from '../../common/c_style'
 import * as ICON from '../../components/Icons'
 import * as HEADER from '../../components/Headers'
 import * as CONFIG from '../../common/config'
-import * as FileSystem from 'expo-file-system';
 
 export default class LoteSelection extends Component {
 
@@ -48,7 +47,7 @@ export default class LoteSelection extends Component {
                             <Text style={{ fontSize: p(15), color: colors.TEXT, marginLeft: p(20) }}>{field.ha} ha</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.downBtn} onPress={() => {
-                            console.log('**********************8888')
+                            console.log('*** downBtn ***')
                             
                               
                         }}>

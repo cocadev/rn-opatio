@@ -4,10 +4,8 @@ import { colors } from '../../../common/colors'
 import { TAREAS, TAREAS3, TAREAS2 } from '../../../common/config'
 import { images } from '../../../common/images'
 import { p } from '../../../common/normalize'
-
 import styles from './styles'
 import RenderItem  from './renderItem'
-
 import * as DROPDOWN from '../../../components/DropDown'
 
 export default class Alarmas extends React.Component {
@@ -22,10 +20,12 @@ export default class Alarmas extends React.Component {
         </View>
 
         <ScrollView>
+         
           <View style={Cstyles.itemView}>
             <Image source={images.needle} style={Cstyles.titleImg} />
             <Text style={{ fontSize: p(16), marginLeft: p(12) }}>{'Velocidad'}</Text>
           </View>
+
           {
             TAREAS.map((item, index) => {
               return (
@@ -33,10 +33,12 @@ export default class Alarmas extends React.Component {
               );
             })
           }
-          <View style={Cstyles.itemView}>
+         
+         <View style={Cstyles.itemView}>
             <Image source={images.needle2} style={Cstyles.titleImg2} />
             <Text style={{ fontSize: p(16), marginLeft: p(12) }}>{'Velocidad'}</Text>
           </View>
+         
           {
             TAREAS2.map((item, index) => {
               return (
@@ -44,10 +46,12 @@ export default class Alarmas extends React.Component {
               );
             })
           }
+         
           <View style={Cstyles.itemView}>
             <Image source={images.needle3} style={Cstyles.titleImg3} />
             <Text style={{ fontSize: p(16), marginLeft: p(12) }}>{'Velocidad'}</Text>
           </View>
+
           {
             TAREAS3.map((item, index) => {
               return (
@@ -55,6 +59,7 @@ export default class Alarmas extends React.Component {
               );
             })
           }
+          
         </ScrollView>
 
       </View>

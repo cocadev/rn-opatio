@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { Text, View, TextInput } from 'react-native';
 import { p } from '../../common/normalize';
 import { colors } from '../../common/colors';
 import { Actions } from 'react-native-router-flux';

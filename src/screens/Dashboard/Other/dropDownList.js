@@ -3,10 +3,8 @@ import { View, StyleSheet, FlatList, Text, TouchableOpacity } from "react-native
 import { colors } from "../../../common/colors"
 import { p } from "../../../common/normalize"
 import { Actions } from "react-native-router-flux"
-
 import * as ICON from '../../../components/Icons'
 import * as HEADER from '../../../components/Headers'
-
 import Cstyles from '../../../common/c_style'
 import text from "../../../common/text"
 

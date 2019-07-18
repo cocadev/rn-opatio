@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, TouchableHighlight, TextInput, Modal } from 'react-native';
+import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, Dimensions, Modal } from 'react-native';
 import { images } from '../../common/images';
 import { colors } from '../../common/colors';
 import { Actions } from 'react-native-router-flux';
