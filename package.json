@@ -11,7 +11,7 @@
     "axios": "^0.18.0",
     "expo": "^33.0.0",
     "expo-asset": "^5.0.1",
-    "expo-constants": "~5.0.1",
+    "expo-constants": "^5.0.1",
     "expo-file-system": "~5.0.1",
     "expo-font": "^5.0.1",
     "expo-sqlite": "^5.0.1",

@@ -1,7 +1,8 @@
 import * as React from 'react'
 import * as actions from "../../store/common/actions"
 import * as BTN from '../../components/Buttons'
-import { View, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native'
+import * as ATOM from '../../components/Atoms'
+import { View, StyleSheet, Text, TextInput, TouchableOpacity, Dimensions } from 'react-native'
 import { colors } from '../../common/colors'
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
@@ -16,7 +17,7 @@ class SignIn extends React.Component {
         super();
         this.state = {
             email: 'demo@optiagro.com',
-            password: 'demo',
+            password: 'optiagroA98C',
             eye: false,
             isWaiting: false,
         }
@@ -43,10 +44,14 @@ class SignIn extends React.Component {
 
     render() {
 
-        const { email, password, eye } = this.state;
+        const { email, password, eye, isWaiting } = this.state;
 
         return (
             <View style={styles.container}>
+
+                {
+                    isWaiting && <ATOM.Loading />
+                }
 
                 <TouchableOpacity style={{ marginLeft: p(4) }} onPress={() => Actions.intro()}>
                     <Entypo name="chevron-left" color={colors.SKY} size={36} />

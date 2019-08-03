@@ -1,19 +1,16 @@
 import * as React from 'react';
-import { View, StyleSheet, Image, Text, TextInput, TouchableOpacity, Modal, ToastAndroid, Dimensions, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { colors } from '../../common/colors';
-import { images } from '../../common/images';
 import * as actions from "../../store/common/actions";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Actions } from 'react-native-router-flux';
 import LottieScreen from '../../components/Lottie';
-import { LinearGradient } from 'expo';
 import { p } from '../../common/normalize';
 import { Entypo, Ionicons } from '@expo/vector-icons';
 import * as BTN from '../../components/Buttons';
+import * as ATOM from '../../components/Atoms';
 
-const width = Dimensions.get('window').width
-const height = Dimensions.get('window').height
 
 class SignUp extends React.Component {
 
@@ -28,10 +25,14 @@ class SignUp extends React.Component {
 
     render() {
 
-        const { email, password, name, address, eye } = this.state;
+        const { email, password, name, address, eye, isWaiting } = this.state;
 
         return (
             <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
+
+                {
+                    isWaiting && <ATOM.Loading />
+                }
 
                 <TouchableOpacity style={{ marginLeft: p(4) }} onPress={() => Actions.intro()}>
                     <Entypo name="chevron-left" color={colors.SKY} size={36} />

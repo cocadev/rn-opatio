@@ -1,24 +1,25 @@
 import React from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity
-} from 'react-native';
-import { Constants, SQLite } from 'expo';
+import { ScrollView, StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, Image, ActivityIndicator } from 'react-native';
+import { SQLite } from 'expo-sqlite'
+import Constants from 'expo-constants'
+import axios from 'axios';
 
 const db = SQLite.openDatabase('db.db');
 
 class Items extends React.Component {
-  state = {
-    items: null
-  };
+
+  constructor() {
+    super();
+    this.state = {
+      items: null,
+    };
+  }
 
   componentDidMount() {
     this.update();
   }
+
+
 
   render() {
     const { done: doneHeading } = this.props;
@@ -32,6 +33,7 @@ class Items extends React.Component {
     return (
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionHeading}>{heading}</Text>
+
         {items.map(({ id, done, value }) => (
           <TouchableOpacity
             key={id}
@@ -45,6 +47,8 @@ class Items extends React.Component {
             <Text style={{ color: done ? '#fff' : '#000' }}>{value}</Text>
           </TouchableOpacity>
         ))}
+
+
       </View>
     );
   }
@@ -62,10 +66,13 @@ class Items extends React.Component {
 
 export default class App extends React.Component {
   state = {
-    text: null
+    text: null,
+    results: null
   };
 
   componentDidMount() {
+    this.getApi();
+
     db.transaction(tx => {
       tx.executeSql(
         'create table if not exists items (id integer primary key not null, done int, value text);'
@@ -73,10 +80,53 @@ export default class App extends React.Component {
     });
   }
 
+  getApi() {
+    axios.get('https://randomuser.me/api/?results=3')
+      .then(response => {
+        const results = response.data.results
+        this.setState({ results })
+
+        for (let i = 0; i < results.length; i++) {
+          this.add(results[i].email)
+        }
+
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  renderItem = ({ item, index }) => {
+    return (
+      <View style={{ borderWidth: 2, borderColor: '#666', width: '90%', borderRadius: 5, padding: 12, marginVertical: 5, flexDirection: 'row', justifyContent: 'space-between' }}>
+        <Image source={{ uri: item.picture.thumbnail }} style={{ width: 100, height: 100 }} />
+        <View style={{ alignItems: 'stretch' }}>
+          <Text>{item.name.first + ' ' + item.name.last}</Text>
+        </View>
+      </View>
+    )
+  }
+
   render() {
+    const { results } = this.state;
     return (
       <View style={styles.container}>
         <Text style={styles.heading}>SQLite Example</Text>
+
+        {
+          !results && <ActivityIndicator color={'red'} size={40}/>
+        }
+
+        {
+          results &&
+          <FlatList
+            data={results}
+            renderItem={this.renderItem}
+            keyExtractor={(item, i) => String(i)}
+          />
+        }
+
+
         <View style={styles.flexRow}>
           <TextInput
             onChangeText={text => this.setState({ text })}

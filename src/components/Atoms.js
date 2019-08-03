@@ -1,8 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, Dimensions } from 'react-native';
 import { p } from '../common/normalize';
 import text from '../common/text';
 import { colors } from '../common/colors';
+
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
 
 export const Atom1 = props => (
   <View style={styles.item}>
@@ -18,6 +21,22 @@ export const Atom1 = props => (
     </View>
   </View>
 )
+
+export const Loading = () => (
+  <View style={{ 
+      backgroundColor: '#555', 
+      opacity: 0.9, 
+      position: 'absolute', 
+      height, 
+      width, 
+      zIndex: 2, 
+      justifyContent: 'center', 
+      alignItems: 'center' 
+  }}>
+      <ActivityIndicator size={p(50)} color={colors.GREEN} />
+  </View>
+)
+
 
 const styles = StyleSheet.create({
   item: {

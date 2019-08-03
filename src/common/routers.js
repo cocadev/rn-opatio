@@ -28,14 +28,18 @@ import MaquinariasSwitch from '../screens/Dashboard/MaquinariasSwitch'
 import MachinesContractorTab from '../screens/Dashboard/MachinesContractorTab'
 import ToDoList from '../screens/ToDoList'
 import MapSearch from '../screens/Dashboard/Other/mapSearch'
-import Test from '../screens/Map/Test/test'
+import Test from '../screens/Map/AnimatedViews'
 import DropDownList from '../screens/Dashboard/Other/dropDownList'
 
 const width = Dimensions.get('window').width
 const AUTH = [
+  // { key: 'mapSearch',                 component: MapSearch},
+
+  // { key: 'test',  component: Test},
   { key: 'intro',  component: Intro},
   { key: 'signup', component: SignUp},
   { key: 'forgot', component: Forgot},
+
 ]
 
 const MAIN = [
@@ -92,7 +96,7 @@ export const MainPage = props => {
         <Scene 
           key={a.key} 
           component={a.component} 
-          initial={a.key == 'maquinariastab' ? true : false} 
+          initial={a.key == 'mapSearch' ? false : false} 
           hideNavBar 
         />))}
     </Stack>
