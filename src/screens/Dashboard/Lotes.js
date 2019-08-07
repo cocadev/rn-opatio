@@ -12,8 +12,9 @@ import ActionButton from 'react-native-action-button'
 import text from '../../common/text'
 import * as HEADER from '../../components/Headers'
 import * as ICON from '../../components/Icons'
+
 const COORDS = [
-    { lat: 37.795690, lon: -122.434728 },
+    { lat: 39.795690, lon: 116.434728 },
 ];
 
 export default class Lotes extends Component {
@@ -189,7 +190,7 @@ export default class Lotes extends Component {
                             key={key}
                             coordinate={marker}
                         >
-                            <Image source={images.circleWhite} style={{ width: p(24), height: p(24), marginTop: p(5) }} />
+                            <Image source={images.markerFlag} style={{ width: p(24), height: p(24), marginTop: p(5) }} />
                         </MapView.Marker>
                     ))}
                 </MapView>

@@ -99,12 +99,12 @@ export default class LotesTab extends Component {
 
 
     onApiCallMoke() {
-        this.setState({ isWaiting: true })
-        axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=f3e9f7d1677c7aa63c9ab526381eeceb&release_date.gte=` + UtilService.getDatebyTMDB(this.state.startDate_note) + `&release_date.lte=` + UtilService.getDatebyTMDB(this.state.endDate_note) + `&with_release_type=2|3&sort_by=primary_release_date.desc`)
-            .then(res => {
-                const results = res.data.results;
-                this.setState({ results, isWaiting: false });
-            })
+        // this.setState({ isWaiting: true })
+        // axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=f3e9f7d1677c7aa63c9ab526381eeceb&release_date.gte=` + UtilService.getDatebyTMDB(this.state.startDate_note) + `&release_date.lte=` + UtilService.getDatebyTMDB(this.state.endDate_note) + `&with_release_type=2|3&sort_by=primary_release_date.desc`)
+        //     .then(res => {
+        //         const results = res.data.results;
+        //         this.setState({ results, isWaiting: false });
+        //     })
     }
 
     renderModal() {

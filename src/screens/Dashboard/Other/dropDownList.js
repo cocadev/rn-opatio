@@ -38,7 +38,7 @@ export default class DropDownList extends React.Component {
 
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
           <FlatList
-            style={{ marginTop: p(50) }}
+            style={{ marginVertical: p(50) }}
             data={dropdown}
             keyExtractor={(item, i) => String(i)}
             renderItem={this._renderItem}

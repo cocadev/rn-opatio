@@ -1,11 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { colors } from '../common/colors'
-import { p } from '../common/normalize';
-import { images } from '../common/images';
-import { Actions } from 'react-native-router-flux';
 import text from '../common/text';
-import * as ICON from '../components/Icons';
 
 export const ORANGE = props => (
   <View style={styles.container}>

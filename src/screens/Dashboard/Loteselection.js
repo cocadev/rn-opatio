@@ -11,6 +11,7 @@ import Cstyles from '../../common/c_style'
 import * as ICON from '../../components/Icons'
 import * as HEADER from '../../components/Headers'
 import * as CONFIG from '../../common/config'
+import { Entypo } from '@expo/vector-icons';
 
 export default class LoteSelection extends Component {
 
@@ -18,13 +19,18 @@ export default class LoteSelection extends Component {
         super(props)
         this.state = {
             lotes: null,
-            isWaiting: true
+            isWaiting: true,
+            skip: 0,
         }
     }
 
     componentDidMount() {
+        this.onfetchData(0);
+    }
+
+    onfetchData(skip){
         this.setState({ isWaiting: true })
-        api.getAllLotes((err, res) => {
+        api.getAllLotes( skip, (err, res) => {
             if (err == null) {
                 this.setState({ isWaiting: false, lotes: res.data })
             } else {
@@ -43,8 +49,8 @@ export default class LoteSelection extends Component {
                     <View key={key} style={styles.itemLote}>
                         <Image source={images.dot1} style={{ width: p(30), height: p(30), marginRight: p(20) }} />
                         <TouchableOpacity style={styles.touchPan} onPress={() => Actions.lotetab({ field, description: item.nombre })}>
-                            <Text style={{ fontSize: p(20), flex: 1, fontWeight: '700', color: colors.TEXT, marginTop: -5 }}>Lote{field.name}</Text>
-                            <Text style={{ fontSize: p(15), color: colors.TEXT, marginLeft: p(20) }}>{field.ha} ha</Text>
+                            <Text style={{ fontSize: p(20), flex: 1, fontWeight: '700', color: colors.TEXT, marginTop: -5 }}>{field.name}</Text>
+                            <Text style={{ fontSize: p(15), color: colors.TEXT, marginLeft: p(20) }}>{field.ha.toFixed(2)} ha</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.downBtn} onPress={() => {
                             console.log('*** downBtn ***')
@@ -58,6 +64,17 @@ export default class LoteSelection extends Component {
             })}
         </>
     )
+
+    onPrev() {
+        console.log('**************88')
+        // this.setState({ skip: 0})
+        this.onfetchData(0)
+    }
+
+    onNext() {
+        // this.setState({ skip: 20})
+        this.onfetchData(20)
+    }
 
     render() {
         const { isWaiting, lotes } = this.state
@@ -80,7 +97,23 @@ export default class LoteSelection extends Component {
                         />
                         <ICON.IconWhiteSearch right={p(20)} />
                     </View>
-                    {isWaiting ? <LottieScreen /> : <FlatList data={lotes} keyExtractor={(item, i) => String(i)} renderItem={this._renderItem} />}
+                    
+                    {
+                        isWaiting 
+                        ? <LottieScreen /> 
+                        : 
+                          <View>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-around', padding: p(12)}}>
+                               <Entypo name={'arrow-bold-left'} size={32} color={colors.BLUE} onPress={()=>{ this.onPrev()}}/>
+                               <Entypo name={'arrow-bold-right'} size={32} color={colors.BLUE} onPress={()=>{ this.onNext()}}/>
+                            </View>
+                            <FlatList 
+                              data={lotes} 
+                              keyExtractor={(item, i) => String(i)} 
+                              renderItem={this._renderItem} 
+                            />
+                          </View>
+                    }
 
                 </ScrollView>
             </View>

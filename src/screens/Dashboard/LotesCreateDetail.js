@@ -25,7 +25,9 @@ export default class LoteCreateDetail extends React.Component {
     }
     
     render() {
+
         const { campo, summer1, summer2, bell } = this.state
+
         return (
             <View style={Cstyles.container}>
 
@@ -40,10 +42,9 @@ export default class LoteCreateDetail extends React.Component {
 
                     <DROPDOWN.Large 
                         title={campo} 
-                        onClick={()=>Actions.dropdown({
-                            dropdown: CONFIG.create1,
+                        onClick={()=>Actions.searchCampo({
                             update: (i) => { 
-                                this.setState({ campo: i.name })
+                                this.setState({ campo: i })
                             }
                         })}
                     />

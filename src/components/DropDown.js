@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { p } from '../common/normalize';
-import text from '../common/text';
 import { colors } from '../common/colors';
 import { Entypo } from '@expo/vector-icons';
+import text from '../common/text';
 
 export const Large = props => (
   <TouchableOpacity style={styles.dropdown} onPress={()=>props.onClick()}>

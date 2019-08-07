@@ -30,6 +30,7 @@ import ToDoList from '../screens/ToDoList'
 import MapSearch from '../screens/Dashboard/Other/mapSearch'
 import Test from '../screens/Map/AnimatedViews'
 import DropDownList from '../screens/Dashboard/Other/dropDownList'
+import DropDownSearchCampo from '../screens/Dashboard/Other/dropDownSearchCampo';
 
 const width = Dimensions.get('window').width
 const AUTH = [
@@ -67,6 +68,8 @@ const MAIN = [
   { key: 'test',                      component: Test},
   { key: 'mapSearch',                 component: MapSearch},
   { key: 'dropdown',                  component: DropDownList},
+  { key: 'searchCampo',               component: DropDownSearchCampo},
+
 ]
 
 export const AuthPage = props => (
@@ -96,7 +99,7 @@ export const MainPage = props => {
         <Scene 
           key={a.key} 
           component={a.component} 
-          initial={a.key == 'mapSearch' ? false : false} 
+          initial={a.key == 'lotecreatedetail' ? false : false} 
           hideNavBar 
         />))}
     </Stack>

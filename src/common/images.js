@@ -22,6 +22,9 @@ export const images = {
     circleOrange: require('../../assets/images/circle-orange.png'),
     circlePink: require('../../assets/images/circle-pink.png'),
     circleWhite: require('../../assets/images/circle-white.png'),
+    markerFlag: require('../../assets/images/maker-flag.png'),
+
+    
     circleExc: require('../../assets/images/circle-exc.png'),
     close: require('../../assets/images/close.png'),
     callout: require('../../assets/images/callout.png'),
