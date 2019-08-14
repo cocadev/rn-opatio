@@ -18,6 +18,7 @@ export default class Map extends React.Component {
       text: 'Buscar',
       latitude: 0,
       longitude: 0,
+      // region:props.region,
       modal:false
     }
   }
@@ -95,6 +96,9 @@ export default class Map extends React.Component {
 
   render() {
     const { polygons } = this.props;
+
+    console.log('**********', polygons)
+
     const height = this.props.height ? this.props.height : p(240)
     return (
       <View style={styles.container}>
@@ -103,7 +107,7 @@ export default class Map extends React.Component {
           style={{ ...styles.map, height }}
           showsCompass={true}
           initialRegion={this.props.region}
-          region={this.state.region}
+          region={this.props.region}
           showsMyLocationButton={true}
           showsUserLocation={true}
           cacheEnabled={true}

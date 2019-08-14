@@ -3,9 +3,12 @@ import { StyleSheet, View, Text } from 'react-native'
 import { colors } from '../../common/colors'
 import { p } from '../../common/normalize'
 import { Actions } from 'react-native-router-flux'
+import { showMessage, hideMessage } from "react-native-flash-message";
+import * as ATOM from '../../components/Atoms';
 
 import Cstyles from '../../common/c_style'
 import text from '../../common/text'
+import api from '../../common/api'
 
 import * as BTN from '../../components/Buttons'
 import * as DROPDOWN from '../../components/DropDown'
@@ -17,19 +20,71 @@ export default class LoteCreateDetail extends React.Component {
     constructor(){
         super();
         this.state = {
-            campo: 'Campo',
+            campo: null,
+            campo_id: null,
             summer1: 'Sin asignar',
             summer2: 'Asignar',
-            bell: 'Campaña'
+            bell: 'Campaña',
+            isWaiting: false
         }
+    }
+
+    createGIS(){
+
+        this.setState({ isWaiting: true})
+
+        let array = []
+        var area = this.props.area.coordinates
+        for (var i=0; i < area.length; i++ ) {
+            array.push([area[i].longitude, area[i].latitude])
+        }
+
+        const { campo_id } = this.state
+
+        let name = 'Test';
+        let color = '#00000';
+        let polygons = {
+            "type": "Polygon",
+            "coordinates": [array]
+          }
+
+          console.log('MY datas', campo_id, name, color, polygons)
+
+
+        api.createGIS( campo_id, name, color, polygons, (res, err) => {
+            console.log('******** res ********', res)
+            console.log('******** err ********', err)
+
+            if (err == null) {
+                showMessage({
+                    message: "Success",
+                    description: "Gis correctly saved",
+                    type: "success",
+                    icon: "success",
+                });
+                this.setState({ isWaiting: false})
+                Actions.pop()
+            } else {
+                showMessage({
+                    message: "Error",
+                    description: "Bad request syntax",
+                    type: "danger",
+                    icon: "danger",
+                });
+                this.setState({ isWaiting: false})
+
+            }
+        })
     }
     
     render() {
 
-        const { campo, summer1, summer2, bell } = this.state
+        const { campo, summer1, summer2, bell, isWaiting } = this.state
 
         return (
             <View style={Cstyles.container}>
+
+                { isWaiting && <ATOM.Loading />}
 
                 <View style={styles.view}>
 
@@ -43,8 +98,8 @@ export default class LoteCreateDetail extends React.Component {
                     <DROPDOWN.Large 
                         title={campo} 
                         onClick={()=>Actions.searchCampo({
-                            update: (i) => { 
-                                this.setState({ campo: i })
+                            update: (i, id) => { 
+                                this.setState({ campo: i, campo_id: id })
                             }
                         })}
                     />
@@ -90,6 +145,7 @@ export default class LoteCreateDetail extends React.Component {
                     <BTN.BtnNormal 
                         title={'GUARDAR LOTE'} 
                         back={colors.BLUE2} 
+                        onClick={()=>this.createGIS()}
                         top={p(50)} 
                     />
                 </View>

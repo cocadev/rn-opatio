@@ -12,7 +12,6 @@ import api from '../../common/api'
 import Map from '../../components/Map'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import UtilService from '../../common/utils'
-import axios from 'axios'
 import LottieScreen from '../../components/Lottie'
 import Cstyles from '../../common/c_style'
 import * as HEADER from '../../components/Headers'
@@ -31,7 +30,7 @@ export default class LotesTab extends Component {
             calendar: false,
             isWaiting: true,
             polygons: null,
-            REGION: null,
+            REGION: CONFIG.REGION,
             search: '',
 
             isDateTimePickerVisible1: false,
@@ -62,37 +61,53 @@ export default class LotesTab extends Component {
         this.onApiCallMoke()
     };
 
-    componentDidMount() {
+    async componentDidMount() {
 
         const field_id = this.props.navigation.state.params.field.field_id;
 
         api.getLotesCamposByFieldId(field_id, (err, res) => {
+
             if (err == null) {
 
                 const c = res.data.polygons.coordinates[0];
                 let longitude = 0;
                 let latitude = 0;
+                let count = 0;
 
                 for (i = 0; i < c.length; i++) {
                     longitude = longitude + c[i][0];
                     latitude = latitude + c[i][1];
+                    count ++;
                 }
 
-                this.setState({
-                    isWaiting: false,
-                    polygons: res.data.polygons.coordinates,
-                    REGION: {
-                        latitude: latitude / c.length,
-                        longitude: longitude / c.length,
-                        latitudeDelta: CONFIG.LATITUDE_DELTA,
-                        longitudeDelta: CONFIG.LONGITUDE_DELTA,
-                    }
-                })
+                if( count === c.length) {
 
-                this.onApiCallMoke()
+                   console.log('c.length ->', c.length)
+
+                   var lat = latitude / c.length;
+                   var lng = longitude / c.length;
+
+                    console.log('latitude ->', lat)
+                    console.log('longitude ->', lng)
+
+
+                    this.setState({
+                        polygons: res.data.polygons.coordinates,
+                        REGION: {
+                            latitude: lat,
+                            longitude: lng,
+                            latitudeDelta: CONFIG.LATITUDE_DELTA,
+                            longitudeDelta: CONFIG.LONGITUDE_DELTA,
+                        },
+                        isWaiting: false,
+                    })
+                }
+
+                // console.log('++++++++++ polygons ++++++++++', res.data.polygons.coordinates)
+                // count == c.length && this.onApiCallMoke()
 
             } else {
-                this.setState({ isWaiting: false })
+                // this.setState({ isWaiting: false })
             }
         })
     }
@@ -156,19 +171,22 @@ export default class LotesTab extends Component {
         const area = field.ha;
         const description = this.props.navigation.state.params.description;
 
+        console.log('isWaitingisWaiting', isWaiting)
+        console.log('REGIONREGIONREGION', REGION)
+
         return (
             <View style={Cstyles.container}>
 
                 <HEADER.Complex 
                     title={'Lote ' + name} 
-                    address={area + ' ha'} 
+                    address={area.toFixed(2) + ' ha'} 
                     head={description} 
                     back={colors.WHITE}
                 />
 
                 <ScrollView style={{ marginTop: p(60)}}>
 
-                    { !isWaiting && <Map region={REGION} polygons={polygons} /> }
+                    { <Map region={REGION} polygons={polygons} /> }
 
                     {
                         !calendar &&

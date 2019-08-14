@@ -19,19 +19,22 @@ export default class DropDownSearchCampo extends React.Component {
     this.state = {
       campos: null,
       isWaiting: false,
-      skip: 0
+      skip: 0,
+      count: 0,
+      total: 0
     }
   }
 
   componentDidMount() {
-    this.onfetchData(0);
+    this.onfetchData(this.state.count);
   }
 
   onfetchData(skip) {
+    console.log('***********', skip)
     this.setState({ isWaiting: true })
     api.getAllLotes(skip, (err, res) => {
       if (err == null) {
-        this.setState({ isWaiting: false, campos: res.data })
+        this.setState({ isWaiting: false, campos: res.data, total: res.count })
       } else {
         this.setState({ isWaiting: false })
       }
@@ -44,7 +47,7 @@ export default class DropDownSearchCampo extends React.Component {
       key={key}
       onPress={() => {
         if (this.props.update) {
-          this.props.update(item.nombre);
+          this.props.update(item.nombre, item.campo_id);
           Actions.pop()
         }
       }}
@@ -54,16 +57,18 @@ export default class DropDownSearchCampo extends React.Component {
   )
 
   onPrev() {
-    this.onfetchData(0)
+    this.setState({ count: this.state.count - 1 })
+    this.onfetchData(this.state.count * 20)
   }
 
   onNext() {
-    this.onfetchData(20)
+    this.setState({ count: this.state.count + 1 })
+    this.onfetchData(this.state.count * 20)
   }
 
   render() {
 
-    const { isWaiting, campos } = this.state
+    const { isWaiting, campos, count, total } = this.state
 
     return (
       <View style={Cstyles.container}>
@@ -76,14 +81,21 @@ export default class DropDownSearchCampo extends React.Component {
 
         {
           isWaiting
-            ? <ActivityIndicator size={p(32)} color={colors.BLUE} />
-            : <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.BLUE2 }} >
-              <View style={{ flexDirection: 'row', justifyContent: 'space-around', padding: p(12), backgroundColor: colors.GREEN, width: p(200) }}>
-                <Entypo name={'arrow-bold-left'} size={32} color={colors.BLUE} onPress={() => { this.onPrev() }} />
-                <Entypo name={'arrow-bold-right'} size={32} color={colors.BLUE} onPress={() => { this.onNext() }} />
+            ? <ActivityIndicator size={p(32)} color={colors.BLUE} style={{ marginTop: p(12) }} />
+            : <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
+              <View style={{ flexDirection: 'row', justifyContent: 'space-around', padding: p(12), width: p(300), alignItems: 'center'}}>
+              <View style={styles.center}>
+                  {count !== 0 && <Entypo name={'arrow-bold-left'} size={32} color={colors.BLUE} onPress={() => { this.onPrev() }} />}
+                </View>
+                <View style={styles.center}>
+                  <Text style={{ fontSize: p(21), color: colors.BLUE }}>{count}</Text>
+                </View>
+                <View style={styles.center}>
+                  {((count + 1) * 20 < total) && <Entypo name={'arrow-bold-right'} size={32} color={colors.BLUE} onPress={() => { this.onNext() }} />}
+                </View>
               </View>
               <FlatList
-                style={{ marginTop: p(20), backgroundColor: colors.YEL, width: width }}
+                style={{ width: width }}
                 data={campos}
                 keyExtractor={(item, i) => String(i)}
                 renderItem={this._renderItem}
@@ -107,9 +119,15 @@ const styles = StyleSheet.create({
     height: p(40),
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
     borderColor: colors.TEXT,
-    borderWidth: p(2),
+    borderWidth: p(3),
     borderRadius: p(6),
     margin: p(12)
+  },
+  center: {
+    flex: 1, 
+    justifyContent: 'center', 
+    alignItems: 'center'
   }
 })

@@ -71,7 +71,7 @@ export default class Lotes extends Component {
         this.setState({
             editing: null, create: false
         });
-        Actions.lotecreatedetail();
+        Actions.lotecreatedetail({ area: this.state.editing });
     }
 
     remove() {
@@ -212,19 +212,19 @@ export default class Lotes extends Component {
 
                 {
                     create && editing && editing.coordinates.length > 2 &&
-                    <TouchableOpacity onPress={() => this.finish()} style={{ position: 'absolute', right: 12, bottom: 70 }}>
+                    <TouchableOpacity onPress={() => this.finish()} style={{ position: 'absolute', right: p(12), bottom: p(70) }}>
                         <Image source={images.save} style={{ width: p(55), height: p(55), marginBottom: p(7), marginLeft: p(5) }} />
                     </TouchableOpacity>
                 }
 
                 {
                     create &&
-                    <TouchableOpacity onPress={() => this.remove()} style={{ position: 'absolute', right: 12, bottom: 10 }}>
+                    <TouchableOpacity onPress={() => this.remove()} style={{ position: 'absolute', right: p(12), bottom: p(10) }}>
                         <Image source={images.undo} style={{ width: p(55), height: p(55), marginBottom: p(7), marginLeft: p(5) }} />
                     </TouchableOpacity>
                 }
 
-                <View style={{ position: 'absolute', right: 21, bottom: p(120) }}>
+                <View style={{ position: 'absolute', right: p(21), bottom: p(120) }}>
 
                     {
                         !create && <TouchableOpacity onPress={this._findMe}>
@@ -245,23 +245,23 @@ export default class Lotes extends Component {
                     !create &&
                     <ActionButton
                         buttonColor={colors.BLUE}
-                        size={80}
-                        offsetX={12}
-                        offsetY={12}
-                        spacing={5}
+                        size={p(80)}
+                        offsetX={p(12)}
+                        offsetY={p(12)}
+                        spacing={p(5)}
                         renderIcon={active => active ? (<Image source={images.add} style={{ width: p(30), height: p(30) }} />) : (<Image source={images.add} style={{ width: p(27), height: p(27) }} />)}>
                     >
     
-                        <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { this.setState({ create: true }) }}>
+                        <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { this.setState({ create: true }) }}>
                             <Image source={images.lote} style={{ width: p(34), height: p(42) }} />
                         </ActionButton.Item>
-                        <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
+                        <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { }}>
                             <Image source={images.nota} style={{ width: p(28), height: p(45) }} />
                         </ActionButton.Item>
-                        <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
+                        <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { }}>
                             <Image source={images.tarea} style={{ width: p(28), height: p(48) }} />
                         </ActionButton.Item>
-                        <ActionButton.Item size={80} buttonColor={colors.WHITE} onPress={() => { }}>
+                        <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { }}>
                             <Image source={images.cultivo} style={{ width: p(33), height: p(46) }} />
                         </ActionButton.Item>
                     </ActionButton>

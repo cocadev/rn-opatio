@@ -66,13 +66,10 @@ export default class LoteSelection extends Component {
     )
 
     onPrev() {
-        console.log('**************88')
-        // this.setState({ skip: 0})
         this.onfetchData(0)
     }
 
     onNext() {
-        // this.setState({ skip: 20})
         this.onfetchData(20)
     }
 

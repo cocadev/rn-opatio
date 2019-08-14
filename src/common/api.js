@@ -231,6 +231,11 @@ module.exports = {
     this.baseApi('jobseekers/' + id, 'GET', {}, cb)
   },
 
+  ///////////////////////////// GIS //////////////////////////
+  createGIS( campo_id, name, color, polygons, cb){
+    this.baseApi('campos/' + campo_id + '/gis', 'POST', { name, color, polygons }, cb)
+  },
+
 
 
 
