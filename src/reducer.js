@@ -1,6 +1,7 @@
-import {common,job} from './redux/reducer';
+import {common, job, lotes } from './redux/reducer';
 
 export {
   common,
-  job
+  job,
+  lotes
 };

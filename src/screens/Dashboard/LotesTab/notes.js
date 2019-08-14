@@ -7,8 +7,39 @@ import styles from './styles'
 import { Actions } from 'react-native-router-flux';
 import * as DROPDOWN from '../../../components/DropDown';
 import Cstyles from '../../../common/c_style';
+import api from '../../../common/api'
 
 export default class Noteas extends React.Component {
+
+    constructor(){
+        super();
+        this.state = {
+            isWaiting : false,
+            searchKey: '',
+            date_from: '2019-01-01',
+            date_to: '2019-12-31',
+            sort_by: 'date_to'
+        }
+    }
+
+    componentDidMount(){
+
+        const { searchKey, date_from, date_to, sort_by } = this.state;
+        this.setState({ isWaiting: true })
+
+        console.log('_________field_id_________', this.props.field.field_id)
+
+
+        api.getCamposNotas( this.props.field.field_id, searchKey, date_from, date_to, sort_by, (err, res) => {
+            console.log('_________res!!!!!!!_________', res)
+            console.log('_________err!!!!!!!_________', err)
+            if (err == null) {
+                this.setState({ isWaiting: false })
+            } else {
+                this.setState({ isWaiting: false })
+            }
+        })
+    }
 
     renderItem = ({ item, index }) => {
 

@@ -235,7 +235,22 @@ module.exports = {
   createGIS( campo_id, name, color, polygons, cb){
     this.baseApi('campos/' + campo_id + '/gis', 'POST', { name, color, polygons }, cb)
   },
+  searchNotes( field_id, cb){
+    this.baseApi(`campos/gis/${field_id}/notes/search`, 'POST', {}, cb)
+  },
 
+  
+
+
+
+
+
+
+  //////////////////////////////////////////////////////////////////////
+  
+  getCamposNotas( field_id, text, date_from, date_to, sort_by, cb){
+    this.baseApi(`campos/gis/${field_id}/tasks/search`, 'POST', { text, date_from, date_to, sort_by }, cb)
+  },
 
 
 
