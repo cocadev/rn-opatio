@@ -5,6 +5,8 @@ const initialState = {
   allLotes: [],
   allLotesCount: 0,
 
+  testLote: null,
+
   testPolygon: null,
   testNotes: null,
   testTasks: null,
@@ -13,15 +15,24 @@ const initialState = {
 };
 
 export default function job(state = initialState, action = {}) {
+
   switch (action.type) {
 
     case types.GET_ALL_LOTES:
+    return {
+      ...state,
+      type: types.GET_ALL_LOTES,
+      allLotes: action.data,
+      allLotesCount: action.count,
+      status: action.status
+    }
+
+    case types.ADD_LOTE:
 
       return {
         ...state,
-        type: types.GET_ALL_LOTES,
-        allLotes: action.data,
-        allLotesCount: action.count,
+        type: types.ADD_LOTE,
+        testLote: action.mydata,
         status: action.status
       }
 
@@ -60,8 +71,6 @@ export default function job(state = initialState, action = {}) {
         testTasks: action.data,
         status: action.status
       }
-
-
 
     default:
       return state;

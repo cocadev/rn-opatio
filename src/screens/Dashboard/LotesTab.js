@@ -118,19 +118,17 @@ class LotesTab extends Component {
 
         const { selectTab, modal, calendar, REGION, isWaiting } = this.state;
         const field = this.props.navigation.state.params.field;
-        const name = field.name;
-        const area = field.ha;
-        const description = this.props.navigation.state.params.description;
+        const myLote = this.props.testLote
 
         return (
             <View style={Cstyles.container}>
 
-                <HEADER.Complex
-                    title={'Lote ' + name}
-                    address={area.toFixed(2) + ' ha'}
-                    head={description}
+                { myLote && <HEADER.Complex
+                    title={'Lote ' + myLote.name}
+                    address={myLote.size}
+                    head={myLote.group}
                     back={colors.WHITE}
-                />
+                />}
 
                 <ScrollView style={{ marginTop: p(60) }}>
 
@@ -227,8 +225,8 @@ export default connect(
         allLotes: state.lotes.allLotes,
         testPolygon: state.lotes.testPolygon,
         testNotes: state.lotes.testNotes,
-        testTasks: state.lotes.testTasks
-
+        testTasks: state.lotes.testTasks,
+        testLote: state.lotes.testLote
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

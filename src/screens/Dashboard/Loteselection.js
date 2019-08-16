@@ -34,6 +34,7 @@ class LoteSelection extends Component {
     }
 
     _onGoTo = (x, y) => {
+        this.props.actions.addLote(x.name, x.ha.toFixed(2), y.nombre)
         Actions.lotetab({ 
             field: x, 
             description: y.nombre, 

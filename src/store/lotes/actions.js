@@ -19,13 +19,27 @@ export function getAllLotes(query) {
     }
 }
 
+
+export function addLote(name, size, group) {
+    return dispatch => {
+        dispatch({
+            type: types.ADD_LOTE,
+            mydata: {
+                name: name,
+                size: size,
+                group: group
+            }
+        });
+    }
+}
+
+
 export function getGisFromCampoId(campo_id, field_id) {
 
     return dispatch => {
         api.getLotesCamposByFieldId( field_id, (err, res) => {
             if (err == null) {
                 let data = res.data.polygons.coordinates
-
                 dispatch({
                     type: types.GET_GIS_FROM_CAMPOID,
                     data: data,

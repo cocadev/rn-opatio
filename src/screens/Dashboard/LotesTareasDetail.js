@@ -4,20 +4,22 @@ import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
 import { Actions } from 'react-native-router-flux'
+import { bindActionCreators } from "redux"
+import { connect } from "react-redux"
 import * as WebBrowser from 'expo-web-browser'
 import * as ATOM from '../../components/Atoms'
 import * as ICON from '../../components/Icons'
 import * as BTN from '../../components/Buttons'
 import * as CONFIG from '../../common/config'
 import * as HEADERS from '../../components/Headers'
-
+import * as actions from "../../store/lotes/actions";
 import text from '../../common/text'
 import Carousel from 'react-native-banner-carousel'
 import Cstyles from '../../common/c_style'
 
 const width = Math.round(Dimensions.get('window').width);
 
-export default class TareasDetail extends Component {
+class TareasDetail extends Component {
 
     constructor() {
         super();
@@ -41,6 +43,7 @@ export default class TareasDetail extends Component {
     render() {
 
         const task = this.props.task
+        const Lote = this.props.testLote
 
         return (
             <View style={Cstyles.container}>
@@ -87,7 +90,7 @@ export default class TareasDetail extends Component {
                     <ATOM.Atom1
                         icon={<ICON.IconSquare />}
                         title={'En lote'}
-                        note={'Lote 21 - Santa Rosa'}
+                        note={`Lote ${Lote.name} - ${Lote.group}`}
                     />
 
                     <ATOM.Atom1
@@ -118,6 +121,15 @@ export default class TareasDetail extends Component {
         );
     }
 }
+
+export default connect(
+    state => ({
+        testLote: state.lotes.testLote
+    }),
+    dispatch => ({
+        actions: bindActionCreators(actions, dispatch)
+    })
+)(TareasDetail);
 
 const styles = StyleSheet.create({
     item: {

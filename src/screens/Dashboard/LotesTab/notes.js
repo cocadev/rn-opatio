@@ -47,7 +47,7 @@ export default class Noteas extends React.Component {
                                     <View style={styles.dot}></View>
                                 </View>
                                 
-                                <TouchableOpacity style={[styles.timeView, { paddingRight: p(12), position: 'relative', width: p(270) }]} onPress={() => Actions.lotedetail()}>
+                                <TouchableOpacity style={[styles.timeView, { paddingRight: p(12), position: 'relative', width: p(270) }]} onPress={() => Actions.lotedetail({note: x})}>
                                     <Image source={images.msg} style={styles.img} />
                                     <Text style={{ color: '#fff', fontSize: p(16), marginRight: p(30) }}>{x.title}</Text>
                                 </TouchableOpacity>
@@ -63,8 +63,6 @@ export default class Noteas extends React.Component {
     }
 
     render() {
-
-        console.log('********* this.props.notes *************', this.props.notes)
 
         return (
             <View style={Cstyles.container}>

@@ -4,6 +4,8 @@ import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
 import { Actions } from 'react-native-router-flux'
+import { bindActionCreators } from "redux"
+import { connect } from "react-redux"
 import Carousel from 'react-native-banner-carousel'
 import text from '../../common/text'
 import Cstyles from '../../common/c_style'
@@ -11,10 +13,11 @@ import * as ICON from '../../components/Icons'
 import * as CONFIG from '../../common/config'
 import * as ATOM from '../../components/Atoms'
 import * as HEADER from '../../components/Headers'
+import * as actions from "../../store/lotes/actions";
 
 const width = Math.round(Dimensions.get('window').width);
 
-export default class LoteDetail extends Component {
+class LoteDetail extends Component {
 
     constructor() {
         super();
@@ -35,8 +38,8 @@ export default class LoteDetail extends Component {
 
         const { video } = this.state;
         const data = this.props.navigation.state.params.data;
-        const position = this.props.navigation.state.params.position;
-        const field = this.props.navigation.state.params.field
+        const note = this.props.note
+        const testLote = this.props.testLote
 
         return (
             <View style={Cstyles.container}>
@@ -62,30 +65,30 @@ export default class LoteDetail extends Component {
 
                     <View style={styles.view}>
                         <Image source={images.msg} style={{ width: p(30), height: p(30) }} />
-                        <Text style={text.t_32_700_ff_t8}>{data.original_title}</Text>
-                        <Text numberOfLines={4} style={text.t_15_600_ff}>{data.overview}</Text>
+                        <Text style={text.t_32_700_ff_t8}>{note.title}</Text>
+                        {/* <Text numberOfLines={4} style={text.t_15_600_ff}>{data.overview}</Text> */}
                     </View>
 
                     <ATOM.Atom1
                         icon={<ICON.IconMap />}
                         title={'Ubicación y coordenadas'}
-                        note={'Long: ' + Math.round(position[0] * 100) / 100 + ' - Lat: ' + Math.round(position[1] * 100) / 100}
+                        note={note.geo_tag ? 'Comming soon' : 'NULL'}
                     />
 
                     <ATOM.Atom1
                         icon={<ICON.IconSquare />}
                         title={'En lote'}
-                        note={'Lote ' + field.name + ' - Santa Rosa'}
+                        note={`Lote ${testLote.name} - ${testLote.group}`}
                     />
 
                     <ATOM.Atom1
                         icon={<ICON.IconPin />}
                         title={'Archivos adjuntos'}
-                        note={data.vote_count + ' Archivo'}
+                        note={note.timeoffset + ' Archivo'}
                     />
 
                     <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.WHITE, paddingVertical: p(22) }}>
-                        <Image source={{ uri: 'https://image.tmdb.org/t/p/w300' + data.poster_path }} style={styles.video} />
+                        <Image source={{ uri: note.file_url }} style={styles.video} />
                         {
                             video ? <ICON.IconPause onClick={() => this.setState({ video: !video })} /> : <ICON.IconVideo onClick={() => this.setState({ video: !video })} />
                         }
@@ -96,6 +99,15 @@ export default class LoteDetail extends Component {
         );
     }
 }
+
+export default connect(
+    state => ({
+        testLote: state.lotes.testLote
+    }),
+    dispatch => ({
+        actions: bindActionCreators(actions, dispatch)
+    })
+)(LoteDetail);
 
 const styles = StyleSheet.create({
     view: {
