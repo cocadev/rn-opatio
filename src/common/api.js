@@ -238,6 +238,9 @@ module.exports = {
   searchNotes( field_id, cb){
     this.baseApi(`campos/gis/${field_id}/notes/search`, 'POST', {}, cb)
   },
+  searchTasks( field_id, cb){
+    this.baseApi(`campos/gis/${field_id}/tasks/search`, 'POST', { text: '', date_from: '2019-01-01', date_to: '2019-12-31', sort_by: 'date_to'}, cb)
+  },
 
   
 

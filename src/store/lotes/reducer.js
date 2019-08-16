@@ -52,6 +52,15 @@ export default function job(state = initialState, action = {}) {
         status: action.status
       }
 
+    case types.SEARCH_TASKS:
+
+      return {
+        ...state,
+        type: types.SEARCH_TASKS,
+        testTasks: action.data,
+        status: action.status
+      }
+
 
 
     default:

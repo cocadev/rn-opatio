@@ -96,10 +96,8 @@ export default class Map extends React.Component {
 
   render() {
     const { polygons } = this.props;
-
-    console.log('**********', polygons)
-
     const height = this.props.height ? this.props.height : p(240)
+    
     return (
       <View style={styles.container}>
         <MapView

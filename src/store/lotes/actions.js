@@ -43,7 +43,7 @@ export function searchNotes(query) {
     return dispatch => {
         api.searchNotes( query, (err, res) => {
             if (err == null) {
-                let data = res.data.notes
+                let data = res.data
                 dispatch({
                     type: types.SEARCH_NOTES,
                     data: data,
@@ -54,4 +54,21 @@ export function searchNotes(query) {
         })
     }
 }
+
+export function searchTasks(query) {
+    return dispatch => {
+        api.searchTasks( query, (err, res) => {
+            if (err == null) {
+                let data = res.data
+                dispatch({
+                    type: types.SEARCH_TASKS,
+                    data: data,
+                });
+            } else {
+
+            }
+        })
+    }
+}
+
 

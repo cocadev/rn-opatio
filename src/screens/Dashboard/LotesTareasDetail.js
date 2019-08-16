@@ -39,6 +39,9 @@ export default class TareasDetail extends Component {
     }
 
     render() {
+
+        const task = this.props.task
+
         return (
             <View style={Cstyles.container}>
                 <HEADERS.Gradient color={colors.BLUE2} title={'EDITOR'} onClick={() => Actions.tareasedit()} />
@@ -59,26 +62,26 @@ export default class TareasDetail extends Component {
 
                     <View style={{ backgroundColor: colors.BLUE2, padding: p(30), paddingBottom: p(22) }}>
                         <ICON.IconTareaW bottom={p(6)} />
-                        <Text style={text.t_30_700_ff}>{'Pulverizar'}</Text>
-                        <Text numberOfLines={4} style={text.t_15_500_ff}>{'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod blandit fermentum. Ut consectetur, felis imperdiet luctus cursus, justo lorem maximus orci, in commodo ipsum massa sit amet ante. Aliquam sollicitudin, enim et elementum condimentum, lectus leo consectetur dolor'}</Text>
+                        <Text style={text.t_30_700_ff}>{task.title}</Text>
+                        <Text numberOfLines={4} style={text.t_15_500_ff}>{task.description}</Text>
                     </View>
 
                     <ATOM.Atom1
                         icon={<ICON.IconCalendarX />}
                         title={'Inicio'}
-                        note={'15/05/19'}
+                        note={task.date_from}
                     />
 
                     <ATOM.Atom1
                         icon={<ICON.IconCalendarX />}
                         title={'Vence'}
-                        note={'18/05/19'}
+                        note={task.date_to}
                     />
 
                     <ATOM.Atom1
                         icon={<ICON.IconMap />}
                         title={'Ubicación y coordenadas'}
-                        note={'Long: 36646 - Lat: 184750'}
+                        note={`Long: ${task.geo_tag.coordinates[0].toFixed(2)} - Lat: ${task.geo_tag.coordinates[1].toFixed(2)}`}
                     />
 
                     <ATOM.Atom1
@@ -106,7 +109,7 @@ export default class TareasDetail extends Component {
                     />
 
                     <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.WHITE, paddingBottom: p(24) }}>
-                        <Image source={{ uri: 'https://www.disneyfanatic.com/wp-content/uploads/2015/09/99Characters-620x330.jpg' }} style={styles.video} />
+                        <Image source={{ uri: task.file_url }} style={styles.video} />
                         <BTN.BtnNormal title={'DESCARGAR PDF'} back={colors.BLUE2} top={p(20)} onClick={this._viewPDF} />
                     </View>
 

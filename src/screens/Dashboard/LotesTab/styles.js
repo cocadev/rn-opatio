@@ -54,18 +54,18 @@ const styles = StyleSheet.create({
         position: 'absolute',
         zIndex:1,
         bottom: p(33),
-        width: 7,
-        height: 7,
+        width: p(7),
+        height: p(7),
         borderColor: colors.WHITE,
         borderWidth: 1,
         backgroundColor: colors.ORANGE,
-        borderRadius: 3.5
+        borderRadius: p(3.8)
     },
     dot: {
         backgroundColor: 'transparent',
         flex: 1,
-        width: 20,
-        marginLeft: 2.2,
+        width: p(20),
+        marginLeft: p(3),
         borderStyle: 'dashed',
         borderLeftColor: colors.TEXT,
         borderLeftWidth: 1
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: colors.ORANGE,
         marginVertical: p(6),
-        borderRadius: 7,
+        borderRadius: p(7),
         padding: p(22),
         elevation:1,
     },

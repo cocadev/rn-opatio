@@ -13,7 +13,6 @@ import text from '../../common/text'
 import Map from '../../components/Map'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import UtilService from '../../common/utils'
-import LottieScreen from '../../components/Lottie'
 import Cstyles from '../../common/c_style'
 import * as HEADER from '../../components/Headers'
 import * as ICON from '../../components/Icons'
@@ -31,7 +30,6 @@ class LotesTab extends Component {
             selectTab: 1,
             modal: false,
             calendar: false,
-            isWaiting: true,
             polygons: null,
             REGION: CONFIG.REGION,
             search: '',
@@ -69,82 +67,10 @@ class LotesTab extends Component {
         let campo_id = this.props.navigation.state.params.campo_id
         let field_id = this.props.navigation.state.params.field.field_id
 
-        console.log('$$$ field_id $$$', field_id)
-
         this.props.actions.getGisFromCampoId(campo_id, field_id);
         this.props.actions.searchNotes(field_id);
+        this.props.actions.searchTasks(field_id);
 
-
-        // var compo_index = _.findIndex(this.props.allLotes,{ campo_id });
-        // var field_index = _.findIndex(this.props.allLotes[compo_index].fields,{ field_id });
-  
-        // let myGis = this.props.allLotes[compo_index].fields[field_index]
-
-
-
-        // this.props.actions.getGisFromCampoId(campo_id, field_id)
-
-       
-
-
-
-        // const field_id = this.props.navigation.state.params.field.field_id;
-
-        // api.getLotesCamposByFieldId(field_id, (err, res) => {
-
-        //     if (err == null) {
-
-        //         const c = res.data.polygons.coordinates[0];
-        //         let longitude = 0;
-        //         let latitude = 0;
-        //         let count = 0;
-
-        //         for (i = 0; i < c.length; i++) {
-        //             longitude = longitude + c[i][0];
-        //             latitude = latitude + c[i][1];
-        //             count++;
-        //         }
-
-        //         if (count === c.length) {
-
-        //             console.log('c.length ->', c.length)
-
-        //             var lat = latitude / c.length;
-        //             var lng = longitude / c.length;
-
-        //             console.log('latitude ->', lat)
-        //             console.log('longitude ->', lng)
-
-
-        //             this.setState({
-        //                 polygons: res.data.polygons.coordinates,
-        //                 REGION: {
-        //                     latitude: lat,
-        //                     longitude: lng,
-        //                     latitudeDelta: CONFIG.LATITUDE_DELTA,
-        //                     longitudeDelta: CONFIG.LONGITUDE_DELTA,
-        //                 },
-        //                 isWaiting: false,
-        //             })
-        //         }
-
-        //         // console.log('++++++++++ polygons ++++++++++', res.data.polygons.coordinates)
-        //         // count == c.length && this.onApiCallMoke()
-
-        //     } else {
-        //         // this.setState({ isWaiting: false })
-        //     }
-        // })
-    }
-
-
-    onApiCallMoke() {
-        // this.setState({ isWaiting: true })
-        // axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=f3e9f7d1677c7aa63c9ab526381eeceb&release_date.gte=` + UtilService.getDatebyTMDB(this.state.startDate_note) + `&release_date.lte=` + UtilService.getDatebyTMDB(this.state.endDate_note) + `&with_release_type=2|3&sort_by=primary_release_date.desc`)
-        //     .then(res => {
-        //         const results = res.data.results;
-        //         this.setState({ results, isWaiting: false });
-        //     })
     }
 
     renderModal() {
@@ -196,8 +122,6 @@ class LotesTab extends Component {
         const area = field.ha;
         const description = this.props.navigation.state.params.description;
 
-        console.log('______________________', this.props.testNotes)
-
         return (
             <View style={Cstyles.container}>
 
@@ -235,21 +159,20 @@ class LotesTab extends Component {
                         </View>
                     }
 
-                    {isWaiting && <LottieScreen />}
 
-                    {!isWaiting && !calendar && selectTab == 1 && this.state.results && 
+                    {!calendar && selectTab == 1 && 
                         <Notes 
                             field={field} 
                             polygons={this.state.polygons} 
-                            results={this.state.results} 
+                            notes={this.props.testNotes} 
                             endModal={this.endOpen} 
                             startModal={this.startOpen} 
                             startDate={this.state.startDate_note} 
                             endDate={this.state.endDate_note} 
                             />
                     }
-                    {!isWaiting && !calendar && selectTab == 2 && <Tareas />}
-                    {!isWaiting && !calendar && selectTab == 3 && <Cultivos />}
+                    {!calendar && selectTab == 2 && <Tareas tasks={this.props.testTasks}/>}
+                    {!calendar && selectTab == 3 && <Cultivos />}
 
                     {modal && this.renderModal()}
 
@@ -303,7 +226,9 @@ export default connect(
     state => ({
         allLotes: state.lotes.allLotes,
         testPolygon: state.lotes.testPolygon,
-        testNotes: state.lotes.testNotes
+        testNotes: state.lotes.testNotes,
+        testTasks: state.lotes.testTasks
+
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

@@ -6,6 +6,14 @@ class UtilService {
     ////////////////////////
     /////  getTimeTime /////
     ////////////////////////
+
+    static getDate(date) {
+        let year = date.substring(2, 4)
+        let month = date.substring(5, 7)
+        let day = date.substring(8, 10)
+        return `${year}/${month}/${day}`
+    }
+
     static getDatebylongNumber(date) {
         let d = new Date(date);
         const padWithZero = number => {
