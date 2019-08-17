@@ -33,6 +33,14 @@ export function addLote(name, size, group) {
     }
 }
 
+export function removePolygon() {
+    return dispatch => {
+        dispatch({
+            type: types.REMOVE_POLYGON,
+        });
+    }
+}
+
 
 export function getGisFromCampoId(campo_id, field_id) {
 

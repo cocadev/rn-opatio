@@ -8,16 +8,27 @@ import text from '../../common/text'
 import Cstyles from '../../common/c_style'
 import * as ATOM from '../../components/Atoms'
 import * as ICON from '../../components/Icons'
+import * as actions from "../../store/lotes/actions";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
-export default class LotesEdit extends Component {
+class LotesEdit extends Component {
 
-    state = {
-        text: this.props.navigation.state.params.data.overview
+    constructor(props){
+        super(props);
+        this.state = {
+            title: ''
+        }
+    }
+
+    componentDidMount(){
+        console.log('________LLLLLLL', this.props.data)
     }
 
     render() {
 
-        const data = this.props.navigation.state.params.data;
+        // const data = this.props.navigation.state.params.data;
+        const testLote = this.props.testLote
 
         return (
             <View style={Cstyles.container}>
@@ -39,7 +50,13 @@ export default class LotesEdit extends Component {
                 <ScrollView>
 
                     <View style={styles.textRow}>
-                        <Text style={text.t_37_400_ff_t8}>{data.original_title}</Text>
+                        <TextInput
+                            style={styles.titleInput}
+                            placeholder={'Note Title'}
+                            placeholderTextColor={colors.GREY4}
+                            onChangeText={(title) => this.setState({ title })}
+                            value={this.state.title}
+                        />
                         <Image source={images.photoAdd} style={{ width: p(38), height: p(35) }} />
                     </View>
 
@@ -71,7 +88,8 @@ export default class LotesEdit extends Component {
                     <ATOM.Atom1
                         icon={<ICON.IconSquare />}
                         title={'En lote'}
-                        note={'Lote 21 - Santa Rosa'}
+                        note={`Lote ${testLote.name} - ${testLote.group}`}
+
                     />
 
                     <ATOM.Atom1
@@ -97,6 +115,15 @@ export default class LotesEdit extends Component {
         );
     }
 }
+
+export default connect(
+    state => ({
+        testLote: state.lotes.testLote
+    }),
+    dispatch => ({
+        actions: bindActionCreators(actions, dispatch)
+    })
+)(LotesEdit);
 
 const styles = StyleSheet.create({
     text5: {
@@ -142,6 +169,12 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         padding: p(14),
         color: colors.GREY4
+    },
+    titleInput: {
+        color: '#ffffff', 
+        fontSize: p(37), 
+        fontWeight: '400', 
+        marginVertical: p(8)
     },
     textRow: {
         backgroundColor: colors.ORANGE,

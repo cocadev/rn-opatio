@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         flex: 1,
         width: p(20),
-        marginLeft: p(3),
+        marginLeft: p(4),
         borderStyle: 'dashed',
         borderLeftColor: colors.TEXT,
         borderLeftWidth: 1

@@ -20,7 +20,10 @@ import * as CONFIG from '../../common/config'
 import * as actions from "../../store/lotes/actions";
 import _ from 'underscore'
 
-const height = Math.round(Dimensions.get('window').height);
+const { width, height } = Dimensions.get('window');
+export const ASPECT_RATIO = width / height;
+export const LATITUDE_DELTA = 0.04;
+export const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 class LotesTab extends Component {
 
@@ -119,6 +122,9 @@ class LotesTab extends Component {
         const { selectTab, modal, calendar, REGION, isWaiting } = this.state;
         const field = this.props.navigation.state.params.field;
         const myLote = this.props.testLote
+        let loteRegion = this.props.testPolygon;
+
+        console.log('loteRegionloteRegionloteRegion', loteRegion)
 
         return (
             <View style={Cstyles.container}>
@@ -132,7 +138,15 @@ class LotesTab extends Component {
 
                 <ScrollView style={{ marginTop: p(60) }}>
 
-                    <Map region={REGION} polygons={this.props.testPolygon} />
+                    <Map 
+                        region={{
+                            latitude: loteRegion ? loteRegion[0][0][1] : 0,
+                            longitude: loteRegion ? loteRegion[0][0][0] : 0,
+                            latitudeDelta: LATITUDE_DELTA,
+                            longitudeDelta: LONGITUDE_DELTA,
+                        }} 
+                        polygons={loteRegion && loteRegion} 
+                    />
 
                     {
                         !calendar &&

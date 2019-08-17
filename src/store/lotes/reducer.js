@@ -19,13 +19,13 @@ export default function job(state = initialState, action = {}) {
   switch (action.type) {
 
     case types.GET_ALL_LOTES:
-    return {
-      ...state,
-      type: types.GET_ALL_LOTES,
-      allLotes: action.data,
-      allLotesCount: action.count,
-      status: action.status
-    }
+      return {
+        ...state,
+        type: types.GET_ALL_LOTES,
+        allLotes: action.data,
+        allLotesCount: action.count,
+        status: action.status
+      }
 
     case types.ADD_LOTE:
 
@@ -51,6 +51,14 @@ export default function job(state = initialState, action = {}) {
         type: types.GET_GIS_FROM_CAMPOID,
         allLotes: newLotes,
         testPolygon: action.data,
+        status: action.status
+      }
+
+    case types.REMOVE_POLYGON:
+      return {
+        ...state,
+        type: types.REMOVE_POLYGON,
+        testPolygon: null,
         status: action.status
       }
 

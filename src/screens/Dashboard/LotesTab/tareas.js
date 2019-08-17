@@ -38,12 +38,12 @@ export default class Tareas extends React.Component {
                         data={item.tasks}
                         keyExtractor={(item, i) => String(i)}
                         renderItem={({ item: x }) =>
-                            <View style={{paddingHorizontal: p(15), flexDirection: 'row', backgroundColor: colors.WHITE}}>
-                                <View style={{ width: 40 }}>
+                            <View style={{ flexDirection: 'row', backgroundColor: colors.WHITE}}>
+                                <View style={{ width: 20 }}>
                                     <Text style={{ fontSize: 9 }}></Text>
                                     <Text style={{ fontSize: 9 }}></Text>
                                 </View>
-                                <View style={{ marginLeft: 10 }}>
+                                <View style={{ marginLeft: p(10) }}>
                                     <View style={[styles.timeDot, { backgroundColor: colors.SKY}]}></View>
                                     <View style={styles.dot}></View>
                                 </View>

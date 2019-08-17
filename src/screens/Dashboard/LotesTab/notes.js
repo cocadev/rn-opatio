@@ -29,7 +29,7 @@ export default class Noteas extends React.Component {
 
                     <View style={{ flexDirection: 'row', marginHorizontal: p(22), marginVertical: p(14) }}>
                         <View style={{ backgroundColor: colors.GREY5, height: 1, flex: 1, alignSelf: 'center' }} />
-                        <Text style={{ alignSelf: 'center', paddingHorizontal: p(16), fontSize: p(12) }}>{item._id.year + ": week " + item._id.week}</Text>
+                           <Text style={{ alignSelf: 'center', paddingHorizontal: p(16), fontSize: p(12) }}>{item._id.year + ": week " + item._id.week}</Text>
                         <View style={{ backgroundColor: colors.GREY5, height: 1, flex: 1, alignSelf: 'center' }} />
                     </View>
 
@@ -37,12 +37,12 @@ export default class Noteas extends React.Component {
                         data={item.notes}
                         keyExtractor={(item, i) => String(i)}
                         renderItem={({ item: x }) =>
-                            <View style={{paddingHorizontal: p(15), flexDirection: 'row', backgroundColor: colors.WHITE}}>
-                                <View style={{ width: 40 }}>
+                            <View style={{ flexDirection: 'row', backgroundColor: colors.WHITE}}>
+                                <View style={{ width: p(20) }}>
                                     <Text style={{ fontSize: 9 }}></Text>
                                     <Text style={{ fontSize: 9 }}></Text>
                                 </View>
-                                <View style={{ marginLeft: 10 }}>
+                                <View style={{ marginLeft: p(10) }}>
                                     <View style={styles.timeDot}></View>
                                     <View style={styles.dot}></View>
                                 </View>

@@ -47,7 +47,7 @@ class LoteDetail extends Component {
                     color={colors.ORANGE} 
                     title={'EDITOR'} 
                     data={data} 
-                    onClick={()=>Actions.lotesedit({ data })}
+                    onClick={()=>Actions.lotesedit({ data: note })}
                 />
                 <ScrollView>
                     <Carousel
