@@ -9,4 +9,6 @@ export const SEARCH_NOTES = 'SEARCH_NOTES'
 export const SEARCH_TASKS = 'SEARCH_TASKS'
 export const ADD_LOTE = 'ADD_LOTE'
 export const REMOVE_POLYGON = 'REMOVE_POLYGON'
-
+export const UPDATE_GIS_LOTE_TASK = 'UPDATE_GIS_LOTE_TASK'
+export const UPDATE_GIS_LOTE_NOTE = 'UPDATE_GIS_LOTE_NOTE'
+export const GET_TASKS = 'GET_TASKS'

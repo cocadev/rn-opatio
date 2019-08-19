@@ -3,52 +3,132 @@ import { StyleSheet, Text, View, Image, TextInput, ScrollView } from 'react-nati
 import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
+import { bindActionCreators } from "redux"
+import { connect } from "react-redux"
+import { Actions } from 'react-native-router-flux';
+import { showMessage } from "react-native-flash-message";
+import Cstyles from '../../common/c_style'
+import DatePicker from '../../components/datePicker';
+import UtilService from '../../common/utils';
+import api from '../../common/api'
+import _ from 'underscore'
 import * as HEADERS from '../../components/Headers'
 import * as ATOM from '../../components/Atoms'
 import * as ICON from '../../components/Icons'
 import * as BTN from '../../components/Buttons'
-import Cstyles from '../../common/c_style'
+import * as actions from "../../store/lotes/actions";
 
-export default class TareasEdit extends Component {
+class TareasEdit extends Component {
 
-    state = {
-        text: ''
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: null,
+            description: null,
+            date_from: null,
+            date_to: null
+        }
+    }
+
+    componentDidMount(){
+        const task_index = _(this.props.testTasks).chain().pluck('_id').flatten().findIndex({ week: this.props.week }).value();
+        const field_index = _.findIndex(this.props.testTasks[task_index].tasks, { task_id: this.props.task_id });
+        const task = this.props.testTasks[task_index].tasks[field_index]
+        this.setState({
+            title: task.title,
+            description: task.description,
+            date_from: task.date_from,
+            date_to: task.date_to
+        })
+    }
+
+    onUpdate = () => {
+        const { title, description, date_from, date_to } = this.state
+        this.setState({ isWaiting: true})
+
+        api.updateTask(this.props.task_id, title, description, date_from, date_to, (err, res) => {
+            this.setState({ isWaiting: false})
+
+            if (err == null) {
+                showMessage({
+                    message: "Success updated task",
+                    type: "success",
+                    icon: "success",
+                });
+                if(this.props.update){
+                    this.props.update(res.success)
+                    Actions.pop()
+                }
+            } else{
+                showMessage({
+                    message: "Fail update task",
+                    type: "danger",
+                    icon: "danger",
+                });
+            }
+        })
+    }
+
+    dateFromCheck = (x) => {
+        this.setState({ date_from: UtilService.getDatebyTMDB(x) })
+    }
+
+    dateToCheck = (x) => {
+        this.setState({ date_to: UtilService.getDatebyTMDB(x) })
     }
 
     render() {
+
+        const Lote = this.props.testLote;
+        const { date_from, date_to, isWaiting } = this.state;
+
         return (
             <View style={Cstyles.container}>
 
-                <HEADERS.GUARDAR back={colors.BLUE2}/>
+                { isWaiting && <ATOM.Loading /> }
+
+                <HEADERS.GUARDAR back={colors.BLUE2} onClick={this.onUpdate} />
 
                 <ScrollView>
 
                     <View style={styles.textRow}>
-                        <Text style={styles.text1}>{'Título Tarea'}</Text>
+                        <TextInput
+                            style={styles.titleInput}
+                            placeholder={'Note Title'}
+                            placeholderTextColor={colors.GREY4}
+                            onChangeText={(title) => this.setState({ title })}
+                            value={this.state.title}
+                        />
                         <Image source={images.photoAdd} style={{ width: p(38), height: p(35) }} />
                     </View>
 
-                    <View style={{ backgroundColor: colors.BLUE2}}>
+                    <View style={{ backgroundColor: colors.BLUE2 }}>
                         <TextInput
                             style={styles.inputBox}
                             placeholder={'Añadir descripción'}
                             multiline={true}
                             blurOnSubmit={false}
-                            onChangeText={(text) => this.setState({ text })}
-                            value={this.state.text}
+                            onChangeText={(description) => this.setState({ description })}
+                            value={this.state.description}
                         />
                     </View>
 
                     <ATOM.Atom1
                         icon={<ICON.IconCalendarX />}
                         title={'Inicio'}
-                        note={'15/05/19'}
+                        note={date_from}
+                        right={
+                            date_from && <DatePicker date={date_from} onClick={(x) => this.dateFromCheck(x)} />
+                        }
                     />
 
                     <ATOM.Atom1
                         icon={<ICON.IconCalendarX />}
                         title={'Vence'}
-                        note={'18/05/19'}
+                        note={date_to}
+                        right={
+                            date_to && <DatePicker date={date_to} onClick={(x) => this.dateToCheck(x)} />
+                        }
                     />
 
                     <ATOM.Atom1
@@ -65,7 +145,7 @@ export default class TareasEdit extends Component {
                     <ATOM.Atom1
                         icon={<ICON.IconSquare />}
                         title={'En lote'}
-                        note={'Lote 21 - Santa Rosa'}
+                        note={`Lote ${Lote.name} - ${Lote.group}`}
                     />
 
                     <ATOM.Atom1
@@ -94,6 +174,16 @@ export default class TareasEdit extends Component {
         );
     }
 }
+
+export default connect(
+    state => ({
+        testLote: state.lotes.testLote,
+        testTasks: state.lotes.testTasks
+    }),
+    dispatch => ({
+        actions: bindActionCreators(actions, dispatch)
+    })
+)(TareasEdit);
 
 const styles = StyleSheet.create({
     text1: {
@@ -127,5 +217,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center'
-    }
+    },
+    titleInput: {
+        color: '#ffffff',
+        fontSize: p(37),
+        fontWeight: '400',
+        marginVertical: p(8)
+    },
 });

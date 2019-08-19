@@ -70,41 +70,36 @@ module.exports = {
     UtilService.removeLocalObjectData("currentUser");
   },
 
-  async uploadImage(file, cb) {
-    // console.log('uploadImage',file)
-    if ( !Cache.hasInternetConnection ){
-      cb(null, '')
-      return;
-    }
+  async uploadImage(uri, cb) {
     try {
-      // let image = {
-      //   uri: file,
-      //   type: "image/jpeg",
-      //   name: "file.jpeg"
-      // };
 
       let formData = new FormData();
-      formData.append("file", file);
-      console.log(file)
-      // console.log('uploadImage',file)
+      formData.append('file', {
+        uri,
+        name: `photo.jpeg`,
+        type: `image/jpeg`,
+      });
+      formData.append('type', 'tasks');
+
       let response = await fetch(
-        config.SERVICE_API_URL + "/api/common/files/upload",
+        config.SERVICE_API_URL + "media",
         {
           method: "POST",
           headers: {
-            Accept: "application/json",
-            "Content-Type": "multipart/form-data",
-            Authorization: "bearer " + Cache.currentUser["token"],
-            client: Cache.clientID
+            // Accept: "application/json",
+            // "Content-Type": "multipart/form-data",
+            Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NjUxNDM3MzEsIm5iZiI6MTU2NTE0MzczMSwianRpIjoiMzRjOTg3MTYtZWNiMC00OWY2LWIzMmEtMTU2ZGM3MmE2MWMzIiwiZXhwIjoxNTk2Njc5NzMxLCJpZGVudGl0eSI6eyJpZCI6IjMzIiwiY29tcGFueV9pZCI6IjY3NDE1YTZjLWU4NDItMTFlOC05Yjk0LTEyYWQ2OWZlNGZmMCIsImVtYWlsIjoiZGVtb0BvcHRpYWdyby5jb20ifSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.xLOg-55dltQAUxdDywmrU9d2l4L3z_QqS4PyIklWbvM",
           },
           body: formData
         }
       );
-      let status = response.status;
 
+
+      let status = response.status;
       let responseJson = await response.json();
+
       if (status == 200 || status == 201) {
-        cb(null, responseJson);
+        cb(null, responseJson.success.url);
       } else {
         cb(responseJson.message);
       }
@@ -112,6 +107,49 @@ module.exports = {
       cb(error);
     }
   },
+
+  // async uploadImage(file, cb) {
+  //   // console.log('uploadImage',file)
+  //   if ( !Cache.hasInternetConnection ){
+  //     cb(null, '')
+  //     return;
+  //   }
+  //   try {
+  //     // let image = {
+  //     //   uri: file,
+  //     //   type: "image/jpeg",
+  //     //   name: "file.jpeg"
+  //     // };
+
+  //     let formData = new FormData();
+  //     formData.append("file", file);
+  //     console.log(file)
+  //     // console.log('uploadImage',file)
+  //     let response = await fetch(
+  //       config.SERVICE_API_URL + "/api/common/files/upload",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           Accept: "application/json",
+  //           "Content-Type": "multipart/form-data",
+  //           Authorization: "bearer " + Cache.currentUser["token"],
+  //           client: Cache.clientID
+  //         },
+  //         body: formData
+  //       }
+  //     );
+  //     let status = response.status;
+
+  //     let responseJson = await response.json();
+  //     if (status == 200 || status == 201) {
+  //       cb(null, responseJson);
+  //     } else {
+  //       cb(responseJson.message);
+  //     }
+  //   } catch (error) {
+  //     cb(error);
+  //   }
+  // },
 
   async baseUploadApi(sub_url, file){
     // console.log('baseUploadApi', file)
@@ -235,12 +273,30 @@ module.exports = {
   createGIS( campo_id, name, color, polygons, cb){
     this.baseApi('campos/' + campo_id + '/gis', 'POST', { name, color, polygons }, cb)
   },
+
   searchNotes( field_id, cb){
     this.baseApi(`campos/gis/${field_id}/notes/search`, 'POST', {}, cb)
   },
+  updateNote( field_id, cb){
+    this.baseApi(`campos/gis/notes/${field_id}`, 'PUT', {}, cb)
+  },
+
   searchTasks( field_id, cb){
     this.baseApi(`campos/gis/${field_id}/tasks/search`, 'POST', { text: '', date_from: '2019-01-01', date_to: '2019-12-31', sort_by: 'date_to'}, cb)
   },
+
+  getOneTask( field_id, cb){
+    this.baseApi(`campos/gis/tasks/${field_id}`, 'GET', {}, cb)
+  },
+
+  updateTask( field_id, title, description, date_from, date_to, cb){
+    this.baseApi(`campos/gis/tasks/${field_id}`, 'PUT', { title, description, date_from, date_to }, cb)
+  },
+
+  updateNote( field_id, title, cb){
+    this.baseApi(`campos/gis/notes/${field_id}`, 'PUT', { title }, cb)
+  },
+
 
   
 

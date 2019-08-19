@@ -1,9 +1,10 @@
 import * as types from "./actionTypes";
 import api from '../../common/api';
+import { showMessage } from "react-native-flash-message";
 
 export function getAllLotes(query) {
     return dispatch => {
-        api.getAllLotes( query, (err, res) => {
+        api.getAllLotes(query, (err, res) => {
             if (err == null) {
                 let data = res.data
                 let count = res.count;
@@ -19,12 +20,12 @@ export function getAllLotes(query) {
     }
 }
 
-
-export function addLote(name, size, group) {
+export function addLote(id, name, size, group) {
     return dispatch => {
         dispatch({
             type: types.ADD_LOTE,
             mydata: {
+                id, id,
                 name: name,
                 size: size,
                 group: group
@@ -45,7 +46,7 @@ export function removePolygon() {
 export function getGisFromCampoId(campo_id, field_id) {
 
     return dispatch => {
-        api.getLotesCamposByFieldId( field_id, (err, res) => {
+        api.getLotesCamposByFieldId(field_id, (err, res) => {
             if (err == null) {
                 let data = res.data.polygons.coordinates
                 dispatch({
@@ -63,7 +64,7 @@ export function getGisFromCampoId(campo_id, field_id) {
 
 export function searchNotes(query) {
     return dispatch => {
-        api.searchNotes( query, (err, res) => {
+        api.searchNotes(query, (err, res) => {
             if (err == null) {
                 let data = res.data
                 dispatch({
@@ -79,7 +80,7 @@ export function searchNotes(query) {
 
 export function searchTasks(query) {
     return dispatch => {
-        api.searchTasks( query, (err, res) => {
+        api.searchTasks(query, (err, res) => {
             if (err == null) {
                 let data = res.data
                 dispatch({
@@ -90,6 +91,37 @@ export function searchTasks(query) {
 
             }
         })
+    }
+}
+
+export function getTasks() {
+    return dispatch => {
+        dispatch({
+            type: types.GET_TASKS,
+        });
+    }
+}
+
+export const updateTask = (week, field_id, data) => {
+    return dispatch => {
+        dispatch({
+            type: types.UPDATE_GIS_LOTE_TASK,
+            updateData: data,
+            week: week,
+            id: field_id
+        });
+    }
+}
+
+export const updateNote = (week, field_id, data) => {
+    console.log('** * * * * * * ** ', data)
+    return dispatch => {
+        dispatch({
+            type: types.UPDATE_GIS_LOTE_NOTE,
+            updateData: data,
+            week: week,
+            id: field_id
+        });
     }
 }
 

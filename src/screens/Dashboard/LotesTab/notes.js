@@ -47,7 +47,10 @@ export default class Noteas extends React.Component {
                                     <View style={styles.dot}></View>
                                 </View>
                                 
-                                <TouchableOpacity style={[styles.timeView, { paddingRight: p(12), position: 'relative', width: p(270) }]} onPress={() => Actions.lotedetail({note: x})}>
+                                <TouchableOpacity 
+                                    style={[styles.timeView, { paddingRight: p(12), position: 'relative', width: p(270) }]} 
+                                    onPress={() => Actions.lotedetail({note: x, note_id: x.note_id, week: item._id.week})}
+                                >
                                     <Image source={images.msg} style={styles.img} />
                                     <Text style={{ color: '#fff', fontSize: p(16), marginRight: p(30) }}>{x.title}</Text>
                                 </TouchableOpacity>

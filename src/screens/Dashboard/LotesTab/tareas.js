@@ -48,7 +48,12 @@ export default class Tareas extends React.Component {
                                     <View style={styles.dot}></View>
                                 </View>
                                 
-                                <TouchableOpacity style={[styles.timeView, { paddingRight: p(8), position: 'relative', width: p(270), backgroundColor: colors.SKY }]} onPress={() => Actions.tareasdetail({task: x})}>
+                                <TouchableOpacity 
+                                    style={[styles.timeView, { paddingRight: p(8), position: 'relative', width: p(270), backgroundColor: colors.SKY }]} 
+                                    onPress={
+                                        () => Actions.tareasdetail({task_id: x.task_id, week: item._id.week})
+                                    }
+                                >
                                     <Image source={images.msg} style={styles.img} />
                                     <View style={{ flex: 1, justifyContent: 'space-between', flexDirection: 'row'}}>
                                       <View>
@@ -73,7 +78,7 @@ export default class Tareas extends React.Component {
 
     render() {
 
-        console.log('********* this.props.tasks *************', this.props.tasks)
+        // console.log('********* this.props.tasks *************', this.props.tasks)
 
         return (
             <View style={Cstyles.container}>

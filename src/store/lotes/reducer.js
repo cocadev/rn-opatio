@@ -80,6 +80,50 @@ export default function job(state = initialState, action = {}) {
         status: action.status
       }
 
+    case types.GET_TASKS:
+
+      return {
+        ...state,
+        type: types.GET_TASKS,
+        testTasks: state.testTasks,
+        status: action.status
+      }
+
+    case types.UPDATE_GIS_LOTE_TASK:
+
+      let newTasks = state.testTasks;
+      var task_index = _(state.testTasks).chain().pluck('_id').flatten().findIndex({ week: action.week }).value();
+      var field_index = _.findIndex(newTasks[task_index].tasks, { task_id: action.id });
+
+      newTasks[task_index].tasks[field_index] = action.updateData;
+
+      return {
+        ...state,
+        type: types.UPDATE_GIS_LOTE_TASK,
+        testTasks: newTasks,
+        status: action.status
+      }
+
+    case types.UPDATE_GIS_LOTE_NOTE:
+
+      let newNotes = state.testNotes;
+      var note_index = _(state.testNotes).chain().pluck('_id').flatten().findIndex({ week: action.week }).value();
+      var field_index = _.findIndex(newNotes[note_index].notes, { note_id: action.id });
+
+      newNotes[note_index].notes[field_index] = action.updateData;
+
+      console.log('OOOOOOOO action.id OOOOOOOOOOOO', action.id)
+
+      console.log('OOOOOOOO note_index OOOOOOOOOOOO', note_index)
+      console.log('OOOOOOOOO field_index OOOOOOOOOOO', field_index)
+
+      return {
+        ...state,
+        type: types.UPDATE_GIS_LOTE_NOTE,
+        testNotes: newNotes,
+        status: action.status
+      }
+
     default:
       return state;
   }

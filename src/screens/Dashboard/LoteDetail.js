@@ -13,7 +13,8 @@ import * as ICON from '../../components/Icons'
 import * as CONFIG from '../../common/config'
 import * as ATOM from '../../components/Atoms'
 import * as HEADER from '../../components/Headers'
-import * as actions from "../../store/lotes/actions";
+import * as actions from "../../store/lotes/actions"
+import _ from 'underscore'
 
 const width = Math.round(Dimensions.get('window').width);
 
@@ -22,8 +23,20 @@ class LoteDetail extends Component {
     constructor() {
         super();
         this.state = {
-            video: false
+            video: false,
+            myNote: null
         }
+    }
+
+    componentDidMount(){
+
+        const note_index = _(this.props.testNotes).chain().pluck('_id').flatten().findIndex({ week: this.props.week }).value();
+        const field_index = _.findIndex(this.props.testNotes[note_index].notes, { note_id: this.props.note_id });
+        const note = this.props.testNotes[note_index].notes[field_index];
+        this.setState({
+            myNote: note
+        })
+
     }
 
     renderPage(image, index) {
@@ -36,10 +49,14 @@ class LoteDetail extends Component {
 
     render() {
 
-        const { video } = this.state;
+        const { video, myNote } = this.state;
         const data = this.props.navigation.state.params.data;
-        const note = this.props.note
+        // const note = this.props.note
         const testLote = this.props.testLote
+
+        if(!myNote){
+            return false
+        }
 
         return (
             <View style={Cstyles.container}>
@@ -47,7 +64,11 @@ class LoteDetail extends Component {
                     color={colors.ORANGE} 
                     title={'EDITOR'} 
                     data={data} 
-                    onClick={()=>Actions.lotesedit({ data: note })}
+                    onClick={()=>Actions.lotesedit({ 
+                        note_id: this.props.note_id, 
+                        week: this.props.week,
+                        update: (x)=>this.setState({ myNote: x })  
+                    })}
                 />
                 <ScrollView>
                     <Carousel
@@ -65,14 +86,14 @@ class LoteDetail extends Component {
 
                     <View style={styles.view}>
                         <Image source={images.msg} style={{ width: p(30), height: p(30) }} />
-                        <Text style={text.t_32_700_ff_t8}>{note.title}</Text>
+                        <Text style={text.t_32_700_ff_t8}>{myNote.title}</Text>
                         {/* <Text numberOfLines={4} style={text.t_15_600_ff}>{data.overview}</Text> */}
                     </View>
 
                     <ATOM.Atom1
                         icon={<ICON.IconMap />}
                         title={'Ubicación y coordenadas'}
-                        note={note.geo_tag ? 'Comming soon' : 'NULL'}
+                        note={myNote.geo_tag ? 'Comming soon' : 'NULL'}
                     />
 
                     <ATOM.Atom1
@@ -84,11 +105,11 @@ class LoteDetail extends Component {
                     <ATOM.Atom1
                         icon={<ICON.IconPin />}
                         title={'Archivos adjuntos'}
-                        note={note.timeoffset + ' Archivo'}
+                        note={myNote.timeoffset + ' Archivo'}
                     />
 
                     <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.WHITE, paddingVertical: p(22) }}>
-                        <Image source={{ uri: note.file_url }} style={styles.video} />
+                        <Image source={{ uri: myNote.file_url }} style={styles.video} />
                         {
                             video ? <ICON.IconPause onClick={() => this.setState({ video: !video })} /> : <ICON.IconVideo onClick={() => this.setState({ video: !video })} />
                         }
@@ -102,7 +123,8 @@ class LoteDetail extends Component {
 
 export default connect(
     state => ({
-        testLote: state.lotes.testLote
+        testLote: state.lotes.testLote,
+        testNotes: state.lotes.testNotes
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

@@ -19,7 +19,7 @@ export const Gradient = props => (
       >
         <Text style={text.t_14_500_ff}>EDITAR</Text>
       </TouchableOpacity>
-      <MaterialCommunityIcons name={'dots-vertical'} size={30} color={colors.BLUE2} />
+      <MaterialCommunityIcons name={'dots-vertical'} size={p(30)} color={colors.BLUE2} />
     </View>
   </View>
 )
@@ -27,18 +27,18 @@ export const Gradient = props => (
 export const GUARDAR = props => (
   <View style={[styles.header, { backgroundColor: props.back }]}>
     <TouchableOpacity onPress={() => Actions.pop()}>
-      <MaterialCommunityIcons name={'arrow-left'} size={30} color={colors.WHITE} />
+      <MaterialCommunityIcons name={'arrow-left'} size={p(30)} color={colors.WHITE} />
     </TouchableOpacity>
-    <View style={[styles.vertical, { backgroundColor: colors.WHITE }]}>
-      <Text style={{ color: colors.BLACK, fontWeight: '700' }}>{'GUARDAR'}</Text>
-    </View>
+    <TouchableOpacity onPress={() => { props.onClick() }} style={[styles.vertical, { backgroundColor: colors.WHITE }]}>
+      <Text style={{ color: colors.BLACK, fontWeight: '700', fontSize: p(15) }}>{'GUARDAR'}</Text>
+    </TouchableOpacity>
   </View>
 )
 
 export const NormalIcon = props => (
   <View style={[styles.header, { backgroundColor: props.back, justifyContent: 'flex-start' }]}>
     <TouchableOpacity onPress={() => Actions.pop()}>
-      <MaterialCommunityIcons name={'arrow-left'} size={30} color={colors.WHITE} />
+      <MaterialCommunityIcons name={'arrow-left'} size={p(30)} color={colors.WHITE} />
     </TouchableOpacity>
     {props.icon}
     <Text style={text.t_21_700_ff}>{props.title}</Text>
@@ -48,7 +48,7 @@ export const NormalIcon = props => (
 export const Complex = props => (
   <View style={[styles.container, { backgroundColor: props.back }]}>
     <TouchableOpacity onPress={() => Actions.pop()}>
-      <MaterialCommunityIcons name={'arrow-left'} size={30} color={props.back == colors.WHITE ? colors.DARK : colors.WHITE} />
+      <MaterialCommunityIcons name={'arrow-left'} size={p(30)} color={props.back == colors.WHITE ? colors.DARK : colors.WHITE} />
     </TouchableOpacity>
     <View style={{ marginLeft: p(10) }}>
       <Text style={[text.t_21_700_ff, props.back == colors.WHITE ? { color: colors.DARK} : { color: colors.WHITE}]}>{props.title}</Text>
