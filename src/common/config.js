@@ -558,12 +558,12 @@ export const carouselList = [
 
 /////////////// DropDown ////////////////
 export const create1 = [
-  { name: 'Campo' },
-  { name: 'Campo1' }, 
-  { name: 'Campo2' }, 
-  { name: 'Campo3' },
-  { name: 'Lote1' },
-  { name: 'Lote2' }
+  { name: '2019' },
+  { name: '2020' }, 
+  { name: '2021' }, 
+  { name: '2022' },
+  { name: '2023' },
+  { name: '2024' }
 ]
 
 export const assign = [

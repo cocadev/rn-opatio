@@ -24,7 +24,8 @@ class LotesEdit extends Component {
         this.state = {
             title: '',
             image: null,
-            visibleModal: false
+            visibleModal: false,
+            media_id: null
         }
     }
 
@@ -94,7 +95,8 @@ class LotesEdit extends Component {
 
                         if (err == null) {
                             this.setState({
-                                image: res,
+                                image: res.url,
+                                media_id: res.media_id
                             });
                         }
                     })
@@ -116,7 +118,8 @@ class LotesEdit extends Component {
             api.uploadImage(result.uri, (err, res) => {
                 if (err == null) {
                     this.setState({
-                        image: res,
+                        image: res.url,
+                        media_id: res.media_id
                     });
                 }
             })

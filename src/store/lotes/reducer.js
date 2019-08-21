@@ -10,7 +10,7 @@ const initialState = {
   testPolygon: null,
   testNotes: null,
   testTasks: null,
-  testCultivos: null
+  testCrops: null
 
 };
 
@@ -80,6 +80,15 @@ export default function job(state = initialState, action = {}) {
         status: action.status
       }
 
+    case types.SEARCH_CROPS:
+
+      return {
+        ...state,
+        type: types.SEARCH_CROPS,
+        testCrops: action.data,
+        status: action.status
+      }
+
     case types.GET_TASKS:
 
       return {
@@ -111,11 +120,6 @@ export default function job(state = initialState, action = {}) {
       var field_index = _.findIndex(newNotes[note_index].notes, { note_id: action.id });
 
       newNotes[note_index].notes[field_index] = action.updateData;
-
-      console.log('OOOOOOOO action.id OOOOOOOOOOOO', action.id)
-
-      console.log('OOOOOOOO note_index OOOOOOOOOOOO', note_index)
-      console.log('OOOOOOOOO field_index OOOOOOOOOOO', field_index)
 
       return {
         ...state,

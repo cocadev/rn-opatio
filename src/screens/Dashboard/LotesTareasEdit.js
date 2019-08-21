@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Image, TextInput, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, Modal, TouchableOpacity } from 'react-native'
 import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
@@ -17,6 +17,9 @@ import * as ATOM from '../../components/Atoms'
 import * as ICON from '../../components/Icons'
 import * as BTN from '../../components/Buttons'
 import * as actions from "../../store/lotes/actions";
+import * as ImagePicker from 'expo-image-picker'
+import * as Permissions from 'expo-permissions'
+import * as ImageManipulator from 'expo-image-manipulator'
 
 class TareasEdit extends Component {
 
@@ -26,11 +29,14 @@ class TareasEdit extends Component {
             title: null,
             description: null,
             date_from: null,
-            date_to: null
+            date_to: null,
+            visibleModal: false,
+            image: null,
+            media_id: null
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const task_index = _(this.props.testTasks).chain().pluck('_id').flatten().findIndex({ week: this.props.week }).value();
         const field_index = _.findIndex(this.props.testTasks[task_index].tasks, { task_id: this.props.task_id });
         const task = this.props.testTasks[task_index].tasks[field_index]
@@ -38,16 +44,17 @@ class TareasEdit extends Component {
             title: task.title,
             description: task.description,
             date_from: task.date_from,
-            date_to: task.date_to
+            date_to: task.date_to,
+            image: task.file_url
         })
     }
 
     onUpdate = () => {
         const { title, description, date_from, date_to } = this.state
-        this.setState({ isWaiting: true})
+        this.setState({ isWaiting: true })
 
         api.updateTask(this.props.task_id, title, description, date_from, date_to, (err, res) => {
-            this.setState({ isWaiting: false})
+            this.setState({ isWaiting: false })
 
             if (err == null) {
                 showMessage({
@@ -55,11 +62,11 @@ class TareasEdit extends Component {
                     type: "success",
                     icon: "success",
                 });
-                if(this.props.update){
+                if (this.props.update) {
                     this.props.update(res.success)
                     Actions.pop()
                 }
-            } else{
+            } else {
                 showMessage({
                     message: "Fail update task",
                     type: "danger",
@@ -77,6 +84,117 @@ class TareasEdit extends Component {
         this.setState({ date_to: UtilService.getDatebyTMDB(x) })
     }
 
+    takePicture = async () => {
+
+        let res = await Permissions.askAsync(Permissions.CAMERA)
+        if (res.status === 'granted') {
+            let { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
+            if (status === 'granted') {
+                let image = await ImagePicker.launchCameraAsync({
+                    quality: 0.6
+                })
+
+                if (!image.cancelled) {
+
+                    const manipResult = await ImageManipulator.manipulateAsync(
+                        image.uri,
+                        [{ resize: { width: 768 } }],
+                        { format: 'jpeg', compress: 0.6 }
+                    );
+
+                    api.uploadImage(manipResult.uri, (err, res) => {
+
+                        if (err == null) {
+                            this.setState({
+                                image: res.url,
+                                media_id: res.media_id
+
+                            });
+                        }
+                    })
+                }
+            }
+        }
+    }
+
+    _pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            allowsEditing: true,
+            aspect: [4, 3],
+        });
+
+        console.log(result);
+        this.setState({ file: result.uri })
+
+        if (!result.cancelled) {
+            api.uploadImage(result.uri, (err, res) => {
+                if (err == null) {
+                    this.setState({
+                        image: res.url,
+                        media_id: res.media_id
+                    });
+                }
+            })
+        }
+    };
+
+    fileUpload = ()=>{
+        this.setState({ visibleModal: false })
+        console.log('++++++++++++++++ media id +++++++++++++++++++++++', this.state.media_id)
+        api.changeFileTask(this.state.media_id, (err, res) => {
+
+            if (err == null) {
+                showMessage({
+                    message: "Success updated file",
+                    type: "success",
+                    icon: "success",
+                });
+            } else {
+                showMessage({
+                    message: "Fail updated file",
+                    type: "danger",
+                    icon: "danger",
+                });
+            }
+        })
+    }
+
+    rendervisibleModal() {
+        return (
+            <Modal
+                visible={this.state.visibleModal}
+                transparent={true}
+                onRequestClose={() => { this.setState({ visibleModal: false }) }}
+            >
+                <View style={styles.indicatorContainer}>
+                    <View style={styles.indicator}>
+                        <View style={{ justifyContent: 'space-around', flexDirection: 'row' }}>
+                            <TouchableOpacity style={{ marginHorizontal: 10 }} onPress={this.takePicture}>
+                                <Text style={{ fontSize: p(15) }}>Camera</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ marginHorizontal: 10 }} onPress={this._pickImage}>
+                                <Text style={{ fontSize: p(15) }}>Images</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            {this.state.image && <Image source={{ uri: this.state.image }} style={styles.photo} />}
+                        </View>
+                        <View style={{ position: 'absolute', right: 5, bottom: 5 }}>
+                            <TouchableOpacity onPress={() => this.setState({ visibleModal: false })}>
+                                <Text>Close</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{ position: 'absolute', left: 5, bottom: 5 }}>
+                            <TouchableOpacity onPress={this.fileUpload}>
+                                <Text>Upload</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+        );
+    }
+
     render() {
 
         const Lote = this.props.testLote;
@@ -85,7 +203,7 @@ class TareasEdit extends Component {
         return (
             <View style={Cstyles.container}>
 
-                { isWaiting && <ATOM.Loading /> }
+                {isWaiting && <ATOM.Loading />}
 
                 <HEADERS.GUARDAR back={colors.BLUE2} onClick={this.onUpdate} />
 
@@ -99,7 +217,9 @@ class TareasEdit extends Component {
                             onChangeText={(title) => this.setState({ title })}
                             value={this.state.title}
                         />
-                        <Image source={images.photoAdd} style={{ width: p(38), height: p(35) }} />
+                        <TouchableOpacity onPress={() => this.setState({ visibleModal: true })}>
+                            <Image source={images.photoAdd} style={{ width: p(38), height: p(35) }} />
+                        </TouchableOpacity>
                     </View>
 
                     <View style={{ backgroundColor: colors.BLUE2 }}>
@@ -170,6 +290,9 @@ class TareasEdit extends Component {
                         <BTN.BtnNormal title={'DESCARGAR PDF'} back={colors.BLUE2} />
                     </View>
                 </ScrollView>
+
+                {this.rendervisibleModal()}
+
             </View>
         );
     }
@@ -224,4 +347,29 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         marginVertical: p(8)
     },
+    indicatorContainer: {
+        flex: 1,
+        backgroundColor: "rgba(0, 0, 0,0.5)",
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    indicator: {
+        width: p(200),
+        height: p(200),
+        borderRadius: 5,
+        shadowColor: "black",
+        alignItems: "center",
+        justifyContent: "center",
+        shadowOffset: { width: 2, height: 2 },
+        shadowOpacity: 0.4,
+        shadowRadius: 3,
+        backgroundColor: "white"
+    },
+    photo: {
+        borderColor: 'grey',
+        borderWidth: 1.5,
+        borderRadius: 3,
+        width: p(100),
+        height: p(100)
+    }
 });

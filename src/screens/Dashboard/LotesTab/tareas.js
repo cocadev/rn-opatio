@@ -7,6 +7,7 @@ import { Actions } from 'react-native-router-flux';
 import Cstyles from '../../../common/c_style';
 import styles from './styles'
 import UtilService from '../../../common/utils'
+import { MaterialIcons } from '@expo/vector-icons'
 
 export default class Tareas extends React.Component {
 
@@ -20,6 +21,8 @@ export default class Tareas extends React.Component {
             sort_by: 'date_to'
         }
     }
+
+
 
     renderItem = ({ item, index }) => {
 
@@ -38,31 +41,31 @@ export default class Tareas extends React.Component {
                         data={item.tasks}
                         keyExtractor={(item, i) => String(i)}
                         renderItem={({ item: x }) =>
-                            <View style={{ flexDirection: 'row', backgroundColor: colors.WHITE}}>
+                            <View style={{ flexDirection: 'row', backgroundColor: colors.WHITE }}>
                                 <View style={{ width: 20 }}>
                                     <Text style={{ fontSize: 9 }}></Text>
                                     <Text style={{ fontSize: 9 }}></Text>
                                 </View>
                                 <View style={{ marginLeft: p(10) }}>
-                                    <View style={[styles.timeDot, { backgroundColor: colors.SKY}]}></View>
+                                    <View style={[styles.timeDot, { backgroundColor: colors.SKY }]}></View>
                                     <View style={styles.dot}></View>
                                 </View>
-                                
-                                <TouchableOpacity 
-                                    style={[styles.timeView, { paddingRight: p(8), position: 'relative', width: p(270), backgroundColor: colors.SKY }]} 
+
+                                <TouchableOpacity
+                                    style={[styles.timeView, { paddingRight: p(8), position: 'relative', width: p(270), backgroundColor: colors.SKY }]}
                                     onPress={
-                                        () => Actions.tareasdetail({task_id: x.task_id, week: item._id.week})
+                                        () => Actions.tareasdetail({ task_id: x.task_id, week: item._id.week })
                                     }
                                 >
                                     <Image source={images.msg} style={styles.img} />
-                                    <View style={{ flex: 1, justifyContent: 'space-between', flexDirection: 'row'}}>
-                                      <View>
-                                        <Text style={{ color: '#fff', fontSize: p(14), marginRight: p(30) }}>{x.title}</Text>
-                                        <Text style={{ color: '#fff', fontSize: p(14), marginRight: p(30) }}>{x.description}</Text>
-                                      </View>
-                                      <View style={{ justifyContent: 'center', alignItems: 'flex-end', width: p(50)}}>
-                                        <Text style={{ color: '#fff', fontSize: p(11) }}>{UtilService.getDate(x.created_at) }</Text>
-                                      </View>
+                                    <View style={{ flex: 1, justifyContent: 'space-between', flexDirection: 'row' }}>
+                                        <View>
+                                            <Text style={{ color: '#fff', fontSize: p(14), marginRight: p(30) }}>{x.title}</Text>
+                                            <Text style={{ color: '#fff', fontSize: p(14), marginRight: p(30) }}>{x.description}</Text>
+                                        </View>
+                                        <View style={{ justifyContent: 'center', alignItems: 'flex-end', width: p(50) }}>
+                                            <Text style={{ color: '#fff', fontSize: p(11) }}>{UtilService.getDate(x.created_at)}</Text>
+                                        </View>
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -89,6 +92,12 @@ export default class Tareas extends React.Component {
 
                     <DROPDOWN.XSmall onClick={() => this.props.endModal()} title={'Fecha: ' + this.props.endDate} />
 
+                </View> */}
+
+                {/* <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: p(20) }}>
+                    <TouchableOpacity onPress={() => Actions.addTareas()}>
+                        <MaterialIcons name={'add-circle'} size={p(36)} color={colors.GREEN} />
+                    </TouchableOpacity>
                 </View> */}
 
                 {

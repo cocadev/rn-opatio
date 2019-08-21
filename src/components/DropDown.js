@@ -8,21 +8,21 @@ import text from '../common/text';
 export const Large = props => (
   <TouchableOpacity style={styles.dropdown} onPress={()=>props.onClick()}>
     <Text style={text.t_19_500_ff}>{props.title}</Text>
-    <Entypo name={'chevron-down'} size={25} color={colors.WHITE} />
+    <Entypo name={'chevron-down'} size={p(25)} color={colors.WHITE} />
   </TouchableOpacity>
 )
 
 export const Small = props => (
   <TouchableOpacity style={styles.dropdown2} onPress={()=>props.onClick()}>
     <Text style={text.t_19_500_00}>{props.title}</Text>
-    <Entypo name={'chevron-down'} size={25} color={colors.GREY4} />
+    <Entypo name={'chevron-down'} size={p(25)} color={colors.GREY4} />
   </TouchableOpacity>
 )
 
 export const XSmall = props => (
   <TouchableOpacity onPress={()=>props.onClick()} style={styles.dropdown3}>
-    <Text>{props.title}</Text>
-    <Entypo name={'chevron-down'} size={24} color={colors.GREY4} />
+    <Text style={{ fontSize: p(12)}}>{props.title}</Text>
+    <Entypo name={'chevron-down'} size={p(24)} color={colors.GREY4} />
   </TouchableOpacity>
 )
 

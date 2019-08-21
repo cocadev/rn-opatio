@@ -73,6 +73,9 @@ class LotesTab extends Component {
         this.props.actions.getGisFromCampoId(campo_id, field_id);
         this.props.actions.searchNotes(field_id);
         this.props.actions.searchTasks(field_id);
+        this.props.actions.searchCrops(field_id);
+
+        console.log('OOOOOOO field_id OOOOOOO', field_id)
 
     }
 
@@ -124,7 +127,7 @@ class LotesTab extends Component {
         const myLote = this.props.testLote
         let loteRegion = this.props.testPolygon;
 
-        // console.log('<>< field ><>', field)
+        console.log('<>< testCrops ><>', this.props.testCrops)
 
         return (
             <View style={Cstyles.container}>
@@ -184,7 +187,7 @@ class LotesTab extends Component {
                             />
                     }
                     {!calendar && selectTab == 2 && <Tareas tasks={this.props.testTasks}/>}
-                    {!calendar && selectTab == 3 && <Cultivos />}
+                    {!calendar && selectTab == 3 && <Cultivos crops={this.props.testCrops} />}
 
                     {modal && this.renderModal()}
 
@@ -240,7 +243,8 @@ export default connect(
         testPolygon: state.lotes.testPolygon,
         testNotes: state.lotes.testNotes,
         testTasks: state.lotes.testTasks,
-        testLote: state.lotes.testLote
+        testLote: state.lotes.testLote,
+        testCrops: state.lotes.testCrops,       
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

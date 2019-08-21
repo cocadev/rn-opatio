@@ -99,7 +99,7 @@ module.exports = {
       let responseJson = await response.json();
 
       if (status == 200 || status == 201) {
-        cb(null, responseJson.success.url);
+        cb(null, responseJson.success);
       } else {
         cb(responseJson.message);
       }
@@ -297,10 +297,19 @@ module.exports = {
     this.baseApi(`campos/gis/notes/${field_id}`, 'PUT', { title }, cb)
   },
 
+  changeFileTask( media_id, cb){
+    this.baseApi(`campos/gis/tasks/${media_id}`, 'PUT', { media_id }, cb)
+  },
+
+  searchCrops( note_field_id, cb){
+    this.baseApi(`campos/gis/${note_field_id}/crops/search`, 'POST', { }, cb)
+  },
+
+  addCultivos( note_field_id, campaing, estival, invernal, color, cb){
+    this.baseApi(`campos/gis/${note_field_id}/crops`, 'POST', { campaing, estival, invernal, color }, cb)
+  },
 
   
-
-
 
 
 

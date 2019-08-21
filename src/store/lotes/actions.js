@@ -1,6 +1,5 @@
 import * as types from "./actionTypes";
 import api from '../../common/api';
-import { showMessage } from "react-native-flash-message";
 
 export function getAllLotes(query) {
     return dispatch => {
@@ -94,6 +93,23 @@ export function searchTasks(query) {
     }
 }
 
+export function searchCrops(query) {
+    return dispatch => {
+        api.searchCrops(query, (res, err) => {
+  
+            if (err == null) {
+                let data = res.data
+                dispatch({
+                    type: types.SEARCH_CROPS,
+                    data: data,
+                });
+            } else {
+
+            }
+        })
+    }
+}
+
 export function getTasks() {
     return dispatch => {
         dispatch({
@@ -125,4 +141,21 @@ export const updateNote = (week, field_id, data) => {
     }
 }
 
+export const addCultivos =(x,y,z,i,j)=>
+    dispatch => 
+    new Promise(function (resolve, reject) {
+        api.addCultivos(x, parseInt(y), z, i, j, (res, err) => {
+            if (err == null) {
+                let data = res.success
+                dispatch({
+                    type: types.ADD_CULTIVOS,
+                    data: data,
+                });
+                resolve(res.success)
+            } else {
+                reject(err)
+            }
+        })
+    }
+    )
 
