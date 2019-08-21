@@ -94,11 +94,11 @@ export default class Tareas extends React.Component {
 
                 </View> */}
 
-                {/* <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: p(20) }}>
+                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: p(20) }}>
                     <TouchableOpacity onPress={() => Actions.addTareas()}>
                         <MaterialIcons name={'add-circle'} size={p(36)} color={colors.GREEN} />
                     </TouchableOpacity>
-                </View> */}
+                </View>
 
                 {
                     this.props.tasks &&

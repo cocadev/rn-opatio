@@ -35,8 +35,8 @@ export default class Map extends React.Component {
           region: {
             latitude,
             longitude,
-            latitudeDelta: 0.005,
-            longitudeDelta: 0.001,
+            latitudeDelta: 0.02,
+            longitudeDelta: 0.02,
           }
         })
       },
@@ -103,7 +103,7 @@ export default class Map extends React.Component {
         <MapView
           provider="google"
           style={{ ...styles.map, height }}
-          showsCompass={true}
+          showsCompass={false}
           initialRegion={this.props.region}
           region={this.props.region}
           showsMyLocationButton={true}

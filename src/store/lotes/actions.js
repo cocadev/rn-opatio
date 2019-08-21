@@ -96,7 +96,7 @@ export function searchTasks(query) {
 export function searchCrops(query) {
     return dispatch => {
         api.searchCrops(query, (res, err) => {
-  
+
             if (err == null) {
                 let data = res.data
                 dispatch({
@@ -130,7 +130,6 @@ export const updateTask = (week, field_id, data) => {
 }
 
 export const updateNote = (week, field_id, data) => {
-    console.log('** * * * * * * ** ', data)
     return dispatch => {
         dispatch({
             type: types.UPDATE_GIS_LOTE_NOTE,
@@ -141,21 +140,60 @@ export const updateNote = (week, field_id, data) => {
     }
 }
 
-export const addCultivos =(x,y,z,i,j)=>
-    dispatch => 
-    new Promise(function (resolve, reject) {
-        api.addCultivos(x, parseInt(y), z, i, j, (res, err) => {
-            if (err == null) {
-                let data = res.success
-                dispatch({
-                    type: types.ADD_CULTIVOS,
-                    data: data,
-                });
-                resolve(res.success)
-            } else {
-                reject(err)
+export const addCultivos = (x, y, z, i, j) =>
+    dispatch =>
+        new Promise(function (resolve, reject) {
+            api.addCultivos(x, parseInt(y), z, i, j, (res, err) => {
+                if (err == null) {
+                    let data = res.success
+                    dispatch({
+                        type: types.ADD_CULTIVOS,
+                        data: data,
+                    });
+                    resolve(res.success)
+                } else {
+                    reject(err)
+                }
+            })
+        }
+        )
+
+export const addTask = (task_field_id, title, date_from, date_to, description, lat, lng, media_id) =>
+    dispatch =>
+        new Promise(function (resolve, reject) {
+
+            let geo_tag = {
+                "type": "Point",
+                "coordinates": [
+                    lat, lng
+                ]
             }
-        })
-    }
-    )
+
+            console.log('task_field_id = ', task_field_id)
+            console.log('title = ', title)
+            console.log('date_from = ', date_from)
+            console.log('date_to = ', date_to)
+            console.log('description = ', description)
+            console.log('media_id = ', media_id)
+            console.log('geo_tag = ', geo_tag)
+
+            api.addTask(task_field_id, title, date_from, date_to, description, media_id, geo_tag, (res, err) => {
+
+           
+                console.log('res = ', res)
+                console.log('err = ', err)
+
+                if (err == null) {
+                    let data = res.success
+                    dispatch({
+                        type: types.ADD_TASK,
+                        data: data,
+                    });
+                    resolve(res.success)
+                } else {
+                    reject(err)
+                }
+            })
+        }
+        )
 

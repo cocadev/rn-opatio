@@ -32,6 +32,8 @@ import Test from '../screens/Map/AnimatedViews'
 import DropDownList from '../screens/Dashboard/Other/dropDownList'
 import DropDownSearchCampo from '../screens/Dashboard/Other/dropDownSearchCampo';
 import AddCultivos from '../screens/Dashboard/LotesTab/addCultivos';
+import addTareas from '../screens/Dashboard/LotesTab/addTareas';
+import CheckMap from '../screens/Dashboard/LotesTab/checkMap';
 
 const width = Dimensions.get('window').width
 const AUTH = [
@@ -71,6 +73,8 @@ const MAIN = [
   { key: 'dropdown',                  component: DropDownList},
   { key: 'searchCampo',               component: DropDownSearchCampo},
   { key: 'addCultivos',               component: AddCultivos},
+  { key: 'addTareas',                 component: addTareas},
+  { key: 'checkMap',                  component: CheckMap},
 
 ]
 

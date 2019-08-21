@@ -309,6 +309,11 @@ module.exports = {
     this.baseApi(`campos/gis/${note_field_id}/crops`, 'POST', { campaing, estival, invernal, color }, cb)
   },
 
+  addTask( task_field_id, title, date_from, date_to, description, media_id, geo_tag,  cb){
+    this.baseApi(`campos/gis/${task_field_id}/tasks`, 'POST', { title, date_from, date_to, description, media_id, geo_tag }, cb)
+  },
+
+  
   
 
 

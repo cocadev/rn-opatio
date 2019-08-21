@@ -127,7 +127,7 @@ class LotesTab extends Component {
         const myLote = this.props.testLote
         let loteRegion = this.props.testPolygon;
 
-        console.log('<>< testCrops ><>', this.props.testCrops)
+        // console.log('<>< testCrops ><>', this.props.testCrops)
 
         return (
             <View style={Cstyles.container}>
