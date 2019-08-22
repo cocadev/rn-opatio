@@ -23,7 +23,7 @@ import * as ImageManipulator from 'expo-image-manipulator'
 import text from '../../../common/text';
 import ValidationService from '../../../common/validation';
 
-class AddTareas extends Component {
+class AddNotes extends Component {
 
     constructor(props) {
         super(props);
@@ -271,7 +271,7 @@ export default connect(
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
     })
-)(AddTareas);
+)(AddNotes);
 
 const styles = StyleSheet.create({
     text1: {

@@ -1,23 +1,23 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, Text, TextInput } from 'react-native'
 import { colors } from '../../common/colors'
 import { p } from '../../common/normalize'
 import { Actions } from 'react-native-router-flux'
-import { showMessage, hideMessage } from "react-native-flash-message";
-import * as ATOM from '../../components/Atoms';
+import { showMessage } from "react-native-flash-message";
 
 import Cstyles from '../../common/c_style'
 import text from '../../common/text'
 import api from '../../common/api'
+import ValidationService from '../../common/validation';
 
 import * as BTN from '../../components/Buttons'
 import * as DROPDOWN from '../../components/DropDown'
 import * as ICON from '../../components/Icons'
-import * as CONFIG from '../../common/config'
+import * as ATOM from '../../components/Atoms';
 
 export default class LoteCreateDetail extends React.Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
             campo: null,
@@ -25,44 +25,44 @@ export default class LoteCreateDetail extends React.Component {
             summer1: 'Sin asignar',
             summer2: 'Asignar',
             bell: 'Campaña',
-            isWaiting: false
+            isWaiting: false,
+            title: null
         }
     }
 
-    createGIS(){
+    createGIS() {
 
-        this.setState({ isWaiting: true})
+        const { title, campo_id } = this.state
+        
+        if (!ValidationService.createGIS(title, campo_id)){
+            return false
+        }
+
+        this.setState({ isWaiting: true })
 
         let array = []
         var area = this.props.area.coordinates
-        for (var i=0; i < area.length; i++ ) {
+        for (var i = 0; i < area.length; i++) {
             array.push([area[i].longitude, area[i].latitude])
         }
 
-        const { campo_id } = this.state
-
-        let name = 'Test';
         let color = '#00000';
         let polygons = {
             "type": "Polygon",
             "coordinates": [array]
-          }
+        }
 
-          console.log('MY datas', campo_id, name, color, polygons)
-
-
-        api.createGIS( campo_id, name, color, polygons, (res, err) => {
+        api.createGIS(campo_id, title, color, polygons, (res) => {
             console.log('******** res ********', res)
-            console.log('******** err ********', err)
 
-            if (err == null) {
+            if (res && res.success) {
                 showMessage({
                     message: "Success",
                     description: "Gis correctly saved",
                     type: "success",
                     icon: "success",
                 });
-                this.setState({ isWaiting: false})
+                this.setState({ isWaiting: false })
                 Actions.pop()
             } else {
                 showMessage({
@@ -71,34 +71,34 @@ export default class LoteCreateDetail extends React.Component {
                     type: "danger",
                     icon: "danger",
                 });
-                this.setState({ isWaiting: false})
+                this.setState({ isWaiting: false })
 
             }
         })
     }
-    
+
     render() {
 
-        const { campo, summer1, summer2, bell, isWaiting } = this.state
+        const { campo, title, summer2, bell, isWaiting } = this.state
 
         return (
             <View style={Cstyles.container}>
 
-                { isWaiting && <ATOM.Loading />}
+                {isWaiting && <ATOM.Loading />}
 
                 <View style={styles.view}>
 
-                    <ICON.IconBack 
-                        top={p(22)} 
-                        left={p(15)} 
+                    <ICON.IconBack
+                        top={p(22)}
+                        left={p(15)}
                     />
 
-                    <Text style={[text.t_32_700_ff_t30, { textAlign: 'center'}]}>{'Nombre Lote'}</Text>
+                    <Text style={[text.t_32_700_ff_t30, { textAlign: 'center' }]}>{'Nombre Lote'}</Text>
 
-                    <DROPDOWN.Large 
-                        title={campo} 
-                        onClick={()=>Actions.searchCampo({
-                            update: (i, id) => { 
+                    <DROPDOWN.Large
+                        title={campo}
+                        onClick={() => Actions.searchCampo({
+                            update: (i, id) => {
                                 this.setState({ campo: i, campo_id: id })
                             }
                         })}
@@ -108,21 +108,20 @@ export default class LoteCreateDetail extends React.Component {
 
                 <View style={styles.box}>
 
-                    <Text style={text.t_19_500_00}>{'Cultivo estival'}</Text>
+                    <Text style={text.t_19_500_00}>{'Name'}</Text>
 
-                    <DROPDOWN.Small 
-                        title={summer1}
-                        onClick={()=>Actions.dropdown({
-                            dropdown: CONFIG.assign,
-                            update: (i) => { 
-                                this.setState({ summer1: i.name })
-                            }
-                        })}
+                    <TextInput
+                        style={styles.titleInput}
+                        // placeholder={'Note Title'}
+                        // placeholderTextColor={colors.GREY4}
+                        underlineColorAndroid='rgba(0,0,0,0)'
+                        onChangeText={(title) => this.setState({ title })}
+                        value={title}
                     />
 
-                    <Text style={[text.t_19_500_00, { marginTop: p(16)}]}>{'Cultivo invernal'}</Text>
+                    {/* <Text style={[text.t_19_500_00, { marginTop: p(16)}]}>{'Cultivo invernal'}</Text> */}
 
-                    <DROPDOWN.Small 
+                    {/* <DROPDOWN.Small 
                         title={summer2}
                         onClick={()=>Actions.dropdown({
                             dropdown: CONFIG.assign,
@@ -140,13 +139,13 @@ export default class LoteCreateDetail extends React.Component {
                                 this.setState({ bell: i.name })
                             }
                         })}
-                    />
+                    /> */}
 
-                    <BTN.BtnNormal 
-                        title={'GUARDAR LOTE'} 
-                        back={colors.BLUE2} 
-                        onClick={()=>this.createGIS()}
-                        top={p(50)} 
+                    <BTN.BtnNormal
+                        title={'GUARDAR LOTE'}
+                        back={colors.BLUE2}
+                        onClick={() => this.createGIS()}
+                        top={p(50)}
                     />
                 </View>
 
@@ -157,13 +156,26 @@ export default class LoteCreateDetail extends React.Component {
 
 const styles = StyleSheet.create({
     view: {
-        paddingBottom: p(30), 
+        paddingBottom: p(30),
         backgroundColor: colors.BLUE2
     },
     box: {
-        paddingTop: p(16), 
-        backgroundColor: colors.WHITE, 
-        flex: 1, 
+        paddingTop: p(16),
+        backgroundColor: colors.WHITE,
+        flex: 1,
         alignItems: 'center'
-    }
+    },
+    titleInput: {
+        color: 'grey',
+        width: p(250),
+        paddingLeft: p(16),
+        fontSize: p(17),
+        paddingVertical: p(5),
+        marginTop: 7,
+        fontWeight: '400',
+        height: p(45),
+        borderColor: 'grey',
+        borderWidth: 2,
+        borderRadius: 8
+    },
 })

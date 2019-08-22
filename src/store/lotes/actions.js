@@ -1,5 +1,6 @@
 import * as types from "./actionTypes";
 import api from '../../common/api';
+import { showMessage } from "react-native-flash-message";
 
 export function getAllLotes(query) {
     return dispatch => {
@@ -158,14 +159,14 @@ export const addCultivos = (x, y, z, i, j) =>
         }
         )
 
-export const addTask = (task_field_id, title, date_from, date_to, description, lat, lng, media_id) =>
+export const addTask = (task_field_id, title, date_from, date_to, description, lat, lng, media_id, assigned_to, supervised_by) =>
     dispatch =>
         new Promise(function (resolve, reject) {
 
             let geo_tag = {
                 "type": "Point",
                 "coordinates": [
-                    lat, lng
+                   parseFloat(lat), parseFloat(lng) 
                 ]
             }
 
@@ -177,9 +178,8 @@ export const addTask = (task_field_id, title, date_from, date_to, description, l
             console.log('media_id = ', media_id)
             console.log('geo_tag = ', geo_tag)
 
-            api.addTask(task_field_id, title, date_from, date_to, description, media_id, geo_tag, (res, err) => {
+            api.addTask(task_field_id, title, date_from, date_to, description, media_id, geo_tag, assigned_to, supervised_by, (res, err) => {
 
-           
                 console.log('res = ', res)
                 console.log('err = ', err)
 
@@ -189,9 +189,19 @@ export const addTask = (task_field_id, title, date_from, date_to, description, l
                         type: types.ADD_TASK,
                         data: data,
                     });
+                    showMessage({
+                        message: "Correctly created task",
+                        type: "success",
+                        icon: "success",
+                    });
                     resolve(res.success)
                 } else {
                     reject(err)
+                    showMessage({
+                        message: "Failed created task",
+                        type: "success",
+                        icon: "success",
+                    });
                 }
             })
         }

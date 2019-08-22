@@ -14,7 +14,7 @@ module.exports = {
         cb(responseJson);
       }
     } catch (error) {
-      console.log('----', url)
+      // console.log('----', url)
       cb(error);
     }
   },
@@ -309,8 +309,8 @@ module.exports = {
     this.baseApi(`campos/gis/${note_field_id}/crops`, 'POST', { campaing, estival, invernal, color }, cb)
   },
 
-  addTask( task_field_id, title, date_from, date_to, description, media_id, geo_tag,  cb){
-    this.baseApi(`campos/gis/${task_field_id}/tasks`, 'POST', { title, date_from, date_to, description, media_id, geo_tag }, cb)
+  addTask( task_field_id, title, date_from, date_to, description, media_id, geo_tag, assigned_to, supervised_by,  cb){
+    this.baseApi(`campos/gis/${task_field_id}/tasks`, 'POST', { title, date_from, date_to, description, media_id, geo_tag, assigned_to, supervised_by }, cb)
   },
 
   
@@ -340,7 +340,6 @@ module.exports = {
     this.baseApi('jobseekers/' + id + '/job', 'PUT', { job_type, expected_salary, salery_type }, cb)
   },
   aboutMe(id, birthday, employment_status, gender, highest_education, mobile, name, passport, photoURL, cb){
-    console.log('hi ----------------------')
     this.baseApi('jobseekers/' + id + '/me', 'PUT', { birthday, employment_status, gender, highest_education, mobile, name, passport, photoURL }, cb)
   },
 

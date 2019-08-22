@@ -98,6 +98,18 @@ export default function job(state = initialState, action = {}) {
         status: action.status
       }
 
+    case types.ADD_TASK:
+
+      // let newTasks2 = state.testTasks;
+      // newTasks2.push(action.data);
+
+      return {
+        ...state,
+        type: types.ADD_TASK,
+        // testTasks: newTasks2,
+        status: action.status
+      }
+
     case types.UPDATE_GIS_LOTE_TASK:
 
       let newTasks = state.testTasks;

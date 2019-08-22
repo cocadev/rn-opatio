@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Image, StatusBar } from 'react-native'
+import { Image, StatusBar, View } from 'react-native'
 import { images } from './common/images'
 import { KeyboardAvoidingView, Platform, Dimensions, AsyncStorage } from 'react-native'
 import * as Font from 'expo-font'
@@ -83,6 +83,7 @@ export default class App extends PureComponent {
     return (
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : null}
+        enabled
         style={{ flex: 1 }}>
         {fontLoaded == true && authed > 0 ? (
           authed == 2 ? <ROUTER.MainPage signOut={() => this.logOut()} /> : <ROUTER.AuthPage logIn={(res) => this.loggedIn(res)}/>

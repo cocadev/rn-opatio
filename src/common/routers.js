@@ -34,6 +34,7 @@ import DropDownSearchCampo from '../screens/Dashboard/Other/dropDownSearchCampo'
 import AddCultivos from '../screens/Dashboard/LotesTab/addCultivos';
 import addTareas from '../screens/Dashboard/LotesTab/addTareas';
 import CheckMap from '../screens/Dashboard/LotesTab/checkMap';
+import addNotes from '../screens/Dashboard/LotesTab/addNotes';
 
 const width = Dimensions.get('window').width
 const AUTH = [
@@ -75,6 +76,7 @@ const MAIN = [
   { key: 'addCultivos',               component: AddCultivos},
   { key: 'addTareas',                 component: addTareas},
   { key: 'checkMap',                  component: CheckMap},
+  { key: 'addNotes',                  component: addNotes},
 
 ]
 

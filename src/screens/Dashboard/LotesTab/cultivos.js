@@ -40,7 +40,7 @@ export default class Cultivos extends React.Component {
 
     render() {
         return (
-            <View style={[Cstyles.container, { marginBottom: p(20) }]}>
+            <View style={[Cstyles.container, { paddingBottom: p(20) }]}>
 
                 {/* <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: p(25) }}>
 
