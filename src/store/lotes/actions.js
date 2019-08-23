@@ -130,6 +130,16 @@ export const updateTask = (week, field_id, data) => {
     }
 }
 
+export const removeNoteTaskCrop = () => {
+    return dispatch => {
+        dispatch({
+            type: types.REMOVE_NOTE_TASK_CROP,
+        });
+    }
+}
+
+
+
 export const updateNote = (week, field_id, data) => {
     return dispatch => {
         dispatch({
@@ -166,17 +176,9 @@ export const addTask = (task_field_id, title, date_from, date_to, description, l
             let geo_tag = {
                 "type": "Point",
                 "coordinates": [
-                   parseFloat(lat), parseFloat(lng) 
+                    parseFloat(lat), parseFloat(lng)
                 ]
             }
-
-            console.log('task_field_id = ', task_field_id)
-            console.log('title = ', title)
-            console.log('date_from = ', date_from)
-            console.log('date_to = ', date_to)
-            console.log('description = ', description)
-            console.log('media_id = ', media_id)
-            console.log('geo_tag = ', geo_tag)
 
             api.addTask(task_field_id, title, date_from, date_to, description, media_id, geo_tag, assigned_to, supervised_by, (res, err) => {
 
@@ -187,6 +189,39 @@ export const addTask = (task_field_id, title, date_from, date_to, description, l
                     let data = res.success
                     dispatch({
                         type: types.ADD_TASK,
+                        data: data,
+                    });
+                    showMessage({
+                        message: "Correctly created task",
+                        type: "success",
+                        icon: "success",
+                    });
+                    resolve(res.success)
+                } else {
+                    reject(err)
+                    showMessage({
+                        message: "Failed created task",
+                        type: "success",
+                        icon: "success",
+                    });
+                }
+            })
+        }
+        )
+
+export const addNote = (note_field_id, title, note, date, media_id) =>
+    dispatch =>
+        new Promise(function (resolve, reject) {
+
+            api.addNote(note_field_id, title, note, date, media_id, (res, err) => {
+
+                console.log('res = ', res)
+                console.log('err = ', err)
+
+                if (res && !res.errors) {
+                    let data = res.success
+                    dispatch({
+                        type: types.ADD_NOTE,
                         data: data,
                     });
                     showMessage({

@@ -80,7 +80,7 @@ export default class Noteas extends React.Component {
                 </View> */}
 
                 <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: p(20) }}>
-                    <TouchableOpacity onPress={() => Actions.addNotes()}>
+                    <TouchableOpacity onPress={() => { Actions.addNotes()}}>
                         <MaterialIcons name={'add-circle'} size={p(36)} color={colors.GREEN} />
                     </TouchableOpacity>
                 </View>

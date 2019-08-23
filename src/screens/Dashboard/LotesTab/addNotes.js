@@ -6,22 +6,21 @@ import { colors } from '../../../common/colors'
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import { Actions } from 'react-native-router-flux';
-import { showMessage } from "react-native-flash-message";
 import Cstyles from '../../../common/c_style'
 import DatePicker from '../../../components/datePicker';
 import UtilService from '../../../common/utils';
 import api from '../../../common/api'
-import _ from 'underscore'
+import text from '../../../common/text';
+import ValidationService from '../../../common/validation';
 import * as HEADERS from '../../../components/Headers'
 import * as ATOM from '../../../components/Atoms'
 import * as ICON from '../../../components/Icons'
-import * as BTN from '../../../components/Buttons'
 import * as actions from "../../../store/lotes/actions";
 import * as ImagePicker from 'expo-image-picker'
 import * as Permissions from 'expo-permissions'
 import * as ImageManipulator from 'expo-image-manipulator'
-import text from '../../../common/text';
-import ValidationService from '../../../common/validation';
+import _ from 'underscore'
+
 
 class AddNotes extends Component {
 
@@ -29,25 +28,16 @@ class AddNotes extends Component {
         super(props);
         this.state = {
             title: null,
-            description: null,
-            date_from: UtilService.getDatebyTMDB(new Date()),
-            date_to: UtilService.getDatebyTMDB(new Date()),
+            date: UtilService.getDatebyTMDB(new Date()),
             visibleModal: false,
             image: null,
             media_id: null,
-            lat: null,
-            lng: null,
-            assigned_to: 'gianotti.franco@gmail.com',
-            supervised_by: 'joaquin@optiagro.com'
+            note: '',
         }
     }
 
-    dateFromCheck = (x) => {
-        this.setState({ date_from: UtilService.getDatebyTMDB(x) })
-    }
-
-    dateToCheck = (x) => {
-        this.setState({ date_to: UtilService.getDatebyTMDB(x) })
+    dateCheck = (x) => {
+        this.setState({ date: UtilService.getDatebyTMDB(x) })
     }
 
     takePicture = async () => {
@@ -68,7 +58,7 @@ class AddNotes extends Component {
                         { format: 'jpeg', compress: 0.6 }
                     );
 
-                    api.uploadImage(manipResult.uri, (err, res) => {
+                    api.uploadImage(manipResult.uri, 'notes', (err, res) => {
 
                         if (err == null) {
                             this.setState({
@@ -93,7 +83,7 @@ class AddNotes extends Component {
         this.setState({ file: result.uri })
 
         if (!result.cancelled) {
-            api.uploadImage(result.uri, (err, res) => {
+            api.uploadImage(result.uri, 'notes', (err, res) => {
                 if (err == null) {
                     this.setState({
                         image: res.url,
@@ -129,11 +119,6 @@ class AddNotes extends Component {
                                 <Text>Close</Text>
                             </TouchableOpacity>
                         </View>
-                        {/* <View style={{ position: 'absolute', left: 5, bottom: 5 }}>
-                            <TouchableOpacity onPress={this.fileUpload}>
-                                <Text>Upload</Text>
-                            </TouchableOpacity>
-                        </View> */}
                     </View>
                 </View>
             </Modal>
@@ -141,13 +126,13 @@ class AddNotes extends Component {
     }
 
     onUpdate = () => {
-        const { title, date_from, date_to, description, lat, lng, media_id, assigned_to, supervised_by } = this.state
+        const { title, date, media_id, note } = this.state
 
-        if(!ValidationService.addTask(title, date_from, date_to, description, lat, lng, media_id, assigned_to, supervised_by)){
+        if(!ValidationService.addNote(title, note, date, media_id)){
             return false
         }
 
-        this.props.actions.addTask(this.props.testLote.id, title, date_from, date_to, description, lat, lng, media_id, assigned_to, supervised_by)
+        this.props.actions.addNote(this.props.testLote.id, title, note, date, media_id)
             .then((res=> {
                 Actions.pop()
             }))
@@ -156,7 +141,7 @@ class AddNotes extends Component {
 
     render() {
 
-        const { title, date_from, date_to, isWaiting, lat, lng, description, assigned_to, supervised_by } = this.state;
+        const { title, date, isWaiting, note } = this.state;
 
         return (
             <View style={Cstyles.container}>
@@ -171,7 +156,6 @@ class AddNotes extends Component {
                         <TextInput
                             style={styles.titleInput}
                             placeholder={'Note Title'}
-                            // placeholderTextColor={colors.GREY4}
                             onChangeText={(title) => this.setState({ title })}
                             value={title}
                         />
@@ -179,77 +163,28 @@ class AddNotes extends Component {
                             <Image source={images.photoAdd} style={{ width: p(38), height: p(35) }} />
                         </TouchableOpacity>
                     </View>
-
-                    <View style={{ backgroundColor: colors.BLUE2 }}>
-                        <TextInput
-                            style={styles.inputBox}
-                            placeholder={'Añadir descripción'}
-                            multiline={true}
-                            blurOnSubmit={false}
-                            onChangeText={(description) => this.setState({ description })}
-                            value={description}
-                        />
+                    
+                    <View style={styles.item}>
+                        <ICON.IconMember />
+                        <View style={{ marginLeft: p(20) }}>
+                            <Text style={text.t_16_500_00}>{'Note'}</Text>
+                            <TextInput
+                                style={styles.itemInput}
+                                onChangeText={(note) => this.setState({ note })}
+                                value={note}
+                            />
+                        </View>
                     </View>
-
-                    <ATOM.Atom1
-                        icon={<ICON.IconCalendarX />}
-                        title={'Inicio'}
-                        note={date_from}
-                        right={
-                            date_from && <DatePicker date={date_from} onClick={(x) => this.dateFromCheck(x)} />
-                        }
-                    />
 
                     <ATOM.Atom1
                         icon={<ICON.IconCalendarX />}
                         title={'Vence'}
-                        note={date_to}
+                        note={date}
                         right={
-                            date_to && <DatePicker date={date_to} onClick={(x) => this.dateToCheck(x)} />
+                            date && <DatePicker date={date} onClick={(x) => this.dateCheck(x)} />
                         }
                     />
 
-                    <ATOM.Atom1
-                        icon={<ICON.IconMap />}
-                        title={'Ubicación y coordenadas'}
-                        note={`Lat: ${lat}, Lng: ${lng}`}
-                        right={
-                            <TouchableOpacity
-                                onPress={(x) => Actions.checkMap({ update: (lat, lng) => this.setState({ lat, lng }) })}
-                            >
-                                <Text style={text.t_15_600_sky}>Edit</Text>
-                            </TouchableOpacity>
-                        }
-                    />
-
-                    {/* <View style={{ backgroundColor: colors.WHITE, alignItems: 'center', paddingBottom: p(12) }}>
-                        <Text style={styles.text5}>{'MARCAR EN EL MAPA'}</Text>
-                        <BTN.BtnNormal onClick={()=>Actions.checkMap()} title={'USAR MI UBICACIÓN'} top={p(18)} back={colors.BLUE2} />
-                    </View> */}
-
-                    <View style={styles.item}>
-                        <ICON.IconProfile />
-                        <View style={{ marginLeft: p(20) }}>
-                            <Text style={text.t_16_500_00}>{'Asignado a'}</Text>
-                            <TextInput
-                                style={styles.itemInput}
-                                onChangeText={(assigned_to) => this.setState({ assigned_to })}
-                                value={assigned_to}
-                            />
-                        </View>
-                    </View>
-
-                    <View style={styles.item}>
-                        <ICON.IconMember />
-                        <View style={{ marginLeft: p(20) }}>
-                            <Text style={text.t_16_500_00}>{'Responsable'}</Text>
-                            <TextInput
-                                style={styles.itemInput}
-                                onChangeText={(supervised_by) => this.setState({ supervised_by })}
-                                value={supervised_by}
-                            />
-                        </View>
-                    </View>
 
                     {/* <View style={{ alignItems: 'center', backgroundColor: colors.WHITE, paddingBottom: p(20) }}>
                         <BTN.BtnNormal title={'SAVE'} back={colors.BLUE2} onClick={()=>this.add()} />
@@ -301,7 +236,7 @@ const styles = StyleSheet.create({
     textRow: {
         backgroundColor: colors.BLUE2,
         padding: p(30),
-        paddingBottom: p(10),
+        paddingBottom: p(50),
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center'

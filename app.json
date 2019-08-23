@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "optiagro-5",
+    "name": "optiagro",
     "description": "Google Auth/MapView/Autocomplete-expo 32",
-    "slug": "optiagro-5",
+    "slug": "optiagro",
     "privacy": "unlisted",
     "platforms": [
       "ios",
@@ -31,7 +31,12 @@
       ]
     },
     "android": {
-      "package": "com.optiagro.wangharry"
+      "package": "com.optiagro.wangharry",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyB1ZUeJmQkzp66r38xEsqY67G0fikYJnC4"
+        }
+      }
     },
     "ios": {
       "bundleIdentifier": "com.optiagro.wangharry",

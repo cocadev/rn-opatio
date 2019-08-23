@@ -70,7 +70,7 @@ module.exports = {
     UtilService.removeLocalObjectData("currentUser");
   },
 
-  async uploadImage(uri, cb) {
+  async uploadImage(uri, type, cb) {
     try {
 
       let formData = new FormData();
@@ -79,7 +79,7 @@ module.exports = {
         name: `photo.jpeg`,
         type: `image/jpeg`,
       });
-      formData.append('type', 'tasks');
+      formData.append('type', type);
 
       let response = await fetch(
         config.SERVICE_API_URL + "media",
@@ -262,24 +262,27 @@ module.exports = {
     this.baseApi('campos/gis/'+ field_id, 'GET', {}, cb)
   },
 
-  getAllJobs(cb){
-    this.baseApi('jobs/', 'GET', {}, cb)
-  },
-  getProfile(id, cb){
-    this.baseApi('jobseekers/' + id, 'GET', {}, cb)
-  },
-
   ///////////////////////////// GIS //////////////////////////
   createGIS( campo_id, name, color, polygons, cb){
     this.baseApi('campos/' + campo_id + '/gis', 'POST', { name, color, polygons }, cb)
   },
 
+
+  ///////////////////////////// Note //////////////////////////
+
   searchNotes( field_id, cb){
     this.baseApi(`campos/gis/${field_id}/notes/search`, 'POST', {}, cb)
   },
-  updateNote( field_id, cb){
-    this.baseApi(`campos/gis/notes/${field_id}`, 'PUT', {}, cb)
+
+  updateNote( field_id, title, cb){
+    this.baseApi(`campos/gis/notes/${field_id}`, 'PUT', { title }, cb)
   },
+  
+  addNote( note_field_id, title, note, date, media_id,  cb){
+    this.baseApi(`campos/gis/${note_field_id}/notes`, 'POST', { title, date, media_id, note, timeoffset: 3 }, cb)
+  },
+
+  ///////////////////////////// Task //////////////////////////
 
   searchTasks( field_id, cb){
     this.baseApi(`campos/gis/${field_id}/tasks/search`, 'POST', { text: '', date_from: '2019-01-01', date_to: '2019-12-31', sort_by: 'date_to'}, cb)
@@ -293,13 +296,19 @@ module.exports = {
     this.baseApi(`campos/gis/tasks/${field_id}`, 'PUT', { title, description, date_from, date_to }, cb)
   },
 
-  updateNote( field_id, title, cb){
-    this.baseApi(`campos/gis/notes/${field_id}`, 'PUT', { title }, cb)
-  },
-
   changeFileTask( media_id, cb){
     this.baseApi(`campos/gis/tasks/${media_id}`, 'PUT', { media_id }, cb)
   },
+
+  addTask( task_field_id, title, date_from, date_to, description, media_id, geo_tag, assigned_to, supervised_by,  cb){
+    this.baseApi(`campos/gis/${task_field_id}/tasks`, 'POST', { title, date_from, date_to, description, media_id, geo_tag, assigned_to, supervised_by }, cb)
+  },
+
+  getCamposNotas( field_id, text, date_from, date_to, sort_by, cb){
+    this.baseApi(`campos/gis/${field_id}/tasks/search`, 'POST', { text, date_from, date_to, sort_by }, cb)
+  },
+
+  ///////////////////////////// Crops //////////////////////////
 
   searchCrops( note_field_id, cb){
     this.baseApi(`campos/gis/${note_field_id}/crops/search`, 'POST', { }, cb)
@@ -309,52 +318,10 @@ module.exports = {
     this.baseApi(`campos/gis/${note_field_id}/crops`, 'POST', { campaing, estival, invernal, color }, cb)
   },
 
-  addTask( task_field_id, title, date_from, date_to, description, media_id, geo_tag, assigned_to, supervised_by,  cb){
-    this.baseApi(`campos/gis/${task_field_id}/tasks`, 'POST', { title, date_from, date_to, description, media_id, geo_tag, assigned_to, supervised_by }, cb)
-  },
-
-  
-  
-
-
-
 
   //////////////////////////////////////////////////////////////////////
   
-  getCamposNotas( field_id, text, date_from, date_to, sort_by, cb){
-    this.baseApi(`campos/gis/${field_id}/tasks/search`, 'POST', { text, date_from, date_to, sort_by }, cb)
-  },
 
 
 
-
-
-
-
-
-
-
-  
-  //JOB
-  changeJobType(id, job_type, expected_salary, salery_type,  cb){
-    this.baseApi('jobseekers/' + id + '/job', 'PUT', { job_type, expected_salary, salery_type }, cb)
-  },
-  aboutMe(id, birthday, employment_status, gender, highest_education, mobile, name, passport, photoURL, cb){
-    this.baseApi('jobseekers/' + id + '/me', 'PUT', { birthday, employment_status, gender, highest_education, mobile, name, passport, photoURL }, cb)
-  },
-
-  //Experience
-  addExperience( id, name, title, start, end, status, cb){
-    this.baseApi('jobseekers/' + id + '/experience', 'POST', { name, title, start, end, status }, cb)
-  },
-  updateExperience( id, key, name, title, start, end, status, cb){
-    this.baseApi('jobseekers/' + id + '/' + key + '/experience', 'PUT', { name, title, start, end, status }, cb)
-  },
-  addExperience( id, name, title, start, end, status, cb){
-    this.baseApi('jobseekers/' + id + '/experience', 'POST', { name, title, start, end, status }, cb)
-  },
-  removeExperience( id, key, cb){
-    this.baseApi('jobseekers/' + id + '/' + key + '/experience', 'DELETE', {}, cb)
-  },
-  
 }

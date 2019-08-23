@@ -68,7 +68,7 @@ class AddTareas extends Component {
                         { format: 'jpeg', compress: 0.6 }
                     );
 
-                    api.uploadImage(manipResult.uri, (err, res) => {
+                    api.uploadImage(manipResult.uri, 'tasks', (err, res) => {
 
                         if (err == null) {
                             this.setState({
@@ -93,7 +93,7 @@ class AddTareas extends Component {
         this.setState({ file: result.uri })
 
         if (!result.cancelled) {
-            api.uploadImage(result.uri, (err, res) => {
+            api.uploadImage(result.uri, 'tasks', (err, res) => {
                 if (err == null) {
                     this.setState({
                         image: res.url,

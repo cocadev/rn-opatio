@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ActivityIndicator, Dimensions } from 'react-nat
 import { p } from '../common/normalize';
 import text from '../common/text';
 import { colors } from '../common/colors';
+import LottieView from 'lottie-react-native';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -23,17 +24,22 @@ export const Atom1 = props => (
 )
 
 export const Loading = () => (
-  <View style={{ 
-      backgroundColor: '#555', 
-      opacity: 0.9, 
-      position: 'absolute', 
-      height, 
-      width, 
-      zIndex: 2, 
-      justifyContent: 'center', 
-      alignItems: 'center' 
+  <View style={{
+    backgroundColor: '#555',
+    opacity: 0.9,
+    position: 'absolute',
+    height,
+    width,
+    zIndex: 2,
+    justifyContent: 'center',
+    alignItems: 'center'
   }}>
-      <ActivityIndicator size={p(50)} color={colors.GREEN} />
+    {/* <ActivityIndicator size={p(50)} color={colors.GREEN} /> */}
+    <LottieView
+      loop
+      source={require('../common/reload.json')}
+      autoPlay
+    />
   </View>
 )
 
@@ -50,8 +56,8 @@ const styles = StyleSheet.create({
     borderTopWidth: p(7)
   },
   right: {
-    flexDirection: 'row', 
-    justifyContent: 'flex-end', 
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
     flex: 1
   }
 });

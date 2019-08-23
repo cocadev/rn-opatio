@@ -10,14 +10,15 @@ import { Actions } from 'react-native-router-flux'
 import { p } from '../../common/normalize'
 import { Entypo, Ionicons } from '@expo/vector-icons'
 import api from '../../common/api'
+import Validation from '../../common/validation'
 
 class SignIn extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            email: 'demo@optiagro.com',
-            password: 'optiagroA98C',
+            email: '', //demo@optiagro.com
+            password: '', //optiagroA98C
             eye: false,
             isWaiting: false,
         }
@@ -25,6 +26,11 @@ class SignIn extends React.Component {
     }
 
     auth = async () => {
+
+        if(!Validation.signin(this.state.email, this.state.password)){
+            return false
+        } 
+
         this.setState({ isWaiting: true })
         try {
             await api.auth(this.state.email, this.state.password, async (res, err) => {

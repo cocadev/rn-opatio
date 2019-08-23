@@ -35,6 +35,8 @@ class LoteSelection extends Component {
 
     _onGoTo = (x, y) => {
         this.props.actions.removePolygon()
+        this.props.actions.removeNoteTaskCrop()
+
         this.props.actions.addLote(x.field_id, x.name, x.ha.toFixed(2), y.nombre)
         Actions.lotetab({ 
             field: x, 

@@ -71,6 +71,26 @@ export default function job(state = initialState, action = {}) {
         status: action.status
       }
 
+    case types.REMOVE_NOTE_TASK_CROP:
+
+      return {
+        ...state,
+        type: types.REMOVE_NOTE_TASK_CROP,
+        testNotes: null,
+        testTasks: null,
+        testCrops: null,
+        status: action.status
+      }
+
+    case types.ADD_NOTE:
+
+      return {
+        ...state,
+        type: types.ADD_NOTE,
+        // testNotes: action.data,
+        status: action.status
+      }
+
     case types.SEARCH_TASKS:
 
       return {
