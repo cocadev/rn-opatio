@@ -28,7 +28,7 @@ import MaquinariasSwitch from '../screens/Dashboard/MaquinariasSwitch'
 import MachinesContractorTab from '../screens/Dashboard/MachinesContractorTab'
 import ToDoList from '../screens/ToDoList'
 import MapSearch from '../screens/Dashboard/Other/mapSearch'
-import Test from '../screens/Map/AnimatedViews'
+import Test from '../screens/Test'
 import DropDownList from '../screens/Dashboard/Other/dropDownList'
 import DropDownSearchCampo from '../screens/Dashboard/Other/dropDownSearchCampo';
 import AddCultivos from '../screens/Dashboard/LotesTab/addCultivos';
@@ -102,6 +102,8 @@ export const MainPage = props => {
         drawerPosition="left"
       >
         <Scene key="inbox" component={Inbox} initial={false} hideNavBar />
+        <Scene key="test" component={Test} initial={false} hideNavBar />
+
       </Drawer>
       { MAIN.map(a => (
         <Scene 

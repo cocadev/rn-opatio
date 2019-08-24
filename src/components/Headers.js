@@ -6,6 +6,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { Actions } from 'react-native-router-flux'
 
 import text from '../common/text'
+import Test from '../screens/Test';
 
 export const Gradient = props => (
   <View style={styles.container}>
@@ -56,7 +57,7 @@ export const Complex = props => (
     </View>
     <View style={styles.line}></View>
     <Text style={[text.t_15_600_ff, props.back == colors.WHITE ? { color: colors.DARK} : { color: colors.WHITE}]}>{props.head}</Text>
-    <MaterialCommunityIcons name={'dots-vertical'} size={30} color={props.back == colors.WHITE ? colors.DARK : colors.WHITE} />
+    <Test />
   </View>
 )
 
