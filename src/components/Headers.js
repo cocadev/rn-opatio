@@ -51,13 +51,15 @@ export const Complex = props => (
     <TouchableOpacity onPress={() => Actions.pop()}>
       <MaterialCommunityIcons name={'arrow-left'} size={p(30)} color={props.back == colors.WHITE ? colors.DARK : colors.WHITE} />
     </TouchableOpacity>
-    <View style={{ marginLeft: p(10) }}>
-      <Text style={[text.t_21_700_ff, props.back == colors.WHITE ? { color: colors.DARK} : { color: colors.WHITE}]}>{props.title}</Text>
-      <Text style={[text.t_15_600_ff, props.back == colors.WHITE ? { color: colors.DARK} : { color: colors.WHITE}]}>{props.address}</Text>
+    <View style={{ marginHorizontal: p(12) }}>
+      <Text style={[text.t_21_700_ff, props.back == colors.WHITE ? { color: colors.DARK } : { color: colors.WHITE }]}>{props.title}</Text>
+      <Text style={[text.t_15_600_ff, props.back == colors.WHITE ? { color: colors.DARK } : { color: colors.WHITE }]}>{props.address}</Text>
     </View>
     <View style={styles.line}></View>
-    <Text style={[text.t_15_600_ff, props.back == colors.WHITE ? { color: colors.DARK} : { color: colors.WHITE}]}>{props.head}</Text>
-    <Test />
+    <View style={{ flexDirection: 'row', marginLeft: p(5)}}>
+      <Text style={[text.t_15_600_ff, props.back == colors.WHITE ? { color: colors.DARK } : { color: colors.WHITE }]}>{props.head}</Text>
+      <Test />
+    </View>
   </View>
 )
 

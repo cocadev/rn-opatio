@@ -6,7 +6,7 @@ import { p } from '../../../common/normalize';
 import { Actions } from 'react-native-router-flux';
 import Cstyles from '../../../common/c_style';
 import styles from './styles'
-import { MaterialIcons } from '@expo/vector-icons'
+import * as DROPDOWN from '../../../components/DropDown';
 
 export default class Noteas extends React.Component {
 
@@ -71,18 +71,12 @@ export default class Noteas extends React.Component {
         return (
             <View style={Cstyles.container}>
 
-                {/* <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: p(25) }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: p(25) }}>
 
                     <DROPDOWN.XSmall onClick={() => this.props.startModal()} title={'Fecha: ' + this.props.startDate} />
 
                     <DROPDOWN.XSmall onClick={() => this.props.endModal()} title={'Fecha: ' + this.props.endDate} />
 
-                </View> */}
-
-                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: p(20) }}>
-                    <TouchableOpacity onPress={() => { Actions.addNotes()}}>
-                        <MaterialIcons name={'add-circle'} size={p(36)} color={colors.GREEN} />
-                    </TouchableOpacity>
                 </View>
 
                 {

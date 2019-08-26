@@ -27,6 +27,29 @@ class UtilService {
         return padWithZero(d.getMonth() + 1) + '/' + padWithZero(d.getDate()) + '/' + year.toString().substring(2)
     }
 
+    static getDatebyshortNumber(date) {
+        let d = new Date(date);
+        const padWithZero = number => {
+            const string = number.toString();
+            if (number < 10) {
+                return "0" + string;
+            }
+            return string;
+        };
+        let year = d.getFullYear()
+        return  year.toString() + '-' + padWithZero(d.getMonth() + 1) + '-' + padWithZero(d.getDate()) 
+    }
+
+    static divideDate(date) {
+
+        console.log('_____________ date _____________', date)
+
+        var month = date.substring(0,2)
+        var day = date.substring(3,5)
+        var year = date.substring(6,8)
+        return "20" + year + '-' + month + '-' + day
+    }
+
     static getDatebyTMDB(date) {
         let d = new Date(date);
         const padWithZero = number => {

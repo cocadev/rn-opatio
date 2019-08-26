@@ -4,10 +4,10 @@ import { colors } from '../../../common/colors';
 import { images } from '../../../common/images';
 import { p } from '../../../common/normalize';
 import { Actions } from 'react-native-router-flux';
-import * as DROPDOWN from '../../../components/DropDown';
 import Cstyles from '../../../common/c_style';
 import text from '../../../common/text';
-import { MaterialIcons } from '@expo/vector-icons'
+import * as DROPDOWN from '../../../components/DropDown';
+import * as CONFIG from '../../../common/config'
 
 const view = {
     width: p(232),
@@ -16,10 +16,18 @@ const view = {
     alignItems: 'center',
     marginVertical: p(8),
     elevation: 3,
-    borderRadius: 5
+    borderRadius: 5,
 }
 
 export default class Cultivos extends React.Component {
+
+    constructor(){
+        super();
+        this.state = {
+            startYear: '2019',
+            endYear: '2030'
+        }
+    }
 
     renderItem = ({ item, index }) => {
         return (
@@ -39,20 +47,34 @@ export default class Cultivos extends React.Component {
     }
 
     render() {
+        const { startYear, endYear } = this.state
         return (
             <View style={[Cstyles.container, { paddingBottom: p(20) }]}>
 
-                {/* <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: p(25) }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: p(25) }}>
 
-                    <DROPDOWN.XSmall title={'Desde campaña'} />
-                    <DROPDOWN.XSmall title={'Hasta campaña'} />
+                    {/* <DROPDOWN.XSmall 
+                        title={startYear} 
+                        onClick={() => Actions.dropdown({
+                        dropdown: CONFIG.create1,
+                        update: (i) => {
+                            this.setState({ startYear: i.name })
+                            this.props.onClick( startYear, endYear)
+                        }
+                    })} 
+                    />
+                    <DROPDOWN.XSmall 
+                        title={endYear} 
+                        onClick={() => Actions.dropdown({
+                        dropdown: CONFIG.create1,
+                        update: (i) => {
+                            this.setState({ endYear: i.name })
+                            this.props.onClick( startYear, endYear)
+                        }
+                    })
+                    }
+                     /> */}
 
-                </View> */}
-
-                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: p(20) }}>
-                    <TouchableOpacity onPress={() => Actions.addCultivos()}>
-                        <MaterialIcons name={'add-circle'} size={p(36)} color={colors.GREEN} />
-                    </TouchableOpacity>
                 </View>
 
                 {

@@ -32,8 +32,14 @@ export default class App extends PureComponent {
   _retrieveData = async () => {
     try {
       const token = await AsyncStorage.getItem('TOKEN');
+      const firstName = await AsyncStorage.getItem('FirstName');
+      const lastName = await AsyncStorage.getItem('LastName');
+
       if (token !== null) {
         Cache.ACCESS_TOKEN = token;
+        Cache.FIRST_NAME = firstName;
+        Cache.LAST_NAME = lastName;
+
         this.setState({ authed: 2 })
       } else {
         this.setState({ authed: 1 })
@@ -61,6 +67,9 @@ export default class App extends PureComponent {
       await AsyncStorage.setItem('COMPANY_ID', res.success.company_id);
       await AsyncStorage.setItem('EMAIL', res.success.email);
       await AsyncStorage.setItem('ID', res.success.id);
+      await AsyncStorage.setItem('FirstName', res.success.first_name);
+      await AsyncStorage.setItem('LastName', res.success.last_name);
+
     } catch (error) {
       console.log('** **', error)
     }

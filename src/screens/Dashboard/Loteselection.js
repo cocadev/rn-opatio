@@ -13,6 +13,7 @@ import * as ICON from '../../components/Icons'
 import * as HEADER from '../../components/Headers'
 import * as CONFIG from '../../common/config'
 import * as actions from "../../store/lotes/actions";
+import * as ATOM from '../../components/Atoms';
 
 class LoteSelection extends Component {
 
@@ -26,11 +27,15 @@ class LoteSelection extends Component {
     }
 
     componentDidMount() {
-        this.props.actions.getAllLotes(0)
+        this.onfetchData(0)
     }
 
     onfetchData(skip) {
+        this.setState({ isWaiting: true})
+        this.props.actions.removeLotes()
         this.props.actions.getAllLotes(skip)
+        .then(()=>{ this.setState({ isWaiting: false})})
+        .catch(e=> { this.setState({ isWaiting: false})})
     }
 
     _onGoTo = (x, y) => {
@@ -38,10 +43,10 @@ class LoteSelection extends Component {
         this.props.actions.removeNoteTaskCrop()
 
         this.props.actions.addLote(x.field_id, x.name, x.ha.toFixed(2), y.nombre)
-        Actions.lotetab({ 
-            field: x, 
-            description: y.nombre, 
-            campo_id: y.campo_id 
+        Actions.lotetab({
+            field: x,
+            description: y.nombre,
+            campo_id: y.campo_id
         })
     }
 
@@ -90,10 +95,13 @@ class LoteSelection extends Component {
     }
 
     render() {
-        const { skip } = this.state
+        const { skip, isWaiting } = this.state
         const { allLotesCount, allLotes } = this.props
         return (
             <View style={Cstyles.container}>
+
+                {isWaiting && <ATOM.Loading />}
+
                 <HEADER.NormalIcon
                     title={'Lotes'}
                     back={colors.BLUE}
@@ -111,7 +119,6 @@ class LoteSelection extends Component {
                         />
                         <ICON.IconWhiteSearch right={p(20)} />
                     </View>
-
 
                     {allLotesCount !== 0 && <View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around', padding: p(12), alignItems: 'center' }}>

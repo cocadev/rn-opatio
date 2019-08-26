@@ -18,10 +18,10 @@ module.exports = {
       cb(error);
     }
   },
-  async middleware(url, request, cb) {  
-      this.fetchData(url, request, cb)
+  async middleware(url, request, cb) {
+    this.fetchData(url, request, cb)
   },
-  baseApi(sub_url, method, json_data, cb) {   
+  baseApi(sub_url, method, json_data, cb) {
     let request = {
       method,
       headers: {
@@ -34,7 +34,7 @@ module.exports = {
     };
     if (method == "POST" || method == "PUT") {
       request["body"] = JSON.stringify(json_data);
-    } else{
+    } else {
       // sub_url += '&t='+(new Date()).getTime()
     }
 
@@ -151,17 +151,17 @@ module.exports = {
   //   }
   // },
 
-  async baseUploadApi(sub_url, file){
+  async baseUploadApi(sub_url, file) {
     // console.log('baseUploadApi', file)
-    if ( !Cache.hasInternetConnection ){
+    if (!Cache.hasInternetConnection) {
       return null;
     }
-      let image = {
-        uri: file,
-        type: "image/jpeg",
-        name: "file.jpeg"
-      };
-      try{
+    let image = {
+      uri: file,
+      type: "image/jpeg",
+      name: "file.jpeg"
+    };
+    try {
       let formData = new FormData();
       formData.append("file", image);
       let response = await fetch(
@@ -171,7 +171,7 @@ module.exports = {
           headers: {
             Accept: "application/json",
             "Content-Type": "multipart/form-data",
-            "client":"c001"
+            "client": "c001"
           },
           body: formData
         }
@@ -181,18 +181,18 @@ module.exports = {
       // console.log('status',status, 'responseJson', responseJson)
       return {
         status,
-        data:JSON.parse(responseJson.Result)
+        data: JSON.parse(responseJson.Result)
       }
-      }catch(error){
-        // console.log(error)
-        return error
-      }
+    } catch (error) {
+      // console.log(error)
+      return error
+    }
   },
 
-  async uploadAllData(cb){
-    if ( Cache.locationHeader ){
-      this.uploadLocations(async(err, res)=>{
-        if ( err == null) {
+  async uploadAllData(cb) {
+    if (Cache.locationHeader) {
+      this.uploadLocations(async (err, res) => {
+        if (err == null) {
           Cache.locationHeader = null
           Cache.locations = []
           await UtilService.removeLocalObjectData('locationHeader')
@@ -200,8 +200,8 @@ module.exports = {
         }
       })
     }
-    if ( Cache.requestStack.length > 0 ){
-      async.mapSeries(Cache.requestStack, async ({url, request}, cb)=>{
+    if (Cache.requestStack.length > 0) {
+      async.mapSeries(Cache.requestStack, async ({ url, request }, cb) => {
         try {
           let response = await fetch(url, request);
           let responseJson = await response.json();
@@ -213,10 +213,10 @@ module.exports = {
         } catch (error) {
           cb(error);
         }
-      }, async (error, results)=>{
+      }, async (error, results) => {
         Cache.requestStack.splice(0, results.length)
         await UtilService.removeLocalObjectData('requests')
-        if ( error != null ){
+        if (error != null) {
           await UtilService.saveLocalStringData('requests', JSON.stringify(Cache.requestStack))
         }
         cb(err, results)
@@ -236,13 +236,13 @@ module.exports = {
   /////////////////////////
   /////////////////////////
   /////////////////////////
-  addJob(job_name, job_details, job_task, job_type, job_start, job_end, estimated_cost, rate,  cb){
-    this.baseApi('addjob', 'POST', { job_name, job_details, job_task, job_ads_type:job_type, start_time: job_start, end_time: job_end, request_vacancy: estimated_cost, rate }, cb)
+  addJob(job_name, job_details, job_task, job_type, job_start, job_end, estimated_cost, rate, cb) {
+    this.baseApi('addjob', 'POST', { job_name, job_details, job_task, job_ads_type: job_type, start_time: job_start, end_time: job_end, request_vacancy: estimated_cost, rate }, cb)
   },
 
   //////////////////////////////
   //////////////////////////////
-  auth( email, password, cb){
+  auth(email, password, cb) {
     this.baseApi('auth', 'POST', { email, password }, cb)
   },
 
@@ -250,77 +250,80 @@ module.exports = {
 
 
 
+  /////////////////////////////// Create Campo ///////////////////////////
 
-
+  createCampo(nombre, cb) {
+    this.baseApi(`campos`, 'POST', { nombre }, cb)
+  },
 
   ////////////////////////////// Lotes //////////////////////
-  getAllLotes(skip, cb){
+  getAllLotes(skip, cb) {
     this.baseApi(`campos?skip=${skip}&limit=20`, 'GET', {}, cb)
   },
 
-  getLotesCamposByFieldId(field_id, cb){
-    this.baseApi('campos/gis/'+ field_id, 'GET', {}, cb)
+  getLotesCamposByFieldId(field_id, cb) {
+    this.baseApi('campos/gis/' + field_id, 'GET', {}, cb)
   },
 
   ///////////////////////////// GIS //////////////////////////
-  createGIS( campo_id, name, color, polygons, cb){
+  createGIS(campo_id, name, color, polygons, cb) {
     this.baseApi('campos/' + campo_id + '/gis', 'POST', { name, color, polygons }, cb)
   },
 
 
   ///////////////////////////// Note //////////////////////////
 
-  searchNotes( field_id, cb){
-    this.baseApi(`campos/gis/${field_id}/notes/search`, 'POST', {}, cb)
+  searchNotes(field_id, text, date_from, date_to, sort_by, cb) {
+    this.baseApi(`campos/gis/${field_id}/notes/search`, 'POST', { text, date_from, date_to, sort_by }, cb)
   },
 
-  updateNote( field_id, title, cb){
+  updateNote(field_id, title, cb) {
     this.baseApi(`campos/gis/notes/${field_id}`, 'PUT', { title }, cb)
   },
-  
-  addNote( note_field_id, title, note, date, media_id,  cb){
+
+  addNote(note_field_id, title, note, date, media_id, cb) {
     this.baseApi(`campos/gis/${note_field_id}/notes`, 'POST', { title, date, media_id, note, timeoffset: 3 }, cb)
   },
 
   ///////////////////////////// Task //////////////////////////
 
-  searchTasks( field_id, cb){
-    this.baseApi(`campos/gis/${field_id}/tasks/search`, 'POST', { text: '', date_from: '2019-01-01', date_to: '2019-12-31', sort_by: 'date_to'}, cb)
+  searchTasks(field_id, text, date_from, date_to, sort_by, cb) {
+    this.baseApi(`campos/gis/${field_id}/tasks/search`, 'POST', { text, date_from, date_to, sort_by }, cb)
   },
 
-  getOneTask( field_id, cb){
+  getOneTask(field_id, cb) {
     this.baseApi(`campos/gis/tasks/${field_id}`, 'GET', {}, cb)
   },
 
-  updateTask( field_id, title, description, date_from, date_to, cb){
+  updateTask(field_id, title, description, date_from, date_to, cb) {
     this.baseApi(`campos/gis/tasks/${field_id}`, 'PUT', { title, description, date_from, date_to }, cb)
   },
 
-  changeFileTask( media_id, cb){
+  changeFileTask(media_id, cb) {
     this.baseApi(`campos/gis/tasks/${media_id}`, 'PUT', { media_id }, cb)
   },
 
-  addTask( task_field_id, title, date_from, date_to, description, media_id, geo_tag, assigned_to, supervised_by,  cb){
+  addTask(task_field_id, title, date_from, date_to, description, media_id, geo_tag, assigned_to, supervised_by, cb) {
     this.baseApi(`campos/gis/${task_field_id}/tasks`, 'POST', { title, date_from, date_to, description, media_id, geo_tag, assigned_to, supervised_by }, cb)
   },
 
-  getCamposNotas( field_id, text, date_from, date_to, sort_by, cb){
+  getCamposNotas(field_id, text, date_from, date_to, sort_by, cb) {
     this.baseApi(`campos/gis/${field_id}/tasks/search`, 'POST', { text, date_from, date_to, sort_by }, cb)
   },
 
   ///////////////////////////// Crops //////////////////////////
 
-  searchCrops( note_field_id, cb){
-    this.baseApi(`campos/gis/${note_field_id}/crops/search`, 'POST', { }, cb)
+  searchCrops(note_field_id, cb) {
+    this.baseApi(`campos/gis/${note_field_id}/crops/search`, 'POST', {}, cb)
   },
 
-  addCultivos( note_field_id, campaing, estival, invernal, color, cb){
+  addCultivos(note_field_id, campaing, estival, invernal, color, cb) {
     this.baseApi(`campos/gis/${note_field_id}/crops`, 'POST', { campaing, estival, invernal, color }, cb)
   },
 
 
   //////////////////////////////////////////////////////////////////////
-  
+
 
 
 

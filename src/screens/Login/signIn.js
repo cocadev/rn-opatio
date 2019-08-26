@@ -17,8 +17,8 @@ class SignIn extends React.Component {
     constructor() {
         super();
         this.state = {
-            email: '', //demo@optiagro.com
-            password: '', //optiagroA98C
+            email: 'demo@optiagro.com', //demo@optiagro.com
+            password: 'optiagroA98C', //optiagroA98C
             eye: false,
             isWaiting: false,
         }

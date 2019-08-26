@@ -36,14 +36,23 @@ class LotesTab extends Component {
             polygons: null,
             REGION: CONFIG.REGION,
             search: '',
+            sort_by: 'date_to',
 
             isDateTimePickerVisible1: false,
             isDateTimePickerVisible2: false,
 
-            startDate_note: UtilService.getDatebylongNumber(new Date()),
-            endDate_note: UtilService.getDatebylongNumber(new Date()),
+            isDateTimePickerVisible3: false,
+            isDateTimePickerVisible4: false,
 
-            results: null
+            startDate_note: '2019-01-01',
+            endDate_note: '2019-12-31',
+            startDate_note2: '2019-01-01',
+            endDate_note2: '2019-12-31',
+
+            results: null,
+
+            campo_id: props.navigation.state.params.campo_id,
+            field_id: props.navigation.state.params.field.field_id
         }
     }
 
@@ -53,30 +62,52 @@ class LotesTab extends Component {
     _hideDateTimePicker1 = () => this.setState({ isDateTimePickerVisible1: false });
     _hideDateTimePicker2 = () => this.setState({ isDateTimePickerVisible2: false });
 
+    _showDateTimePicker3 = () => this.setState({ isDateTimePickerVisible3: true });
+    _showDateTimePicker4 = () => this.setState({ isDateTimePickerVisible4: true });
+
+    _hideDateTimePicker3 = () => this.setState({ isDateTimePickerVisible3: false });
+    _hideDateTimePicker4 = () => this.setState({ isDateTimePickerVisible4: false });
+
     _handleDatePicked1 = (date) => {
-        this.setState({ startDate_note: UtilService.getDatebylongNumber(date) });
+        this.setState({ startDate_note: UtilService.getDatebyshortNumber(date) });
         this._hideDateTimePicker1();
-        this.onApiCallMoke()
+        this.apiCall()
     };
 
     _handleDatePicked2 = (date) => {
-        this.setState({ endDate_note: UtilService.getDatebylongNumber(date) });
+        this.setState({ endDate_note: UtilService.getDatebyshortNumber(date) });
         this._hideDateTimePicker2();
-        this.onApiCallMoke()
+        this.apiCall()
+    };
+
+
+    _handleDatePicked3 = (date) => {
+        this.setState({ startDate_note2: UtilService.getDatebyshortNumber(date) });
+        this._hideDateTimePicker3();
+        this.apiCall()
+    };
+
+    _handleDatePicked4 = (date) => {
+        this.setState({ endDate_note2: UtilService.getDatebyshortNumber(date) });
+        this._hideDateTimePicker4();
+        this.apiCall()
     };
 
     componentDidMount() {
+        this.apiCall()
+        console.log('OOOOOOO field_id OOOOOOO', this.state.field_id)
+    }
 
-        let campo_id = this.props.navigation.state.params.campo_id
-        let field_id = this.props.navigation.state.params.field.field_id
-
+    apiCall() {
+        const { search, startDate_note, endDate_note, startDate_note2, endDate_note2, sort_by, campo_id, field_id } = this.state
         this.props.actions.getGisFromCampoId(campo_id, field_id);
-        this.props.actions.searchNotes(field_id);
-        this.props.actions.searchTasks(field_id);
+        this.props.actions.searchNotes(field_id, search, startDate_note, endDate_note, sort_by);
+        this.props.actions.searchTasks(field_id, search, startDate_note2, endDate_note2, sort_by);
         this.props.actions.searchCrops(field_id);
+    }
 
-        console.log('OOOOOOO field_id OOOOOOO', field_id)
-
+    searchCrop=(x, y)=>{
+        this.props.actions.searchCrops(this.state.field_id, x ,y);
     }
 
     renderModal() {
@@ -120,9 +151,17 @@ class LotesTab extends Component {
         this.setState({ isDateTimePickerVisible2: true });
     }
 
+    startOpen2 = () => {
+        this.setState({ isDateTimePickerVisible3: true });
+    }
+
+    endOpen2 = () => {
+        this.setState({ isDateTimePickerVisible4: true });
+    }
+
     render() {
 
-        const { selectTab, modal, calendar, REGION, isWaiting } = this.state;
+        const { selectTab, modal, calendar, REGION, isWaiting, startDate_note, endDate_note, startDate_note2, endDate_note2 } = this.state;
         const field = this.props.navigation.state.params.field;
         const myLote = this.props.testLote
         let loteRegion = this.props.testPolygon;
@@ -132,7 +171,7 @@ class LotesTab extends Component {
         return (
             <View style={Cstyles.container}>
 
-                { myLote && <HEADER.Complex
+                {myLote && <HEADER.Complex
                     title={'Lote ' + myLote.name}
                     address={myLote.size}
                     head={myLote.group}
@@ -141,14 +180,14 @@ class LotesTab extends Component {
 
                 <ScrollView style={{ marginTop: p(60) }}>
 
-                    <Map 
+                    <Map
                         region={{
                             latitude: loteRegion ? loteRegion[0][0][1] : 0,
                             longitude: loteRegion ? loteRegion[0][0][0] : 0,
                             latitudeDelta: LATITUDE_DELTA,
                             longitudeDelta: LONGITUDE_DELTA,
-                        }} 
-                        polygons={loteRegion && loteRegion} 
+                        }}
+                        polygons={loteRegion && loteRegion}
                     />
 
                     {
@@ -175,19 +214,29 @@ class LotesTab extends Component {
                     }
 
 
-                    {!calendar && selectTab == 1 && 
-                        <Notes 
-                            field={field} 
-                            polygons={this.state.polygons} 
-                            notes={this.props.testNotes} 
-                            endModal={this.endOpen} 
-                            startModal={this.startOpen} 
-                            startDate={this.state.startDate_note} 
-                            endDate={this.state.endDate_note} 
-                            />
+                    {!calendar && selectTab == 1 &&
+                        <Notes
+                            field={field}
+                            polygons={this.state.polygons}
+                            notes={this.props.testNotes}
+                            endModal={this.endOpen}
+                            startModal={this.startOpen}
+                            startDate={UtilService.getDatebylongNumber(startDate_note)}
+                            endDate={UtilService.getDatebylongNumber(endDate_note)}
+                        />
                     }
-                    {!calendar && selectTab == 2 && <Tareas tasks={this.props.testTasks}/>}
-                    {!calendar && selectTab == 3 && <Cultivos crops={this.props.testCrops} />}
+                    {!calendar && selectTab == 2 &&
+                        <Tareas 
+                            tasks={this.props.testTasks}
+                            endModal={this.endOpen2}
+                            startModal={this.startOpen2}
+                            startDate={UtilService.getDatebylongNumber(startDate_note2)}
+                            endDate={UtilService.getDatebylongNumber(endDate_note2)}
+                        />
+                    }
+                    {!calendar && selectTab == 3 && 
+                        <Cultivos crops={this.props.testCrops} onClick={(x, y)=>this.searchCrop(x, y)}/>
+                    }
 
                     {modal && this.renderModal()}
 
@@ -223,12 +272,28 @@ class LotesTab extends Component {
                         isVisible={this.state.isDateTimePickerVisible1}
                         onConfirm={this._handleDatePicked1}
                         onCancel={this._hideDateTimePicker1}
+                        date={new Date(startDate_note)}
                     />
 
                     <DateTimePicker
                         isVisible={this.state.isDateTimePickerVisible2}
                         onConfirm={this._handleDatePicked2}
                         onCancel={this._hideDateTimePicker2}
+                        date={new Date(endDate_note)}
+                    />
+
+                    <DateTimePicker
+                        isVisible={this.state.isDateTimePickerVisible3}
+                        onConfirm={this._handleDatePicked3}
+                        onCancel={this._hideDateTimePicker3}
+                        date={new Date(startDate_note2)}
+                    />
+
+                    <DateTimePicker
+                        isVisible={this.state.isDateTimePickerVisible4}
+                        onConfirm={this._handleDatePicked4}
+                        onCancel={this._hideDateTimePicker4}
+                        date={new Date(endDate_note2)}
                     />
 
                 </ScrollView>
@@ -244,7 +309,7 @@ export default connect(
         testNotes: state.lotes.testNotes,
         testTasks: state.lotes.testTasks,
         testLote: state.lotes.testLote,
-        testCrops: state.lotes.testCrops,       
+        testCrops: state.lotes.testCrops,
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

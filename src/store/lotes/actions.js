@@ -2,23 +2,66 @@ import * as types from "./actionTypes";
 import api from '../../common/api';
 import { showMessage } from "react-native-flash-message";
 
-export function getAllLotes(query) {
-    return dispatch => {
-        api.getAllLotes(query, (err, res) => {
-            if (err == null) {
-                let data = res.data
-                let count = res.count;
-                dispatch({
-                    type: types.GET_ALL_LOTES,
-                    data: data,
-                    count: count
-                });
-            } else {
+export const getAllLotes = (query) =>
+    dispatch =>
+        new Promise(function (resolve, reject) {
 
-            }
+            api.getAllLotes(query, (err, res) => {
+                if (err == null) {
+                    let data = res.data
+                    let count = res.count;
+                    dispatch({
+                        type: types.GET_ALL_LOTES,
+                        data: data,
+                        count: count
+                    });
+                    resolve(data)
+                } else {
+                    reject(err)
+                }
+            })
         })
-    }
-}
+
+
+
+export const createCampo = (title) =>
+
+    dispatch =>
+        new Promise(function (resolve, reject) {
+
+            api.createCampo(title, (res, err) => {
+                if (err == null) {
+
+                    console.log('***** res  ********', res)
+
+                    let data = res.data
+
+                    showMessage({
+                        message: "Success",
+                        description: "Campo created Successfully",
+                        type: "success",
+                        icon: "success",
+                    });
+
+                    dispatch({
+                        type: types.CREATE_CAMPO,
+                        data: data
+                    });
+                    resolve(data)
+                } else {
+                    console.log('***** err!!! ********', err)
+                    reject(err)
+                    showMessage({
+                        message: "Fail",
+                        description: "Campo created Fail",
+                        type: "danger",
+                        icon: "danger",
+                    });
+                }
+            })
+        })
+
+
 
 export function addLote(id, name, size, group) {
     return dispatch => {
@@ -38,6 +81,14 @@ export function removePolygon() {
     return dispatch => {
         dispatch({
             type: types.REMOVE_POLYGON,
+        });
+    }
+}
+
+export function removeLotes() {
+    return dispatch => {
+        dispatch({
+            type: types.REMOVE_LOTES,
         });
     }
 }
@@ -62,9 +113,12 @@ export function getGisFromCampoId(campo_id, field_id) {
     }
 }
 
-export function searchNotes(query) {
+export function searchNotes(query, text, date_from, date_to, sort_by) {
+
+    console.log(' search notes =>', query, text, date_from, date_to, sort_by)
+
     return dispatch => {
-        api.searchNotes(query, (err, res) => {
+        api.searchNotes(query, text, date_from, date_to, sort_by, (err, res) => {
             if (err == null) {
                 let data = res.data
                 dispatch({
@@ -78,9 +132,9 @@ export function searchNotes(query) {
     }
 }
 
-export function searchTasks(query) {
+export function searchTasks(query, search, startDate_note, endDate_note, sort_by) {
     return dispatch => {
-        api.searchTasks(query, (err, res) => {
+        api.searchTasks(query, search, startDate_note, endDate_note, sort_by, (err, res) => {
             if (err == null) {
                 let data = res.data
                 dispatch({

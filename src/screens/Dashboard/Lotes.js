@@ -12,6 +12,7 @@ import ActionButton from 'react-native-action-button'
 import text from '../../common/text'
 import * as HEADER from '../../components/Headers'
 import * as ICON from '../../components/Icons'
+import * as ATOM from '../../components/Atoms';
 
 const COORDS = [
     { lat: 39.795690, lon: 116.434728 },
@@ -26,6 +27,7 @@ export default class Lotes extends Component {
             create: false,
             region: REGION,
             text: 'Buscar',
+            isWaiting: false
         }
     }
 
@@ -142,7 +144,7 @@ export default class Lotes extends Component {
 
     render() {
 
-        const { create, region, editing } = this.state;
+        const { create, region, editing, isWaiting } = this.state;
         const allCoords = COORDS.map(c => ({
             geometry: {
                 coordinates: [c.lon, c.lat]
@@ -161,6 +163,9 @@ export default class Lotes extends Component {
 
         return (
             <View style={styles.container}>
+
+                {isWaiting && <ATOM.Loading />}
+
                 <MapView
                     ref={instance => this.map = instance}
                     provider={MapView.PROVIDER_GOOGLE}
@@ -255,7 +260,10 @@ export default class Lotes extends Component {
                         <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { this.setState({ create: true }) }}>
                             <Image source={images.lote} style={{ width: p(34), height: p(42) }} />
                         </ActionButton.Item>
-                        <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { }}>
+                        <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => Actions.addCampo()}>
+                            <Text style={{ fontSize: p(15), textAlign: 'center' }}>{'New\nCampo'}</Text>
+                        </ActionButton.Item>
+                        {/* <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { }}>
                             <Image source={images.nota} style={{ width: p(28), height: p(45) }} />
                         </ActionButton.Item>
                         <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { }}>
@@ -263,7 +271,7 @@ export default class Lotes extends Component {
                         </ActionButton.Item>
                         <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { }}>
                             <Image source={images.cultivo} style={{ width: p(33), height: p(46) }} />
-                        </ActionButton.Item>
+                        </ActionButton.Item> */}
                     </ActionButton>
                 }
 

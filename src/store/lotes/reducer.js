@@ -27,6 +27,15 @@ export default function job(state = initialState, action = {}) {
         status: action.status
       }
 
+    case types.CREATE_CAMPO:
+
+      return {
+        ...state,
+        type: types.CREATE_CAMPO,
+        status: action.status
+      }
+
+
     case types.ADD_LOTE:
 
       return {
@@ -59,6 +68,14 @@ export default function job(state = initialState, action = {}) {
         ...state,
         type: types.REMOVE_POLYGON,
         testPolygon: null,
+        status: action.status
+      }
+
+    case types.REMOVE_LOTES:
+      return {
+        ...state,
+        type: types.REMOVE_LOTES,
+        allLotes: null,
         status: action.status
       }
 

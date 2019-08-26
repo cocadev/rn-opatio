@@ -8,6 +8,7 @@ import { p } from '../../common/normalize';
 import { NOTIFICATION } from '../../common/config';
 import * as ICON from '../../components/Icons';
 import text from '../../common/text';
+import Cache from '../../common/cache';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -74,7 +75,7 @@ class Inbox extends React.Component {
 
         <View style={{ alignItems: 'center', marginTop: p(25) }}>
           <Text style={text.t_14_700_00}>Bienvenido otra vez</Text>
-          <Text style={[text.t_19_500_00, { marginTop: p(12) }]}>Joaquin Otero</Text>
+          <Text style={[text.t_19_500_00, { marginTop: p(12) }]}>{Cache.FIRST_NAME +' ' + Cache.LAST_NAME}</Text>
         </View>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
