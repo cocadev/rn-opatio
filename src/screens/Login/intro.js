@@ -14,11 +14,11 @@ export default class Intro extends React.Component {
             <View style={styles.container}>
                 <ICON.ImgLogo />
                 <ICON.ImgIntro />
-                <View style={{ alignItems: 'center', marginTop: p(-50)}}>
+                <View style={{ alignItems: 'center', marginTop: p(-40)}}>
                     <Text style={[text.t_14_500_ff, { textAlign: 'center', marginHorizontal: p(10)}]}>{INTRO}</Text>
-                    <BTN.WhiteSky title={'CREATE CUENTA GRATIS'} onClick={()=>Actions.signup()} top={20} bottom={20}/>
-                    <TouchableOpacity style={{ marginVertical: p(14) }} onPress={() => Actions.signin()}>
-                        <Text style={text.t_15_600_ff}>?YA TIENES CUENTA?</Text>
+                    <BTN.WhiteSky title={'CREATE CUENTA GRATIS'} onClick={()=>Actions.signup()} top={p(20)} bottom={p(20)}/>
+                    <TouchableOpacity style={{ marginBottom: p(40) }} onPress={() => Actions.signin()}>
+                        <Text style={text.t_15_600_ff}>¿YA TIENES UNA CUENTA?</Text>
                     </TouchableOpacity>
                 </View>
 

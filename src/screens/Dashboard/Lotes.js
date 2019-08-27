@@ -6,7 +6,7 @@ import { colors } from '../../common/colors'
 import { REGION } from '../../common/config'
 import { Actions } from 'react-native-router-flux'
 import { getCluster } from '../Map/Test/MapUtils'
-import MapView from 'react-native-maps'
+import MapView, { Callout } from 'react-native-maps'
 import ClusterMarker from '../Map/Test/ClusterMarker'
 import ActionButton from 'react-native-action-button'
 import text from '../../common/text'
@@ -164,7 +164,7 @@ export default class Lotes extends Component {
         return (
             <View style={styles.container}>
 
-                {isWaiting && <ATOM.Loading />}
+                {isWaiting && <ATOM.Loading visible={ isWaiting }/>}
 
                 <MapView
                     ref={instance => this.map = instance}
@@ -188,14 +188,14 @@ export default class Lotes extends Component {
                     {this.state.editing && create && <MapView.Polygon
                         coordinates={this.state.editing.coordinates}
                         strokeColor={colors.BLUE2}
-                        strokeWidth={3}
+                        strokeWidth={p(5)}
                     />}
                     {this.state.editing && create && this.state.editing.coordinates.map((marker, key) => (
                         <MapView.Marker
                             key={key}
                             coordinate={marker}
                         >
-                            <Image source={images.markerFlag} style={{ width: p(24), height: p(24), marginTop: p(5) }} />
+                            <View style={styles.roundPicker}></View>
                         </MapView.Marker>
                     ))}
                 </MapView>
@@ -217,14 +217,14 @@ export default class Lotes extends Component {
 
                 {
                     create && editing && editing.coordinates.length > 2 &&
-                    <TouchableOpacity onPress={() => this.finish()} style={{ position: 'absolute', right: p(12), bottom: p(70) }}>
+                    <TouchableOpacity onPress={() => this.finish()} style={{ position: 'absolute', right: p(12), bottom: p(110) }}>
                         <Image source={images.save} style={{ width: p(55), height: p(55), marginBottom: p(7), marginLeft: p(5) }} />
                     </TouchableOpacity>
                 }
 
                 {
                     create &&
-                    <TouchableOpacity onPress={() => this.remove()} style={{ position: 'absolute', right: p(12), bottom: p(10) }}>
+                    <TouchableOpacity onPress={() => this.remove()} style={{ position: 'absolute', right: p(12), bottom: p(50) }}>
                         <Image source={images.undo} style={{ width: p(55), height: p(55), marginBottom: p(7), marginLeft: p(5) }} />
                     </TouchableOpacity>
                 }
@@ -261,9 +261,9 @@ export default class Lotes extends Component {
                             <Image source={images.lote} style={{ width: p(34), height: p(42) }} />
                         </ActionButton.Item>
                         <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => Actions.addCampo()}>
-                            <Text style={{ fontSize: p(15), textAlign: 'center' }}>{'New\nCampo'}</Text>
+                            <Text style={{ fontSize: p(15), textAlign: 'center', color: colors.BLUE2 }}>{'New\nCampo'}</Text>
                         </ActionButton.Item>
-                        {/* <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { }}>
+                        <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { }}>
                             <Image source={images.nota} style={{ width: p(28), height: p(45) }} />
                         </ActionButton.Item>
                         <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { }}>
@@ -271,9 +271,16 @@ export default class Lotes extends Component {
                         </ActionButton.Item>
                         <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { }}>
                             <Image source={images.cultivo} style={{ width: p(33), height: p(46) }} />
-                        </ActionButton.Item> */}
+                        </ActionButton.Item>
                     </ActionButton>
                 }
+
+               {
+                   this.state.editing && 
+                <Callout style={{ bottom: p(12), alignSelf: 'center' }}>
+                  <Text style={styles.description}>{'Edita los bordes de tu lote y a continuacion\ntoca guardar'}</Text>
+                </Callout>
+               }
 
             </View>
         );
@@ -319,5 +326,18 @@ const styles = StyleSheet.create({
         left: p(22),
         width: p(20),
         height: p(19)
+      },
+      roundPicker: {
+        width: p(24), 
+        height: p(24), 
+        borderRadius: p(13),
+        backgroundColor: '#fff',
+        borderWidth: 1,
+        borderColor: '#787878',
+      },
+      description: {
+          color: '#fff',
+          fontSize: p(18),
+          textAlign: 'center'
       }
 });

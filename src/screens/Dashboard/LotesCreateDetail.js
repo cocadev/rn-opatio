@@ -58,7 +58,7 @@ export default class LoteCreateDetail extends React.Component {
             if (res && res.success) {
                 showMessage({
                     message: "Success",
-                    description: "Gis correctly saved",
+                    description: "Nuevo lote guardo correctamente",
                     type: "success",
                     icon: "success",
                 });

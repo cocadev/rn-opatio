@@ -52,7 +52,7 @@ export default class DropDownSearchCampo extends React.Component {
         }
       }}
     >
-      <Text style={text.t_12_400_2a}>{item.nombre}</Text>
+      <Text style={[text.t_12_400_2a, { color: colors.BLUE2}]}>{item.nombre}</Text>
     </TouchableOpacity>
   )
 

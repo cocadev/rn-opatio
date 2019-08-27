@@ -11,14 +11,15 @@ import { p } from '../../common/normalize'
 import { Entypo, Ionicons } from '@expo/vector-icons'
 import api from '../../common/api'
 import Validation from '../../common/validation'
+import { showMessage } from "react-native-flash-message";
 
 class SignIn extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            email: 'demo@optiagro.com', //demo@optiagro.com
-            password: 'optiagroA98C', //optiagroA98C
+            email: '', //demo@optiagro.com
+            password: '', //optiagroA98C
             eye: false,
             isWaiting: false,
         }
@@ -33,13 +34,24 @@ class SignIn extends React.Component {
 
         this.setState({ isWaiting: true })
         try {
-            await api.auth(this.state.email, this.state.password, async (res, err) => {
+            await api.auth(this.state.email, this.state.password, async (res) => {
                 this.setState({ isWaiting: false })
-                if (err == null) {
+                if (res.success) {
                     console.log("* res *", res)
                     this.props.update(res)
+                    showMessage({
+                        message: "Success",
+                        description: "Login Success!",
+                        type: "success",
+                        icon: "success",
+                    });
                 } else {
-                    console.log("*err*", err)
+                    showMessage({
+                        message: "Fail",
+                        description: "Invalid password account!",
+                        type: "danger",
+                        icon: "danger",
+                    });
                 }
             })
 
@@ -70,6 +82,7 @@ class SignIn extends React.Component {
                         style={styles.input}
                         placeholder={'Email de trabajo:'}
                         underlineColorAndroid='transparent'
+                        autoCapitalize = 'none'
                         onChangeText={email => this.setState({ email })}
                         value={email}
                     />
@@ -92,12 +105,12 @@ class SignIn extends React.Component {
 
                 </View>
 
-                <View style={{ alignItems: 'center', marginVertical: p(40) }}>
+                <View style={{ alignItems: 'center', marginVertical: p(60) }}>
 
-                    <BTN.SkyWhite title={'INGRASAR'} onClick={this.auth} bottom={20}/>
+                    <BTN.SkyWhite title={'INGRESAR'} onClick={this.auth} bottom={p(20)}/>
 
                     <TouchableOpacity onPress={() => Actions.forgot()}>
-                        <Text style={styles.btnText}>?YA TIENES CUENTA?</Text>
+                        <Text style={styles.btnText}>¿YA TIENES CUENTA?</Text>
                     </TouchableOpacity>
 
                 </View>

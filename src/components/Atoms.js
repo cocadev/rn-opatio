@@ -1,12 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Modal } from 'react-native';
 import { p } from '../common/normalize';
 import text from '../common/text';
 import { colors } from '../common/colors';
 import LottieView from 'lottie-react-native';
-
-const width = Dimensions.get('window').width
-const height = Dimensions.get('window').height
 
 export const Atom1 = props => (
   <View style={styles.item}>
@@ -23,24 +20,22 @@ export const Atom1 = props => (
   </View>
 )
 
-export const Loading = () => (
-  <View style={{
-    backgroundColor: '#555',
-    opacity: 0.9,
-    position: 'absolute',
-    height,
-    width,
-    zIndex: 2,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }}>
-    {/* <ActivityIndicator size={p(50)} color={colors.GREEN} /> */}
-    <LottieView
-      loop
-      source={require('../common/reload.json')}
-      autoPlay
-    />
-  </View>
+export const Loading = (props) => (
+  <Modal
+    visible={props.visible}
+    transparent={true}
+    onRequestClose={() => { }}
+  >
+    <View style={styles.indicatorContainer}>
+      <View style={styles.indicator}>
+        <LottieView
+          loop
+          source={require('../common/reload.json')}
+          autoPlay
+        />
+      </View>
+    </View>
+  </Modal>
 )
 
 
@@ -59,5 +54,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     flex: 1
-  }
+  },
+  indicatorContainer: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0,0.5)",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  indicator: {
+    width: p(80),
+    height: p(80),
+    borderRadius: 5,
+    shadowColor: "black",
+    alignItems: "center",
+    justifyContent: "center",
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    backgroundColor: "white"
+  },
 });

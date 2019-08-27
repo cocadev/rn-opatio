@@ -1,18 +1,13 @@
 import * as React from 'react';
-import { View, StyleSheet, Image, Text, TextInput, TouchableOpacity, Modal, ToastAndroid, Dimensions, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
 import { colors } from '../../common/colors';
-import { images } from '../../common/images';
-import * as actions from "../../store/common/actions";
+import { Entypo } from '@expo/vector-icons';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Actions } from 'react-native-router-flux';
-import LottieScreen from '../../components/Lottie';
 import { p } from '../../common/normalize';
 import * as BTN from '../../components/Buttons';
-import { Entypo } from '@expo/vector-icons';
-
-const width = Dimensions.get('window').width
-const height = Dimensions.get('window').height
+import * as actions from "../../store/common/actions";
 
 class Forgot extends React.Component {
 
@@ -41,6 +36,7 @@ class Forgot extends React.Component {
                         style={styles.input}
                         placeholder={'Email de trabajo:'}
                         underlineColorAndroid='transparent'
+                        autoCapitalize = 'none'
                         onChangeText={email => this.setState({ email })}
                         value={email}
                     />

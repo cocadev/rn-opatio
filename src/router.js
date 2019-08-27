@@ -39,7 +39,6 @@ export default class App extends PureComponent {
         Cache.ACCESS_TOKEN = token;
         Cache.FIRST_NAME = firstName;
         Cache.LAST_NAME = lastName;
-
         this.setState({ authed: 2 })
       } else {
         this.setState({ authed: 1 })
@@ -62,6 +61,9 @@ export default class App extends PureComponent {
     Cache.COMPANY_ID = res.success.company_id;
     Cache.EMAIL = res.success.email;
     Cache.ID = res.success.id;
+    Cache.FIRST_NAME = res.success.first_name;
+    Cache.LAST_NAME = res.success.last_name;
+
     try {
       await AsyncStorage.setItem('TOKEN', res.success.access_token);
       await AsyncStorage.setItem('COMPANY_ID', res.success.company_id);

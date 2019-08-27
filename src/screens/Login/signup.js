@@ -45,6 +45,7 @@ class SignUp extends React.Component {
                         style={styles.input}
                         placeholder={'Email de trabajo:'}
                         underlineColorAndroid='transparent'
+                        autoCapitalize = 'none'
                         onChangeText={name => this.setState({ name })}
                         value={name}
                     />
