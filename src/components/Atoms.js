@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Modal } from 'react-native';
+import { View, Text, StyleSheet, Modal, Image } from 'react-native';
 import { p } from '../common/normalize';
 import text from '../common/text';
 import { colors } from '../common/colors';
@@ -28,11 +28,13 @@ export const Loading = (props) => (
   >
     <View style={styles.indicatorContainer}>
       <View style={styles.indicator}>
-        <LottieView
+        {/* <LottieView
           loop
           source={require('../common/reload.json')}
           autoPlay
-        />
+        /> */}
+        <Image source={require('../../assets/images/loading.gif')} style={{width: p(50), height: p(50)}} />
+
       </View>
     </View>
   </Modal>
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
   },
   indicatorContainer: {
     flex: 1,
-    backgroundColor: "rgba(0, 0, 0,0.5)",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
     alignItems: "center",
     justifyContent: "center"
   },
@@ -71,6 +73,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.4,
     shadowRadius: 3,
-    backgroundColor: "white"
+    backgroundColor: "#20409A"
   },
 });

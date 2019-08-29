@@ -258,7 +258,7 @@ module.exports = {
 
   ////////////////////////////// Lotes //////////////////////
   getAllLotes(skip, cb) {
-    this.baseApi(`campos?skip=${skip}&limit=20`, 'GET', {}, cb)
+    this.baseApi(`campos?skip=${skip}&limit=10`, 'GET', {}, cb)
   },
 
   getLotesCamposByFieldId(field_id, cb) {

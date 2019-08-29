@@ -4,8 +4,8 @@ const { width, height } = Dimensions.get('window');
 export const ASPECT_RATIO = width / height;
 export const LATITUDE_DELTA = 0.04;
 export const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-export const LONGITUDE = -96.9231;
-export const LATITUDE = 18.8901;
+export const LATITUDE = -33.1231585;
+export const LONGITUDE = -64.3493441;
 export const MARKERS_LATITUDE_DELTA = 0.03;
 export const MARKERS_LONGITUDE_DELTA = MARKERS_LATITUDE_DELTA * ASPECT_RATIO;
 export const MAP_LATITUDE_DELTA = 0.3;
@@ -549,21 +549,18 @@ export const customCalendarStyles = {
 }
 
 export const carouselList = [
-  "https://www.disneyfanatic.com/wp-content/uploads/2015/02/What-Do-Your-Favorite-Disney-Characters-Say-About-You.jpg",
-  "http://dslv9ilpbe7p1.cloudfront.net/q_AGGYqTPGhBMa1QKtWLcg_store_header_image",
-  "https://images-na.ssl-images-amazon.com/images/I/81uUIk9PAHL._SX355_.jpg",
-  "https://cdn7.wdwnt.com/wp-content/uploads/2019/03/b3cff0c9ba63adc8d8bd8a806c33f351.jpg",
-  "https://i.ytimg.com/vi/CNV3WLx5Ez4/maxresdefault.jpg",
+  "http://www.fragsource.com/wp-content/uploads/2012/01/coming-soon.jpg",
+  "http://www.fragsource.com/wp-content/uploads/2012/01/coming-soon.jpg",
+  "http://www.fragsource.com/wp-content/uploads/2012/01/coming-soon.jpg",
+  "http://www.fragsource.com/wp-content/uploads/2012/01/coming-soon.jpg",
+  "http://www.fragsource.com/wp-content/uploads/2012/01/coming-soon.jpg",
 ];
 
 /////////////// DropDown ////////////////
 export const create1 = [
+  { name: '2018' },
   { name: '2019' },
   { name: '2020' }, 
-  { name: '2021' }, 
-  { name: '2022' },
-  { name: '2023' },
-  { name: '2024' }
 ]
 
 export const assign = [

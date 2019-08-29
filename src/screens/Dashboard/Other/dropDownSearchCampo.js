@@ -1,5 +1,5 @@
 import React from "react"
-import { View, StyleSheet, FlatList, Text, TouchableOpacity, ActivityIndicator, Dimensions } from "react-native"
+import { View, StyleSheet, FlatList, Text, TouchableOpacity, Dimensions } from "react-native"
 import { colors } from "../../../common/colors"
 import { p } from "../../../common/normalize"
 import { Actions } from "react-native-router-flux"
@@ -7,38 +7,21 @@ import * as ICON from '../../../components/Icons'
 import * as HEADER from '../../../components/Headers'
 import Cstyles from '../../../common/c_style'
 import text from "../../../common/text"
-import api from '../../../common/api'
 import { Entypo } from '@expo/vector-icons';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import * as actions from "../../../store/lotes/actions";
 
 const width = Dimensions.get('window').width
 
-export default class DropDownSearchCampo extends React.Component {
+class DropDownSearchCampo extends React.Component {
 
   constructor() {
     super();
     this.state = {
       campos: null,
       isWaiting: false,
-      skip: 0,
-      count: 0,
-      total: 0
     }
-  }
-
-  componentDidMount() {
-    this.onfetchData(this.state.count);
-  }
-
-  onfetchData(skip) {
-    console.log('***********', skip)
-    this.setState({ isWaiting: true })
-    api.getAllLotes(skip, (err, res) => {
-      if (err == null) {
-        this.setState({ isWaiting: false, campos: res.data, total: res.count })
-      } else {
-        this.setState({ isWaiting: false })
-      }
-    })
   }
 
   _renderItem = ({ item, key }) => (
@@ -52,23 +35,11 @@ export default class DropDownSearchCampo extends React.Component {
         }
       }}
     >
-      <Text style={[text.t_12_400_2a, { color: colors.BLUE2}]}>{item.nombre}</Text>
+      <Text style={[text.t_12_400_2a, { color: colors.BLUE2, textAlign: 'center' }]}>{item.nombre}</Text>
     </TouchableOpacity>
   )
 
-  onPrev() {
-    this.setState({ count: this.state.count - 1 })
-    this.onfetchData(this.state.count * 20)
-  }
-
-  onNext() {
-    this.setState({ count: this.state.count + 1 })
-    this.onfetchData(this.state.count * 20)
-  }
-
   render() {
-
-    const { isWaiting, campos, count, total } = this.state
 
     return (
       <View style={Cstyles.container}>
@@ -79,34 +50,30 @@ export default class DropDownSearchCampo extends React.Component {
           icon={<ICON.IconLocation />}
         />
 
-        {
-          isWaiting
-            ? <ActivityIndicator size={p(32)} color={colors.BLUE} style={{ marginTop: p(12) }} />
-            : <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
-              <View style={{ flexDirection: 'row', justifyContent: 'space-around', padding: p(12), width: p(300), alignItems: 'center'}}>
-              <View style={styles.center}>
-                  {count !== 0 && <Entypo name={'arrow-bold-left'} size={32} color={colors.BLUE} onPress={() => { this.onPrev() }} />}
-                </View>
-                <View style={styles.center}>
-                  <Text style={{ fontSize: p(21), color: colors.BLUE }}>{count}</Text>
-                </View>
-                <View style={styles.center}>
-                  {((count + 1) * 20 < total) && <Entypo name={'arrow-bold-right'} size={32} color={colors.BLUE} onPress={() => { this.onNext() }} />}
-                </View>
-              </View>
-              <FlatList
-                style={{ width: width }}
-                data={campos}
-                keyExtractor={(item, i) => String(i)}
-                renderItem={this._renderItem}
-              />
-            </View>
-        }
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
+          <FlatList
+            style={{ width: width }}
+            data={this.props.allLotes}
+            keyExtractor={(item, i) => String(i)}
+            numColumns={2}
+            renderItem={this._renderItem}
+          />
+        </View>
       </View>
 
     )
   }
 }
+
+export default connect(
+  state => ({
+    allLotes: state.lotes.allLotes,
+  }),
+  dispatch => ({
+    actions: bindActionCreators(actions, dispatch)
+  })
+)(DropDownSearchCampo);
+
 
 const styles = StyleSheet.create({
   container: {
@@ -115,19 +82,19 @@ const styles = StyleSheet.create({
     backgroundColor: colors.WHITE
   },
   row: {
-    width: p(180),
+    flex: 1,
     height: p(40),
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
     borderColor: colors.TEXT,
-    borderWidth: p(3),
+    borderWidth: 2,
     borderRadius: p(6),
     margin: p(12)
   },
   center: {
-    flex: 1, 
-    justifyContent: 'center', 
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center'
   }
 })

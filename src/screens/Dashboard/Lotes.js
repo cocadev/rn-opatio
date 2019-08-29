@@ -15,7 +15,7 @@ import * as ICON from '../../components/Icons'
 import * as ATOM from '../../components/Atoms';
 
 const COORDS = [
-    { lat: 39.795690, lon: 116.434728 },
+    { lat: -33.1231585, lon: -64.3493441 },
 ];
 
 export default class Lotes extends Component {
@@ -88,24 +88,31 @@ export default class Lotes extends Component {
     }
 
     onPress(e) {
-        const { editing } = this.state;
-        if (!editing) {
-            this.setState({
-                editing: {
-                    coordinates: [e.nativeEvent.coordinate],
-                },
-            });
+
+        const { editing, create } = this.state;
+
+        if( create){
+            if (!editing) {
+                this.setState({
+                    editing: {
+                        coordinates: [e.nativeEvent.coordinate],
+                    },
+                });
+            } else {
+                this.setState({
+                    editing: {
+                        ...editing,
+                        coordinates: [
+                            ...editing.coordinates,
+                            e.nativeEvent.coordinate,
+                        ],
+                    },
+                });
+            }
         } else {
-            this.setState({
-                editing: {
-                    ...editing,
-                    coordinates: [
-                        ...editing.coordinates,
-                        e.nativeEvent.coordinate,
-                    ],
-                },
-            });
+            console.log(' Ung')
         }
+     
     }
 
     renderMarker = (marker, index) => {
@@ -156,7 +163,7 @@ export default class Lotes extends Component {
             scrollEnabled: true,
         };
 
-        if (this.state.editing) {
+        if (!!editing)  {
             mapOptions.scrollEnabled = false;
             mapOptions.onPanDrag = e => this.onPress(e);
         }
@@ -276,9 +283,14 @@ export default class Lotes extends Component {
                 }
 
                {
-                   this.state.editing && 
+                    this.state.editing && 
                 <Callout style={{ bottom: p(12), alignSelf: 'center' }}>
-                  <Text style={styles.description}>{'Edita los bordes de tu lote y a continuacion\ntoca guardar'}</Text>
+                  <Text style={styles.description}>
+                    { editing.coordinates.length == 1 && 'Marca una esquina de tu lote para comenzar' }
+                    { editing.coordinates.length == 2 && 'Marca las siguientes esquinas hasta completar\nel perimetro del lote' }
+                    { editing.coordinates.length > 2 && 'Edita los bordes de tu lote y a continuacion\ntoca guardar' }
+
+                  </Text>
                 </Callout>
                }
 

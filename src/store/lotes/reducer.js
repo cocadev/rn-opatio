@@ -27,6 +27,22 @@ export default function job(state = initialState, action = {}) {
         status: action.status
       }
 
+    case types.ADD_STEP_LOTES:
+
+      var lotes = state.allLotes
+
+      _.filter(action.data, (u) => {
+        console.log(' * john2 *', u)
+        return lotes.push(u)
+      })
+      
+      return {
+        ...state,
+        type: types.ADD_STEP_LOTES,
+        allLotes: lotes,
+        status: action.status
+      }
+
     case types.CREATE_CAMPO:
 
       return {

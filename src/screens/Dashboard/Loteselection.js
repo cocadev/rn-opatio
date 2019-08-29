@@ -4,7 +4,6 @@ import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
 import { Actions } from 'react-native-router-flux'
-import { Entypo } from '@expo/vector-icons'
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Map from '../../components/Map'
@@ -13,7 +12,6 @@ import * as ICON from '../../components/Icons'
 import * as HEADER from '../../components/Headers'
 import * as CONFIG from '../../common/config'
 import * as actions from "../../store/lotes/actions";
-import * as ATOM from '../../components/Atoms';
 
 class LoteSelection extends Component {
 
@@ -31,11 +29,19 @@ class LoteSelection extends Component {
     }
 
     onfetchData(skip) {
-        this.setState({ isWaiting: true})
+
+        this.setState({ isWaiting: true })
+
         this.props.actions.removeLotes()
+
         this.props.actions.getAllLotes(skip)
-        .then(()=>{ this.setState({ isWaiting: false})})
-        .catch(e=> { this.setState({ isWaiting: false})})
+            .then((res) => {
+                this.setState({ isWaiting: true })
+                for (var i = 10; i < res; i = i + 10) {
+                    this.props.actions.addStepLotes(i).then(()=> this.setState({ isWaiting: false }) )
+                }
+            })
+            .catch(e => { this.setState({ isWaiting: false }) })
     }
 
     _onGoTo = (x, y) => {
@@ -84,23 +90,12 @@ class LoteSelection extends Component {
         )
     }
 
-    onPrev() {
-        this.onfetchData((this.state.skip - 1) * 20)
-        this.setState({ skip: this.state.skip - 1 })
-    }
-
-    onNext() {
-        this.onfetchData((this.state.skip + 1) * 20)
-        this.setState({ skip: this.state.skip + 1 })
-    }
-
     render() {
         const { skip, isWaiting } = this.state
         const { allLotesCount, allLotes } = this.props
         return (
             <View style={Cstyles.container}>
 
-                {isWaiting && <ATOM.Loading />}
 
                 <HEADER.NormalIcon
                     title={'Lotes'}
@@ -120,25 +115,24 @@ class LoteSelection extends Component {
                         <ICON.IconWhiteSearch right={p(20)} />
                     </View>
 
-                    {allLotesCount !== 0 && <View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', padding: p(12), alignItems: 'center' }}>
-                            <View style={{ flex: 1, alignItems: 'center' }}>
-                                {skip !== 0 && <Entypo name={'arrow-bold-left'} size={32} color={colors.BLUE} onPress={() => { this.onPrev() }} />}
-                            </View>
-                            <View style={{ flex: 1, alignItems: 'center' }}>
-                                <Text style={{ fontSize: p(16) }}>{parseInt(skip + 1)}</Text>
-                            </View>
-                            <View style={{ flex: 1, alignItems: 'center' }}>
-                                {(skip + 1) * 20 < allLotesCount && <Entypo name={'arrow-bold-right'} size={32} color={colors.BLUE} onPress={() => { this.onNext() }} />}
-                            </View>
-                        </View>
+                    <View>
+
                         <FlatList
                             data={allLotes}
                             keyExtractor={(item, i) => String(i)}
                             renderItem={this._renderItem}
                             extraData={this.state}
                         />
-                    </View>}
+
+
+
+                    </View>
+
+                    {isWaiting &&
+                        <View style={{ flex: 1, marginVertical: p(20), }}>
+                            <Image source={require('../../../assets/images/loading.gif')} style={{ width: p(50), height: p(50), alignSelf: 'center' }} />
+                        </View>
+                    }
 
                 </ScrollView>
             </View>

@@ -27,6 +27,47 @@ class UtilService {
         return padWithZero(d.getMonth() + 1) + '/' + padWithZero(d.getDate()) + '/' + year.toString().substring(2)
     }
 
+    static getDatebylongNumberWithDate(date) {
+        let d = new Date(date);
+        const padWithZero = number => {
+            const string = number.toString();
+            if (number < 10) {
+                return "0" + string;
+            }
+            return string;
+        };
+        let year = d.getFullYear()
+        return padWithZero(d.getMonth() + 1) + '/' + padWithZero(d.getDate()) + '/' + year.toString().substring(2)
+    } 
+    
+    static getMonth(date) {
+        let d = new Date(date);
+        const padWithZero = number => {
+            const string = number.toString();
+            if (number < 10) {
+                return "0" + string;
+            }
+            return string;
+        };
+        let month = padWithZero(d.getMonth() + 1)
+
+        if(month == 1) { month = 'JAN'}
+        if(month == 2) { month = 'FEB'}
+        if(month == 3) { month = 'MAR'}
+        if(month == 4) { month = 'APR'}
+        if(month == 5) { month = 'MAY'}
+        if(month == 6) { month = 'JUN'}
+        if(month == 7) { month = 'JUL'}
+        if(month == 8) { month = 'AUG'}
+        if(month == 9) { month = 'SEP'}
+        if(month == 10) { month = 'OCT'}
+        if(month == 11) { month = 'NOB'}
+        if(month == 12) { month = 'DEC'}
+
+        return month
+    } 
+    
+
     static getDatebyshortNumber(date) {
         let d = new Date(date);
         const padWithZero = number => {

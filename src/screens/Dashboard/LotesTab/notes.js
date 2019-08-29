@@ -7,6 +7,7 @@ import { Actions } from 'react-native-router-flux';
 import Cstyles from '../../../common/c_style';
 import styles from './styles'
 import * as DROPDOWN from '../../../components/DropDown';
+import UtilService from '../../../common/utils'
 
 export default class Noteas extends React.Component {
 
@@ -28,10 +29,10 @@ export default class Noteas extends React.Component {
 
                 <View style={{ flex: 1, width: p(270) }}>
 
-                    <View style={{ flexDirection: 'row', marginHorizontal: p(22), marginVertical: p(14) }}>
-                        <View style={{ backgroundColor: colors.GREY5, height: 1, flex: 1, alignSelf: 'center' }} />
-                        <Text style={{ alignSelf: 'center', paddingHorizontal: p(16), fontSize: p(12) }}>{item._id.year + ": week " + item._id.week}</Text>
-                        <View style={{ backgroundColor: colors.GREY5, height: 1, flex: 1, alignSelf: 'center' }} />
+                    <View style={{ flexDirection: 'row', marginRight: p(30), marginLeft: p(90), marginVertical: p(14) }}>
+                        <View style={{ backgroundColor: colors.GREY5, height: 1.2, flex: 1, alignSelf: 'center' }} />
+                        <Text style={{ alignSelf: 'center', paddingHorizontal: p(16), fontSize: p(12) }}>{"Semana " + item._id.week + " del " + item._id.year}</Text>
+                        <View style={{ backgroundColor: colors.GREY5, height: 1.2, flex: 1, alignSelf: 'center' }} />
                     </View>
 
                     <FlatList
@@ -39,7 +40,17 @@ export default class Noteas extends React.Component {
                         keyExtractor={(item, i) => String(i)}
                         renderItem={({ item: x }) =>
                             <View style={{ flexDirection: 'row', backgroundColor: colors.WHITE }}>
-                                <View style={{ width: p(20) }}>
+
+                                <View style={{ flexDirection: 'column'}}>
+                                    <Text style={{ fontSize: p(10), fontWeight: '500', color: '#303030', marginTop: p(20) }}>
+                                        {UtilService.getMonth(x.date)}
+                                    </Text>
+                                    <Text style={{ fontSize: p(9), color: '#404040', marginTop: p(2) }}>
+                                        {UtilService.getDatebylongNumberWithDate(x.date)}
+                                    </Text>
+                                </View>
+
+                                <View style={{ width: p(10) }}>
                                     <Text style={{ fontSize: 9 }}></Text>
                                     <Text style={{ fontSize: 9 }}></Text>
                                 </View>

@@ -15,14 +15,31 @@ export const getAllLotes = (query) =>
                         data: data,
                         count: count
                     });
-                    resolve(data)
+                    resolve(count)
                 } else {
                     reject(err)
                 }
             })
         })
 
+export const addStepLotes = (query) =>
+    dispatch =>
+        new Promise(function (resolve, reject) {
 
+            api.getAllLotes(query, (err, res) => {
+
+                if (err == null) {
+                    let data = res.data
+                    dispatch({
+                        type: types.ADD_STEP_LOTES,
+                        data: data,
+                    });
+                    resolve(data)
+                } else {
+                    reject(err)
+                }
+            })
+        })
 
 export const createCampo = (title) =>
 
