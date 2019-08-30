@@ -118,6 +118,7 @@ class TareasEdit extends Component {
     }
 
     _pickImage = async () => {
+        this.setState({ visibleModal: false})
         let result = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
             aspect: [4, 3],
@@ -176,9 +177,9 @@ class TareasEdit extends Component {
                                 <Text style={{ fontSize: p(15) }}>Images</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        {/* <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                             {this.state.image && <Image source={{ uri: this.state.image }} style={styles.photo} />}
-                        </View>
+                        </View> */}
                         <View style={{ position: 'absolute', right: 5, bottom: 5 }}>
                             <TouchableOpacity onPress={() => this.setState({ visibleModal: false })}>
                                 <Text>Close</Text>
@@ -198,7 +199,7 @@ class TareasEdit extends Component {
     render() {
 
         const Lote = this.props.testLote;
-        const { date_from, date_to, isWaiting } = this.state;
+        const { date_from, date_to, isWaiting, image } = this.state;
 
         return (
             <View style={Cstyles.container}>
@@ -220,6 +221,10 @@ class TareasEdit extends Component {
                         <TouchableOpacity onPress={() => this.setState({ visibleModal: true })}>
                             <Image source={images.photoAdd} style={{ width: p(38), height: p(35) }} />
                         </TouchableOpacity>
+                    </View>
+
+                    <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.BLUE2 }}>
+                        {image && <Image source={{ uri: image }} style={styles.photo} />}
                     </View>
 
                     <View style={{ backgroundColor: colors.BLUE2 }}>
@@ -259,7 +264,7 @@ class TareasEdit extends Component {
 
                     <View style={{ backgroundColor: colors.WHITE, alignItems: 'center', paddingBottom: p(12) }}>
                         <Text style={styles.text5}>{'MARCAR EN EL MAPA'}</Text>
-                        <BTN.BtnNormal title={'USAR MI UBICACIÓN'} top={p(18)} back={colors.BLUE2} />
+                        {/* <BTN.BtnNormal title={'USAR MI UBICACIÓN'} top={p(18)} back={colors.BLUE2} /> */}
                     </View>
 
                     <ATOM.Atom1
@@ -345,7 +350,11 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         fontSize: p(37),
         fontWeight: '400',
-        marginVertical: p(8)
+        width: p(260),
+        marginVertical: p(8),
+        borderColor: '#fff',
+        borderWidth: 2,
+        borderRadius: 5
     },
     indicatorContainer: {
         flex: 1,
@@ -369,7 +378,7 @@ const styles = StyleSheet.create({
         borderColor: 'grey',
         borderWidth: 1.5,
         borderRadius: 3,
-        width: p(100),
-        height: p(100)
+        width: p(150),
+        height: p(150)
     }
 });

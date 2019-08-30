@@ -36,6 +36,7 @@ import addTareas from '../screens/Dashboard/LotesTab/addTareas';
 import CheckMap from '../screens/Dashboard/LotesTab/checkMap';
 import addNotes from '../screens/Dashboard/LotesTab/addNotes';
 import LoteCreateCampo from '../screens/Dashboard/LotesCreateCampo';
+import checkLote from '../screens/Dashboard/LotesTab/checkLote';
 
 const width = Dimensions.get('window').width
 const AUTH = [
@@ -79,8 +80,9 @@ const MAIN = [
   { key: 'checkMap',                  component: CheckMap},
   { key: 'addNotes',                  component: addNotes},
   { key: 'addCampo',                  component: LoteCreateCampo},
+  { key: 'checkLote',                  component: checkLote},
 
-
+  
   
 
 ]

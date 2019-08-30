@@ -20,7 +20,7 @@ export const Gradient = props => (
       >
         <Text style={text.t_14_500_ff}>EDITAR</Text>
       </TouchableOpacity>
-      <MaterialCommunityIcons name={'dots-vertical'} size={p(30)} color={colors.BLUE2} />
+      {/* <MaterialCommunityIcons name={'dots-vertical'} size={p(30)} color={colors.BLUE2} /> */}
     </View>
   </View>
 )
@@ -56,9 +56,9 @@ export const Complex = props => (
       <Text style={[text.t_15_600_ff, props.back == colors.WHITE ? { color: colors.DARK } : { color: colors.WHITE }]}>{props.address}</Text>
     </View>
     <View style={styles.line}></View>
-    <View style={{ flexDirection: 'row', marginLeft: p(5), alignItems: 'center'}}>
+    <View style={{ flexDirection: 'row', marginRight: p(12), alignItems: 'center'}}>
       <Text style={[text.t_15_600_ff, props.back == colors.WHITE ? { color: colors.DARK } : { color: colors.WHITE }]}>{props.head}</Text>
-      <Test />
+      {/* <Test /> */}
     </View>
   </View>
 )

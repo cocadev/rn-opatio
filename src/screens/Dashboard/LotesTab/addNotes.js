@@ -33,6 +33,9 @@ class AddNotes extends Component {
             image: null,
             media_id: null,
             note: '',
+            campo: '',
+            field: '',
+            campo_id: null
         }
     }
 
@@ -41,6 +44,8 @@ class AddNotes extends Component {
     }
 
     takePicture = async () => {
+
+        this.setState({ visibleModal: false })
 
         let res = await Permissions.askAsync(Permissions.CAMERA)
         if (res.status === 'granted') {
@@ -74,6 +79,9 @@ class AddNotes extends Component {
     }
 
     _pickImage = async () => {
+
+        this.setState({ visibleModal: false })
+
         let result = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
             aspect: [4, 3],
@@ -111,9 +119,6 @@ class AddNotes extends Component {
                                 <Text style={{ fontSize: p(15) }}>Images</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            {this.state.image && <Image source={{ uri: this.state.image }} style={styles.photo} />}
-                        </View>
                         <View style={{ position: 'absolute', right: 5, bottom: 5 }}>
                             <TouchableOpacity onPress={() => this.setState({ visibleModal: false })}>
                                 <Text>Close</Text>
@@ -126,29 +131,29 @@ class AddNotes extends Component {
     }
 
     onUpdate = () => {
-        const { title, date, media_id, note } = this.state
+        const { title, date, media_id, note, campo_id } = this.state
 
-        if(!ValidationService.addNote(title, note, date, media_id)){
+        if (!ValidationService.addNote(title, note, date, media_id, campo_id)) {
             return false
         }
 
-        this.props.actions.addNote(this.props.testLote.id, title, note, date, media_id)
-            .then((res=> {
+        this.props.actions.addNote(campo_id, title, note, date, media_id)
+            .then((res => {
                 Actions.pop()
             }))
-            .catch(e=> console.log('** e **', e))
+            .catch(e => console.log('** e **', e))
     }
 
     render() {
 
-        const { title, date, isWaiting, note } = this.state;
+        const { title, date, isWaiting, note, image, field, campo } = this.state;
 
         return (
             <View style={Cstyles.container}>
 
                 {isWaiting && <ATOM.Loading />}
 
-                <HEADERS.GUARDAR back={colors.BLUE2} onClick={this.onUpdate} />
+                <HEADERS.GUARDAR back={colors.ORANGE} onClick={this.onUpdate} />
 
                 <ScrollView>
 
@@ -163,7 +168,28 @@ class AddNotes extends Component {
                             <Image source={images.photoAdd} style={{ width: p(38), height: p(35) }} />
                         </TouchableOpacity>
                     </View>
-                    
+
+                    <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.ORANGE }}>
+                        {image && <Image source={{ uri: image }} style={styles.img} />}
+                    </View>
+
+                    <ATOM.Atom1
+                        icon={<ICON.IconSquare />}
+                        title={'En lote'}
+                        note={field + '-' + campo}
+                        right={
+                            <TouchableOpacity
+                                onPress={() => Actions.checkLote({
+                                    update: (field_name, field_id, lote_name) => {
+                                        this.setState({ field: field_name, campo: lote_name, campo_id: field_id })
+                                    }
+                                })}
+                            >
+                                <Text style={text.t_15_600_orange}>Edit</Text>
+                            </TouchableOpacity>
+                        }
+                    />
+
                     <View style={styles.item}>
                         <ICON.IconMember />
                         <View style={{ marginLeft: p(20) }}>
@@ -181,7 +207,7 @@ class AddNotes extends Component {
                         title={'Vence'}
                         note={date}
                         right={
-                            date && <DatePicker date={date} onClick={(x) => this.dateCheck(x)} />
+                            date && <DatePicker date={date} onClick={(x) => this.dateCheck(x)} color={colors.ORANGE}/>
                         }
                     />
 
@@ -216,7 +242,7 @@ const styles = StyleSheet.create({
         fontSize: p(37)
     },
     text5: {
-        color: colors.BLUE2,
+        color: colors.ORANGE,
         flex: 1,
         textAlign: 'center',
         fontWeight: '700',
@@ -234,9 +260,9 @@ const styles = StyleSheet.create({
         color: colors.GREY4
     },
     textRow: {
-        backgroundColor: colors.BLUE2,
+        backgroundColor: colors.ORANGE,
         padding: p(30),
-        paddingBottom: p(50),
+        paddingBottom: p(20),
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center'
@@ -249,7 +275,7 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         marginVertical: p(8),
         borderColor: '#fff',
-        borderWidth: 2,
+        borderWidth: 1,
         borderRadius: 5
     },
     itemInput: {
@@ -259,7 +285,7 @@ const styles = StyleSheet.create({
         borderColor: 'grey',
         width: p(220),
         paddingLeft: p(4),
-        borderWidth: 2,
+        borderWidth: 1,
         borderRadius: 5
     },
     indicatorContainer: {
@@ -269,8 +295,8 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     indicator: {
-        width: p(200),
-        height: p(200),
+        width: p(140),
+        height: p(100),
         borderRadius: 5,
         shadowColor: "black",
         alignItems: "center",
@@ -297,4 +323,13 @@ const styles = StyleSheet.create({
         borderTopColor: colors.GREY3,
         borderTopWidth: p(7)
     },
+    img: {
+        marginBottom: p(20),
+        alignSelf: 'center',
+        width: p(150),
+        height: p(150),
+        borderWidth: 1,
+        borderRadius: 5,
+        borderColor: 'grey'
+    }
 });

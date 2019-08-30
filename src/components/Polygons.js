@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import MapView from 'react-native-maps'
 import { View } from 'react-native'
+import { colors } from '../common/colors';
 
 class Polygons extends React.Component {
 
@@ -20,7 +21,7 @@ class Polygons extends React.Component {
       <View>
         <MapView.Polygon
           coordinates={this.state.ticket}
-          strokeColor={'#cc00cc'}
+          strokeColor={colors.BLUE2}
           strokeWidth={4}
         />
       </View>

@@ -77,7 +77,7 @@ export default class ValidationService {
         return result
     }
 
-    static addTask(title, date_from, date_to, description, lat, lng, media_id, assigned_to, supervised_by) {
+    static addTask(title, date_from, date_to, description, lat, lng, media_id, assigned_to, supervised_by, campo_id) {
 
         let result = true
         let message = null;
@@ -90,6 +90,9 @@ export default class ValidationService {
         if (!media_id)      { message = 'image can not be null'    }
         if (!assigned_to)   { message = 'assigned_to can not be null'    }
         if (!supervised_by) { message = 'supervised_by can not be null'    }
+        if (!campo_id)      { message = 'Lote can not be null'    }
+
+        
 
         if(message){
             result = false
@@ -103,7 +106,7 @@ export default class ValidationService {
         return result
     }
 
-    static addNote(title, note, date, media_id) {
+    static addNote(title, note, date, media_id, campo_id) {
 
         let result = true
         let message = null;
@@ -112,6 +115,7 @@ export default class ValidationService {
         if (!date)     { message = 'Date can not be null'  }
         if (!note)     { message = 'Note can not be null'  }
         if (!media_id) { message = 'Image can not be null' }
+        if (!campo_id) { message = 'Lote can not be null' }
 
         if(message){
             result = false

@@ -78,13 +78,18 @@ export default class Lotes extends Component {
 
     remove() {
         const { editing } = this.state;
-        const array = editing.coordinates;
-        this.setState({
-            editing: {
-                ...editing,
-                coordinates: this.state.editing.coordinates.filter((_, i) => i !== parseInt(array.length - 1))
-            },
-        });
+        if(editing){
+            const array = editing.coordinates;
+            this.setState({
+                editing: {
+                    ...editing,
+                    coordinates: this.state.editing.coordinates.filter((_, i) => i !== parseInt(array.length - 1))
+                },
+            });
+        } else {
+            this.setState({ create: false})
+        }
+        
     }
 
     onPress(e) {
@@ -190,7 +195,7 @@ export default class Lotes extends Component {
                     onRegionChangeComplete={region => this.setState({ region })}
                 >
 
-                    {cluster.markers.map((marker, index) => this.renderMarker(marker, index))}
+                    {/* {cluster.markers.map((marker, index) => this.renderMarker(marker, index))} */}
 
                     {this.state.editing && create && <MapView.Polygon
                         coordinates={this.state.editing.coordinates}
@@ -270,10 +275,10 @@ export default class Lotes extends Component {
                         <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => Actions.addCampo()}>
                             <Text style={{ fontSize: p(15), textAlign: 'center', color: colors.BLUE2 }}>{'New\nCampo'}</Text>
                         </ActionButton.Item>
-                        <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { }}>
+                        <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => Actions.addNotes()}>
                             <Image source={images.nota} style={{ width: p(28), height: p(45) }} />
                         </ActionButton.Item>
-                        <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { }}>
+                        <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => Actions.addTareas()}>
                             <Image source={images.tarea} style={{ width: p(28), height: p(48) }} />
                         </ActionButton.Item>
                         <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { }}>

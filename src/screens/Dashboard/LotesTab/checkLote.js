@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Image, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native'
-import { images } from '../../common/images'
-import { p } from '../../common/normalize'
-import { colors } from '../../common/colors'
+import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity } from 'react-native'
+import { images } from '../../../common/images'
+import { p } from '../../../common/normalize'
+import { colors } from '../../../common/colors'
 import { Actions } from 'react-native-router-flux'
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import Map from '../../components/Map'
-import Cstyles from '../../common/c_style'
-import * as ICON from '../../components/Icons'
-import * as HEADER from '../../components/Headers'
-import * as CONFIG from '../../common/config'
-import * as actions from "../../store/lotes/actions";
+import Cstyles from '../../../common/c_style'
+import * as ICON from '../../../components/Icons'
+import * as HEADER from '../../../components/Headers'
+import * as actions from "../../../store/lotes/actions";
 
-class LoteSelection extends Component {
+class CheckLote extends Component {
 
     constructor(props) {
         super(props)
@@ -25,15 +23,10 @@ class LoteSelection extends Component {
     }
 
     _onGoTo = (x, y) => {
-        this.props.actions.removePolygon()
-        this.props.actions.removeNoteTaskCrop()
-
-        this.props.actions.addLote(x.field_id, x.name, x.ha.toFixed(2), y.nombre)
-        Actions.lotetab({
-            field: x,
-            description: y.nombre,
-            campo_id: y.campo_id
-        })
+        if(this.props.update){
+            this.props.update(x.name, x.field_id, y.nombre);
+            Actions.pop()
+        }
     }
 
     _renderItem = ({ item: x }) => {
@@ -70,53 +63,24 @@ class LoteSelection extends Component {
     }
 
     render() {
-        const { skip, isWaiting } = this.state
-        const { allLotesCount, allLotes } = this.props
+        const { allLotes } = this.props
         return (
             <View style={Cstyles.container}>
-
-
                 <HEADER.NormalIcon
                     title={'Lotes'}
                     back={colors.BLUE}
                     icon={<ICON.IconLocation />}
                 />
-                <ScrollView>
-                    <Map
-                        region={CONFIG.REGION}
-                        custom={CONFIG.MAP_AUB}
-                    />
-                    <View style={Cstyles.searchView}>
-                        <TextInput
-                            style={Cstyles.searchInput}
-                            placeholder={'Campos y Lotes'}
-                        />
-                        <ICON.IconWhiteSearch right={p(20)} />
-                    </View>
-
-                    <View>
-
-                        <FlatList
-                            data={allLotes}
-                            keyExtractor={(item, i) => String(i)}
-                            renderItem={this._renderItem}
-                            extraData={this.state}
-                        />
-
-                    </View>
-
-                    {isWaiting &&
-                        <View style={{ flex: 1, marginVertical: p(20), }}>
-                            <Image source={require('../../../assets/images/loading.gif')} style={{ width: p(50), height: p(50), alignSelf: 'center' }} />
-                        </View>
-                    }
-
-                </ScrollView>
+                <FlatList
+                    data={allLotes}
+                    keyExtractor={(item, i) => String(i)}
+                    renderItem={this._renderItem}
+                    extraData={this.state}
+                />
             </View>
         );
     }
 }
-
 
 export default connect(
     state => ({
@@ -126,7 +90,7 @@ export default connect(
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
     })
-)(LoteSelection);
+)(CheckLote);
 
 
 

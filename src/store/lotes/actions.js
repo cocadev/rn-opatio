@@ -284,10 +284,14 @@ export const addNote = (note_field_id, title, note, date, media_id) =>
     dispatch =>
         new Promise(function (resolve, reject) {
 
+
+
             api.addNote(note_field_id, title, note, date, media_id, (res, err) => {
 
                 console.log('res = ', res)
                 console.log('err = ', err)
+                console.log('title = ', title)
+                console.log('note_field_id = ', note_field_id)
 
                 if (res && !res.errors) {
                     let data = res.success
@@ -305,8 +309,9 @@ export const addNote = (note_field_id, title, note, date, media_id) =>
                     reject(err)
                     showMessage({
                         message: "Failed created task",
-                        type: "success",
-                        icon: "success",
+                        description: "Can't find this gis on this company",
+                        type: "danger",
+                        icon: "danger",
                     });
                 }
             })

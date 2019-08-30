@@ -9,14 +9,39 @@ import { NOTIFICATION } from '../../common/config';
 import * as ICON from '../../components/Icons';
 import text from '../../common/text';
 import Cache from '../../common/cache';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import * as actions from "../../store/lotes/actions";
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
 class Inbox extends React.Component {
 
-  state = {
-    notification: false
+  constructor() {
+    super();
+    this.state = {
+      notification: false,
+      isWaiting: false
+    }
+  }
+
+  componentDidMount() {
+    this.onfetchLoteData(0)
+  }
+
+  onfetchLoteData(skip) {
+
+    this.setState({ isWaiting: true })
+    this.props.actions.removeLotes()
+    this.props.actions.getAllLotes(skip)
+      .then((res) => {
+        this.setState({ isWaiting: true })
+        for (var i = 10; i < res; i = i + 10) {
+          this.props.actions.addStepLotes(i).then(() => this.setState({ isWaiting: false }))
+        }
+      })
+      .catch(e => { this.setState({ isWaiting: false }) })
   }
 
   _renderItem = ({ item }) => (
@@ -75,7 +100,7 @@ class Inbox extends React.Component {
 
         <View style={{ alignItems: 'center', marginTop: p(25) }}>
           <Text style={text.t_14_700_00}>Bienvenido otra vez</Text>
-          <Text style={[text.t_19_500_00, { marginTop: p(12) }]}>{Cache.FIRST_NAME +' ' + Cache.LAST_NAME}</Text>
+          <Text style={[text.t_19_500_00, { marginTop: p(12) }]}>{Cache.FIRST_NAME + ' ' + Cache.LAST_NAME}</Text>
         </View>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -106,6 +131,15 @@ class Inbox extends React.Component {
     );
   }
 }
+
+export default connect(
+  state => ({
+      allLotes: state.lotes.allLotes,
+  }),
+  dispatch => ({
+      actions: bindActionCreators(actions, dispatch)
+  })
+)(Inbox);
 
 const styles = StyleSheet.create({
   container: {
@@ -201,4 +235,3 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Inbox;

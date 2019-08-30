@@ -137,16 +137,13 @@ class LotesEdit extends Component {
                     <View style={styles.indicator}>
                         <View style={{ justifyContent: 'space-around', flexDirection: 'row' }}>
                             <TouchableOpacity style={{ marginHorizontal: 10 }} onPress={this.takePicture}>
-                                <Text style={{ fontSize: p(15)}}>Camera</Text>
+                                <Text style={{ fontSize: p(15) }}>Camera</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={{ marginHorizontal: 10 }} onPress={this._pickImage}>
-                                <Text style={{ fontSize: p(15)}}>Images</Text>
+                                <Text style={{ fontSize: p(15) }}>Images</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center'}}>
-                            { this.state.image && <Image source={{ uri: this.state.image}} style={styles.photo} />}
-                        </View>
-                        <View style={{ position: 'absolute', right: 5, bottom: 5}}>
+                        <View style={{ position: 'absolute', right: 5, bottom: 5 }}>
                             <TouchableOpacity onPress={() => this.setState({ visibleModal: false })}>
                                 <Text>Close</Text>
                             </TouchableOpacity>
@@ -198,6 +195,10 @@ class LotesEdit extends Component {
                         <TouchableOpacity onPress={() => this.setState({ visibleModal: true })}>
                             <Image source={images.photoAdd} style={{ width: p(38), height: p(35) }} />
                         </TouchableOpacity>
+                    </View>
+                    
+                    <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.ORANGE }}>
+                        {this.state.image && <Image source={{ uri: this.state.image }} style={styles.photo} />}
                     </View>
 
                     <View style={{ backgroundColor: colors.ORANGE }}>
@@ -334,8 +335,8 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     indicator: {
-        width: p(200),
-        height: p(200),
+        width: p(140),
+        height: p(100),
         borderRadius: 5,
         shadowColor: "black",
         alignItems: "center",
@@ -349,7 +350,7 @@ const styles = StyleSheet.create({
         borderColor: 'grey',
         borderWidth: 1.5,
         borderRadius: 3,
-        width: p(100),
-        height: p(100)
+        width: p(150),
+        height: p(150),
     }
 });

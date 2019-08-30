@@ -82,7 +82,9 @@ class TareasDetail extends Component {
                         index={0}
                         pageSize={width}
                     >
-                        {CONFIG.carouselList.map((image, index) => this.renderPage(image, index))}
+                        {/* {CONFIG.carouselList.map((image, index) => this.renderPage(image, index))} */}
+                        <Image style={{ width: width, height: p(209) }} source={{ uri: myTareas.file_url }} />
+
                     </Carousel>
 
                     <Image source={images.bigCheck} style={styles.big} />
@@ -136,7 +138,6 @@ class TareasDetail extends Component {
                     />
 
                     <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.WHITE, paddingBottom: p(24) }}>
-                        <Image source={{ uri: myTareas.file_url }} style={styles.video} />
                         <BTN.BtnNormal title={'DESCARGAR PDF'} back={colors.BLUE2} top={p(20)} onClick={this._viewPDF} />
                     </View>
 

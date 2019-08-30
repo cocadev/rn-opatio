@@ -39,12 +39,6 @@ class SignIn extends React.Component {
                 if (res.success) {
                     console.log("* res *", res)
                     this.props.update(res)
-                    showMessage({
-                        message: "Success",
-                        description: "Login Success!",
-                        type: "success",
-                        icon: "success",
-                    });
                 } else {
                     showMessage({
                         message: "Fail",

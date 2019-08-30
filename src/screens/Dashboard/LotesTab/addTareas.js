@@ -38,7 +38,9 @@ class AddTareas extends Component {
             lat: null,
             lng: null,
             assigned_to: 'gianotti.franco@gmail.com',
-            supervised_by: 'joaquin@optiagro.com'
+            supervised_by: 'joaquin@optiagro.com',
+            campo: '',
+            field: ''
         }
     }
 
@@ -51,6 +53,8 @@ class AddTareas extends Component {
     }
 
     takePicture = async () => {
+
+        this.setState({ visibleModal: false})
 
         let res = await Permissions.askAsync(Permissions.CAMERA)
         if (res.status === 'granted') {
@@ -84,6 +88,9 @@ class AddTareas extends Component {
     }
 
     _pickImage = async () => {
+
+        this.setState({ visibleModal: false})
+
         let result = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
             aspect: [4, 3],
@@ -121,9 +128,9 @@ class AddTareas extends Component {
                                 <Text style={{ fontSize: p(15) }}>Images</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        {/* <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                             {this.state.image && <Image source={{ uri: this.state.image }} style={styles.photo} />}
-                        </View>
+                        </View> */}
                         <View style={{ position: 'absolute', right: 5, bottom: 5 }}>
                             <TouchableOpacity onPress={() => this.setState({ visibleModal: false })}>
                                 <Text>Close</Text>
@@ -141,22 +148,22 @@ class AddTareas extends Component {
     }
 
     onUpdate = () => {
-        const { title, date_from, date_to, description, lat, lng, media_id, assigned_to, supervised_by } = this.state
+        const { title, date_from, date_to, description, lat, lng, media_id, assigned_to, supervised_by, campo_id } = this.state
 
-        if(!ValidationService.addTask(title, date_from, date_to, description, lat, lng, media_id, assigned_to, supervised_by)){
+        if (!ValidationService.addTask(title, date_from, date_to, description, lat, lng, media_id, assigned_to, supervised_by, campo_id)) {
             return false
         }
 
-        this.props.actions.addTask(this.props.testLote.id, title, date_from, date_to, description, lat, lng, media_id, assigned_to, supervised_by)
-            .then((res=> {
+        this.props.actions.addTask(campo_id, title, date_from, date_to, description, lat, lng, media_id, assigned_to, supervised_by)
+            .then((res => {
                 Actions.pop()
             }))
-            .catch(e=> console.log('** e **', e))
+            .catch(e => console.log('** e **', e))
     }
 
     render() {
 
-        const { title, date_from, date_to, isWaiting, lat, lng, description, assigned_to, supervised_by } = this.state;
+        const { title, date_from, date_to, isWaiting, lat, lng, description, assigned_to, supervised_by, field, campo } = this.state;
 
         return (
             <View style={Cstyles.container}>
@@ -170,7 +177,7 @@ class AddTareas extends Component {
                     <View style={styles.textRow}>
                         <TextInput
                             style={styles.titleInput}
-                            placeholder={'Note Title'}
+                            placeholder={'Tarea Title'}
                             // placeholderTextColor={colors.GREY4}
                             onChangeText={(title) => this.setState({ title })}
                             value={title}
@@ -178,6 +185,10 @@ class AddTareas extends Component {
                         <TouchableOpacity onPress={() => this.setState({ visibleModal: true })}>
                             <Image source={images.photoAdd} style={{ width: p(38), height: p(35) }} />
                         </TouchableOpacity>
+                    </View>
+
+                    <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.BLUE2 }}>
+                        {this.state.image && <Image source={{ uri: this.state.image }} style={styles.photo} />}
                     </View>
 
                     <View style={{ backgroundColor: colors.BLUE2 }}>
@@ -190,6 +201,23 @@ class AddTareas extends Component {
                             value={description}
                         />
                     </View>
+
+                    <ATOM.Atom1
+                        icon={<ICON.IconSquare />}
+                        title={'En lote'}
+                        note={field + '-' + campo}
+                        right={
+                            <TouchableOpacity
+                                onPress={() => Actions.checkLote({
+                                    update: (field_name, field_id, lote_name) => {
+                                        this.setState({ field: field_name, campo: lote_name, campo_id: field_id })
+                                    }
+                                })}
+                            >
+                                <Text style={text.t_15_600_sky}>Edit</Text>
+                            </TouchableOpacity>
+                        }
+                    />
 
                     <ATOM.Atom1
                         icon={<ICON.IconCalendarX />}
@@ -323,8 +351,8 @@ const styles = StyleSheet.create({
         marginVertical: p(2),
         borderColor: 'grey',
         width: p(220),
-        paddingLeft: p(4),
-        borderWidth: 2,
+        paddingLeft: p(10),
+        borderWidth: 1,
         borderRadius: 5
     },
     indicatorContainer: {
@@ -334,8 +362,8 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     indicator: {
-        width: p(200),
-        height: p(200),
+        width: p(140),
+        height: p(100),
         borderRadius: 5,
         shadowColor: "black",
         alignItems: "center",
@@ -349,8 +377,9 @@ const styles = StyleSheet.create({
         borderColor: 'grey',
         borderWidth: 1.5,
         borderRadius: 3,
-        width: p(100),
-        height: p(100)
+        marginTop: p(8),
+        width: p(150),
+        height: p(150)
     },
     item: {
         flexDirection: 'row',

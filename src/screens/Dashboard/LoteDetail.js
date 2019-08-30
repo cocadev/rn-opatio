@@ -81,7 +81,9 @@ class LoteDetail extends Component {
                         index={0}
                         pageSize={width}
                     >
-                        {CONFIG.carouselList.map((image, index) => this.renderPage(image, index))}
+                        <Image style={{ width: width, height: p(209) }} source={{ uri: myNote.file_url }} />
+
+                        {/* {CONFIG.carouselList.map((image, index) => this.renderPage(image, index))} */}
                     </Carousel>
 
                     <View style={styles.view}>
@@ -89,6 +91,8 @@ class LoteDetail extends Component {
                         <Text style={text.t_32_700_ff_t8}>{myNote.title}</Text>
                         {/* <Text numberOfLines={4} style={text.t_15_600_ff}>{data.overview}</Text> */}
                     </View>
+
+                    <Image source={{ uri: myNote.file_url }} style={styles.img} />
 
                     <ATOM.Atom1
                         icon={<ICON.IconMap />}
@@ -109,7 +113,7 @@ class LoteDetail extends Component {
                     />
 
                     <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.WHITE, paddingVertical: p(22) }}>
-                        <Image source={{ uri: myNote.file_url }} style={styles.video} />
+                        {/* <Image source={{ uri: myNote.file_url }} style={styles.video} /> */}
                         {
                             video ? <ICON.IconPause onClick={() => this.setState({ video: !video })} /> : <ICON.IconVideo onClick={() => this.setState({ video: !video })} />
                         }
