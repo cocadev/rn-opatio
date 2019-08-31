@@ -182,12 +182,13 @@ class LotesTab extends Component {
 
                     <Map
                         region={{
-                            latitude: loteRegion ? loteRegion[0][0][1] : 0,
-                            longitude: loteRegion ? loteRegion[0][0][0] : 0,
+                            latitude: loteRegion ? loteRegion[0][0][1] : -33.1231585,
+                            longitude: loteRegion ? loteRegion[0][0][0] : -64.3493441,
                             latitudeDelta: LATITUDE_DELTA,
                             longitudeDelta: LONGITUDE_DELTA,
                         }}
                         polygons={loteRegion && loteRegion}
+                       
                     />
 
                     {

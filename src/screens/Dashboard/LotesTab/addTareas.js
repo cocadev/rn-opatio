@@ -6,7 +6,6 @@ import { colors } from '../../../common/colors'
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import { Actions } from 'react-native-router-flux';
-import { showMessage } from "react-native-flash-message";
 import Cstyles from '../../../common/c_style'
 import DatePicker from '../../../components/datePicker';
 import UtilService from '../../../common/utils';
@@ -15,13 +14,13 @@ import _ from 'underscore'
 import * as HEADERS from '../../../components/Headers'
 import * as ATOM from '../../../components/Atoms'
 import * as ICON from '../../../components/Icons'
-import * as BTN from '../../../components/Buttons'
 import * as actions from "../../../store/lotes/actions";
 import * as ImagePicker from 'expo-image-picker'
 import * as Permissions from 'expo-permissions'
 import * as ImageManipulator from 'expo-image-manipulator'
 import text from '../../../common/text';
 import ValidationService from '../../../common/validation';
+import Cache from '../../../common/cache';
 
 class AddTareas extends Component {
 
@@ -35,8 +34,8 @@ class AddTareas extends Component {
             visibleModal: false,
             image: null,
             media_id: null,
-            lat: null,
-            lng: null,
+            lat: Cache.LAT.toFixed(2),
+            lng: Cache.LNG.toFixed(2),
             assigned_to: 'gianotti.franco@gmail.com',
             supervised_by: 'joaquin@optiagro.com',
             campo: '',

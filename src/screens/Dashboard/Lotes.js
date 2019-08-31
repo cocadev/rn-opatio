@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions } from 'react-native'
 import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
-import { REGION } from '../../common/config'
 import { Actions } from 'react-native-router-flux'
 import { getCluster } from '../Map/Test/MapUtils'
 import MapView, { Callout } from 'react-native-maps'
@@ -13,10 +12,17 @@ import text from '../../common/text'
 import * as HEADER from '../../components/Headers'
 import * as ICON from '../../components/Icons'
 import * as ATOM from '../../components/Atoms';
+import Cache from '../../common/cache';
 
 const COORDS = [
-    { lat: -33.1231585, lon: -64.3493441 },
+    { lat: Cache.LAT, lon: Cache.LNG },
 ];
+const { width, height } = Dimensions.get('window');
+
+const ASPECT_RATIO = width / height;
+const LATITUDE_DELTA = 0.04;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
 
 export default class Lotes extends Component {
 
@@ -25,9 +31,14 @@ export default class Lotes extends Component {
         this.state = {
             editing: null,
             create: false,
-            region: REGION,
             text: 'Buscar',
-            isWaiting: false
+            isWaiting: false,
+            region: {
+                latitude: Cache.LAT,
+                longitude: Cache.LNG,
+                latitudeDelta: LATITUDE_DELTA,
+                longitudeDelta: LONGITUDE_DELTA,
+              },
         }
     }
 
@@ -189,7 +200,7 @@ export default class Lotes extends Component {
                     showsCompass={true}
                     zoomEnabled={true}
                     cacheEnabled={true}
-                    initialRegion={REGION}
+                    initialRegion={region}
                     mapType={"satellite"}
                     onPress={e => this.onPress(e)}
                     onRegionChangeComplete={region => this.setState({ region })}
@@ -281,7 +292,7 @@ export default class Lotes extends Component {
                         <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => Actions.addTareas()}>
                             <Image source={images.tarea} style={{ width: p(28), height: p(48) }} />
                         </ActionButton.Item>
-                        <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { }}>
+                        <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => Actions.addCultivos()}>
                             <Image source={images.cultivo} style={{ width: p(33), height: p(46) }} />
                         </ActionButton.Item>
                     </ActionButton>

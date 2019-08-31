@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Image, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, FlatList, ScrollView, TouchableOpacity, Dimensions } from 'react-native'
 import { images } from '../../common/images'
 import { p } from '../../common/normalize'
 import { colors } from '../../common/colors'
@@ -12,16 +12,38 @@ import * as ICON from '../../components/Icons'
 import * as HEADER from '../../components/Headers'
 import * as CONFIG from '../../common/config'
 import * as actions from "../../store/lotes/actions";
+import Cache from '../../common/cache';
+
+const { width, height } = Dimensions.get('window');
+
+const ASPECT_RATIO = width / height;
+const LATITUDE_DELTA = 0.04;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 class LoteSelection extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            lotes: null,
+            data: [],
+            filteredData: [],
             isWaiting: false,
             skip: 0,
+            text: null,
+            region: {
+                latitude: Cache.LAT,
+                longitude: Cache.LNG,
+                latitudeDelta: LATITUDE_DELTA,
+                longitudeDelta: LONGITUDE_DELTA,
+              },
         }
+    }
+
+    componentDidMount(){
+        this.setState({ 
+            data: this.props.allLotes,
+            filteredData: this.props.allLotes
+        })
     }
 
     _onGoTo = (x, y) => {
@@ -69,12 +91,23 @@ class LoteSelection extends Component {
         )
     }
 
+    _onChangeText=(text)=>{
+        this.setState(prevState => {
+            const filteredData = prevState.data.filter(element => {
+              return element.nombre.toLowerCase().includes(text.toLowerCase());
+            });
+      
+            return {
+              text,
+              filteredData
+            };
+          });
+    }
+
     render() {
-        const { skip, isWaiting } = this.state
-        const { allLotesCount, allLotes } = this.props
+        const { isWaiting, filteredData, region } = this.state
         return (
             <View style={Cstyles.container}>
-
 
                 <HEADER.NormalIcon
                     title={'Lotes'}
@@ -83,26 +116,26 @@ class LoteSelection extends Component {
                 />
                 <ScrollView>
                     <Map
-                        region={CONFIG.REGION}
+                        region={region}
                         custom={CONFIG.MAP_AUB}
                     />
                     <View style={Cstyles.searchView}>
                         <TextInput
                             style={Cstyles.searchInput}
                             placeholder={'Campos y Lotes'}
+                            onChangeText={this._onChangeText}
+                            value={this.state.text}
                         />
                         <ICON.IconWhiteSearch right={p(20)} />
                     </View>
 
                     <View>
-
                         <FlatList
-                            data={allLotes}
+                            data={filteredData}
                             keyExtractor={(item, i) => String(i)}
                             renderItem={this._renderItem}
                             extraData={this.state}
                         />
-
                     </View>
 
                     {isWaiting &&

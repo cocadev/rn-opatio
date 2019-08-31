@@ -4,6 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import MapView, { PROVIDER_GOOGLE, Callout, } from 'react-native-maps';
 import { MaterialIcons } from '@expo/vector-icons'
 import { p } from '../../../common/normalize';
+import Cache from '../../../common/cache';
 
 var { width, height } = Dimensions.get('window')
 
@@ -13,8 +14,8 @@ export default class CheckMap extends Component {
     super(props);
     this.state = {
       initialPosition: {
-        longitude: -0.1277583,
-        latitude: 51.5073509,
+        latitude: Cache.LAT,
+        longitude: Cache.LNG,
         latitudeDelta: 0.02,
         longitudeDelta: 0.02,
       },

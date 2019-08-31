@@ -1,5 +1,5 @@
 import React from "react"
-import { View, StyleSheet, FlatList, Text, TouchableOpacity } from "react-native"
+import { View, StyleSheet, FlatList, Text, TouchableOpacity, Dimensions } from "react-native"
 import { colors } from "../../../common/colors"
 import { p } from "../../../common/normalize"
 import { Actions } from "react-native-router-flux"
@@ -7,6 +7,8 @@ import * as ICON from '../../../components/Icons'
 import * as HEADER from '../../../components/Headers'
 import Cstyles from '../../../common/c_style'
 import text from "../../../common/text"
+
+const width = Dimensions.get('window').width
 
 export default class DropDownList extends React.Component {
 
@@ -36,10 +38,11 @@ export default class DropDownList extends React.Component {
           icon={<ICON.IconLocation />}
         />
 
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 10 }} >
           <FlatList
-            style={{ marginVertical: p(50) }}
+            style={{ width: width }}
             data={dropdown}
+            numColumns={2}
             keyExtractor={(item, i) => String(i)}
             renderItem={this._renderItem}
           />
@@ -58,13 +61,14 @@ const styles = StyleSheet.create({
       backgroundColor: colors.WHITE
   },
   row: {
-    width: p(180),
+    flex: 1,
     height: p(40),
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
     borderColor: colors.TEXT,
-    borderWidth: p(3),
-    borderRadius: p(6),
-    margin: p(12)
+    borderWidth: 1,
+    borderRadius: 6,
+    margin: 12
   }
 })

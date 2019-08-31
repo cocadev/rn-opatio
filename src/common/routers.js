@@ -80,7 +80,7 @@ const MAIN = [
   { key: 'checkMap',                  component: CheckMap},
   { key: 'addNotes',                  component: addNotes},
   { key: 'addCampo',                  component: LoteCreateCampo},
-  { key: 'checkLote',                  component: checkLote},
+  { key: 'checkLote',                 component: checkLote},
 
   
   

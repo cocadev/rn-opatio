@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     flexDirection: "row",
-    paddingHorizontal: p(12),
+    paddingHorizontal: 12,
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
     elevation: 1
   },
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.BLUE2,
     justifyContent: 'space-between',
     flexDirection: 'row',
-    paddingHorizontal: p(20),
+    paddingHorizontal: 12,
     height: p(60),
     alignItems: 'center',
   },

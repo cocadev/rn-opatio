@@ -8,6 +8,8 @@ class Cache {
       this.ID = null;
       this.FIRST_NAME = null;
       this.LAST_NAME = null;
+      this.LAT=null;
+      this.LNG=null;
     }
   }
   

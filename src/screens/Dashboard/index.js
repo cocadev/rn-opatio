@@ -6,15 +6,14 @@ import { Actions } from 'react-native-router-flux';
 import { Entypo } from '@expo/vector-icons';
 import { p } from '../../common/normalize';
 import { NOTIFICATION } from '../../common/config';
-import * as ICON from '../../components/Icons';
-import text from '../../common/text';
-import Cache from '../../common/cache';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actions from "../../store/lotes/actions";
+import * as ICON from '../../components/Icons';
+import text from '../../common/text';
+import Cache from '../../common/cache';
 
-const width = Dimensions.get('window').width
-const height = Dimensions.get('window').height
+const { width, height } = Dimensions.get('window');
 
 class Inbox extends React.Component {
 
@@ -28,6 +27,19 @@ class Inbox extends React.Component {
 
   componentDidMount() {
     this.onfetchLoteData(0)
+    this._findMe()
+  }
+
+  _findMe() {
+    navigator.geolocation.getCurrentPosition(
+      ({ coords }) => {
+        const { latitude, longitude } = coords
+        Cache.LAT = latitude;
+        Cache.LNG = longitude;
+      },
+      (error) => alert(JSON.stringify(error)),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    )
   }
 
   onfetchLoteData(skip) {

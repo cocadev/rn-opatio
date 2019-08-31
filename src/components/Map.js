@@ -16,8 +16,8 @@ export default class Map extends React.Component {
     super(props);
     this.state = {
       text: 'Buscar',
-      latitude: 0,
-      longitude: 0,
+      latitude: -33.1231585,
+      longitude: -64.3493441,
       // region:props.region,
       modal:false
     }
@@ -39,6 +39,7 @@ export default class Map extends React.Component {
             longitudeDelta: 0.02,
           }
         })
+    
       },
       (error) => alert(JSON.stringify(error)),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
@@ -105,7 +106,7 @@ export default class Map extends React.Component {
           style={{ ...styles.map, height }}
           showsCompass={false}
           initialRegion={this.props.region}
-          region={this.props.region}
+          region={this.state.region}
           showsMyLocationButton={true}
           showsUserLocation={true}
           cacheEnabled={true}

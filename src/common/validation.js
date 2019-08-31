@@ -128,4 +128,23 @@ export default class ValidationService {
         }
         return result
     }
+
+    static addCultivos(campo_id) {
+
+        let result = true
+        let message = null;
+
+        if (!campo_id) { message = 'Lote can not be null' }
+
+        if(message){
+            result = false
+            showMessage({
+                message: "Fail",
+                description: message,
+                type: "danger",
+                icon: "danger",
+            });
+        }
+        return result
+    }
 }
