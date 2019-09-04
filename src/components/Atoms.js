@@ -33,7 +33,7 @@ export const Loading = (props) => (
           source={require('../common/reload.json')}
           autoPlay
         /> */}
-        <Image source={require('../../assets/images/loading.gif')} style={{width: p(50), height: p(50)}} />
+        <Image source={require('../../assets/images/loading.gif')} style={{width: p(80), height: p(80)}} />
 
       </View>
     </View>
@@ -66,13 +66,13 @@ const styles = StyleSheet.create({
   indicator: {
     width: p(80),
     height: p(80),
-    borderRadius: 5,
+    borderRadius: 12,
     shadowColor: "black",
     alignItems: "center",
     justifyContent: "center",
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.4,
     shadowRadius: 3,
-    backgroundColor: "#20409A"
+    backgroundColor: "#fff"
   },
 });

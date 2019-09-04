@@ -48,7 +48,7 @@ export const images = {
     inactive: require('../../assets/images/inactive.png'),
     layer: require('../../assets/images/layer1.png'),
     layer1: require('../../assets/images/layer.png'),
-    logo: require('../../assets/logo.png'),
+    logo: require('../../assets/images/huge-red-circle.svg'),
     logoIcon: require('../../assets/images/logoIcon.png'),
     locate: require('../../assets/images/locate1.png'),
     locate1: require('../../assets/images/locate.png'),

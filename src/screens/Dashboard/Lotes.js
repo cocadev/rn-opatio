@@ -234,7 +234,7 @@ export default class Lotes extends Component {
                     style={styles.searchView}>
                     <Image source={images.blackSearch} style={styles.searchIcon} />
                     <View style={styles.textinput}>
-                    <Text style={text.t_12_400_98}>{this.state.text}</Text>
+                      <Text style={text.t_12_400_98}>{this.state.text}</Text>
                     </View>
                 </TouchableOpacity>
 

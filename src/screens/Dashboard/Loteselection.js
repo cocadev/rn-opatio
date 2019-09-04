@@ -118,6 +118,7 @@ class LoteSelection extends Component {
                     <Map
                         region={region}
                         custom={CONFIG.MAP_AUB}
+                        remove={true}
                     />
                     <View style={Cstyles.searchView}>
                         <TextInput

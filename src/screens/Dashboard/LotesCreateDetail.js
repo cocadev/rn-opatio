@@ -93,7 +93,7 @@ export default class LoteCreateDetail extends React.Component {
                         left={p(15)}
                     />
 
-                    <Text style={[text.t_32_700_ff_t30, { textAlign: 'center' }]}>{'Nombre Lote'}</Text>
+                    <Text style={[text.t_32_700_ff_t30, { textAlign: 'center' }]}>{'Campo'}</Text>
 
                     <DROPDOWN.Large
                         title={campo}
@@ -108,7 +108,7 @@ export default class LoteCreateDetail extends React.Component {
 
                 <View style={styles.box}>
 
-                    <Text style={text.t_19_500_00}>{'Name'}</Text>
+                    <Text style={text.t_19_500_00}>{'Nombre Lote'}</Text>
 
                     <TextInput
                         style={styles.titleInput}

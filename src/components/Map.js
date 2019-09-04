@@ -19,7 +19,7 @@ export default class Map extends React.Component {
       latitude: -33.1231585,
       longitude: -64.3493441,
       // region:props.region,
-      modal:false
+      modal: false
     }
   }
 
@@ -39,7 +39,7 @@ export default class Map extends React.Component {
             longitudeDelta: 0.02,
           }
         })
-    
+
       },
       (error) => alert(JSON.stringify(error)),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
@@ -55,7 +55,7 @@ export default class Map extends React.Component {
             longitude: location.lng,
             latitudeDelta: 0.02,
             longitudeDelta: 0.02,
-          }, 
+          },
           text: key
         });
       }
@@ -64,41 +64,41 @@ export default class Map extends React.Component {
 
   renderModal() {
     return (
-        <Modal
-            visible={this.state.modal}
-            transparent={true}
-            onRequestClose={() => { }}
-        >
-            <View style={Cstyles.modalContainer}>
-                <View style={Cstyles.modal}>
+      <Modal
+        visible={this.state.modal}
+        transparent={true}
+        onRequestClose={() => { }}
+      >
+        <View style={Cstyles.modalContainer}>
+          <View style={Cstyles.modal}>
 
-                    <TouchableOpacity onPress={() => this.setState({ modal: false })} style={{ alignItems: 'flex-end' }}>
-                        <ICON.IconClose />
-                    </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.setState({ modal: false })} style={{ alignItems: 'flex-end' }}>
+              <ICON.IconClose />
+            </TouchableOpacity>
 
-                    <View style={{ flexDirection: 'row', marginTop: p(12), justifyContent: 'center' }}>
-                        <ICON.IconModalField1 left={p(14)} right={p(14)} />
-                        <TouchableOpacity onPress={() => this.setState({ calendar: true, modal: false })}>
-                            <ICON.IconModalField2 left={p(14)} right={p(14)} />
-                        </TouchableOpacity>
-                        <ICON.IconModalField3 left={p(14)} right={p(14)} />
-                    </View>
-
-                    <View style={{ flexDirection: 'row', marginTop: p(12), justifyContent: 'center' }}>
-                        <ICON.IconModalField4 left={p(14)} right={p(14)} />
-                        <ICON.IconModalField5 left={p(14)} right={p(14)} />
-                    </View>
-
-                </View>
+            <View style={{ flexDirection: 'row', marginTop: p(12), justifyContent: 'center' }}>
+              <ICON.IconModalField1 left={p(14)} right={p(14)} />
+              <TouchableOpacity onPress={() => this.setState({ calendar: true, modal: false })}>
+                <ICON.IconModalField2 left={p(14)} right={p(14)} />
+              </TouchableOpacity>
+              <ICON.IconModalField3 left={p(14)} right={p(14)} />
             </View>
-        </Modal>
+
+            <View style={{ flexDirection: 'row', marginTop: p(12), justifyContent: 'center' }}>
+              <ICON.IconModalField4 left={p(14)} right={p(14)} />
+              <ICON.IconModalField5 left={p(14)} right={p(14)} />
+            </View>
+
+          </View>
+        </View>
+      </Modal>
     );
-}
+  }
 
   render() {
-    const { polygons } = this.props;
+    const { polygons, remove } = this.props;
     const height = this.props.height ? this.props.height : p(240)
-    
+
     return (
       <View style={styles.container}>
         <MapView
@@ -115,27 +115,30 @@ export default class Map extends React.Component {
           loadingBackgroundColor="#eee"
           mapType={"satellite"}
         >
-          { polygons && <Polygons coordinates={polygons} /> }
+          {polygons && <Polygons coordinates={polygons} />}
         </MapView>
 
-        <TouchableOpacity
-          onPress={this.viewMap}
-          style={styles.searchView}>
-          <Image source={images.blackSearch} style={styles.searchIcon} />
-          <View style={styles.textinput}>
-            <Text style={text.t_12_400_98}>{this.state.text}</Text>
-          </View>
-        </TouchableOpacity>
+        {
+          !remove &&
+          <TouchableOpacity
+            onPress={this.viewMap}
+            style={styles.searchView}>
+            <Image source={images.blackSearch} style={styles.searchIcon} />
+            <View style={styles.textinput}>
+              <Text style={text.t_12_400_98}>{this.state.text}</Text>
+            </View>
+          </TouchableOpacity>
+        }
 
         <View style={{ position: 'absolute', right: 15, top: p(130) }}>
-          <TouchableOpacity onPress={()=>this.setState({ modal: true})}>
+          <TouchableOpacity onPress={() => this.setState({ modal: true })}>
             <ICON.IconRoundLayer />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this._findMe()}>
             <ICON.IconLocate1 />
           </TouchableOpacity>
         </View>
-        { this.state.modal && this. renderModal()}
+        {this.state.modal && this.renderModal()}
       </View>
     )
   }
