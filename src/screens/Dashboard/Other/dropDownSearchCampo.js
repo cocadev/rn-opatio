@@ -58,6 +58,10 @@ class DropDownSearchCampo extends React.Component {
             numColumns={2}
             renderItem={this._renderItem}
           />
+
+          <TouchableOpacity style={styles.btn} onPress={()=>Actions.addCampo()}>
+            <Text style={[text.t_12_400_2a, { color: colors.BLUE2, textAlign: 'center' }]}>Nuevo Campo</Text>
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -84,6 +88,17 @@ const styles = StyleSheet.create({
   row: {
     flex: 1,
     height: p(40),
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    borderColor: colors.TEXT,
+    borderWidth: 2,
+    borderRadius: p(6),
+    margin: p(12)
+  },
+  btn: {
+    height: p(40),
+    width: p(150),
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',

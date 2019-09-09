@@ -29,8 +29,8 @@ class Forgot extends React.Component {
                 </TouchableOpacity>
 
                 <View>
-                    <Text style={styles.textH}>Recuperar contrasena</Text>
-                    <Text style={styles.text}>Vamos a enviarte instrucciones para recuperar tu contrasena:</Text>
+                    <Text style={styles.textH}>Recuperar Contraseña</Text>
+                    <Text style={styles.text}>Vamos a enviarte instrucciones para recuperar tu Contraseña:</Text>
 
                     <TextInput
                         style={styles.input}
@@ -44,9 +44,7 @@ class Forgot extends React.Component {
 
                 <View style={{ alignItems: 'center', marginVertical: p(40) }}>
 
-                    <TouchableOpacity onClick={()=>console.log('waiting api ...')}>
-                        <Text style={styles.btnText}>CONTACTAR A SOPORTE</Text>
-                    </TouchableOpacity>
+           
 
                     <BTN.SkyWhite title={'ENVIAR'} onClick={()=>console.log('waiting api ...')} top={20} bottom={20}/>
 

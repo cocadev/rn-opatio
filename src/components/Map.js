@@ -96,7 +96,7 @@ export default class Map extends React.Component {
   }
 
   render() {
-    const { polygons, remove } = this.props;
+    const { polygons, remove, disable } = this.props;
     const height = this.props.height ? this.props.height : p(240)
 
     return (
@@ -130,11 +130,16 @@ export default class Map extends React.Component {
           </TouchableOpacity>
         }
 
-        <View style={{ position: 'absolute', right: 15, top: p(130) }}>
-          <TouchableOpacity onPress={() => this.setState({ modal: true })}>
-            <ICON.IconRoundLayer />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this._findMe()}>
+        <View style={{ position: 'absolute', right: 15, top: p(180) }}>
+          {/* {
+            !disable && 
+            <TouchableOpacity 
+              onPress={() => this.setState({ modal: true })} 
+            >
+              <ICON.IconRoundLayer />
+            </TouchableOpacity>
+          } */}
+          <TouchableOpacity onPress={() => this._findMe()} >
             <ICON.IconLocate1 />
           </TouchableOpacity>
         </View>

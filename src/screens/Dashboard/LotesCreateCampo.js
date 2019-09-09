@@ -52,13 +52,13 @@ class LoteCreateCampo extends React.Component {
                         left={p(15)}
                     />
 
-                    <Text style={[text.t_32_700_ff_t30, { textAlign: 'center' }]}>{'Nombre Campo'}</Text>
+                    <Text style={[text.t_32_700_ff_t30, { textAlign: 'center' }]}>{'Nuevo Campo'}</Text>
 
                 </View>
 
                 <View style={styles.box}>
 
-                    <Text style={text.t_19_500_00}>{'Name'}</Text>
+                    <Text style={text.t_19_500_00}>{'Nombre'}</Text>
 
                     <TextInput
                         style={styles.titleInput}

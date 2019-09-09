@@ -147,6 +147,7 @@ class AddNotes extends Component {
     render() {
 
         const { title, date, isWaiting, note, image, field, campo } = this.state;
+        const enlote = field + '-' + campo
 
         return (
             <View style={Cstyles.container}>
@@ -160,7 +161,7 @@ class AddNotes extends Component {
                     <View style={styles.textRow}>
                         <TextInput
                             style={styles.titleInput}
-                            placeholder={'Note Title'}
+                            placeholder={'Título Nota'}
                             onChangeText={(title) => this.setState({ title })}
                             value={title}
                         />
@@ -176,7 +177,7 @@ class AddNotes extends Component {
                     <ATOM.Atom1
                         icon={<ICON.IconSquare />}
                         title={'En lote'}
-                        note={field + '-' + campo}
+                        note={field && campo && enlote }
                         right={
                             <TouchableOpacity
                                 onPress={() => Actions.checkLote({
@@ -185,7 +186,7 @@ class AddNotes extends Component {
                                     }
                                 })}
                             >
-                                <Text style={text.t_15_600_orange}>Edit</Text>
+                                <Text style={text.t_15_600_orange}>Editar</Text>
                             </TouchableOpacity>
                         }
                     />
@@ -193,7 +194,7 @@ class AddNotes extends Component {
                     <View style={styles.item}>
                         <ICON.IconMember />
                         <View style={{ marginLeft: p(20) }}>
-                            <Text style={text.t_16_500_00}>{'Note'}</Text>
+                            <Text style={text.t_16_500_00}>{'Nota'}</Text>
                             <TextInput
                                 style={styles.itemInput}
                                 onChangeText={(note) => this.setState({ note })}
@@ -204,7 +205,7 @@ class AddNotes extends Component {
 
                     <ATOM.Atom1
                         icon={<ICON.IconCalendarX />}
-                        title={'Vence'}
+                        title={'Fecha'}
                         note={date}
                         right={
                             date && <DatePicker date={date} onClick={(x) => this.dateCheck(x)} color={colors.ORANGE}/>

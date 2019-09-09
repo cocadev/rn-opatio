@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { colors } from '../../common/colors'
 import { INTRO } from '../../common/config'
@@ -7,18 +7,15 @@ import * as ICON from '../../components/Icons'
 import * as BTN from '../../components/Buttons'
 import text from '../../common/text'
 import { p } from '../../common/normalize';
-import SvgUri from "expo-svg-uri";
+import { images } from '../../common/images'
 
 export default class Intro extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <SvgUri
-                    width="200"
-                    height="200"
-                    source={{
-                        uri: "http://thenewcode.com/assets/images/thumbnails/homer-simpson.svg"
-                    }}
+                <Image
+                    style={{ width: p(180), height: p(51), marginTop: p(40)}}
+                    source={images.mylogo}
                 />
                 <ICON.ImgIntro />
                 <View style={{ alignItems: 'center', marginTop: p(-40) }}>

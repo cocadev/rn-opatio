@@ -6,6 +6,7 @@ import * as Font from 'expo-font'
 import * as ROUTER from './common/routers'
 import Cache from "./common/cache"
 import FlashMessage from "react-native-flash-message";
+import { Loading } from '../src/components/Atoms'
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -99,7 +100,8 @@ export default class App extends PureComponent {
         {fontLoaded == true && authed > 0 ? (
           authed == 2 ? <ROUTER.MainPage signOut={() => this.logOut()} /> : <ROUTER.AuthPage logIn={(res) => this.loggedIn(res)}/>
         )
-          : <Image source={images.splash} style={{ width, height }} />}
+          : <Loading />
+        }
           <FlashMessage position="bottom" />
       </KeyboardAvoidingView>
     );

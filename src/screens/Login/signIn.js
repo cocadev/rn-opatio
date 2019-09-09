@@ -18,8 +18,8 @@ class SignIn extends React.Component {
     constructor() {
         super();
         this.state = {
-            email: 'demo@optiagro.com', //demo@optiagro.com
-            password: 'optiagroA98C', //optiagroA98C
+            email: '', //demo@optiagro.com
+            password: '', //optiagroA98C
             eye: false,
             isWaiting: false,
         }
@@ -70,7 +70,7 @@ class SignIn extends React.Component {
                 </TouchableOpacity>
 
                 <View>
-                    <Text style={styles.text}>Ingrese a Optiagro</Text>
+                    <Text style={styles.text}>Ingrese a optiagro</Text>
 
                     <TextInput
                         style={styles.input}
@@ -84,7 +84,7 @@ class SignIn extends React.Component {
                     <View>
                         <TextInput
                             style={styles.input}
-                            placeholder={'Contrasena:'}
+                            placeholder={'Contraseña:'}
                             underlineColorAndroid='transparent'
                             secureTextEntry={!eye}
                             onChangeText={password => this.setState({ password })}
@@ -104,7 +104,7 @@ class SignIn extends React.Component {
                     <BTN.SkyWhite title={'INGRESAR'} onClick={this.auth} bottom={p(20)}/>
 
                     <TouchableOpacity onPress={() => Actions.forgot()}>
-                        <Text style={styles.btnText}>¿YA TIENES CUENTA?</Text>
+                        <Text style={styles.btnText}>Recuperar Contraseña</Text>
                     </TouchableOpacity>
 
                 </View>

@@ -557,9 +557,9 @@ export const carouselList = [
 
 /////////////// DropDown ////////////////
 export const create1 = [
-  { name: '2018' },
-  { name: '2019' },
-  { name: '2020' }, 
+  { name: '2018/2019' },
+  { name: '2019/2020' },
+  { name: '2020/2021' }, 
 ]
 
 export const assign = [

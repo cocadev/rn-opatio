@@ -283,9 +283,9 @@ export default class Lotes extends Component {
                         <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => { this.setState({ create: true }) }}>
                             <Image source={images.lote} style={{ width: p(34), height: p(42) }} />
                         </ActionButton.Item>
-                        <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => Actions.addCampo()}>
+                        {/* <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => Actions.addCampo()}>
                             <Text style={{ fontSize: p(15), textAlign: 'center', color: colors.BLUE2 }}>{'New\nCampo'}</Text>
-                        </ActionButton.Item>
+                        </ActionButton.Item> */}
                         <ActionButton.Item size={p(80)} buttonColor={colors.WHITE} onPress={() => Actions.addNotes()}>
                             <Image source={images.nota} style={{ width: p(28), height: p(45) }} />
                         </ActionButton.Item>

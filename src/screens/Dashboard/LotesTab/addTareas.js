@@ -34,10 +34,10 @@ class AddTareas extends Component {
             visibleModal: false,
             image: null,
             media_id: null,
-            lat: Cache.LAT.toFixed(2),
-            lng: Cache.LNG.toFixed(2),
-            assigned_to: 'gianotti.franco@gmail.com',
-            supervised_by: 'joaquin@optiagro.com',
+            lat: Cache.LAT ? Cache.LAT.toFixed(2) : 0,
+            lng: Cache.LNG ? Cache.LNG.toFixed(2) : 0,
+            assigned_to: '',
+            supervised_by: '',
             campo: '',
             field: ''
         }
@@ -176,7 +176,7 @@ class AddTareas extends Component {
                     <View style={styles.textRow}>
                         <TextInput
                             style={styles.titleInput}
-                            placeholder={'Tarea Title'}
+                            placeholder={'Título Tarea'}
                             // placeholderTextColor={colors.GREY4}
                             onChangeText={(title) => this.setState({ title })}
                             value={title}
@@ -213,7 +213,7 @@ class AddTareas extends Component {
                                     }
                                 })}
                             >
-                                <Text style={text.t_15_600_sky}>Edit</Text>
+                                <Text style={text.t_15_600_sky}>Editar</Text>
                             </TouchableOpacity>
                         }
                     />
@@ -229,7 +229,7 @@ class AddTareas extends Component {
 
                     <ATOM.Atom1
                         icon={<ICON.IconCalendarX />}
-                        title={'Vence'}
+                        title={'Fecha'}
                         note={date_to}
                         right={
                             date_to && <DatePicker date={date_to} onClick={(x) => this.dateToCheck(x)} />
@@ -244,7 +244,7 @@ class AddTareas extends Component {
                             <TouchableOpacity
                                 onPress={(x) => Actions.checkMap({ update: (lat, lng) => this.setState({ lat, lng }) })}
                             >
-                                <Text style={text.t_15_600_sky}>Edit</Text>
+                                <Text style={text.t_15_600_sky}>Editar</Text>
                             </TouchableOpacity>
                         }
                     />

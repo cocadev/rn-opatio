@@ -22,7 +22,7 @@ class AddCultivos extends React.Component {
     constructor() {
         super();
         this.state = {
-            year: '2019',
+            year: '2019/2020',
             summer1: 'Asignar',
             summer2: 'Asignar',
             bell: 'Campaña',
@@ -37,7 +37,8 @@ class AddCultivos extends React.Component {
         if (!ValidationService.addCultivos(campo_id)) {
             return false
         }
-        this.props.actions.addCultivos(campo_id, year, summer1, summer2, '#FFF')
+        
+        this.props.actions.addCultivos(campo_id,  year.substring(2, 4) +''+ year.substring(7, 9), summer1, summer2, '#FFF')
             .then((res, err) => {
                 if (!err) {
                     console.log('res-> ', res)
@@ -58,6 +59,7 @@ class AddCultivos extends React.Component {
     render() {
 
         const { campo, summer1, summer2, field, year } = this.state
+        const enlote = field + '-' + campo
 
         return (
             <View style={Cstyles.container}>
@@ -67,7 +69,7 @@ class AddCultivos extends React.Component {
                 <ScrollView>
                     <View style={{ paddingBottom: p(30), backgroundColor: colors.GREEN2 }}>
 
-                        <Text style={[text.t_32_700_ff_t30, { textAlign: 'center' }]}>{'Campaing'}</Text>
+                        <Text style={[text.t_32_700_ff_t30, { textAlign: 'center' }]}>{'Campaña'}</Text>
 
                         <DROPDOWN.Large
                             title={year}
@@ -80,7 +82,7 @@ class AddCultivos extends React.Component {
                         />
 
                         <DROPDOWN.Large
-                            title={field + '-' + campo}
+                            title={field && campo && enlote || 'Lote'}
                             onClick={() => Actions.checkLote({
                                 dropdown: CONFIG.create1,
                                 update: (field_name, field_id, lote_name) => {

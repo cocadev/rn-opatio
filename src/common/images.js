@@ -109,4 +109,7 @@ export const images = {
     trackLocation: require('../../assets/images/track-location.png'),
     user: require('../../assets/images/user.png'),
     undo: require('../../assets/images/undo.png'),
+
+
+    mylogo: require('../../assets/images/logo.png'),
 };

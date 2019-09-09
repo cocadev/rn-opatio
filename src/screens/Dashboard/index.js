@@ -115,7 +115,7 @@ class Inbox extends React.Component {
           <Text style={[text.t_19_500_00, { marginTop: p(12) }]}>{Cache.FIRST_NAME + ' ' + Cache.LAST_NAME}</Text>
         </View>
 
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1, marginTop: p(70) }}>
 
           <TouchableOpacity onPress={() => Actions.lotes()} style={styles.rectNgulo}>
             <View style={styles.box}>
@@ -131,10 +131,6 @@ class Inbox extends React.Component {
             <Text style={[styles.text, { color: colors.YELLOW }]}>Maquinarias</Text>
           </TouchableOpacity>
 
-        </View>
-
-        <View style={styles.button}>
-          <Text style={styles.btnText}>Extraer datos</Text>
         </View>
 
         {this.state.notification && this.renderNotification()}
@@ -158,7 +154,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 24,
     paddingHorizontal: p(15),
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     backgroundColor: colors.BACKGROUND
   },
   header: {

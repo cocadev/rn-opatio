@@ -103,7 +103,7 @@ class TareasDetail extends Component {
 
                     <ATOM.Atom1
                         icon={<ICON.IconCalendarX />}
-                        title={'Vence'}
+                        title={'Fecha'}
                         note={myTareas.date_to}
                     />
 

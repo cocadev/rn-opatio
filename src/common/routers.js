@@ -82,9 +82,6 @@ const MAIN = [
   { key: 'addCampo',                  component: LoteCreateCampo},
   { key: 'checkLote',                 component: checkLote},
 
-  
-  
-
 ]
 
 export const AuthPage = props => (

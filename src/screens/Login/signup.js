@@ -71,7 +71,7 @@ class SignUp extends React.Component {
                     <View>
                         <TextInput
                             style={styles.input}
-                            placeholder={'Contrasena:'}
+                            placeholder={'Contraseña:'}
                             underlineColorAndroid='transparent'
                             secureTextEntry={!eye}
                             onChangeText={password => this.setState({ password })}

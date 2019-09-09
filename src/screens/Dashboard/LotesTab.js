@@ -100,14 +100,15 @@ class LotesTab extends Component {
 
     apiCall() {
         const { search, startDate_note, endDate_note, startDate_note2, endDate_note2, sort_by, campo_id, field_id } = this.state
+        console.log(' search =', search)
         this.props.actions.getGisFromCampoId(campo_id, field_id);
         this.props.actions.searchNotes(field_id, search, startDate_note, endDate_note, sort_by);
         this.props.actions.searchTasks(field_id, search, startDate_note2, endDate_note2, sort_by);
         this.props.actions.searchCrops(field_id);
     }
 
-    searchCrop=(x, y)=>{
-        this.props.actions.searchCrops(this.state.field_id, x ,y);
+    searchCrop = (x, y) => {
+        this.props.actions.searchCrops(this.state.field_id, x, y);
     }
 
     renderModal() {
@@ -161,10 +162,10 @@ class LotesTab extends Component {
 
     render() {
 
-        const { selectTab, modal, calendar, REGION, isWaiting, startDate_note, endDate_note, startDate_note2, endDate_note2 } = this.state;
+        const { selectTab, modal, calendar, REGION, search, startDate_note, endDate_note, startDate_note2, endDate_note2 } = this.state;
         const field = this.props.navigation.state.params.field;
         const myLote = this.props.testLote
-        let loteRegion = this.props.testPolygon;
+        let loteRegion = this.props.testPolygon;        
 
         // console.log('<>< testCrops ><>', this.props.testCrops)
 
@@ -180,22 +181,35 @@ class LotesTab extends Component {
 
                 <ScrollView style={{ marginTop: p(60) }}>
 
-                    <Map
+                    {loteRegion && <Map
                         region={{
                             latitude: loteRegion ? loteRegion[0][0][1] : -33.1231585,
                             longitude: loteRegion ? loteRegion[0][0][0] : -64.3493441,
                             latitudeDelta: LATITUDE_DELTA,
                             longitudeDelta: LONGITUDE_DELTA,
                         }}
-                        polygons={loteRegion && loteRegion}
-                       
-                    />
+                        polygons={loteRegion}
+                        disable={true}
+
+                    />}
 
                     {
                         !calendar &&
                         <View style={Cstyles.searchView}>
-                            <TextInput style={Cstyles.searchInput} placeholder={'Notas del lote'} />
-                            <Image source={images.search_white} style={{ width: p(18), height: p(18), marginRight: p(20) }} />
+                            <TextInput
+                                style={Cstyles.searchInput}
+                                placeholder={
+                                   selectTab == 1 ? 'Notas  del lote' : (selectTab == 2 ? 'Tareas': 'Cultivos') + ' del lote'
+                                }
+                                onChangeText={(search) => this.setState({ search })}
+                                value={search}
+                            />
+                            <TouchableOpacity onPress={() => this.apiCall()}>
+                                <Image
+                                    source={images.search_white}
+                                    style={{ width: p(18), height: p(18), marginRight: p(20) }}
+                                />
+                            </TouchableOpacity>
                         </View>
                     }
 
@@ -227,7 +241,7 @@ class LotesTab extends Component {
                         />
                     }
                     {!calendar && selectTab == 2 &&
-                        <Tareas 
+                        <Tareas
                             tasks={this.props.testTasks}
                             endModal={this.endOpen2}
                             startModal={this.startOpen2}
@@ -235,8 +249,8 @@ class LotesTab extends Component {
                             endDate={UtilService.getDatebylongNumber(endDate_note2)}
                         />
                     }
-                    {!calendar && selectTab == 3 && 
-                        <Cultivos crops={this.props.testCrops} onClick={(x, y)=>this.searchCrop(x, y)}/>
+                    {!calendar && selectTab == 3 &&
+                        <Cultivos crops={this.props.testCrops} onClick={(x, y) => this.searchCrop(x, y)} />
                     }
 
                     {modal && this.renderModal()}

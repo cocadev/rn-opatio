@@ -32,7 +32,7 @@ export default class DatePicker extends Component {
             <View style={style.itemView}>
 
                 <TouchableOpacity onPress={this.startOpen} >
-                    <Text style={this.props.color ? text.t_15_600_orange :text.t_15_600_sky}>Edit</Text>
+                    <Text style={this.props.color ? text.t_15_600_orange :text.t_15_600_sky}>Editar</Text>
                 </TouchableOpacity>
 
                 <DateTimePicker

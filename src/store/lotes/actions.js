@@ -308,8 +308,8 @@ export const addNote = (note_field_id, title, note, date, media_id) =>
                 } else {
                     reject(err)
                     showMessage({
-                        message: "Failed created task",
-                        description: "Can't find this gis on this company",
+                        message: "Error al guardar la Nota",
+                        description: "El lote no pertenece a esta empresa.",
                         type: "danger",
                         icon: "danger",
                     });

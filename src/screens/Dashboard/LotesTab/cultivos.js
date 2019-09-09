@@ -21,7 +21,7 @@ const view = {
 
 export default class Cultivos extends React.Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
             startYear: '2019',
@@ -30,9 +30,12 @@ export default class Cultivos extends React.Component {
     }
 
     renderItem = ({ item, index }) => {
+        console.log('*********', item)
         return (
             <View key={index} style={{ paddingHorizontal: p(15), alignItems: 'center', marginTop: p(16) }}>
-                <Text style={{ color: colors.GREY7, textAlign: 'left', position: 'absolute', left: p(15), fontSize: p(12) }}>Campaña {item.campaing}/{item.campaing + 1}</Text>
+                <Text style={{ color: colors.GREY7, textAlign: 'left', position: 'absolute', left: p(15), fontSize: p(12) }}>
+                     Campaña {parseInt(item.campaing / 100) + 2000}/{parseInt(item.campaing / 100) + 2001}
+                </Text>
                 <View style={[view, { backgroundColor: colors.YEL, marginTop: p(40) }]}>
                     <Text style={text.t_14_700_00}>{item.estival}</Text>
                 </View>
@@ -47,11 +50,13 @@ export default class Cultivos extends React.Component {
     }
 
     render() {
-        const { startYear, endYear } = this.state
+
+        const { crops } = this.props
+
         return (
             <View style={[Cstyles.container, { paddingBottom: p(20) }]}>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: p(25) }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: p(12) }}>
 
                     {/* <DROPDOWN.XSmall 
                         title={startYear} 
@@ -78,9 +83,9 @@ export default class Cultivos extends React.Component {
                 </View>
 
                 {
-                    this.props.crops &&
+                    crops &&
                     <FlatList
-                        data={this.props.crops}
+                        data={crops}
                         renderItem={this.renderItem}
                         keyExtractor={(item, i) => String(i)}
                     />

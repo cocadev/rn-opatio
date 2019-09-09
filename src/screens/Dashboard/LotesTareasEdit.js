@@ -249,7 +249,7 @@ class TareasEdit extends Component {
 
                     <ATOM.Atom1
                         icon={<ICON.IconCalendarX />}
-                        title={'Vence'}
+                        title={'Fecha'}
                         note={date_to}
                         right={
                             date_to && <DatePicker date={date_to} onClick={(x) => this.dateToCheck(x)} />
