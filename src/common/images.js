@@ -112,4 +112,7 @@ export const images = {
 
 
     mylogo: require('../../assets/images/logo.png'),
+    svgLogo: require('../../assets/images/White_logo.svg'),
+    cc: require('../../assets/images/cc.svg'),
+
 };

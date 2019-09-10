@@ -282,7 +282,8 @@ module.exports = {
   },
 
   addNote(note_field_id, title, note, date, media_id, cb) {
-    this.baseApi(`campos/gis/${note_field_id}/notes`, 'POST', { title, date, media_id, note, timeoffset: 3 }, cb)
+    media_id && this.baseApi(`campos/gis/${note_field_id}/notes`, 'POST', { title, date, media_id, note, timeoffset: 3 }, cb)
+    !media_id && this.baseApi(`campos/gis/${note_field_id}/notes`, 'POST', { title, date, note, timeoffset: 3 }, cb)
   },
 
   ///////////////////////////// Task //////////////////////////
@@ -304,7 +305,9 @@ module.exports = {
   },
 
   addTask(task_field_id, title, date_from, date_to, description, media_id, geo_tag, assigned_to, supervised_by, cb) {
-    this.baseApi(`campos/gis/${task_field_id}/tasks`, 'POST', { title, date_from, date_to, description, media_id, geo_tag, assigned_to, supervised_by }, cb)
+    media_id && this.baseApi(`campos/gis/${task_field_id}/tasks`, 'POST', { title, date_from, date_to, description, media_id, geo_tag, assigned_to, supervised_by }, cb)
+    !media_id && this.baseApi(`campos/gis/${task_field_id}/tasks`, 'POST', { title, date_from, date_to, description, geo_tag, assigned_to, supervised_by }, cb)
+
   },
 
   getCamposNotas(field_id, text, date_from, date_to, sort_by, cb) {

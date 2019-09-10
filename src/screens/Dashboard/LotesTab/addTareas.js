@@ -36,8 +36,8 @@ class AddTareas extends Component {
             media_id: null,
             lat: Cache.LAT ? Cache.LAT.toFixed(2) : 0,
             lng: Cache.LNG ? Cache.LNG.toFixed(2) : 0,
-            assigned_to: '',
-            supervised_by: '',
+            assigned_to: 'gianotti.franco@gmail.com',
+            supervised_by: 'test@test.com',
             campo: '',
             field: ''
         }

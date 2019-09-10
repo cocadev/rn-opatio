@@ -240,6 +240,38 @@ export const addCultivos = (x, y, z, i, j) =>
         }
         )
 
+
+export const createGIS = (campo_id, title, color, polygons) =>
+    dispatch =>
+        new Promise(function (resolve, reject) {
+
+            api.createGIS(campo_id, title, color, polygons, (res) => {
+                console.log('******** Create GIS ********', res)
+
+                if (res && res.success) {
+                    dispatch({
+                        type: types.CREATE_GIS,
+                        data: res.success,
+                    });
+                    showMessage({
+                        message: "Success",
+                        description: "Nuevo lote guardo correctamente",
+                        type: "success",
+                        icon: "success",
+                    });
+                    resolve(res.success)
+                } else {
+                    showMessage({
+                        message: "Error",
+                        description: "Bad request syntax",
+                        type: "danger",
+                        icon: "danger",
+                    });
+                    reject('fail')
+                }
+            })
+        })
+
 export const addTask = (task_field_id, title, date_from, date_to, description, lat, lng, media_id, assigned_to, supervised_by) =>
     dispatch =>
         new Promise(function (resolve, reject) {
@@ -253,10 +285,22 @@ export const addTask = (task_field_id, title, date_from, date_to, description, l
 
             api.addTask(task_field_id, title, date_from, date_to, description, media_id, geo_tag, assigned_to, supervised_by, (res, err) => {
 
-                console.log('res = ', res)
+                console.log('task_field_id ========== ', task_field_id)
+                console.log('title ========== ', title)
+                console.log('date_from ========== ', date_from)
+                console.log('date_to ========== ', date_to)
+                console.log('description ========== ', description)
+                console.log('media_id ========== ', media_id)
+                console.log('geo_tag ========== ', geo_tag)
+                console.log('supervised_by ========== ', supervised_by)
+                console.log('assigned_to ========== ', assigned_to)
+
+
+
+                console.log('res ========== ', res)
                 console.log('err = ', err)
 
-                if (err == null) {
+                if (res && res.success) {
                     let data = res.success
                     dispatch({
                         type: types.ADD_TASK,
@@ -272,8 +316,8 @@ export const addTask = (task_field_id, title, date_from, date_to, description, l
                     reject(err)
                     showMessage({
                         message: "Failed created task",
-                        type: "success",
-                        icon: "success",
+                        type: "danger",
+                        icon: "danger",
                     });
                 }
             })
@@ -284,13 +328,12 @@ export const addNote = (note_field_id, title, note, date, media_id) =>
     dispatch =>
         new Promise(function (resolve, reject) {
 
-
+            console.log('@@@@@ media_id = ', media_id)
 
             api.addNote(note_field_id, title, note, date, media_id, (res, err) => {
 
                 console.log('res = ', res)
                 console.log('err = ', err)
-                console.log('title = ', title)
                 console.log('note_field_id = ', note_field_id)
 
                 if (res && !res.errors) {

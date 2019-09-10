@@ -3,19 +3,19 @@ import { StyleSheet, View, Text, TextInput } from 'react-native'
 import { colors } from '../../common/colors'
 import { p } from '../../common/normalize'
 import { Actions } from 'react-native-router-flux'
-import { showMessage } from "react-native-flash-message";
-
+import { bindActionCreators } from "redux"
+import { connect } from "react-redux"
 import Cstyles from '../../common/c_style'
 import text from '../../common/text'
-import api from '../../common/api'
 import ValidationService from '../../common/validation';
 
 import * as BTN from '../../components/Buttons'
 import * as DROPDOWN from '../../components/DropDown'
 import * as ICON from '../../components/Icons'
 import * as ATOM from '../../components/Atoms';
+import * as actions from "../../store/lotes/actions";
 
-export default class LoteCreateDetail extends React.Component {
+class LoteCreateDetail extends React.Component {
 
     constructor() {
         super();
@@ -52,29 +52,12 @@ export default class LoteCreateDetail extends React.Component {
             "coordinates": [array]
         }
 
-        api.createGIS(campo_id, title, color, polygons, (res) => {
-            console.log('******** res ********', res)
+        this.props.actions.createGIS(campo_id, title, color, polygons)
+        .then((res)=>this.setState({ isWaiting: false}))
+        .catch(e=>this.setState({isWaiting: false}))
 
-            if (res && res.success) {
-                showMessage({
-                    message: "Success",
-                    description: "Nuevo lote guardo correctamente",
-                    type: "success",
-                    icon: "success",
-                });
-                this.setState({ isWaiting: false })
-                Actions.pop()
-            } else {
-                showMessage({
-                    message: "Error",
-                    description: "Bad request syntax",
-                    type: "danger",
-                    icon: "danger",
-                });
-                this.setState({ isWaiting: false })
 
-            }
-        })
+       
     }
 
     render() {
@@ -93,7 +76,7 @@ export default class LoteCreateDetail extends React.Component {
                         left={p(15)}
                     />
 
-                    <Text style={[text.t_32_700_ff_t30, { textAlign: 'center' }]}>{'Campo'}</Text>
+                    <Text style={[text.t_32_700_ff_t30, { textAlign: 'center' }]}>{'Nuevo Campo'}</Text>
 
                     <DROPDOWN.Large
                         title={campo}
@@ -108,7 +91,7 @@ export default class LoteCreateDetail extends React.Component {
 
                 <View style={styles.box}>
 
-                    <Text style={text.t_19_500_00}>{'Nombre Lote'}</Text>
+                    <Text style={text.t_19_500_00}>{'Nombre'}</Text>
 
                     <TextInput
                         style={styles.titleInput}
@@ -142,7 +125,7 @@ export default class LoteCreateDetail extends React.Component {
                     /> */}
 
                     <BTN.BtnNormal
-                        title={'GUARDAR LOTE'}
+                        title={'GUARDAR CAMPO'}
                         back={colors.BLUE2}
                         onClick={() => this.createGIS()}
                         top={p(50)}
@@ -153,6 +136,15 @@ export default class LoteCreateDetail extends React.Component {
         )
     }
 }
+
+export default connect(
+    state => ({
+        testLote: state.lotes.testLote,
+    }),
+    dispatch => ({
+        actions: bindActionCreators(actions, dispatch)
+    })
+)(LoteCreateDetail);
 
 const styles = StyleSheet.create({
     view: {

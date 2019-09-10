@@ -130,15 +130,15 @@ export default class Map extends React.Component {
           </TouchableOpacity>
         }
 
-        <View style={{ position: 'absolute', right: 15, top: p(180) }}>
-          {/* {
-            !disable && 
+        <View style={{ position: 'absolute', right: 15, top: disable ? p(130) : p(180) }}>
+          {
+            disable && 
             <TouchableOpacity 
               onPress={() => this.setState({ modal: true })} 
             >
               <ICON.IconRoundLayer />
             </TouchableOpacity>
-          } */}
+          }
           <TouchableOpacity onPress={() => this._findMe()} >
             <ICON.IconLocate1 />
           </TouchableOpacity>

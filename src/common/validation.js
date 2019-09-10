@@ -86,10 +86,10 @@ export default class ValidationService {
         if (!date_from)     { message = 'date_from can not be null'    }
         if (!date_to)       { message = 'date_to can not be null'    }
         if (!description)   { message = 'description can not be null'    }
-        if (!lat || !lng)   { message = 'Location can not be null'    }
-        if (!media_id)      { message = 'media_id is not mandatory'    }
-        if (!assigned_to)   { message = 'assigned_to can not be null'    }
-        if (!supervised_by) { message = 'supervised_by can not be null'    }
+        // if (!lat || !lng)   { message = 'Location can not be null'    }
+        // if (!media_id)      { message = 'media_id is not mandatory'    }
+        // if (!assigned_to)   { message = 'assigned_to can not be null'    }
+        // if (!supervised_by) { message = 'supervised_by can not be null'    }
         if (!campo_id)      { message = 'Lote can not be null'    }
 
         
@@ -111,11 +111,11 @@ export default class ValidationService {
         let result = true
         let message = null;
 
-        if (!title)    { message = 'Title can not be null' }
-        if (!date)     { message = 'Date can not be null'  }
-        if (!note)     { message = 'Note can not be null'  }
-        if (!media_id) { message = 'media_id is not mandatory' }
-        if (!campo_id) { message = 'Lote can not be null' }
+        if (!title)    { message = 'Error al guardar la Nota ' }
+        // if (!date)     { message = 'Date can not be null'  }
+        if (!note)     { message = 'Error al guardar la Nota'  }
+        // if (!media_id) { message = 'media_id is not mandatory' }
+        if (!campo_id) { message = 'El lote no pertenece a esta empresa.' }
 
         if(message){
             result = false

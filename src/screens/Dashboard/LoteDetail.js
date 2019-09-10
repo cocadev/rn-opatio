@@ -10,7 +10,6 @@ import Carousel from 'react-native-banner-carousel'
 import text from '../../common/text'
 import Cstyles from '../../common/c_style'
 import * as ICON from '../../components/Icons'
-import * as CONFIG from '../../common/config'
 import * as ATOM from '../../components/Atoms'
 import * as HEADER from '../../components/Headers'
 import * as actions from "../../store/lotes/actions"
@@ -36,6 +35,8 @@ class LoteDetail extends Component {
         this.setState({
             myNote: note
         })
+
+        console.log( ' **************************', note)
 
     }
 

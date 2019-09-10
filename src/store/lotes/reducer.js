@@ -32,10 +32,10 @@ export default function job(state = initialState, action = {}) {
       var lotes = state.allLotes
 
       _.filter(action.data, (u) => {
-        console.log(' * john2 *', u)
+        console.log('* ~~~~~~~ creating ~~~~~~~ *', u)
         return lotes.push(u)
       })
-      
+
       return {
         ...state,
         type: types.ADD_STEP_LOTES,
@@ -51,6 +51,26 @@ export default function job(state = initialState, action = {}) {
         status: action.status
       }
 
+
+    case types.CREATE_GIS:
+
+      let campo_id = action.data.campo_id
+      let field = {
+        "field_id": action.data.field_id,
+        "ha": 100,
+        "name": action.data.name,
+      }
+
+      let newLote = state.allLotes;
+      var compo_index = _.findIndex(newLote, { campo_id: campo_id });
+      newLote[compo_index].fields.push(field)
+
+      return {
+        ...state,
+        type: types.CREATE_GIS,
+        allLotes: newLote,
+        status: action.status
+      }
 
     case types.ADD_LOTE:
 
@@ -135,10 +155,13 @@ export default function job(state = initialState, action = {}) {
 
     case types.SEARCH_CROPS:
 
+      // console.log( '^^^ My Test Crops ^^^', action.data)
+      let sorted = _.sortBy(action.data, function(o) { return o.campaing; })
+
       return {
         ...state,
         type: types.SEARCH_CROPS,
-        testCrops: action.data,
+        testCrops: sorted.reverse(),
         status: action.status
       }
 

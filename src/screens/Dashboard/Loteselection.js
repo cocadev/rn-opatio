@@ -40,11 +40,28 @@ class LoteSelection extends Component {
     }
 
     componentDidMount(){
-        this.setState({ 
-            data: this.props.allLotes,
-            filteredData: this.props.allLotes
-        })
+
+        this.onfetchLoteData(0)
+
+        // this.setState({ 
+        //     data: this.props.allLotes,
+        //     filteredData: this.props.allLotes
+        // })
     }
+
+    onfetchLoteData(skip) {
+
+        this.setState({ isWaiting: true })
+        this.props.actions.removeLotes()
+        this.props.actions.getAllLotes(skip)
+          .then((res) => {
+            this.setState({ isWaiting: true })
+            for (var i = 10; i < res; i = i + 10) {
+              this.props.actions.addStepLotes(i).then(() => this.setState({ isWaiting: false }))
+            }
+          })
+          .catch(e => { this.setState({ isWaiting: false }) })
+      }
 
     _onGoTo = (x, y) => {
         this.props.actions.removePolygon()
@@ -132,7 +149,7 @@ class LoteSelection extends Component {
 
                     <View>
                         <FlatList
-                            data={filteredData}
+                            data={this.props.allLotes}
                             keyExtractor={(item, i) => String(i)}
                             renderItem={this._renderItem}
                             extraData={this.state}

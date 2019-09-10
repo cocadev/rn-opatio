@@ -8,15 +8,15 @@ import * as BTN from '../../components/Buttons'
 import text from '../../common/text'
 import { p } from '../../common/normalize';
 import { images } from '../../common/images'
+// import SvgUri from "expo-svg-uri";
 
 export default class Intro extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Image
-                    style={{ width: p(180), height: p(51), marginTop: p(40)}}
-                    source={images.mylogo}
-                />
+
+                <Image source={images.mylogo} style={{ width: p(180), height: p(51), marginTop: p(40) }} />
+
                 <ICON.ImgIntro />
                 <View style={{ alignItems: 'center', marginTop: p(-40) }}>
                     <Text style={[text.t_14_500_ff, { textAlign: 'center', marginHorizontal: p(10) }]}>{INTRO}</Text>
@@ -34,7 +34,7 @@ export default class Intro extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 24,
+        paddingTop: p(32),
         backgroundColor: colors.SKY,
         justifyContent: 'space-between',
         alignItems: 'center'

@@ -26,7 +26,6 @@ class Inbox extends React.Component {
   }
 
   componentDidMount() {
-    this.onfetchLoteData(0)
     this._findMe()
   }
 
@@ -42,19 +41,7 @@ class Inbox extends React.Component {
     )
   }
 
-  onfetchLoteData(skip) {
 
-    this.setState({ isWaiting: true })
-    this.props.actions.removeLotes()
-    this.props.actions.getAllLotes(skip)
-      .then((res) => {
-        this.setState({ isWaiting: true })
-        for (var i = 10; i < res; i = i + 10) {
-          this.props.actions.addStepLotes(i).then(() => this.setState({ isWaiting: false }))
-        }
-      })
-      .catch(e => { this.setState({ isWaiting: false }) })
-  }
 
   _renderItem = ({ item }) => (
     <View style={styles.itemNotify}>

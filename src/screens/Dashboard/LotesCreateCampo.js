@@ -19,7 +19,7 @@ class LoteCreateCampo extends React.Component {
         super();
         this.state = {
             isWaiting: false,
-            title: 'hi'
+            title: ''
         }
     }
 
@@ -68,7 +68,7 @@ class LoteCreateCampo extends React.Component {
                     />
 
                     <BTN.BtnNormal
-                        title={'GUARDAR LOTE'}
+                        title={'GUARDAR CAMPO'}
                         back={colors.BLUE2}
                         onClick={() => this.createCampo()}
                         top={p(50)}
