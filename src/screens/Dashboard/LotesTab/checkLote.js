@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { images } from '../../../common/images'
 import { p } from '../../../common/normalize'
 import { colors } from '../../../common/colors'
@@ -21,6 +21,27 @@ class CheckLote extends Component {
             skip: 0,
         }
     }
+
+    componentDidMount(){
+        console.log( ' ** ** ** ** ** * *  * ** ', this.props.allLotes)
+        if(this.props.allLotes !== []){
+            this.onfetchLoteData(0)
+        }
+    }
+
+    onfetchLoteData(skip) {
+
+        this.setState({ isWaiting: true })
+        this.props.actions.removeLotes()
+        this.props.actions.getAllLotes(skip)
+          .then((res) => {
+            this.setState({ isWaiting: true })
+            for (var i = 10; i < res; i = i + 10) {
+              this.props.actions.addStepLotes(i).then(() => this.setState({ isWaiting: false }))
+            }
+          })
+          .catch(e => { this.setState({ isWaiting: false }) })
+      }
 
     _onGoTo = (x, y) => {
         if(this.props.update){
@@ -64,6 +85,7 @@ class CheckLote extends Component {
 
     render() {
         const { allLotes } = this.props
+        const { isWaiting } = this.state
         return (
             <View style={Cstyles.container}>
                 <HEADER.NormalIcon
@@ -71,6 +93,9 @@ class CheckLote extends Component {
                     back={colors.BLUE}
                     icon={<ICON.IconLocation />}
                 />
+                {
+                    isWaiting && <ActivityIndicator />
+                }
                 <FlatList
                     data={allLotes}
                     keyExtractor={(item, i) => String(i)}

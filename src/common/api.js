@@ -282,8 +282,8 @@ module.exports = {
   },
 
   addNote(note_field_id, title, note, date, media_id, cb) {
-    media_id && this.baseApi(`campos/gis/${note_field_id}/notes`, 'POST', { title, date, media_id, note, timeoffset: 3 }, cb)
-    !media_id && this.baseApi(`campos/gis/${note_field_id}/notes`, 'POST', { title, date, note, timeoffset: 3 }, cb)
+    media_id !== [] && this.baseApi(`campos/gis/${note_field_id}/notes`, 'POST', { title, date, media_id, note, timeoffset: 3 }, cb)
+    media_id == [] && this.baseApi(`campos/gis/${note_field_id}/notes`, 'POST', { title, date, note, timeoffset: 3 }, cb)
   },
 
   ///////////////////////////// Task //////////////////////////

@@ -20,6 +20,7 @@ import * as ImagePicker from 'expo-image-picker'
 import * as Permissions from 'expo-permissions'
 import * as ImageManipulator from 'expo-image-manipulator'
 import _ from 'underscore'
+import { EvilIcons } from '@expo/vector-icons';
 
 
 class AddNotes extends Component {
@@ -31,6 +32,8 @@ class AddNotes extends Component {
             date: UtilService.getDatebyTMDB(new Date()),
             visibleModal: false,
             image: null,
+            image_media: [],
+            image_urls: [],
             media_id: null,
             note: '',
             campo: '',
@@ -65,11 +68,15 @@ class AddNotes extends Component {
 
                     api.uploadImage(manipResult.uri, 'notes', (err, res) => {
 
+                        var joined_media = this.state.image_media.concat(res.media_id);
+                        var joined_urls = this.state.image_urls.concat(res.url);
+
                         if (err == null) {
                             this.setState({
                                 image: res.url,
-                                media_id: res.media_id
-
+                                media_id: res.media_id,
+                                image_media: joined_media,
+                                image_urls: joined_urls
                             });
                         }
                     })
@@ -92,10 +99,16 @@ class AddNotes extends Component {
 
         if (!result.cancelled) {
             api.uploadImage(result.uri, 'notes', (err, res) => {
+
+                var joined_media = this.state.image_media.concat(res.media_id);
+                var joined_urls = this.state.image_urls.concat(res.url);
+
                 if (err == null) {
                     this.setState({
                         image: res.url,
-                        media_id: res.media_id
+                        media_id: res.media_id,
+                        image_media: joined_media,
+                        image_urls: joined_urls
                     });
                 }
             })
@@ -131,13 +144,13 @@ class AddNotes extends Component {
     }
 
     onUpdate = () => {
-        const { title, date, media_id, note, campo_id } = this.state
+        const { title, date, image_media, note, campo_id } = this.state
 
-        if (!ValidationService.addNote(title, note, date, media_id, campo_id)) {
+        if (!ValidationService.addNote(title, note, date, image_media, campo_id)) {
             return false
         }
 
-        this.props.actions.addNote(campo_id, title, note, date, media_id)
+        this.props.actions.addNote(campo_id, title, note, date, image_media)
             .then((res => {
                 Actions.pop()
             }))
@@ -146,7 +159,7 @@ class AddNotes extends Component {
 
     render() {
 
-        const { title, date, isWaiting, note, image, field, campo } = this.state;
+        const { title, date, isWaiting, note, image, field, campo, image_media, image_urls } = this.state;
         const enlote = field + '-' + campo
 
         return (
@@ -170,14 +183,31 @@ class AddNotes extends Component {
                         </TouchableOpacity>
                     </View>
 
-                    <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.ORANGE }}>
-                        {image && <Image source={{ uri: image }} style={styles.img} />}
-                    </View>
+                    <ScrollView horizontal style={{ backgroundColor: colors.ORANGE, flexDirection: 'row' }}>
+                        {image_urls && 
+                          image_urls.map((item, index) => 
+                          <View key={index} style={{ position: 'relative', backgroundColor: 'transparent' }}>
+                            <TouchableOpacity 
+                                style={styles.close}
+                                onPress={()=> {
+                                    this.setState({
+                                        image_urls: image_urls.filter((_, i) => i !== index),
+                                        image_media: image_media.filter((_, i) => i !== index)
+                                    });
+                                }}
+                            >
+                               <EvilIcons name={'close-o'} size={p(25)} color={colors.ORANGE} />
+                            </TouchableOpacity>
+                            <View style={{ zIndex: -12}}>
+                             <Image source={{ uri: item }} style={styles.img} />
+                            </View>
+                          </View> )}
+                    </ScrollView>
 
                     <ATOM.Atom1
                         icon={<ICON.IconSquare />}
                         title={'En lote'}
-                        note={field && campo && enlote }
+                        note={field && campo && enlote}
                         right={
                             <TouchableOpacity
                                 onPress={() => Actions.checkLote({
@@ -208,7 +238,7 @@ class AddNotes extends Component {
                         title={'Fecha'}
                         note={date}
                         right={
-                            date && <DatePicker date={date} onClick={(x) => this.dateCheck(x)} color={colors.ORANGE}/>
+                            date && <DatePicker date={date} onClick={(x) => this.dateCheck(x)} color={colors.ORANGE} />
                         }
                     />
 
@@ -327,10 +357,20 @@ const styles = StyleSheet.create({
     img: {
         marginBottom: p(20),
         alignSelf: 'center',
-        width: p(150),
-        height: p(150),
+        width: p(120),
+        height: p(120),
+        borderRadius: p(20),
+        marginHorizontal: p(12),
         borderWidth: 1,
         borderRadius: 5,
-        borderColor: 'grey'
+        borderColor: 'grey',
+        zIndex: 0
+    },
+    close: {
+        position: 'absolute',
+        // backgroundColor: 'red',
+        right: p(12),
+        top: p(3),
+        zIndex: 1,
     }
 });

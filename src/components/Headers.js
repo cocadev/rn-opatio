@@ -11,7 +11,7 @@ import Test from '../screens/Test';
 export const Gradient = props => (
   <View style={styles.container}>
     <TouchableOpacity onPress={() => Actions.pop()}>
-      <MaterialCommunityIcons name={'arrow-left'} size={30} color={colors.WHITE} />
+      <MaterialCommunityIcons name={'arrow-left'} size={p(30)} color={colors.WHITE} />
     </TouchableOpacity>
     <View style={{ flexDirection: 'row' }}>
       <TouchableOpacity
