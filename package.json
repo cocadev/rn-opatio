@@ -1,6 +1,6 @@
 {
   "name": "optiagro",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Map app",
   "author": "eugene",
   "private": true,
@@ -9,7 +9,7 @@
     "@babel/runtime": "^7.5.4",
     "@expo/vector-icons": "^10.0.0",
     "axios": "^0.18.0",
-    "expo": "^33.0.0",
+    "expo": "^35.0.0",
     "expo-asset": "^5.0.1",
     "expo-constants": "^5.0.1",
     "expo-file-system": "~5.0.1",
@@ -22,8 +22,8 @@
     "lottie-react-native": "~2.6.1",
     "moment": "^2.23.0",
     "prop-types": "15.6.2",
-    "react": "16.8.3",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
+    "react": "16.8.6",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
     "react-native-action-button": "^2.8.5",
     "react-native-banner-carousel": "^1.0.3",
     "react-native-calendars": "^1.188.0",
@@ -46,17 +46,17 @@
     "whatwg-fetch": "2.0.4"
   },
   "android": {
-    "package": "com.optiagro.wangharry",
+    "package": "",
     "config": {
       "googleMaps": {
-        "apiKey": "AIzaSyBTFwGaraAS6YkKyeyZWH-jSY10mdkoD2E"
+        "apiKey": ""
       }
     }
   },
   "ios": {
-    "bundleIdentifier": "com.optiagro.wangharry"
+    "bundleIdentifier": ""
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0"
+    "babel-preset-expo": "^7.0.0"
   }
 }
