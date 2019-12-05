@@ -203,9 +203,7 @@ Export your Data to Excel or Print from your smartphone.
         **Note:** NPM has issues with React Native so `yarn` is recommended over `npm`.
 #### 2) Start your app
 
-- 2.1) **[iOS]** Build and run the iOS app, run `react-native run-ios` (to run on simulator) or `react-native run-ios --device` (to run on real device) from the root of your project. The first build will take some time.
-- 2.2) **[Android]** If you haven't already got an android device attached/emulator running then you'll need to get one running (make sure the emulator is with Google Play / APIs). When ready run `react-native run-android` from the root of your project.
-
+- 2.1) **[Expo]** Build and run the iOS app, run `expo start` (to run on simulator) or `expo start --device` (to run on real device) from the root of your project. The first build will take some time.
 ## :zap: **Tech Stack**
 
 <h1 align="center">
@@ -222,9 +220,7 @@ Export your Data to Excel or Print from your smartphone.
 -   [Redux-Persist](https://github.com/rt2zz/redux-persist)
 -   [Lottie React Native](https://github.com/react-native-community/lottie-react-native)
 -   [Antd Mobile RN](https://github.com/ant-design/ant-design-mobile-rn)
--   [React Native Firebase](https://github.com/invertase/react-native-firebase)
 -   [Eslint](https://eslint.org/)
--   [Facebook Login](https://github.com/facebook/react-native-fbsdk)
 
 ## :iphone: **Test**
 
