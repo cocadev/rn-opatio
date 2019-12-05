@@ -1,14 +1,14 @@
 {
   "expo": {
     "name": "optiagro",
-    "description": "Google Auth/MapView/Autocomplete-expo 32",
+    "description": "Google Auth/MapView/Autocomplete-expo 35",
     "slug": "optiagro",
     "privacy": "unlisted",
     "platforms": [
       "ios",
       "android"
     ],
-    "sdkVersion": "33.0.0",
+    "sdkVersion": "35.0.0",
     "version": "1.0.3",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
@@ -31,15 +31,15 @@
       ]
     },
     "android": {
-      "package": "com.optiagro.wangharry",
+      "package": "com.optiagro.eugene",
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyB1ZUeJmQkzp66r38xEsqY67G0fikYJnC4"
+          "apiKey": ""
         }
       }
     },
     "ios": {
-      "bundleIdentifier": "com.optiagro.wangharry",
+      "bundleIdentifier": "com.optiagro.eugene",
       "supportsTablet": true
     },
     "updates": {
