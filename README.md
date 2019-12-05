@@ -9,9 +9,9 @@
   <br><br>
 </h1>
 
-<p align="center">A minimal, clean and beautiful mobile app to help people find the foods to delivery and change the world.</p>
+<p align="center">The most Cost Effective Farm management and accounting APP on the market for 2019. Smart Farming Software's Farm Manager Pro - The Farming App which puts Farm Data Management and Farm Accounting /Finance records in your Pocket 24/7 for when you need them to make data driven farm management decisions</p>
 
-<p align="center"><i>"How to save a life?" - The Food Delivery</i> </p>
+<p align="center"><i>"How to save a life?" - The Farm Management</i> </p>
 
 <p align="center">
   <a href="http://makeapullrequest.com">
@@ -63,9 +63,29 @@
 
 ## :blush: **Overview?**
 
-Animavita is a combination of two Latin words, ‘Animal’ and ‘Vitae’, which means respectively ‘Animal’ and ‘Life’. This is an idea to create or animate something that was born a while ago, when I realized that facebook is used to publicize adoption and also ask for help for animals that lives on the streets.
+This All in One Farm Management App is packed with features to help you manage all your farm from Farm Finance Management to Animals Management (Dairy, Beef Drystock, Sheep, Pigs, Horses, even your dogs), Crops management, Fields, Animal Treatments, Farm Tractor and Machinery Service History.
 
-Animavita's purpose is not to change how people use facebook to the activities described above, but to centralize the helpful information in a single application. Anyone can make an adoption request, but it doesn’t mean that the pet will be automatically adopted. It means that the person interested can talk to the person who registered the pet, allowing both sides to have a conversation, and the user to research and decide his favorite pet.
+Track your Farm staffs Timesheets, farm tasks, even farming notifications. Record all your sales and farm Expenditure. Export or Print your data straight from your smartphone. This App has it all. Try it for free, you will never look back.
+
+Feature List:
+
+Farm Task Manager-Plan ahead and never miss a farm task again
+Farming Accounts-Record all your Farm Accounts in APP
+Record all you animal Details-Date of Birth to Date of Sale
+Record your All Treatment Purchases for Medical Compliance
+Manage Animal Event such as Heats
+Manage all your Field Details and notes
+Manage your Fertiliser purchased and applied to fields
+Manage your Lime purchased and Applied to Fields
+Monitor Grass growth
+Manage and record all chemical purchased and applied
+Record all Feed Purchases
+Record all Machinery Details and Service History
+Record all Farm Workers Time-sheets and costs- Collect your Employees Digital Signature on each Timesheet for Sign off
+Farming Reminders-Never Miss a Farm Event or Task Again-Set an Alarm!
+Need to brush up your farming skillet? Use the E Learning Videos option to learn a new skill all within the Apps
+Export your Data to Excel or Print from your smartphone.
+
 
 ## :dizzy: **Roadmap**
 
@@ -95,11 +115,8 @@ Animavita's purpose is not to change how people use facebook to the activities d
 <h1 align="center">
   <img src="https://apprecs.org/gp/images/app-icons/300/d8/host.exp.exponent.jpg" alt="Expo" height="100" width="100">
   <img src="https://ionicframework.com/docs/assets/icons/logo-react-icon.png" alt="RN" height="100" width="100">
-  <img src="https://cdn4.iconfinder.com/data/icons/google-i-o-2016/512/google_firebase-512.png" alt="Firebase" height="100" width="100">
   <img src="https://icon-library.net/images/png-map-icon/png-map-icon-26.jpg" alt="Map" height="100" width="100">
   <img src="https://cdn.iconscout.com/icon/free/png-512/facebook-logo-2019-1597680-1350125.png" alt="Facebook" height="100" width="100">
-
-
   <br>
 </h1>
 
