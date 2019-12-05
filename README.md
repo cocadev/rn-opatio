@@ -81,13 +81,10 @@ Animavita's purpose is not to change how people use facebook to the activities d
 
 #### 1) Clone & Install Dependencies
 
-- 1.1) `git clone https://github.com/funnyjerry/react-native-homeautomation-app.git`
-- 1.2) `cd react-native-homeautomation-app` - cd into your newly created project directory.
+- 1.1) `git clone https://github.com/funnyjerry/react-native-expo-opatio-app.git`
+- 1.2) `cd react-native-expo-opatio-app` - cd into your newly created project directory.
 - 1.3) Install NPM packages with `yarn install`
         **Note:** NPM has issues with React Native so `yarn` is recommended over `npm`.
-- 1.4) **[iOS]** `cd ios` and run `pod install` - if you don't have CocoaPods you can follow [these instructions](https://guides.cocoapods.org/using/getting-started.html#getting-started) to install it.
-- 1.5) **[Android]** If you haven't already generated a `debug.keystore` file you will need to complete this step from within the `/android/app` folder. Run `keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000`
-
 #### 2) Start your app
 
 - 2.1) **[iOS]** Build and run the iOS app, run `react-native run-ios` (to run on simulator) or `react-native run-ios --device` (to run on real device) from the root of your project. The first build will take some time.
@@ -101,8 +98,6 @@ Animavita's purpose is not to change how people use facebook to the activities d
   <img src="https://cdn4.iconfinder.com/data/icons/google-i-o-2016/512/google_firebase-512.png" alt="Firebase" height="100" width="100">
   <img src="https://icon-library.net/images/png-map-icon/png-map-icon-26.jpg" alt="Map" height="100" width="100">
   <img src="https://cdn.iconscout.com/icon/free/png-512/facebook-logo-2019-1597680-1350125.png" alt="Facebook" height="100" width="100">
-  <img src="https://www.xda-developers.com/files/2012/09/bluetooth.png" alt="Blooth" height="100" width="100">
-  <img src="http://www.wiresmart.co/wp-content/uploads/2018/05/wifi.png" alt="WIFI" height="100" width="100">
 
 
   <br>
@@ -115,21 +110,8 @@ Animavita's purpose is not to change how people use facebook to the activities d
 -   [Lottie React Native](https://github.com/react-native-community/lottie-react-native)
 -   [Antd Mobile RN](https://github.com/ant-design/ant-design-mobile-rn)
 -   [React Native Firebase](https://github.com/invertase/react-native-firebase)
--   [Gifted Chat](https://github.com/FaridSafi/react-native-gifted-chat)
 -   [Eslint](https://eslint.org/)
 -   [Facebook Login](https://github.com/facebook/react-native-fbsdk)
-
--   [MongoDB](https://www.mongodb.com/)
--   [Formik + Yup](https://jaredpalmer.com/formik/)
--   [Apollo](https://apollographql.com)
--   [GraphQL](https://github.com/facebook/graphql)
--   [Kraken](https://github.com/wendelfreitas/kraken)
--   [OneSignal](https://onesignal.com)
--   [AWS](https://aws.amazon.com/pt/)
--   [Styled Components](https://www.styled-components.com/)
--   [Reactotron](https://infinite.red/reactotron)
--   [Bug Snag](https://github.com/bugsnag/bugsnag-react-native)
--   [Android WIFI](https://github.com/devstepbcn/react-native-android-wifi)
 
 ## :iphone: **Test**
 
