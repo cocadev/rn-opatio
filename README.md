@@ -1,4 +1,4 @@
-<h1 align="center"><b> Farm Management App</b> </h1>
+<h1 align="center"><b> Farm Management React-Natve App</b> </h1>
 
 <h1 align="center">
   <br>
