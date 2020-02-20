@@ -1,14 +1,5 @@
 <h1 align="center"><b> React-Natve App for Farm Management with expo</b> </h1>
 
-<h1 align="center">
-  <br>
-  <kbd>
-    <img src="https://image.prntscr.com/image/YrkdAm5xSxe0MmkqrvGeJA.png" alt="Animavita" height="525" width="725">
-  </kbd>
-  <br>
-  <br><br>
-</h1>
-
 <p align="center">The most Cost Effective Farm management and accounting APP on the market for 2019. Smart Farming Software's Farm Manager Pro - The Farming App which puts Farm Data Management and Farm Accounting /Finance records in your Pocket 24/7 for when you need them to make data driven farm management decisions</p>
 
 <p align="center"><i>"How to save a life?" - The Farm Management</i> </p>
