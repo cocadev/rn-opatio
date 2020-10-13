@@ -28,7 +28,7 @@
 
 <p align="center">
   <kbd>
-    <img width="240" style="border-radius: 5px" height="450" src="screenshots/1.jpg" alt="1">
+    <img width="240" style="border-radius: 5px" height="450" src="screenshots/1.jpg" alt="2">
   </kbd>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <kbd>
