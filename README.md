@@ -1,4 +1,4 @@
-<h1 align="center"><b> React-Natve App for farm Management using location services 5</b> </h1>
+<h1 align="center"><b> React-Natve App for farm Management using location services 6</b> </h1>
 
 <p align="center">The most Cost Effective Farm management and accounting APP on the market for 2019. Smart Farming Software's Farm Manager Pro - The Farming App which puts Farm Data Management and Farm Accounting /Finance records in your Pocket 24/7 for when you need them to make data driven farm management decisions</p>
 
